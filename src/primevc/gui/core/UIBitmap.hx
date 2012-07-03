@@ -170,12 +170,18 @@ class UIBitmap extends primevc.gui.display.BitmapShape, implements IUIElement
 
     private function updateScale (changes:Int)
     {
-        if (changes.has(primevc.gui.layout.LayoutFlags.SIZE) && data != null)
+        // Adjust the scale of the Bitmap since it's not allowed to change the size of the bitmapdata.
+        if (changes.has(primevc.gui.layout.LayoutFlags.SIZE))
         {
-            // Adjust the scale of the Bitmap since it's not allowed to change the size of 
-            // the bitmapdata.
             var l = advancedLayout();
-            scaleX = scaleY = Formulas.scale( l.measuredWidth, l.measuredHeight, l.width, l.height );
+            if (data == null)
+                l.measuredWidth = l.measuredHeight = Number.INT_NOT_SET;
+            else {
+#if flash9      if (l.explicitWidth.isSet() || l.explicitHeight.isSet())
+                    scaleX = scaleY = Formulas.scale(data.width, data.height, l.explicitWidth, l.explicitHeight);
+#end            l.maintainAspectRatio = true;
+                l.measuredResize((data.width * scaleX).roundFloat(), (data.height * scaleY).roundFloat());
+            }
         }
     }
 
@@ -322,19 +328,7 @@ class UIBitmap extends primevc.gui.display.BitmapShape, implements IUIElement
         {
 #if flash9  bitmapData  = v;
 #else       data        = v; #end
-            var l       = advancedLayout();
-
-            if (v != null)
-            {
-                l.maintainAspectRatio = true;
-                l.measuredResize(v.width, v.height);
-#if flash9      if (l.explicitWidth.isSet() || l.explicitHeight.isSet())
-                    scaleX = scaleY = Formulas.scale(v.width, v.height, l.explicitWidth, l.explicitHeight);
-            }
-            else
-                l.measuredWidth = l.measuredHeight = Number.INT_NOT_SET;
-
-#end
+            updateScale(primevc.gui.layout.LayoutFlags.SIZE);
         }
         return v;
     }
