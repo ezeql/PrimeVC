@@ -61,6 +61,9 @@ class LangMacro
 		//}
 		for (currentDir in Context.getClassPath())
 		{
+			if (currentDir == "")	continue;
+			try { currentDir = sys.FileSystem.fullPath(currentDir); }
+			catch (e:Dynamic) {} //{ trace("errror "+e); }
 			if (!sys.FileSystem.exists(currentDir))
 				continue;
 
