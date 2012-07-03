@@ -45,6 +45,7 @@ class ApplicationStyle extends UIElementStyle
 		filledProperties	= filledProperties.set( sheet.allFilledProperties );
 		parentStyle			= this;
 		styles.add( sheet );
+		enableStyleListeners();
 	}
 #end
 }

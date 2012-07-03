@@ -178,7 +178,7 @@ class UIElementStyle implements IUIElementStyle
 		removedBinding	= disableStyleListeners	.on( owner.displayEvents.removedFromStage, this );
 		
 		if (owner.window != null) {
-			updateStyles();
+			enableStyleListeners();
 			addedBinding.disable();
 		} else {
 			removedBinding.disable();
@@ -302,7 +302,7 @@ class UIElementStyle implements IUIElementStyle
 	{
 		Assert.notNull( owner.container, "container of "+owner+" is null" );
 		Assert.that( owner.container.is( IStylable ) );
-		Assert.notNull( owner.container.as( IStylable ).style );
+	//	Assert.notNull( owner.container.as( IStylable ).style );
 		
 		if (removedBinding != null)		removedBinding.enable();
 		if (addedBinding != null)		addedBinding.disable();
@@ -310,7 +310,7 @@ class UIElementStyle implements IUIElementStyle
 		styleNamesChangeBinding	.enable();
 		idChangeBinding			.enable();
 		
-		var parent = owner.container != null ? owner.container.as( IStylable ) : null;
+		var parent = owner.container != null && owner.container != owner ? owner.container.as( IStylable ) : null;
 		//remove styles if the new parent is not the same as the old parent
 		if (parent != null && parent.style != parentStyle)
 		{
