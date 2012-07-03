@@ -59,35 +59,34 @@ class LangMacro
 				//langsRaw.set(key , data);
 			//}
 		//}
-
-	for ( dir in Context.getClassPath() )
+		for (currentDir in Context.getClassPath())
 		{
-			var currentDir =  dir;
-	
-				for (file in  neko.FileSystem.readDirectory(currentDir) )
-				{
-					if (file.endsWith(".yaml") || file.endsWith(".yml") )
-					{
-						trace("Prime::Locale:: Parsing YAML file:: " + currentDir +  file);
-						haxe.macro.Context.registerModuleDependency("primevc.locale.LangMacro", currentDir + "/" + file);
-						var yamlStream = YamlHX.read( neko.io.File.getContent( currentDir + "/" + file) );
-						var key = yamlStream.x.firstElement().nodeName;
-						if ( langsRaw.exists(key))
-						{
-							//merge
-							 var xmlToMerge = langsRaw.get(key);
-							 //xmlToPush.x.firstElement();
-							 mergeXML(xmlToMerge.node.resolve(key), yamlStream.node.resolve(key));
+			if (!sys.FileSystem.exists(currentDir))
+				continue;
 
-							langsRaw.set(key , xmlToMerge);
-							//neko.io.File.saveContent("test.xml", xmlToMerge.x.toString());
-						}
-						else
-						{
-							langsRaw.set(key , yamlStream);
-						}
+			for (file in sys.FileSystem.readDirectory(currentDir))
+			{
+				if (file.endsWith(".yaml") || file.endsWith(".yml") )
+				{
+				//	trace("Prime::Locale:: Parsing YAML file:: " + currentDir +  file);
+					haxe.macro.Context.registerModuleDependency("primevc.locale.LangMacro", currentDir + "/" + file);
+					var yamlStream = YamlHX.read( neko.io.File.getContent( currentDir + "/" + file) );
+					var key = yamlStream.x.firstElement().nodeName;
+					if ( langsRaw.exists(key))
+					{
+						//merge
+						 var xmlToMerge = langsRaw.get(key);
+						 //xmlToPush.x.firstElement();
+						 mergeXML(xmlToMerge.node.resolve(key), yamlStream.node.resolve(key));
+						langsRaw.set(key , xmlToMerge);
+						//neko.io.File.saveContent("test.xml", xmlToMerge.x.toString());
+					}
+					else
+					{
+						langsRaw.set(key , yamlStream);
 					}
 				}
+			}
 		}
 
 		if (langsRaw.empty())
