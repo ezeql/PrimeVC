@@ -179,7 +179,7 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 		
 		state = EffectStates.playing;
 		
-		if (startPos == endPos)
+		if (startPos == endPos || calcStartPos == -1)
 		{
 			onTweenReady();
 		}
