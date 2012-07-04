@@ -215,7 +215,7 @@ class UIBitmap extends primevc.gui.display.BitmapShape, implements IUIElement
             }
             
             attachDisplayTo(t, pos);
-            var hasEffect = visible && effects != null && effects.show != null;
+            var hasEffect = effects != null && effects.show != null;
             var isPlaying = hasEffect && effects.show.isPlaying();
             
             if (!hasEffect && !visible)

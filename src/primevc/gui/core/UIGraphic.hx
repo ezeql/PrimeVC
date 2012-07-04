@@ -197,7 +197,7 @@ class UIGraphic extends VectorShape
 			}
 			
 			attachDisplayTo(t, pos);
-			var hasEffect = visible && effects != null && effects.show != null;
+			var hasEffect = effects != null && effects.show != null;
 			var isPlaying = hasEffect && effects.show.isPlaying();
 			
 			if (!hasEffect && !visible)

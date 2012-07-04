@@ -209,7 +209,8 @@ DebugBar {
 	width: 100%;
 	background: #111111aa;
 	algorithm: float-hor(center, center);
-	bottom: 0px;
+	top: 0px;
+	position: absolute;
 }
 
 DebugBar Button {
