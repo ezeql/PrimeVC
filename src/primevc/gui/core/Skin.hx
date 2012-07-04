@@ -29,7 +29,7 @@
 package primevc.gui.core;
  import primevc.gui.behaviours.BehaviourList;
  import primevc.gui.events.UserEventTarget;
- import primevc.gui.states.SkinStates;
+// import primevc.gui.states.SkinStates;
  import primevc.gui.states.UIElementStates;
   using primevc.utils.Bind;
   using primevc.utils.TypeUtil;
@@ -44,16 +44,16 @@ package primevc.gui.core;
 class Skin <OwnerClass:IUIComponent> implements ISkin
 {
 	public var owner			(default, setOwner) : OwnerClass;
-	public var skinState		(default, null)		: SkinStates;
+//	public var skinState		(default, null)		: SkinStates;
 	public var behaviours		(default, null)		: BehaviourList;
 	
 	
 	public function new()
 	{
-		skinState		= new SkinStates();
+	//	skinState		= new SkinStates();
 		behaviours		= new BehaviourList();
 		
-		skinState.current = skinState.constructed;
+	//	skinState.current = skinState.constructed;
 	}
 	
 	
@@ -64,7 +64,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 		
 		owner		= null;	// <-- should trigger removeBehaviours and removeChildren
 		behaviours	= null;
-		skinState	= null;
+	//	skinState	= null;
 	}
 	
 	
@@ -112,16 +112,16 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 				disposeChildren();
 			
 			removeBehaviours();
-			removeStates();
+	//		removeStates();
 		}
 		
 		(untyped this).owner = newOwner;
 		
 		if (newOwner != null)
 		{
-			createStates();
+	//		createStates();
 			createBehaviours();
-			drawGraphics();
+	//		drawGraphics();
 			
 			if (newOwner.isInitialized()) {
 				createChildren();
@@ -144,13 +144,13 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	//
 	
 	//TODO RUBEN - enable Assert.abstract
-	private function createStates ()			: Void {} //	{ Assert.abstract(); }
+//	private function createStates ()			: Void {} //	{ Assert.abstract(); }
 	private function createBehaviours ()		: Void {} //	{ Assert.abstract(); }
-	public function drawGraphics ()				: Void {} //	{ Assert.abstract(); }
+//	public function drawGraphics ()				: Void {} //	{ Assert.abstract(); }
 	public function createChildren ()			: Void {} //	{ Assert.abstract(); }
 	public function childrenCreated ()			: Void {}
 	
-	private function removeStates ()			: Void {} //	{ Assert.abstract(); }
+//	private function removeStates ()			: Void {} //	{ Assert.abstract(); }
 	public  function disposeChildren ()			: Void {} //	{ Assert.abstract(); }
 	public function validate (changes:Int)		: Void {}
 	

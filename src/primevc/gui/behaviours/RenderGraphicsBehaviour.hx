@@ -105,8 +105,8 @@ class RenderGraphicsBehaviour extends ValidatingBehaviour < IDrawable >, impleme
 			Assert.that( t.height < 10000 );
 		}
 #end*/
-		if (target.is(IUIComponent) && target.as(IUIComponent).skin != null)
-			target.as(IUIComponent).skin.drawGraphics(); //.onceOn( target.displayEvents.enterFrame, this );
+//		if (target.is(IUIComponent) && target.as(IUIComponent).skin != null)
+//			target.as(IUIComponent).skin.drawGraphics(); //.onceOn( target.displayEvents.enterFrame, this );
 	}
 	
 	

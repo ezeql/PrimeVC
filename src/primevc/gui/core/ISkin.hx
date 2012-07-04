@@ -45,10 +45,10 @@ package primevc.gui.core;
  * @creation-date Aug 03, 2010
  */
 interface ISkin 
-		implements primevc.gui.traits.IBehaving
-	,	implements primevc.core.traits.IDisposable
+		implements primevc.core.traits.IDisposable
+	,	implements primevc.gui.traits.IBehaving
 {
-	public var skinState		(default, null)		: primevc.gui.states.SkinStates;	
+//	public var skinState		(default, null)		: primevc.gui.states.SkinStates;
 //	public var owner			(default, setOwner) : OwnerClass;
 	public function changeOwner	(o:IUIComponent)	: Void;
 	
@@ -56,12 +56,12 @@ interface ISkin
 	/**
 	 * Method for adding extra state objects to the skin
 	 */
-	private function createStates ()		: Void;
+//	private function createStates ()		: Void;
 	
 	/**
 	 * Creates the default graphical data of a UIComponent
 	 */
-	public function drawGraphics ()		: Void;
+//	public function drawGraphics ()		: Void;
 	
 	/**
 	 * A skin can have children, despite the fact that it isn't a IDisplayable 
@@ -81,7 +81,7 @@ interface ISkin
 	/**
 	 * Dispose method for all the extra states that where created for this skin.
 	 */
-	private function removeStates ()		: Void;
+//	private function removeStates ()		: Void;
 	
 	/**
 	 * Dispose all the children of this skin. This can happen when the owner 

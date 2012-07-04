@@ -32,7 +32,7 @@ package primevc.gui.states;
  
 
 /**
- * Skin states.
+ * Skin states. UNUSED
  * 
  * @creation-date	Jun 17, 2010
  * @author			Ruben Weijers
