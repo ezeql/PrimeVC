@@ -127,6 +127,10 @@ class StateMachineUtil
 {
 	public static function onceOnEntering<StateType>( fn:Void->Void, fsm:SimpleStateMachine<StateType>, searchedState:StateType, owner:Dynamic ):Wire<Dynamic>
 	{
+		if (fsm.current == searchedState) {
+			fn();
+			return null;
+		}
 		var w = fsm.change.bind( owner, null );
 		var f = function (newState:StateType, oldState:StateType) {
 			if (newState == searchedState) {
@@ -159,6 +163,8 @@ class StateMachineUtil
 			if (newState == searchedState)
 				fn();
 		}
+		if (fsm.current == searchedState)
+			fn();
 		return fsm.change.bind( owner, f );
 	}
 	
