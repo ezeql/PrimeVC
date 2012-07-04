@@ -82,8 +82,8 @@ class Form
             input.detach();
             row .attach(label.layout).attach(input.layout);
             row .attachTo(form.layoutContainer, layDepth);
-            input.attachDisplayTo( form, disDepth );
-            label.attachDisplayTo( form, disDepth );
+            input.attachToDisplayList( form, disDepth );
+            label.attachToDisplayList( form, disDepth );
 
             removed.enable();
             added  .enable();

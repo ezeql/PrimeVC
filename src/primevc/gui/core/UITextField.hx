@@ -203,13 +203,13 @@ class UITextField extends TextField, implements IUIElement
 	
 	public  inline function attachLayoutTo		(t:ILayoutContainer, pos:Int = -1)	: IUIElement	{ if (!hasInjectedLayout) 	 { t.children.add( layout, pos ); }				return this; }
 	public  inline function detachLayout		()									: IUIElement	{ if (layout.parent != null) { layout.parent.children.remove( layout ); }	return this; }
-	public   		function attachTo			(t:IUIContainer, pos:Int = -1)		: IUIElement	{ attachLayoutTo(t.layoutContainer, pos);	attachToDisplayList(t, pos);	return this; }
+	public  inline function attachTo			(t:IUIContainer, pos:Int = -1)		: IUIElement	{ attachLayoutTo(t.layoutContainer, pos);	attachToDisplayList(t, pos);	return this; }
 	private inline function applyDetach			()									: IUIElement	{ detachDisplay();							detachLayout();					return this; }
 	public  inline function changeLayoutDepth	(pos:Int)							: IUIElement	{ layout.parent.children.move( layout, pos );								return this; }
 	public  inline function changeDepth			(pos:Int)							: IUIElement	{ changeLayoutDepth(pos);					changeDisplayDepth(pos);		return this; }
 	
 
-	public  inline function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
+	public  /*inline*/ function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
 	{
 		//	if (container != t)
 	//	{

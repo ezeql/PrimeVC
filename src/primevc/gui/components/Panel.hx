@@ -116,7 +116,7 @@ class Panel extends UIContainer
 			footer = Form.createHorizontalRow( Horizontal.right );
 			attachLayout( footer );
 		}
-		b.attachLayoutTo( footer ).attachDisplayTo( this );
+		b.attachLayoutTo( footer ).attachToDisplayList( this );
 	}
 
 
