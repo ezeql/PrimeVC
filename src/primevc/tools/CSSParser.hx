@@ -3687,10 +3687,11 @@ class CSSParser
 		// TRY TO MATCH DEFAULT EFFECT PARAMETERS
 		//
 		
-		var duration : Int	= Number.INT_NOT_SET;
-		var delay : Int		= Number.INT_NOT_SET;
-		var easing : Easing	= parseEasing(v);
-	//	var easingName		= getEasingName(v);
+		var duration	= Number.INT_NOT_SET;
+		var delay		= Number.INT_NOT_SET;
+		var easing		= parseEasing(v);
+		var reversed 	= false;
+	//	var easingName	= getEasingName(v);
 		
 	//	trace("testing str = "+v);
 		
@@ -3698,6 +3699,12 @@ class CSSParser
 		if (easing != null)
 			v = easingExpr.removeMatch(v);
 		
+		if (v.toLowerCase().indexOf("reversed") > -1) {
+			reversed = true;
+			v = v.replace("reversed", "");
+		}
+
+
 		//parse duration
 		if (timingExpr.match(v)) {
 			duration = getInt( timingExpr.matched(1) );
@@ -3732,7 +3739,7 @@ class CSSParser
 		//	if (start.isSet())		start	/= 100;
 		//	if (end.isSet())		end		/= 100;
 			
-			effect = new AnchorScaleEffect ( duration, delay, easing, parsePosition( anchorScaleEffExpr.matched(2) ), start, end );
+			effect = new AnchorScaleEffect ( duration, delay, easing, reversed, parsePosition( anchorScaleEffExpr.matched(2) ), start, end );
 			lastUsedEffectExpr = anchorScaleEffExpr;
 		}
 		
@@ -3748,7 +3755,7 @@ class CSSParser
 		//	if (start.isSet())		start	/= 100;
 		//	if (end.isSet())		end		/= 100;
 			
-			effect = new FadeEffect ( duration, delay, easing, start, end );
+			effect = new FadeEffect ( duration, delay, easing, reversed, start, end );
 			lastUsedEffectExpr = fadeEffExpr;
 		}
 		
@@ -3762,7 +3769,7 @@ class CSSParser
 			var startY	= moveEffExpr.matched(2) != null ? parseUnitFloat( moveEffExpr.matched(11) )	: Number.FLOAT_NOT_SET;
 			var endX	= moveEffExpr.matched(2) != null ? parseUnitFloat( moveEffExpr.matched(18) )	: parseUnitFloat( moveEffExpr.matched(33) );
 			var endY	= moveEffExpr.matched(2) != null ? parseUnitFloat( moveEffExpr.matched(24) )	: parseUnitFloat( moveEffExpr.matched(40) );
-			effect		= new MoveEffect ( duration, delay, easing, startX, startY, endX, endY );
+			effect		= new MoveEffect ( duration, delay, easing, reversed, startX, startY, endX, endY );
 			lastUsedEffectExpr = moveEffExpr;
 		}
 		
@@ -3775,7 +3782,7 @@ class CSSParser
 			var startH	= resizeEffExpr.matched(2) != null ? parseUnitFloat( resizeEffExpr.matched(9) )		: Number.FLOAT_NOT_SET;
 			var endW	= resizeEffExpr.matched(2) != null ? parseUnitFloat( resizeEffExpr.matched(15) )	: parseUnitFloat( resizeEffExpr.matched(28) );
 			var endH	= resizeEffExpr.matched(2) != null ? parseUnitFloat( resizeEffExpr.matched(21) )	: parseUnitFloat( resizeEffExpr.matched(34) );
-			effect		= new ResizeEffect ( duration, delay, easing, startW, startH, endW, endH );
+			effect		= new ResizeEffect ( duration, delay, easing, reversed, startW, startH, endW, endH );
 			lastUsedEffectExpr = resizeEffExpr;
 		}
 		
@@ -3787,7 +3794,7 @@ class CSSParser
 		//	trace(rotateEffExpr.resultToString(13));
 			var start	= rotateEffExpr.matched(2) != null ? parseAngle( rotateEffExpr.matched(3) ) : Number.FLOAT_NOT_SET;
 			var end		= rotateEffExpr.matched(2) != null ? parseAngle( rotateEffExpr.matched(7) ) : parseAngle( rotateEffExpr.matched(11) );
-			effect		= new RotateEffect ( duration, delay, easing, start, end );
+			effect		= new RotateEffect ( duration, delay, easing, reversed, start, end );
 			lastUsedEffectExpr = rotateEffExpr;
 		}
 		
@@ -3807,7 +3814,7 @@ class CSSParser
 			if (endX.isSet())		endX	/= 100;
 			if (endY.isSet())		endY	/= 100;*/
 			
-			effect		= new ScaleEffect ( duration, delay, easing, startX, startY, endX, endY );
+			effect		= new ScaleEffect ( duration, delay, easing, reversed, startX, startY, endX, endY );
 			lastUsedEffectExpr = scaleEffExpr;
 		}
 		
@@ -3820,7 +3827,7 @@ class CSSParser
 			var direction	= parseMoveDirection( wipeEffExpr.matched(1) );
 			var start		= wipeEffExpr.matched(10) != null ? parseUnitFloat( wipeEffExpr.matched(4) ) : Number.FLOAT_NOT_SET;
 			var end			= wipeEffExpr.matched(10) != null ? parseUnitFloat( wipeEffExpr.matched(11) ) : parseUnitFloat( wipeEffExpr.matched(4) );
-			effect			= new WipeEffect ( duration, delay, easing, direction, start, end );
+			effect			= new WipeEffect ( duration, delay, easing, reversed, direction, start, end );
 			lastUsedEffectExpr = wipeEffExpr;
 		}
 		
@@ -3830,7 +3837,7 @@ class CSSParser
 		else if (setActionEffExpr.match(v))
 		{
 			var props = parseEffectProperties(v);
-			effect = new SetAction( duration, delay, easing, props );
+			effect = new SetAction( duration, delay, easing, reversed, props );
 			lastUsedEffectExpr = setActionEffExpr;
 		}
 		
