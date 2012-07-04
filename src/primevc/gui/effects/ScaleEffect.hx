@@ -67,9 +67,9 @@ class ScaleEffect extends Effect<primevc.gui.display.IDisplayObject, ScaleEffect
 	public var endY		: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		this.startX	= startX == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startX;
 		this.startY	= startY == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startY;
 		this.endX	= endX == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endX;
@@ -78,7 +78,7 @@ class ScaleEffect extends Effect<primevc.gui.display.IDisplayObject, ScaleEffect
 	
 	
 	override public function clone ()
-		return new ScaleEffect( duration, duration, easing, startX, startY, endX, endY )
+		return new ScaleEffect( duration, duration, easing, isReverted, startX, startY, endX, endY )
 	
 	
 	override public function setValues ( v:EffectProperties ) 
@@ -111,6 +111,7 @@ class ScaleEffect extends Effect<primevc.gui.display.IDisplayObject, ScaleEffect
 		if (startY.isSet())			props.push( (startY * 100) + "%" );
 		if (endX.isSet())			props.push( (endX * 100) + "px" );
 		if (endY.isSet())			props.push( (endY * 100) + "px" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "scale " + props.join(" ");
@@ -120,7 +121,7 @@ class ScaleEffect extends Effect<primevc.gui.display.IDisplayObject, ScaleEffect
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startX, startY, endX, endY ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startX, startY, endX, endY ] );
 	}
 #end
 }

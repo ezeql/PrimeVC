@@ -46,7 +46,7 @@ class ParallelEffect extends CompositeEffect
 {
 	override public function clone ()
 	{
-		return new ParallelEffect( duration, delay, easing );
+		return new ParallelEffect( duration, delay, easing, isReverted );
 	}
 	
 	

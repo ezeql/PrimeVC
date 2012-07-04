@@ -67,9 +67,9 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 	public var endY		: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		this.startX	= startX == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startX;
 		this.startY	= startY == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startY;
 		this.endX	= endX	 == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endX;
@@ -79,7 +79,7 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 	
 	override public function clone ()
 	{
-		return new MoveEffect( duration, duration, easing, startX, startY, endX, endY );
+		return new MoveEffect( duration, duration, easing, isReverted, startX, startY, endX, endY );
 	}
 	
 	
@@ -117,6 +117,7 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 		if (startY.isSet())			props.push( startY + "px" );
 		if (endX.isSet())			props.push( endX + "px" );
 		if (endY.isSet())			props.push( endY + "px" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "move " + props.join(" ");
@@ -126,7 +127,7 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startX, startY, endX, endY ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startX, startY, endX, endY ] );
 	}
 #end
 }

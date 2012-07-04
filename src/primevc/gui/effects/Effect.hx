@@ -50,9 +50,10 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 	public var delay			(default, setDelay)				: Int;
 	public var duration			(default, setDuration)			: Int;
 	public var autoHideFilters	(default, setAutoHideFilters)	: Bool;
+	public var isReverted		(default, setIsReverted)		: Bool;
 	
 	
-	public function new( newDuration:Int = 350, newDelay:Int = 0, newEasing:Easing = null ) 
+	public function new (newDuration:Int = 350, newDelay:Int = 0, newEasing:Easing = null, isReverted:Bool = false) 
 	{
 		super();
 #if (debug || CSSParser)
@@ -60,6 +61,7 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 #end
 		duration		= newDuration.notSet()	? 350 : newDuration;
 		delay			= newDelay <= 0			? primevc.types.Number.INT_NOT_SET : newDelay;
+		this.isReverted = isReverted;
 #if flash9
 		easing			= newEasing == null 	? feffects.easing.Linear.easeNone : newEasing;
 #end
@@ -142,6 +144,16 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 		if (duration != v) {
 			duration = v;
 			invalidate( EffectFlags.DURATION );
+		}
+		return v;
+	}
+	
+	
+	private inline function setIsReverted (v:Bool)
+	{
+		if (isReverted != v) {
+			isReverted = v;
+			invalidate( EffectFlags.IS_REVERTED );
 		}
 		return v;
 	}

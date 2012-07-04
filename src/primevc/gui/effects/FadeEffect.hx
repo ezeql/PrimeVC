@@ -55,9 +55,9 @@ class FadeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	public var endValue		: Float;
 	
 	
-	public function new( duration:Int = 350, delay:Int = 0, easing:Easing = null, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET )
+	public function new( duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET )
 	{
-		super( duration, delay, easing );
+		super( duration, delay, easing, isReverted );
 		autoHideFilters	= false;
 		this.startValue	= startValue == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startValue;
 		this.endValue	= endValue == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endValue;
@@ -66,7 +66,7 @@ class FadeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	
 	override public function clone ()
 	{
-		return new FadeEffect( duration, duration, easing, startValue, endValue );
+		return new FadeEffect( duration, duration, easing, isReverted, startValue, endValue );
 	}
 	
 	
@@ -101,6 +101,7 @@ class FadeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 		if (easing != null)			props.push( easing.toCSS() );
 		if (startValue.isSet())		props.push( (startValue * 100) + "%" );
 		if (endValue.isSet())		props.push( (endValue * 100) + "%" );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "fade " + props.join(" ");
 	}
@@ -109,7 +110,7 @@ class FadeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startValue, endValue ] );
 	}
 #end
 }

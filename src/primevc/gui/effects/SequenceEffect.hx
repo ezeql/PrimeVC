@@ -39,7 +39,7 @@ class SequenceEffect extends CompositeEffect
 {
 	override public function clone ()
 	{
-		return new SequenceEffect( duration, delay, easing );
+		return new SequenceEffect( duration, delay, easing, isReverted );
 	}
 	
 	

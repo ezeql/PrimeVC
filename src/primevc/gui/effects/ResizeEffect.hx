@@ -66,9 +66,9 @@ class ResizeEffect extends Effect<primevc.gui.traits.ISizeable,ResizeEffect>
 	public var endH		: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startW:Float = Number.INT_NOT_SET, startH:Float = Number.INT_NOT_SET, endW:Float = Number.INT_NOT_SET, endH:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startW:Float = Number.INT_NOT_SET, startH:Float = Number.INT_NOT_SET, endW:Float = Number.INT_NOT_SET, endH:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		
 		this.startW	= startW == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startW;
 		this.startH	= startH == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startH;
@@ -79,7 +79,7 @@ class ResizeEffect extends Effect<primevc.gui.traits.ISizeable,ResizeEffect>
 	
 	override public function clone ()
 	{
-		return new ResizeEffect( duration, duration, easing, startW, startH, endW, endH );
+		return new ResizeEffect( duration, duration, easing, isReverted, startW, startH, endW, endH );
 	}
 	
 
@@ -111,6 +111,7 @@ class ResizeEffect extends Effect<primevc.gui.traits.ISizeable,ResizeEffect>
 		if (easing != null)			props.push( easing.toCSS() );
 		if (startW.isSet())			props.push( startW + "px, " + startH + "px" );
 		if (endW.isSet())			props.push( endW + "px, " + endH + "px" );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "resize " + props.join(" ");
 	}
@@ -119,7 +120,7 @@ class ResizeEffect extends Effect<primevc.gui.traits.ISizeable,ResizeEffect>
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startW, startH, endW, endH ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startW, startH, endW, endH ] );
 	}
 #end
 }

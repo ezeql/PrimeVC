@@ -62,9 +62,9 @@ class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	public var endValue				: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, direction:MoveDirection = null, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, direction:MoveDirection = null, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		this.direction	= direction == null					? LeftToRight			: direction;
 		this.startValue	= startValue == Number.INT_NOT_SET	? Number.FLOAT_NOT_SET	: startValue;
 		this.endValue	= endValue == Number.INT_NOT_SET	? Number.FLOAT_NOT_SET	: endValue;
@@ -72,7 +72,7 @@ class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	
 	
 	override public function setValues (v:EffectProperties) {}
-	override public function clone ()						{ return new WipeEffect( duration, delay, easing, direction, startValue, endValue ); }
+	override public function clone ()						{ return new WipeEffect( duration, delay, easing, isReverted, direction, startValue, endValue ); }
 #if !CSSParser
 	override public function createEffectInstance (target)	{ return new primevc.gui.effects.effectInstances.WipeEffectInstance(target, this); }
 
@@ -88,6 +88,7 @@ class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 		if (direction != null)		props.push( directionToCSS() );
 		if (startValue.isSet())		props.push( startValue + "px" );
 		if (endValue.isSet())		props.push( endValue + "px" );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "wipe " + props.join(" ");
 	}
@@ -108,7 +109,7 @@ class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, direction, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, direction, startValue, endValue ] );
 	}
 #end
 }

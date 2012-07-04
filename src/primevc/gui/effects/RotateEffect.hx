@@ -56,9 +56,9 @@ class RotateEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObj
 	public var endValue				: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		startValue	= startV == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startV;
 		endValue	= endV == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endV;
 	}
@@ -66,7 +66,7 @@ class RotateEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObj
 	
 	override public function clone ()
 	{
-		return new RotateEffect(duration, delay, easing, startValue, endValue);
+		return new RotateEffect(duration, delay, easing, isReverted, startValue, endValue);
 	}
 	
 	
@@ -96,6 +96,7 @@ class RotateEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObj
 		if (easing != null)			props.push( easing.toCSS() );
 		if (startValue.isSet())		props.push( startValue + "deg" );
 		if (endValue.isSet())		props.push( endValue + "deg" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "rotate " + props.join(" ");
@@ -105,7 +106,7 @@ class RotateEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObj
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startValue, endValue ] );
 	}
 #end
 }

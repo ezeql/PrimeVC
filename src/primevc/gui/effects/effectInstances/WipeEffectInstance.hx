@@ -121,7 +121,7 @@ class WipeEffectInstance extends EffectInstance < IDisplayObject, WipeEffect >
 	override private function calculateTweenStartPos () : Float
 	{
 		if (target.scrollRect == null)
-			return isReverted ? 0.0 : 1.0;
+			return isReverted ? 0.0 : 1.0;	//don't play animation without scrollrect
 		
 		var curValue:Float = 0;
 		switch (effect.direction) {

@@ -73,7 +73,7 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 		ended		= new Signal0();
 		
 		state		= EffectStates.initialized;
-		isReverted	= false;
+		isReverted	= newEffect.isReverted;
 	}
 	
 	

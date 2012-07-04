@@ -46,15 +46,15 @@ class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<prim
 	public var prop : EffectProperties;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, prop:EffectProperties = null)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, prop:EffectProperties = null)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		this.prop = prop;
 	}
 	
 	
 	override public function setValues (v:EffectProperties)	{ prop = v; }
-	override public function clone ()						{ return new SetAction( duration, delay, easing, prop ); }
+	override public function clone ()						{ return new SetAction( duration, delay, easing, isReverted, prop ); }
 #if !CSSParser
 	override public function createEffectInstance (target)	{ return new primevc.gui.effects.effectInstances.SetActionInstance(target, this); }
 #else
@@ -67,6 +67,7 @@ class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<prim
 		if (delay.isSet())			props.push( delay + "ms" );
 		if (easing != null)			props.push( easing.toCSS() );
 		if (prop != null)			props.push( propToCSS() );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "set-action " + props.join(" ");
 	}
@@ -110,7 +111,7 @@ class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<prim
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, prop ] );
+			code.construct( this, [ duration, delay, isReverted, easing, prop ] );
 	}
 #end
 }

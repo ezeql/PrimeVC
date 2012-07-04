@@ -222,7 +222,7 @@ class UIElementEffects implements IDisposable
 				else if (hide.isPlaying())	hide.stop();
 				else						target.visible = false;
 				
-				if (show == hide)			show.isReverted = false;
+				if (show == hide)			show.isReverted = show.isReverted;
 			}
 			else							target.visible = false;
 			
@@ -245,14 +245,14 @@ class UIElementEffects implements IDisposable
 				else if (show.isPlaying())	show.stop();
 				else						target.layout.state.change.unbind(this);
 
-				if (show == hide)			hide.isReverted = true;
+				if (show == hide)			hide.isReverted != hide.isReverted;
 			}
 			hide.play();
 		}
 #end
 	}
 	
-
+	
 	public inline function isPlayingHide ()	{ return hide.notNull() && (hide.isPlaying() || hide.isWaiting()) && (show != hide ||  hide.isReverted); }
 	public inline function isPlayingShow ()	{ return show.notNull() && (show.isPlaying() || show.isWaiting()) && (show != hide || !show.isReverted); }
 	

@@ -61,7 +61,7 @@ class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDispl
 	public var zoomPosition			: Position;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, position:Position = null, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, position:Position = null, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
 	{
 		super(duration, delay, easing);
 		zoomPosition	= position != null				? position				: Position.TopLeft;
@@ -72,7 +72,7 @@ class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDispl
 	
 	override public function clone ()
 	{
-		return new AnchorScaleEffect(duration, delay, easing, zoomPosition, startValue, endValue);
+		return new AnchorScaleEffect(duration, delay, easing, isReverted, zoomPosition, startValue, endValue);
 	}
 	
 	
@@ -122,6 +122,7 @@ class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDispl
 		if (zoomPosition != null)	props.push( posToCSS() );
 		if (startValue.isSet())		props.push( (startValue * 100) + "%" );
 		if (endValue.isSet())		props.push( (endValue * 100) + "%" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "anchor-scale " + props.join(" ");
@@ -131,7 +132,7 @@ class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDispl
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, zoomPosition, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, zoomPosition, startValue, endValue ] );
 	}
 #end
 }

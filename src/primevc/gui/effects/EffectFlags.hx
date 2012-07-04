@@ -37,11 +37,12 @@ package primevc.gui.effects;
  */
 #if !debug extern #end class EffectFlags
 {
-	public static inline var ALL_PROPERTIES		= MOVE | RESIZE | ROTATE | SCALE | SHOW | HIDE;
+	public static inline var ALL_PROPERTIES		= MOVE | RESIZE | ROTATE | SCALE | SHOW | HIDE | IS_REVERTED;
 	                                            
 	public static inline var EASING				= 1 << 0;
 	public static inline var DELAY				= 1 << 1;
 	public static inline var DURATION			= 1 << 2;
+	public static inline var IS_REVERTED		= 1 << 11;
 	public static inline var AUTO_HIDE_FILTERS	= 1 << 3;
 	
 	public static inline var ROTATE				= 1 << 4;

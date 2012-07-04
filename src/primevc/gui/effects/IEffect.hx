@@ -73,6 +73,11 @@ interface IEffect
 	 */
 	public var autoHideFilters	(default, setAutoHideFilters)	: Bool;
 	
+	/**
+	 * Flag indicating if the effect is supposed to be playing backwards
+	 * @default false
+	 */
+	public var isReverted		(default, setIsReverted)		: Bool;
 	
 	/**
 	 * Method to set the explicit start and end values of the effect
