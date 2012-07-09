@@ -79,4 +79,7 @@ interface IUIElementStyle implements IInvalidateListener, implements IDisposable
 	public function addStyle (style:StyleBlock) : Int;
 	public function removeStyle (style:StyleBlock) : Int;
 //	public function findStyle ( name:String, type:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock;
+#if debug
+	public function toString () : String;
+#end
 }

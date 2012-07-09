@@ -286,15 +286,14 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 	
 	
 #if (debug && flash9)
-	static public var slowMotion = function() {
+	@:keep static public function __init__ () {
 		flash.Lib.current.addEventListener(flash.events.KeyboardEvent.KEY_DOWN, 
-			function(e:flash.events.KeyboardEvent) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = true; trace("shiftDown"); } }
+			function(e) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = true; trace("shiftDown"); } }
 		);
 		flash.Lib.current.addEventListener(flash.events.KeyboardEvent.KEY_UP, 
-			function(e:flash.events.KeyboardEvent) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = false; trace("shiftUp"); } }
+			function(e) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = false; trace("shiftUp"); } }
 		);
-		
-		return false;
-	}();
+	}
+	static public var slowMotion = false;
 #end
 }
