@@ -68,6 +68,7 @@ class ListHolder <DataType, ListDataType> extends UIDataContainer <DataType>, im
 	public function new (id:String, data:DataType = null, listData:IReadOnlyList<ListDataType> = null, list:ListView<ListDataType> = null)
 	{
 		super(id, data);
+		styleClasses.add("listHolder");
 		this.listData	= listData;
 		this.list		= list;
 	}

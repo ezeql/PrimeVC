@@ -174,9 +174,10 @@ class UIBitmap extends primevc.gui.display.BitmapShape, implements IUIElement
         if (changes.has(primevc.gui.layout.LayoutFlags.SIZE))
         {
             var l = advancedLayout();
-            if (data == null)
+            if (data == null) {
+                l.maintainAspectRatio = false;
                 l.measuredWidth = l.measuredHeight = Number.INT_NOT_SET;
-            else {
+            } else {
 #if flash9      if (l.explicitWidth.isSet() || l.explicitHeight.isSet())
                     scaleX = scaleY = Formulas.scale(data.width, data.height, l.explicitWidth, l.explicitHeight);
 #end            l.maintainAspectRatio = true;

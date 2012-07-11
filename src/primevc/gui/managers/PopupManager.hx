@@ -146,6 +146,6 @@ class PopupManager implements IPopupManager
 	
 	private inline function moveModalBgBehind (popup:IUIComponent)
 	{
-		window.children.move( modal, window.children.indexOf(popup) - 1 );
+		window.children.move( modal, window.children.indexOf(popup) );
 	}
 }
