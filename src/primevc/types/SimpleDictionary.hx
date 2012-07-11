@@ -126,6 +126,7 @@ class SimpleDictionary < KType, VType >
 	
 	public function unset (key:KType) : Void
 	{
+#if debug Assert.notNull(key); #end
 		var index = _keys.indexOf(key);
 		
 		if (index > -1)
@@ -157,9 +158,9 @@ class SimpleDictionary < KType, VType >
 	{
 		var str = [];
 		for (i in 0...length)
-			str.push( "[ " + _keys[i] + " ] => " + _values[i] );
+			str.push( "["+i+": " + Std.string(_keys[i]) + "] => " + Std.string(_values[i]) );
 		
-		return "dic: "+(length > 0 ? str.join(", ") : "empty");
+		return "dic: \n\t"+(length > 0 ? str.join(",\n\t") : "empty");
 	}
 	#end
 #end

@@ -240,7 +240,7 @@ class DisplayList implements IEditableList <ChildType>
 		var items = [];
 		var i = 0;
 		for (curChild in this) {
-			items.push( "[ " + i + " ] = " + curChild );
+			items.push( "[" + i + "] = " + Std.string(curChild) );
 			i++;
 		}
 		return name + "DisplayList ("+items.length+")\n" + items.join("\n");

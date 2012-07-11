@@ -616,7 +616,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	/**
 	 * @return _width if the value is set, otherwise '0' or the minWidth
 	 */
-	private inline function getUsableWidth ()
+	private  function getUsableWidth ()
 	{
 		var v = _width;
 		if (v.notSet())		v = widthValidator != null ? widthValidator.min : 0;
@@ -628,7 +628,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	/**
 	 * @return _height if the value is set, otherwise '0'
 	 */
-	private inline function getUsableHeight ()
+	private  function getUsableHeight ()
 	{
 		var v = _height;
 		if (v.notSet())		v = heightValidator != null ? heightValidator.min : 0;
@@ -684,7 +684,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	private inline function calcHeightForWidth (w:Int) : Int	{ Assert.notEqual(aspectRatio, 0); Assert.that(aspectRatio.isSet()); return (w / aspectRatio).roundFloat(); }
 	
 	
-	private inline function calculateAspectRatio (w:Int, h:Int)
+	private function calculateAspectRatio (w:Int, h:Int)
 	{
 		aspectRatio = Number.FLOAT_NOT_SET;
 		if (w.isSet() && h.isSet() && w > 0 && h > 0)
@@ -957,7 +957,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	private inline function setIncludeInLayout (v:Bool)
+	private  function setIncludeInLayout (v:Bool)
 	{
 		if (includeInLayout != v)
 		{
@@ -981,7 +981,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	private inline function setRelative (v:RelativeLayout)
+	private  function setRelative (v:RelativeLayout)
 	{
 		if (relative != v)
 		{
@@ -995,7 +995,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	private inline function setWidthValidator (v:IntRangeValidator)
+	private  function setWidthValidator (v:IntRangeValidator)
 	{
 		if (widthValidator != v)
 		{
@@ -1009,7 +1009,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	private inline function setHeightValidator (v:IntRangeValidator)
+	private  function setHeightValidator (v:IntRangeValidator)
 	{
 		if (heightValidator != v)
 		{
@@ -1029,7 +1029,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	private var oldChanges : Int;
 
 
-	private /*inline*/ function setInvalidatable (v:Bool)
+	private  function setInvalidatable (v:Bool)
 	{
 		if (v != invalidatable)
 		{
