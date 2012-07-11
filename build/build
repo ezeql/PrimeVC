@@ -148,14 +148,14 @@ else
 		| xargs -t haxe --connect 6543 \
 		 	|| exit 1;
 	
-#	if (set -u; : $Debug) 2> /dev/null ; then
+	if (set -u; : $Debug) 2> /dev/null ; then
 		#mv ${PRIMEVC_ROOT}/tmp.swf ${PRIMEVC_ROOT}/bin-debug/app.swf &&
 		open "$OUTPUT"
-#	else
-#		echo -e "\n4. OPTIMIZING BUILD" &&
-#		bash build/optimize-build "$OUTPUT" &&
-#		open "$OUTPUT"
-#	fi;
+	else
+		echo -e "\n4. OPTIMIZING BUILD" &&
+		bash build/optimize-build "$OUTPUT" &&
+		open "$OUTPUT"
+	fi;
 
 	NEWSIZE=`wc -c < "$OUTPUT"`
 	echo -e "\t\tOld size: ${OLDSIZE} bytes"
