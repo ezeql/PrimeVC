@@ -50,7 +50,7 @@ private typedef Flags = GraphicFlags;
  */
 class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 {
-	public function new (elementStyle:IUIElementStyle)			super( elementStyle, StyleFlags.GRAPHICS )
+	public function new (elementStyle:UIElementStyle)			super( elementStyle, StyleFlags.GRAPHICS )
 	override public function forwardIterator ()					return new GraphicsCollectionForwardIterator(elementStyle, propertyTypeFlag)
 	override public function reversedIterator ()				return new GraphicsCollectionReversedIterator(elementStyle, propertyTypeFlag)
 #if debug

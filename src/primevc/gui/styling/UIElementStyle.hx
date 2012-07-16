@@ -36,10 +36,6 @@ package primevc.gui.styling;
  import primevc.core.dispatcher.Wire;
  import primevc.gui.traits.IDisplayable;
  import primevc.gui.traits.IStylable;
- import primevc.utils.FastArray;
-#if debug
- import primevc.utils.ID;
-#end
   using primevc.gui.styling.StyleFlags;
   using primevc.utils.Bind;
   using primevc.utils.BitUtil;
@@ -72,7 +68,7 @@ private typedef Flags = StyleFlags;
  * @author Ruben Weijers
  * @creation-date Sep 22, 2010
  */
-class UIElementStyle implements IUIElementStyle
+class UIElementStyle implements primevc.core.traits.IInvalidateListener, implements primevc.core.traits.IDisposable
 {
 #if debug
 	public var _oid						(default, null)			: Int;
@@ -96,8 +92,11 @@ class UIElementStyle implements IUIElementStyle
 	
 	private var addedBinding			: Wire <Dynamic>;
 	private var removedBinding			: Wire <Dynamic>;
-	private var styleNamesChangeBinding	: Wire <Dynamic>;
+	private var styleNamesBinding		: Wire <Dynamic>;
 	private var idChangeBinding			: Wire <Dynamic>;
+
+	/** flags of changes that happened when the style wasn't on the stage **/
+	private var invalidated				: Int;
 	
 	public var styles					(default, null)			: PriorityList < StyleBlock >;
 	/**
@@ -133,7 +132,7 @@ class UIElementStyle implements IUIElementStyle
 	/**
 	 * Reference to the style of whom the current-style got it's properteies
 	 */
-	public var parentStyle				(default, null)			: IUIElementStyle;
+	public var parentStyle				(default, null)			: UIElementStyle;
 	
 	/**
 	 * Signal is fired when the children-property of the element-style is
@@ -147,11 +146,9 @@ class UIElementStyle implements IUIElementStyle
 	
 	public function new (target:IStylable, owner:IDisplayable)
 	{
-#if debug
-		_oid = ID.getNext();
-#end
+#if debug _oid = primevc.utils.ID.getNext(); #end
 		currentStates		= FastArrayUtil.create();
-		styles				= new PriorityList < StyleBlock > ();
+		styles				= new PriorityList<StyleBlock>();
 		
 		this.target			= target;
 		this.owner			= owner;
@@ -162,10 +159,12 @@ class UIElementStyle implements IUIElementStyle
 		stylesAreSearched	= false;
 		filledProperties	= 0;
 		
-		styleNamesChangeBinding = updateStyleNameStyles	.on( target.styleClasses.change, this );
-		idChangeBinding			= updateIdStyle			.on( target.id.change, this );
+		styleNamesBinding 	= updateStyleNameStyles	.on( target.styleClasses.change, this );
+		idChangeBinding		= updateIdStyle			.on( target.id.change, this );
+		addedBinding		= enableStyleListeners	.on( owner.displayEvents.addedToStage, this );
+		removedBinding		= disableStyleListeners	.on( owner.displayEvents.removedFromStage, this );
 		
-		styleNamesChangeBinding.disable();
+		styleNamesBinding.disable();
 		idChangeBinding.disable();
 		
 		init();
@@ -174,40 +173,30 @@ class UIElementStyle implements IUIElementStyle
 	
 	private function init ()	//can't merge with constructor, is needed for ApplicationStyle
 	{
-		addedBinding	= enableStyleListeners	.on( owner.displayEvents.addedToStage, this );
-		removedBinding	= disableStyleListeners	.on( owner.displayEvents.removedFromStage, this );
-		
-		if (owner.window != null) {
-			enableStyleListeners();
-			addedBinding.disable();
-		} else {
-			removedBinding.disable();
-		}
+		if (owner.window.notNull())	enableStyleListeners();
+		else						removedBinding.disable();
 	}
 	
 	
-	public function dispose ()
+	public function dispose ()	if (target != null)
 	{
-		if (target == null)
-			return;
+		addedBinding.dispose();
+		removedBinding.dispose();
+		styleNamesBinding.dispose();
+		idChangeBinding.dispose();
 		
-		if (addedBinding != null)				addedBinding.dispose();
-		if (removedBinding != null)				removedBinding.dispose();
-		if (styleNamesChangeBinding != null)	styleNamesChangeBinding.dispose();
-		if (idChangeBinding != null)			idChangeBinding.dispose();
-		
-		addedBinding = removedBinding = styleNamesChangeBinding = idChangeBinding = null;
+		addedBinding = removedBinding = styleNamesBinding = idChangeBinding = null;
 		
 		//remove styles and their listeners
 		while (styles.length > 0)
 			removeStyleCell( styles.last );
 		
-		if (boxFilters != null)		boxFilters.dispose();
-		if (effects != null)		effects.dispose();
-		if (font != null)			font.dispose();
-		if (graphics != null)		graphics.dispose();
-		if (layout != null)			layout.dispose();
-		if (states != null)			states.dispose();
+		if ((untyped this).boxFilters != null)		{ boxFilters.dispose(); boxFilters = null; }
+		if ((untyped this).effects != null)			{ effects.dispose();    effects    = null; }
+		if ((untyped this).font != null)			{ font.dispose();       font       = null; }
+		if ((untyped this).graphics != null)		{ graphics.dispose();   graphics   = null; }
+		if ((untyped this).layout != null)			{ layout.dispose();     layout     = null; }
+		if ((untyped this).states != null)			{ states.dispose();     states     = null; }
 		
 		if (parentStyle != null && parentStyle.childrenChanged != null)
 			parentStyle.childrenChanged.unbind( this );
@@ -221,13 +210,6 @@ class UIElementStyle implements IUIElementStyle
 		targetClassName	= null;
 		target			= null;
 		childrenChanged	= null;
-		
-		boxFilters		= null;
-		effects			= null;
-		font			= null;
-		graphics		= null;
-		layout			= null;
-		states			= null;
 #if debug
 		_oid			= -1;
 #end
@@ -260,7 +242,7 @@ class UIElementStyle implements IUIElementStyle
 	 * 		- 2 style-names		=> parent.findChildStyle (12 times)
 	 * 		- elementName		=> parent.findChildStyle (6 times)
 	 */
-	public function getChildStyles ( child:IUIElementStyle, name:String, type:StyleBlockType, foundStyles:FastArray<StyleBlock> = null, exclude:StyleBlock = null ) : FastArray<StyleBlock>
+	public function getChildStyles ( child:UIElementStyle, name:String, type:StyleBlockType, foundStyles:FastArray<StyleBlock> = null, exclude:StyleBlock = null ) : FastArray<StyleBlock>
 	{
 		if (foundStyles == null)
 			foundStyles = FastArrayUtil.create();
@@ -300,15 +282,16 @@ class UIElementStyle implements IUIElementStyle
 	 */
 	private function enableStyleListeners ()
 	{
-		Assert.notNull( owner.container, "container of "+owner+" is null" );
-		Assert.that( owner.container.is( IStylable ) );
-	//	Assert.notNull( owner.container.as( IStylable ).style );
+#if debug	Assert.notNull( owner.container, "container of "+owner+" is null" );
+			Assert.that( owner.container.is( IStylable ) ); #end
 		
-		if (removedBinding != null)		removedBinding.enable();
-		if (addedBinding != null)		addedBinding.disable();
-		
-		styleNamesChangeBinding	.enable();
-		idChangeBinding			.enable();
+		styleNamesBinding.handler = updateStyleNameStyles;
+		idChangeBinding.handler = updateIdStyle;
+
+		removedBinding   .enable();
+		addedBinding     .disable();
+		styleNamesBinding.enable();
+		idChangeBinding  .enable();
 		
 		var parent = owner.container != null && owner.container != owner ? owner.container.as( IStylable ) : null;
 		//remove styles if the new parent is not the same as the old parent
@@ -318,6 +301,9 @@ class UIElementStyle implements IUIElementStyle
 			parentStyle = parent.style;
 			updateStyles.on( parentStyle.childrenChanged, this );
 			updateStyles();
+		} else if (invalidated > 0) {
+			if (invalidated.has(Flags.STYLE_NAME_CHILDREN))		updateStyleNameStyles(reset);
+			if (invalidated.has(Flags.ID_CHILDREN))				updateIdStyle();
 		}
 	}
 	
@@ -331,8 +317,9 @@ class UIElementStyle implements IUIElementStyle
 		if (removedBinding != null)		removedBinding.disable();
 		if (addedBinding != null)		addedBinding.enable();
 		
-		styleNamesChangeBinding.disable();
-		idChangeBinding.disable();
+		invalidated = 0;
+		styleNamesBinding.handler = invalidateStyleNames;
+		idChangeBinding.handler = invalidateIdStyle;
 	}
 	
 	
@@ -375,7 +362,7 @@ class UIElementStyle implements IUIElementStyle
 	{
 		//update styles.. start with the lowest priorities
 		stylesAreSearched	= false;
-		var changes			= updateElementStyle() | updateStyleNameStyles(null) | updateIdStyle() | updateStatesStyle();
+		var changes			= updateElementStyle() | updateStyleNameStyles(reset) | updateIdStyle() | updateStatesStyle();
 		stylesAreSearched 	= true;
 		
 		return broadcastChanges(changes);
@@ -533,6 +520,10 @@ class UIElementStyle implements IUIElementStyle
 	// STYLE UPDATE METHODS
 	//
 	
+
+	private function invalidateStyleNames (change)	invalidated = invalidated.set(Flags.STYLE_NAME_CHILDREN)
+	private function invalidateIdStyle ()			invalidated = invalidated.set(Flags.ID_CHILDREN)
+	
 	
 	/**
 	 * Method will find the styles for every defined state
@@ -554,19 +545,13 @@ class UIElementStyle implements IUIElementStyle
 	}
 	
 	
-	private function updateIdStyle () : Int
-	{
-		return broadcastChanges( replaceStylesOfType( StyleBlockType.id, parentStyle.getChildStyles( this, target.id.value, StyleBlockType.id ) ) );
-	}
+	private inline function updateIdStyle () : Int
+		return broadcastChanges( replaceStylesOfType( StyleBlockType.id, parentStyle.getChildStyles( this, target.id.value, StyleBlockType.id ) ) )
 	
 	
 	private function updateStyleNameStyles (change:ListChange<String>) : Int
 	{
-		if (change == null)
-			change = ListChange.reset;
-		
 		var changes = 0;
-		
 		switch (change)
 		{
 			case added( styleName, newPos ):					changes = addStyles( 	parentStyle.getChildStyles(this, styleName, StyleBlockType.styleName) );
@@ -720,12 +705,12 @@ class UIElementStyle implements IUIElementStyle
 			// If both styles have a style-block with a background, but the given-style also
 			// has a border, the graphics property of the given-style is also usable.
 			//
-			if (commonProps.has( Flags.STATES )		 && !hasUniqueProperies( givenData.states,		curData.states ))		commonProps = commonProps.unset( Flags.STATES );		 // trace("\t\t\tstateChanges: "+states.readProperties(states.changes)); }
-			if (commonProps.has( Flags.GRAPHICS )	 && !hasUniqueProperies( givenData.graphics,	curData.graphics ))		commonProps = commonProps.unset( Flags.GRAPHICS );	 // trace("\t\t\tGraphicChanges: "+graphics.readProperties(graphics.changes)); }
-			if (commonProps.has( Flags.LAYOUT )		 && !hasUniqueProperies( givenData.layout,		curData.layout ))		commonProps = commonProps.unset( Flags.LAYOUT );		 // trace("\t\t\tLayoutChanges: "+layout.readProperties(layout.changes)); }
-			if (commonProps.has( Flags.FONT )		 && !hasUniqueProperies( givenData.font,		curData.font ))			commonProps = commonProps.unset( Flags.FONT );		 // trace("\t\t\tFontChanges: "+font.readProperties(font.changes)); }
-			if (commonProps.has( Flags.EFFECTS )	 && !hasUniqueProperies( givenData.effects,		curData.effects ))		commonProps = commonProps.unset( Flags.EFFECTS );		 // trace("\t\t\teffectChanges: "+effects.readProperties(effects.changes)); }
-			if (commonProps.has( Flags.BOX_FILTERS ) && !hasUniqueProperies( givenData.boxFilters,	curData.boxFilters ))	commonProps = commonProps.unset( Flags.BOX_FILTERS );	 // trace("\t\t\tboxFilterChanges: "+boxFilters.readProperties(boxFilters.changes)); }
+			if (commonProps.has( Flags.STATES )		 && !hasUniqueProperies( givenData.states,		curData.states ))		commonProps = commonProps.unset( Flags.STATES );		// trace("\t\t\tstateChanges: "+states.readProperties(states.changes)); }
+			if (commonProps.has( Flags.GRAPHICS )	 && !hasUniqueProperies( givenData.graphics,	curData.graphics ))		commonProps = commonProps.unset( Flags.GRAPHICS );	 	// trace("\t\t\tGraphicChanges: "+graphics.readProperties(graphics.changes)); }
+			if (commonProps.has( Flags.LAYOUT )		 && !hasUniqueProperies( givenData.layout,		curData.layout ))		commonProps = commonProps.unset( Flags.LAYOUT );		// trace("\t\t\tLayoutChanges: "+layout.readProperties(layout.changes)); }
+			if (commonProps.has( Flags.FONT )		 && !hasUniqueProperies( givenData.font,		curData.font ))			commonProps = commonProps.unset( Flags.FONT );		 	// trace("\t\t\tFontChanges: "+font.readProperties(font.changes)); }
+			if (commonProps.has( Flags.EFFECTS )	 && !hasUniqueProperies( givenData.effects,		curData.effects ))		commonProps = commonProps.unset( Flags.EFFECTS );		// trace("\t\t\teffectChanges: "+effects.readProperties(effects.changes)); }
+			if (commonProps.has( Flags.BOX_FILTERS ) && !hasUniqueProperies( givenData.boxFilters,	curData.boxFilters ))	commonProps = commonProps.unset( Flags.BOX_FILTERS );	// trace("\t\t\tboxFilterChanges: "+boxFilters.readProperties(boxFilters.changes)); }
 			
 			// unset all the style properties of the higher-style in the usable properties flag,
 			// except for those they share and are not the same
@@ -800,7 +785,7 @@ class UIElementStyle implements IUIElementStyle
 				else
 				{
 					if (changes.has( Flags.ID_CHILDREN ))			updateIdStyle();
-					if (changes.has( Flags.STYLE_NAME_CHILDREN ))	updateStyleNameStyles(null);
+					if (changes.has( Flags.STYLE_NAME_CHILDREN ))	updateStyleNameStyles(reset);
 					if (changes.has( Flags.ELEMENT_CHILDREN ))		updateElementStyle();
 				}
 			}
