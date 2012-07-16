@@ -27,16 +27,14 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.collections;
- import primevc.core.collections.IEditableList;
- import primevc.utils.DuplicateUtil;
  
 
 /**
  * @creation-date	Jul 1, 2010
  * @author			Ruben Weijers
  */
+#if flash9 @:generic #end
 class BalancingList <DataType> extends SimpleList <DataType>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var nextList : BalancingList<DataType>;
 	public var listNum	: Int;
@@ -66,7 +64,7 @@ class BalancingList <DataType> extends SimpleList <DataType>
 		var inst	= new BalancingList<DataType>();
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( primevc.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}

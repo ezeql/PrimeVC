@@ -36,8 +36,8 @@ package primevc.core.collections.iterators;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
+#if flash9 @:generic #end
 class FastDoubleCellForwardIterator <DataType> implements IIterator <DataType>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	private var first (default, null)	: FastDoubleCell<DataType>;
 	public var current (default, null)	: FastDoubleCell<DataType>;
@@ -53,7 +53,7 @@ class FastDoubleCellForwardIterator <DataType> implements IIterator <DataType>
 	
 	
 	@:keep public inline function setCurrent (val:Dynamic)	{ current = val; }
-	@:keep public inline function rewind ()				{ current = first; }
+	@:keep public inline function rewind ()					{ current = first; }
 	@:keep public inline function hasNext () 				{ return current != null; }
 	@:keep public inline function value ()					{ return current.data; }
 	

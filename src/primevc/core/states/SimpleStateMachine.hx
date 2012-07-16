@@ -28,7 +28,6 @@
  */
 package primevc.core.states;
  import primevc.core.dispatcher.Signal2;
- import primevc.core.traits.IDisposable;
  
 
 /**
@@ -42,8 +41,7 @@ package primevc.core.states;
  * @creation-date	Jun 21, 2010
  * @author			Ruben Weijers
  */
-class SimpleStateMachine <StateType> implements IDisposable
-//	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
+class SimpleStateMachine <StateType> implements primevc.core.traits.IDisposable
 {
 	public var current		(default, setCurrent)	: StateType;
 	public var defaultState	(default, setDefault)	: StateType;

@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.collections;
- import primevc.utils.DuplicateUtil;
 
 
 /**
@@ -42,8 +41,8 @@ package primevc.core.collections;
  * @creation-date	Jun 30, 2010
  * @author			Ruben Weijers
  */
+#if flash9 @:generic #end
 class ChainedList <DataType> extends SimpleList <DataType> 
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var nextList							: ChainedList < DataType >;
 	/**
@@ -83,7 +82,7 @@ class ChainedList <DataType> extends SimpleList <DataType>
 		var inst	= new ChainedList<DataType>();
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( primevc.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}

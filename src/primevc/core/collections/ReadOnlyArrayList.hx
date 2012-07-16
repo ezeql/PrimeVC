@@ -28,11 +28,7 @@
  */
 package primevc.core.collections;
  import haxe.FastList;
- import primevc.core.collections.iterators.FastArrayForwardIterator;
- import primevc.core.collections.iterators.FastArrayReversedIterator;
- import primevc.core.collections.iterators.IIterator;
  import primevc.core.events.ListChangeSignal;
- import primevc.utils.FastArray;
   using primevc.utils.Bind;
   using primevc.utils.FastArray;
   using primevc.utils.IfUtil;
@@ -45,7 +41,7 @@ package primevc.core.collections;
  * @author Ruben Weijers
  * @creation-date Nov 19, 2010
  */
-class ReadOnlyArrayList<DataType> implements IReadOnlyList<DataType>, implements haxe.rtti.Generic
+@:generic class ReadOnlyArrayList<DataType> implements IReadOnlyList<DataType>
 {
 	public var beforeChange	(default, null)		: ListChangeSignal<DataType>;
 	public var change		(default, null)		: ListChangeSignal<DataType>;
@@ -89,10 +85,10 @@ class ReadOnlyArrayList<DataType> implements IReadOnlyList<DataType>, implements
 	}
 	
 	
-	@:keep private inline function getLength ()								return list.length
-	@:keep public  inline function iterator () : Iterator<DataType>			return forwardIterator()
-	@:keep public  inline function forwardIterator () : IIterator<DataType>	return new FastArrayForwardIterator<DataType>(list)
-	@:keep public  inline function reversedIterator () : IIterator<DataType>	return new FastArrayReversedIterator<DataType>(list)
+	@:keep private inline function getLength ()			return list.length
+	@:keep public  inline function iterator () 	        return forwardIterator()
+	@:keep public  inline function forwardIterator () 	return new primevc.core.collections.iterators.FastArrayForwardIterator<DataType>(list)
+	@:keep public  inline function reversedIterator () 	return new primevc.core.collections.iterators.FastArrayReversedIterator<DataType>(list)
 
 	public inline function disableEvents ()								{ beforeChange.disable(); change.disable(); }
 	public inline function enableEvents ()								{ beforeChange.enable();  change.enable(); }

@@ -73,7 +73,7 @@ class LangMacro
 				{
 				//	trace("Prime::Locale:: Parsing YAML file:: " + currentDir +  file);
 					haxe.macro.Context.registerModuleDependency("primevc.locale.LangMacro", currentDir + "/" + file);
-					var yamlStream = YamlHX.read( neko.io.File.getContent( currentDir + "/" + file) );
+					var yamlStream = YamlHX.read( sys.io.File.getContent( currentDir + "/" + file) );
 					var key = yamlStream.x.firstElement().nodeName;
 					if ( langsRaw.exists(key))
 					{

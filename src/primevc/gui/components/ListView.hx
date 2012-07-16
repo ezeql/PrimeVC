@@ -27,30 +27,16 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.components;
- import primevc.core.collections.IReadOnlyList;
- import primevc.core.collections.ListChange;
  import primevc.core.dispatcher.Signal1;
- import primevc.core.traits.IValueObject;
- import primevc.core.geom.IRectangle;
-
  import primevc.gui.components.IItemRenderer;
  import primevc.gui.core.IUIDataElement;
- import primevc.gui.core.UIDataContainer;
  import primevc.gui.display.DisplayDataCursor;
- import primevc.gui.display.IDisplayObject;
  import primevc.gui.display.ISprite;
-
  import primevc.gui.events.DropTargetEvents;
- import primevc.gui.events.MouseEvents;
-
+ import primevc.gui.events.MouseEvents;		//imports MouseState
  import primevc.gui.layout.LayoutFlags;
- import primevc.gui.states.ValidateStates;
-
- import primevc.gui.traits.IDropTarget;
  import primevc.gui.traits.IInteractive;
-
  import primevc.types.SimpleDictionary;
-
   using primevc.utils.Bind;
   using primevc.utils.BitUtil;
   using primevc.utils.IfUtil;
@@ -65,7 +51,7 @@ package primevc.gui.components;
  * @author Ruben Weijers
  * @creation-date Oct 26, 2010
  */
-class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataType > >, implements IDropTarget //, implements haxe.rtti.Generic
+class ListView<ListDataType> extends primevc.gui.core.UIDataContainer < primevc.core.collections.IReadOnlyList < ListDataType > >, implements primevc.gui.traits.IDropTarget
 {
 	/**
 	 * Signal which will dispatch mouse-clicks of interactive item-rendered 
@@ -372,7 +358,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	    return depth < children.length && depth > -1
 	
 	
-	public function getDepthForBounds (bounds:IRectangle) : Int
+	public function getDepthForBounds (bounds:primevc.core.geom.IRectangle) : Int
 		return layoutContainer.algorithm.getDepthForBounds(bounds)
 	
 	
@@ -436,7 +422,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	// EVENT HANDLERS
 	//
 	
-	private function handleListChange ( change:ListChange<ListDataType> ) : Void
+	private function handleListChange ( change:primevc.core.collections.ListChange<ListDataType> ) : Void
 	{
 		var l 		= layoutContainer;
 		var start 	= l.fixedChildStart;
