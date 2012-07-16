@@ -178,7 +178,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	}
 	
 	
-	public function dispose ()	if (target != null)
+	public function dispose ()	if (target.notNull())
 	{
 		addedBinding.dispose();
 		removedBinding.dispose();
@@ -191,14 +191,14 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		while (styles.length > 0)
 			removeStyleCell( styles.last );
 		
-		if ((untyped this).boxFilters != null)		{ boxFilters.dispose(); boxFilters = null; }
-		if ((untyped this).effects != null)			{ effects.dispose();    effects    = null; }
-		if ((untyped this).font != null)			{ font.dispose();       font       = null; }
-		if ((untyped this).graphics != null)		{ graphics.dispose();   graphics   = null; }
-		if ((untyped this).layout != null)			{ layout.dispose();     layout     = null; }
-		if ((untyped this).states != null)			{ states.dispose();     states     = null; }
+		if ((untyped this).boxFilters != null)	{ boxFilters.dispose(); boxFilters = null; }
+		if ((untyped this).effects != null)		{ effects.dispose();    effects    = null; }
+		if ((untyped this).font != null)		{ font.dispose();       font       = null; }
+		if ((untyped this).graphics != null)	{ graphics.dispose();   graphics   = null; }
+		if ((untyped this).layout != null)		{ layout.dispose();     layout     = null; }
+		if ((untyped this).states != null)		{ states.dispose();     states     = null; }
 		
-		if (parentStyle != null && parentStyle.childrenChanged != null)
+		if (parentStyle.notNull() && parentStyle.childrenChanged.notNull())
 			parentStyle.childrenChanged.unbind( this );
 		
 		childrenChanged.dispose();
@@ -244,7 +244,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	 */
 	public function getChildStyles ( child:UIElementStyle, name:String, type:StyleBlockType, foundStyles:FastArray<StyleBlock> = null, exclude:StyleBlock = null ) : FastArray<StyleBlock>
 	{
-		if (foundStyles == null)
+		if (foundStyles.isNull())
 			foundStyles = FastArrayUtil.create();
 		
 		var childFlag	= styleTypeToFlag( type );
@@ -252,7 +252,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		if (filledProperties.has( childFlag ))
 		{
 			var curCell = styles.last;
-			while (curCell != null)
+			while (curCell.notNull())
 			{
 				var styleObj	= curCell.data;
 				curCell			= curCell.prev;
@@ -262,13 +262,13 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 					continue;
 				
 				var style = styleObj.findChild( name, type, exclude );
-				if (style != null && !foundStyles.has(style))
+				if (style.notNull() && !foundStyles.has(style))
 					foundStyles.push(style);
 			}
 		}
 		
 		// if there's no styleBlock found for the child, try the next parent
-		if (foundStyles.length == 0 && parentStyle != this && parentStyle != null)
+		if (foundStyles.length == 0 && parentStyle != this && parentStyle.notNull())
 			parentStyle.getChildStyles( child, name, type, foundStyles, exclude );
 		
 		return foundStyles;
@@ -293,9 +293,9 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		styleNamesBinding.enable();
 		idChangeBinding  .enable();
 		
-		var parent = owner.container != null && owner.container != owner ? owner.container.as( IStylable ) : null;
+		var parent = owner.container.notNull() && owner.container != owner ? owner.container.as( IStylable ) : null;
 		//remove styles if the new parent is not the same as the old parent
-		if (parent != null && parent.style != parentStyle)
+		if (parent.notNull() && parent.style != parentStyle)
 		{
 			clearStyles();
 			parentStyle = parent.style;
@@ -314,8 +314,8 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	 */
 	private function disableStyleListeners ()
 	{
-		if (removedBinding != null)		removedBinding.disable();
-		if (addedBinding != null)		addedBinding.enable();
+		if (removedBinding.notNull())	removedBinding.disable();
+		if (addedBinding.notNull())		addedBinding.enable();
 		
 		invalidated = 0;
 		styleNamesBinding.handler = invalidateStyleNames;
@@ -337,11 +337,11 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		while (styles.length > 0)
 			removeStyleCell( styles.last );
 		
-		if (parentStyle != null)
+		if (parentStyle.notNull())
 		{
-		//	if (target.container != null && target.container.as( IStylable ).style == parentStyle)
+		//	if (target.container.notNull() && target.container.as( IStylable ).style == parentStyle)
 		//		return;
-			if (parentStyle.childrenChanged != null)
+			if (parentStyle.childrenChanged.notNull())
 				parentStyle.childrenChanged.unbind( this );
 			parentStyle = null;
 		}
@@ -369,12 +369,12 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	}
 	
 	
-	private inline function getBoxFilters ()	{ return (boxFilters == null)	? boxFilters	= new FiltersCollection( this, FilterCollectionType.box ) : boxFilters; }
-	private inline function getEffects ()		{ return (effects == null)		? effects		= new EffectsCollection( this ) : effects; }
-	private inline function getFont ()			{ return (font == null)			? font			= new TextStyleCollection( this ) : font; }
-	private inline function getGraphics ()		{ return (graphics == null)		? graphics		= new GraphicsCollection( this ) : graphics; }
-	private inline function getLayout ()		{ return (layout == null)		? layout		= new LayoutCollection( this ) : layout; }
-	private inline function getStates ()		{ return (states == null)		? states		= new StatesCollection( this ) : states; }
+	private inline function getBoxFilters ()	return boxFilters.isNull()	? boxFilters	= new FiltersCollection( this, FilterCollectionType.box ) : boxFilters
+	private inline function getEffects ()		return effects.isNull()		? effects		= new EffectsCollection( this ) : effects
+	private inline function getFont ()			return font.isNull()		? font			= new TextStyleCollection( this ) : font
+	private inline function getGraphics ()		return graphics.isNull()	? graphics		= new GraphicsCollection( this ) : graphics
+	private inline function getLayout ()		return layout.isNull()		? layout		= new LayoutCollection( this ) : layout
+	private inline function getStates ()		return states.isNull()		? states		= new StatesCollection( this ) : states
 	
 	
 	/**
@@ -430,7 +430,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		var changes		= 0;
 		var styleCell	= styles.add( style );
 		
-		if (styleCell != null)
+		if (styleCell.notNull())
 		{
 			// ADD LISTENERS
 			style.listeners.add( this );
@@ -507,7 +507,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	{
 		var cell	= styles.getCellForItem( style );
 		var changes	= 0;
-		if (cell != null)
+		if (cell.notNull())
 			changes = removeStyleCell( cell );
 		
 		return changes;
@@ -582,7 +582,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		var newStyles:FastArray<StyleBlock> = FastArrayUtil.create();
 
 		//search for the first element style that is defined for this object or one of it's super classes
-		while (parentClass != null) {
+		while (parentClass.notNull()) {
 			parentStyle.getChildStyles( this, parentClass.getClassName(), StyleBlockType.element, newStyles );
 			parentClass	= newStyles.length > 0 ? null : cast parentClass.getSuperClass();
 		}
@@ -771,7 +771,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		if (sender.is(StyleBlock))
 		{
 			var senderCell = styles.getCellForItem( sender.as(StyleBlock) );
-			if (senderCell != null)
+			if (senderCell.notNull())
 			{
 				//sender is a styleblock of this style 
 				changes = getUsablePropertiesOf( senderCell, changes );

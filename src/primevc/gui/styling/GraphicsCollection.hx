@@ -122,14 +122,19 @@ class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 		}
 		
 		
-		if ( propsToSet.has( Flags.OVERFLOW ) && !empty)
+		if (propsToSet.has( Flags.OVERFLOW ))
 		{
-			if (styleObj.overflow != null) {
+			if (!empty && styleObj.overflow != null) {
 				var c = target.as(IUIContainer);
 				c.behaviours.add( styleObj.overflow(c) );
 			}
-		//	else
-		//		target.behaviours.remove(  )		FIXME -> remove old overflow behaviours..
+			else if (empty)
+				for (b in target.as(IUIContainer).behaviours.list) {
+					if (b.is(primevc.gui.behaviours.scroll.IScrollBehaviour)) {
+						target.as(IUIContainer).behaviours.remove(b);
+						break;
+					}
+			}
 		}
 		
 		
