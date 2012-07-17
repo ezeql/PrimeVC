@@ -29,8 +29,6 @@
 package primevc.gui.layout.algorithms.float;
  import primevc.core.geom.space.Vertical;
  import primevc.core.geom.IRectangle;
- import primevc.gui.layout.algorithms.IVerticalAlgorithm;
- import primevc.gui.layout.algorithms.VerticalBaseAlgorithm;
  import primevc.gui.layout.AdvancedLayoutClient;
  import primevc.gui.layout.IScrollableLayout;
  import primevc.types.Number;
@@ -45,7 +43,7 @@ package primevc.gui.layout.algorithms.float;
  * @creation-date	Jun 24, 2010
  * @author			Ruben Weijers
  */
-class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVerticalAlgorithm
+class VerticalFloatAlgorithm extends primevc.gui.layout.algorithms.VerticalBaseAlgorithm, implements primevc.gui.layout.algorithms.IVerticalAlgorithm
 {
 	/**
 	 * Method will return the total height of all the children.
@@ -65,16 +63,12 @@ class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVertical
 		var height:Int	= 0;
 		var children	= group.children;
 		if (group.childHeight.notSet())
-		{
 			for (i in 0...children.length)
 			{
 				var child = children.getItemAt(i);
-				if (!child.includeInLayout)
-					continue;
-				
-				height += child.outerBounds.height;
+				if (child.includeInLayout)
+					height += child.outerBounds.height;
 			}
-		}
 		else
 			height = group.childHeight * group.childrenLength;
 		

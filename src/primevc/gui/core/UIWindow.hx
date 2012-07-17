@@ -27,9 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.core;
-#if (flash9 && stats)
- import net.hires.debug.Stats;
-#end
  import primevc.core.geom.Rectangle;
  import primevc.core.Bindable;
 
@@ -159,9 +156,12 @@ class UIWindow extends primevc.gui.display.Window
 		layout.invalidatable = false;
 		behaviours.init();
 		createChildren();
-
+#if debug
+		new primevc.gui.components.DebugBar().attachLayoutTo(topLayout).attachDisplayTo(this);
+		topLayout.margin = new primevc.core.geom.Box(50,0,0,0);
+#end
 #if (flash9 && stats)
-		children.add( new Stats() );
+		children.add( new net.hires.debug.Stats() );
 #end
 		layout.invalidatable = true;
 	}
@@ -230,9 +230,7 @@ class UIWindow extends primevc.gui.display.Window
 	private function createBehaviours ()	: Void
 	{
 	//	behaviours.add( new AutoChangeLayoutChildlistBehaviour(this) );
-#if flash9
-		target.stageFocusRect = false;
-#end
+#if flash9 target.stageFocusRect = false; #end
 	}
 	
 	
