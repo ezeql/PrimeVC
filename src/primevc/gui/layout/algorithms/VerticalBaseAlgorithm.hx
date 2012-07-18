@@ -113,7 +113,7 @@ class VerticalBaseAlgorithm extends primevc.gui.layout.algorithms.LayoutAlgorith
 	{
 		if (!validatePrepared)
 		{
-			var width:Int = group.childWidth;
+			var width = group.childWidth;
 		
 			if (group.childWidth.notSet())
 			{

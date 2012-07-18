@@ -60,18 +60,15 @@ class VerticalFloatAlgorithm extends primevc.gui.layout.algorithms.VerticalBaseA
 	
 	public function validateVertical ()
 	{
-		var height:Int	= 0;
-		var children	= group.children;
+		var height = 0;
 		if (group.childHeight.notSet())
-			for (i in 0...children.length)
-			{
-				var child = children.getItemAt(i);
+			for (child in group.children) {
 				if (child.includeInLayout)
 					height += child.outerBounds.height;
 			}
 		else
 			height = group.childHeight * group.childrenLength;
-		
+
 		setGroupHeight(height);
 	}
 

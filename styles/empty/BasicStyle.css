@@ -218,6 +218,7 @@ DebugBar:hover {
 }
 
 DebugBar Button {
+	algorithm: none;
 	background: #ccc;
 	skin: Class( primevc.gui.components.skins.ButtonLabelSkin );
 	color: #333;
