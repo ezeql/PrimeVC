@@ -424,8 +424,8 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 					algorithm.group = null;
 				
 				algorithm.algorithmChanged.unbind(this);
+				measuredWidth = measuredHeight = Number.INT_NOT_SET;
 			}
-			
 			algorithm = v;
 			
 			if (algorithm != null) {
@@ -433,7 +433,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 				algorithmChangedHandler.on( algorithm.algorithmChanged, this );
 			}
 			
-			invalidate( Flags.ALGORITHM );
+			invalidate(Flags.ALGORITHM);
 		}
 		return v;
 	}
