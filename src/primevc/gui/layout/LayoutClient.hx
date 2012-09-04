@@ -157,7 +157,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 		invalidatable		= true;
 		
 		changed		= new Signal1<Int>();
-		innerBounds	= new IntRectangle( x, y, newWidth.getBiggest(0), newHeight.getBiggest(0) );
+		innerBounds	= new IntRectangle( x.roundFloat() , y.roundFloat(), newWidth.getBiggest(0).roundFloat(), newHeight.getBiggest(0).roundFloat() );
 		outerBounds	= innerBounds.clone().as(IntRectangle);
 		
 		_width		= newWidth;
