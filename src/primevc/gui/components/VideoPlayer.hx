@@ -49,10 +49,10 @@ package primevc.gui.components;
  */
 class VideoPlayer extends UIDataContainer <Bindable<URI>>
 {
-	private var ctrlBar		: VideoControlBar;
+	public var ctrlBar		(default, null) : VideoControlBar;
 	private var video		: UIVideo;
 	private var bigPlayBtn	: Button;
-	public var stream		(default, null)	: VideoStream;
+	public var stream		(default, default)	: VideoStream;
 	
 	
 	override private function createChildren ()
@@ -121,13 +121,13 @@ class VideoPlayer extends UIDataContainer <Bindable<URI>>
  */
 class VideoControlBar extends UIContainer
 {
-	private var playBtn			: Button;
-	private var stopBtn			: Button;
-	private var progressBar		: Slider;
-	private var timeDisplay		: Label;
-	private var muteBtn			: Button;
-	private var volumeSlider	: Slider;
-	private var fullScreenBtn	: Button;
+	public var playBtn			(default, null)	: Button;
+	public var stopBtn			(default, null)	: Button;
+	public var progressBar		(default, null)	: Slider;
+	public var timeDisplay		(default, null)	: Label;
+	public var muteBtn			(default, null)	: Button;
+	public var volumeSlider		(default, null)	: Slider;
+	public var fullScreenBtn	(default, null)	: Button;
 	
 	public var stream			(default, setStream)	: VideoStream;
 	
