@@ -853,7 +853,8 @@ class CSSParser
 			//we don't botter checking elements without subclasses
 			if (elementStyle.isEmpty() || elementStyle.parentStyle == styles || !manifest.hasSubClasses(elementName))
 			{
-				//CSSParserMain.print("INFO: Omitting " + elementName);
+				//TODO: Add a flag for traceLevel detail?
+				CSSParserMain.print("INFO: Omitting " + elementName);
 				continue;
 			}
 			
