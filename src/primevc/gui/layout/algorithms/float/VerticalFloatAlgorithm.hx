@@ -50,7 +50,7 @@ class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVertical
 	/**
 	 * Method will return the total height of all the children.
 	 */
-	public inline function validate ()
+	public #if !noinline inline #end function validate ()
 	{
 		if (group.children.length == 0)
 			return;
@@ -187,7 +187,7 @@ class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVertical
 	/**
 	 * 
 	 */
-	public inline function getDepthForBounds (bounds:IRectangle) : Int
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle) : Int
 	{
 		return switch (direction) {
 			case Vertical.top:		getDepthForBoundsTtB(bounds);

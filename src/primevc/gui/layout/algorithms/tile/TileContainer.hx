@@ -105,7 +105,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	public function iterator () { return children.iterator(); }
 
 
-	public inline function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
+	public #if !noinline inline #end function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
 	{
 		children.add( target, depth );
 		return this;
@@ -336,7 +336,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	}
 	
 	
-	public inline function setFixedChildLength (length:Int)
+	public #if !noinline inline #end function setFixedChildLength (length:Int)
 	{
 		fixedLength = true;
 		if (childrenLength != length) {
@@ -346,7 +346,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	}
 	
 	
-	public inline function unsetFixedChildLength ()
+	public #if !noinline inline #end function unsetFixedChildLength ()
 	{
 		fixedLength = false;
 		if (childrenLength != children.length) {

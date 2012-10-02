@@ -90,7 +90,7 @@ class CommunicatorsGroup implements ICommunicator
 	}
 	
 	
-	public inline function removeAll ()
+	public #if !noinline inline #end function removeAll ()
 	{
 		while (list.head != null)
 			list.pop().events.load.unbind(this);
@@ -116,7 +116,7 @@ class CommunicatorsGroup implements ICommunicator
 	}
 	
 	
-	public inline function remove (communicator:ICommunicator) : Void
+	public #if !noinline inline #end function remove (communicator:ICommunicator) : Void
 	{
 		communicator.events.load.unbind(this);
 		list.remove( communicator );
@@ -130,14 +130,14 @@ class CommunicatorsGroup implements ICommunicator
 	 * Flag indicating wether the process is completed (true when a COMPLETE 
 	 * event is fired or when the bytesProgress are equal to the bytesTotal)
 	 */
-	public inline function isCompleted ()	{ return bytesTotal > 0 && length.value == 0; }
-	public inline function isInProgress ()	{ return length.value > 0; }
+	public #if !noinline inline #end function isCompleted ()	{ return bytesTotal > 0 && length.value == 0; }
+	public #if !noinline inline #end function isInProgress ()	{ return length.value > 0; }
 	
 	
 	/**
 	 * Method will stop all communications
 	 */
-	public inline function close ()
+	public #if !noinline inline #end function close ()
 	{
 		var n = list.head;
 		while (n != null) {

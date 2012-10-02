@@ -363,7 +363,7 @@ class GraphicProperties implements IGraphicElement
 	}
 	
 	
-	public inline function isEmpty () : Bool		{ return (layout == null || layout.isEmpty()) || shape == null; }
+	public #if !noinline inline #end function isEmpty () : Bool		{ return (layout == null || layout.isEmpty()) || shape == null; }
 	
 	
 #if CSSParser

@@ -69,18 +69,18 @@ class UIContainer extends UIComponent, implements IUIContainer
     // ISCROLLABLE
     //
 
-    public inline function scrollToX        (x:Float) : Void    { var r = scrollRect; r.x = x; scrollRect = r; }
-    public inline function scrollToY        (y:Float) : Void    { var r = scrollRect; r.y = y; scrollRect = r; }
-    public inline function scrollTo         (x:Float, y:Float)  { var r = scrollRect; r.x = x; r.y = y; scrollRect = r; }
+    public #if !noinline inline #end function scrollToX        (x:Float) : Void    { var r = scrollRect; r.x = x; scrollRect = r; }
+    public #if !noinline inline #end function scrollToY        (y:Float) : Void    { var r = scrollRect; r.y = y; scrollRect = r; }
+    public #if !noinline inline #end function scrollTo         (x:Float, y:Float)  { var r = scrollRect; r.x = x; r.y = y; scrollRect = r; }
 
-    public inline function applyScrollX     ()        : Void    { scrollToX( layoutContainer.scrollPos.x ); }
-    public inline function applyScrollY     ()        : Void    { scrollToY( layoutContainer.scrollPos.y ); }
+    public #if !noinline inline #end function applyScrollX     ()        : Void    { scrollToX( layoutContainer.scrollPos.x ); }
+    public #if !noinline inline #end function applyScrollY     ()        : Void    { scrollToY( layoutContainer.scrollPos.y ); }
     
-    public inline function setClippingSize  (w:Float, h:Float)  { var r = scrollRect; r.width = w; r.height = h; scrollRect = r; }
-    public inline function createScrollRect (w:Float, h:Float)  { isScrollable = true;  scrollRect = new Rectangle(0,0, w, h); }
-    public inline function removeScrollRect ()                  { isScrollable = false; scrollRect = null; }
-    public inline function getScrollRect    ()                  { return scrollRect; }
-    public inline function setScrollRect    (v:Rectangle)       { return scrollRect = v; }
+    public #if !noinline inline #end function setClippingSize  (w:Float, h:Float)  { var r = scrollRect; r.width = w; r.height = h; scrollRect = r; }
+    public #if !noinline inline #end function createScrollRect (w:Float, h:Float)  { isScrollable = true;  scrollRect = new Rectangle(0,0, w, h); }
+    public #if !noinline inline #end function removeScrollRect ()                  { isScrollable = false; scrollRect = null; }
+    public #if !noinline inline #end function getScrollRect    ()                  { return scrollRect; }
+    public #if !noinline inline #end function setScrollRect    (v:Rectangle)       { return scrollRect = v; }
 
 
     public function enableClipping ()

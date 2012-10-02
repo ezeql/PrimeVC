@@ -138,7 +138,7 @@ class UIDataComponent <DataType> extends UIComponent, implements IUIDataElement 
 	}
 
 
-	public inline function unsetData ()
+	public #if !noinline inline #end function unsetData ()
 	{
 		data = null;
 	}

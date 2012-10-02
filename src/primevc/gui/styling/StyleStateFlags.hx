@@ -80,7 +80,7 @@ package primevc.gui.styling;
 	
 	
 #if (CSSParser || debug)
-	public static inline function stringToState (v:String) : Int
+	public static #if !noinline inline #end function stringToState (v:String) : Int
 	{
 		return switch (v.toLowerCase().trim())
 		{

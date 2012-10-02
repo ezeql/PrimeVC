@@ -36,7 +36,7 @@ package primevc.core.collections;
 
 private typedef Flags = RevertableBindableFlags;
 
-extern class RevertableArrayListFlags
+ #if !noinline extern #end class RevertableArrayListFlags
 {
 	static public inline var REMEMBER_CHANGES = 32768;	// 0b_1000 0000 0000 0000
 }
@@ -77,21 +77,21 @@ class RevertableArrayList < DataType > extends ReadOnlyArrayList < DataType >, i
 	}
 	
 	
-	public inline function rememberChanges (enabled:Bool = true)				{ flags = enabled ? flags.set(RevertableArrayListFlags.REMEMBER_CHANGES) : flags.unset(RevertableArrayListFlags.REMEMBER_CHANGES); }
-	public inline function dispatchChangesBeforeCommit (enabled:Bool = true)	{ flags = enabled ? flags.set(Flags.DISPATCH_CHANGES_BEFORE_COMMIT) : flags.unset(Flags.DISPATCH_CHANGES_BEFORE_COMMIT); }
+	public #if !noinline inline #end function rememberChanges (enabled:Bool = true)				{ flags = enabled ? flags.set(RevertableArrayListFlags.REMEMBER_CHANGES) : flags.unset(RevertableArrayListFlags.REMEMBER_CHANGES); }
+	public #if !noinline inline #end function dispatchChangesBeforeCommit (enabled:Bool = true)	{ flags = enabled ? flags.set(Flags.DISPATCH_CHANGES_BEFORE_COMMIT) : flags.unset(Flags.DISPATCH_CHANGES_BEFORE_COMMIT); }
 	
 	
 	//
 	// EDITABLE VALUE-OBJECT METHODS
 	//
 	
-	public inline function isEmpty()
+	public #if !noinline inline #end function isEmpty()
 	{
 		return this.length == 0;
 	}
 	
 	
-	public inline function beginEdit ()
+	public #if !noinline inline #end function beginEdit ()
 	{
 		if (flags.hasNone( Flags.IN_EDITMODE ))
 		{
@@ -117,7 +117,7 @@ class RevertableArrayList < DataType > extends ReadOnlyArrayList < DataType >, i
 	}
 	
 	
-	public inline function cancelEdit ()
+	public #if !noinline inline #end function cancelEdit ()
 	{
 		if (changes != null && flags.hasAll( Flags.IN_EDITMODE | RevertableArrayListFlags.REMEMBER_CHANGES))
 		{
@@ -143,7 +143,7 @@ class RevertableArrayList < DataType > extends ReadOnlyArrayList < DataType >, i
 	}
 
 
-	public inline function isEditable ()
+	public #if !noinline inline #end function isEditable ()
 	{
 		return flags.has( Flags.IN_EDITMODE );
 	}
@@ -239,7 +239,7 @@ class RevertableArrayList < DataType > extends ReadOnlyArrayList < DataType >, i
 
 
 #if debug
-	public inline function readFlags ()
+	public #if !noinline inline #end function readFlags ()
 		return Flags.readProperties(flags)
 #end
 }

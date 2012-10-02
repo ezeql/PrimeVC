@@ -89,7 +89,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	}
 	
 	
-	public inline function isDisposed ()
+	public #if !noinline inline #end function isDisposed ()
 	{
 		return behaviours == null;
 	}

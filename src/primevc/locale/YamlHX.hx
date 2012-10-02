@@ -170,7 +170,7 @@ class YamlHX extends Fast
 		
 	}
 	
-	public inline function get( s:String ):String
+	public #if !noinline inline #end function get( s:String ):String
 	{
 	  var f:Fast = this;
 	  var value = "";

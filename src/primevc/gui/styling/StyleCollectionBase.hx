@@ -97,7 +97,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	}
 	
 	
-	public inline function has (properties:Int) : Bool
+	public #if !noinline inline #end function has (properties:Int) : Bool
 	{
 		return filledProperties.has(properties);
 	}

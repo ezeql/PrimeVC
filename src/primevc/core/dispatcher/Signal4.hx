@@ -71,10 +71,10 @@ class Signal4 <A,B,C,D> extends Signal<A->B->C->D->Void>, implements ISender4<A,
 		nextSendable = null;
 	}
 	
-	public inline function bind 			(owner:Dynamic, handler:A->B->C->D->Void)	return Wire.make( this, owner, handler, Wire.ENABLED )
-	public inline function bindOnce 		(owner:Dynamic, handler:A->B->C->D->Void)	return Wire.make( this, owner, handler, Wire.ENABLED | Wire.SEND_ONCE)
-	public inline function bindDisabled 	(owner:Dynamic, handler:A->B->C->D->Void)	return Wire.make( this, owner, cast handler, 0)
-	public inline function observe 			(owner:Dynamic, handler:Void->Void)			return Wire.make( this, owner, cast handler, Wire.ENABLED | Wire.VOID_HANDLER)
-	public inline function observeOnce		(owner:Dynamic, handler:Void->Void)			return Wire.make( this, owner, cast handler, Wire.ENABLED | Wire.VOID_HANDLER | Wire.SEND_ONCE)
-	public inline function observeDisabled 	(owner:Dynamic, handler:Void->Void)			return Wire.make( this, owner, cast handler, Wire.VOID_HANDLER)
+	public #if !noinline inline #end function bind 			(owner:Dynamic, handler:A->B->C->D->Void)	return Wire.make( this, owner, handler, Wire.ENABLED )
+	public #if !noinline inline #end function bindOnce 		(owner:Dynamic, handler:A->B->C->D->Void)	return Wire.make( this, owner, handler, Wire.ENABLED | Wire.SEND_ONCE)
+	public #if !noinline inline #end function bindDisabled 	(owner:Dynamic, handler:A->B->C->D->Void)	return Wire.make( this, owner, cast handler, 0)
+	public #if !noinline inline #end function observe 			(owner:Dynamic, handler:Void->Void)			return Wire.make( this, owner, cast handler, Wire.ENABLED | Wire.VOID_HANDLER)
+	public #if !noinline inline #end function observeOnce		(owner:Dynamic, handler:Void->Void)			return Wire.make( this, owner, cast handler, Wire.ENABLED | Wire.VOID_HANDLER | Wire.SEND_ONCE)
+	public #if !noinline inline #end function observeDisabled 	(owner:Dynamic, handler:Void->Void)			return Wire.make( this, owner, cast handler, Wire.VOID_HANDLER)
 }

@@ -61,32 +61,32 @@ class Color
 	/**
 	 * Returns a random color with an alpha value that is always 0xFF
 	 */
-	public static inline function random () : RGBA						{ return {color: (Math.random() * WHITE).int(), a: ALPHA_MASK}; }
+	public static #if !noinline inline #end function random () : RGBA						{ return {color: (Math.random() * WHITE).int(), a: ALPHA_MASK}; }
 
 	/**
 	 * Blends to RGBA colors together.
 	 */
-	public static inline function blend (v:RGBA, v2:RGBA) : RGBA		{ v.color |= v2.color; v.a |= v2.a; return v; }
-	public static inline function blendUInt (v:UInt, v2:UInt) : UInt	{ return v | v2; }
+	public static #if !noinline inline #end function blend (v:RGBA, v2:RGBA) : RGBA		{ v.color |= v2.color; v.a |= v2.a; return v; }
+	public static #if !noinline inline #end function blendUInt (v:UInt, v2:UInt) : UInt	{ return v | v2; }
 
 	/**
 	 * Makes sure that the given color is between BLACK and WHITE
 	 */
-	public static inline function validate( v:RGBA ) : RGBA				{ v.color = v.color.validate16Bit(); v.a = v.a.validate8Bit(); return v; }
-	public static inline function validate16Bit (v:UInt) : UInt			{ return v.within(BLACK, WHITE); }
-	public static inline function validate8Bit (v:UInt) : UInt			{ return v.within(0x00, 0xFF); }
+	public static #if !noinline inline #end function validate( v:RGBA ) : RGBA				{ v.color = v.color.validate16Bit(); v.a = v.a.validate8Bit(); return v; }
+	public static #if !noinline inline #end function validate16Bit (v:UInt) : UInt			{ return v.within(BLACK, WHITE); }
+	public static #if !noinline inline #end function validate8Bit (v:UInt) : UInt			{ return v.within(0x00, 0xFF); }
 
 	/**
 	 * Creates a RGBA object containing gray values.
 	 * @example		Color.gray( 10 );		// 0x0A0A0AFF
 	 */
-	public static inline function gray( v:UInt ) : RGBA					{ return {color: v << 16 | v << 8 | v, a: 0xFF}; }
+	public static #if !noinline inline #end function gray( v:UInt ) : RGBA					{ return {color: v << 16 | v << 8 | v, a: 0xFF}; }
 
 	/**
 	 * Creates a RGBA object from single color values.
 	 * @example		Color.create( 255, 255, 0 );	// = 0xFFFF00FF;
 	 */
-	public static inline function create (r:UInt = 0, g:UInt = 0, b:UInt = 0, a:UInt = 0xFF) : RGBA {
+	public static #if !noinline inline #end function create (r:UInt = 0, g:UInt = 0, b:UInt = 0, a:UInt = 0xFF) : RGBA {
 		return {color: ( r << 16 | g << 8 | b ), a: a }.validate();
 	}
 	
@@ -94,61 +94,61 @@ class Color
 	/**
 	 * Returns the alpha value of a RGBA object as a UInt.
 	 */
-	public static inline function alpha (v:RGBA) : UInt					{ return v.a; }
+	public static #if !noinline inline #end function alpha (v:RGBA) : UInt					{ return v.a; }
 	/**
 	 * Returns the RGB properties of a RGBA value as 0xRRGGBB.
 	 */
-	public static inline function rgb (v:RGBA) : UInt					{ return v.color; }
+	public static #if !noinline inline #end function rgb (v:RGBA) : UInt					{ return v.color; }
 	/**
 	 * Returns the red color from a RGBA value as 0xRR
 	 */
-	public static inline function red (v:RGBA) : UInt					{ return (v.color & RED_MASK) >>> 16; }
+	public static #if !noinline inline #end function red (v:RGBA) : UInt					{ return (v.color & RED_MASK) >>> 16; }
 	/**
 	 * Returns the green color from a RGBA value as 0xGG
 	 */
-	public static inline function green (v:RGBA) : UInt					{ return (v.color & GREEN_MASK) >>> 8; }
+	public static #if !noinline inline #end function green (v:RGBA) : UInt					{ return (v.color & GREEN_MASK) >>> 8; }
 	/**
 	 * Returns the blue color from a RGBA value as 0xBB
 	 */
-	public static inline function blue (v:RGBA) : UInt					{ return v.color & BLUE_MASK; }
+	public static #if !noinline inline #end function blue (v:RGBA) : UInt					{ return v.color & BLUE_MASK; }
 
 
 	/**
 	 * Replaces the alpha value of a RGBA object.
 	 */
-	public static inline function setAlpha (v:RGBA, a:UInt) : RGBA		{ v.a = a; return v; }
+	public static #if !noinline inline #end function setAlpha (v:RGBA, a:UInt) : RGBA		{ v.a = a; return v; }
 	/**
 	 * Replaces the RGB properties of a RGBA object.
 	 */
-	public static inline function setRgb (v:RGBA, c:UInt) : RGBA		{ v.color = c; return v; }
+	public static #if !noinline inline #end function setRgb (v:RGBA, c:UInt) : RGBA		{ v.color = c; return v; }
 	/**
 	 * Replaces the red value of a RGBA object.
 	 */
-	public static inline function setRed (v:RGBA, r:UInt) : RGBA		{ v.color = (v.color & INVERTED_RED_MASK) | (r << 16); return v; }
+	public static #if !noinline inline #end function setRed (v:RGBA, r:UInt) : RGBA		{ v.color = (v.color & INVERTED_RED_MASK) | (r << 16); return v; }
 	/**
 	 * Replaces the green value of a RGBA object.
 	 */
-	public static inline function setGreen (v:RGBA, g:UInt) : RGBA		{ v.color = (v.color & INVERTED_GREEN_MASK) | (g << 8); return v; }
+	public static #if !noinline inline #end function setGreen (v:RGBA, g:UInt) : RGBA		{ v.color = (v.color & INVERTED_GREEN_MASK) | (g << 8); return v; }
 	/**
 	 * Replaces the blue value of a RGBA object.
 	 */
-	public static inline function setBlue (v:RGBA, b:UInt) : RGBA		{ v.color = (v.color & INVERTED_BLUE_MASK) | b; return v; }
+	public static #if !noinline inline #end function setBlue (v:RGBA, b:UInt) : RGBA		{ v.color = (v.color & INVERTED_BLUE_MASK) | b; return v; }
 
 
 
 	/**
 	 * Darkens the RGBA color by the gray-amount (0-255).
 	 */
-	public static inline function darken (v:RGBA, grayV:UInt) : RGBA	{ v.color = v.color - Color.gray(grayV).color; return v.validate(); }
+	public static #if !noinline inline #end function darken (v:RGBA, grayV:UInt) : RGBA	{ v.color = v.color - Color.gray(grayV).color; return v.validate(); }
 	/**
 	 * Lightens the RGBA color by the gray-amount (0-255).
 	 */
-	public static inline function lighten (v:RGBA, grayV:UInt) : RGBA	{ v.color = v.color + Color.gray(grayV).color; return v.validate(); }
+	public static #if !noinline inline #end function lighten (v:RGBA, grayV:UInt) : RGBA	{ v.color = v.color + Color.gray(grayV).color; return v.validate(); }
 	/**
 	 * Changes the tint of the RGBA color to the given float value (0 - 1).
 	 * @example		0xFF0000FF.tint(.5);	//gives: 0x7F0000FF
 	 */
-	public static inline function tint (v:RGBA, tint:Float) : RGBA {
+	public static #if !noinline inline #end function tint (v:RGBA, tint:Float) : RGBA {
 		var r = (v.red() * tint).int();
 		var g = (v.green() * tint).int();
 		var b = (v.blue() * tint).int();
@@ -160,24 +160,24 @@ class Color
 	/**
 	 * Converts two bytes to a Float. Only one color channel should be given as input.
 	 */
-	public static inline function float (v:UInt) : Float			{ return v / 255; }
+	public static #if !noinline inline #end function float (v:UInt) : Float			{ return v / 255; }
 
 	/**
 	 * Converts the given float (0-1) to a uint.
 	 */
-	public static inline function uint (v:Float) : UInt				{ return (v * 255).int().validate8Bit(); }
+	public static #if !noinline inline #end function uint (v:Float) : UInt				{ return (v * 255).int().validate8Bit(); }
 	
 	
 	/**
 	 * Converts a RGBA value to a hexadecimal string. 
 	 */
-	public static inline function string (v:RGBA) : String			{ return rgbaToString(v); }
-	public static inline function rgbaToString (v:RGBA) : String	{ return "0x"+v.color.hex(6) + v.a.hex(2); }
-	public static inline function uintToString (v:UInt) : String	{ return "0x"+v.hex(6); }
+	public static #if !noinline inline #end function string (v:RGBA) : String			{ return rgbaToString(v); }
+	public static #if !noinline inline #end function rgbaToString (v:RGBA) : String	{ return "0x"+v.color.hex(6) + v.a.hex(2); }
+	public static #if !noinline inline #end function uintToString (v:UInt) : String	{ return "0x"+v.hex(6); }
 	/**
 	 * Converts a hexadecimal string to a RGBA value
 	 */
-	public static inline function rgba (v:String) : RGBA
+	public static #if !noinline inline #end function rgba (v:String) : RGBA
 	{
 		var a = ALPHA_MASK;
 		

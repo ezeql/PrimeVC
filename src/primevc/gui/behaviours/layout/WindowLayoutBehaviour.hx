@@ -81,8 +81,8 @@ class WindowLayoutBehaviour extends ValidatingBehaviour < UIWindow >, implements
 	}
 	
 	
-	public inline function invalidate ()				{ target.invalidation.add(this); }
-	public inline function validate ()					{ target.topLayout.validate(); }
+	public #if !noinline inline #end function invalidate ()				{ target.invalidation.add(this); }
+	public #if !noinline inline #end function validate ()					{ target.topLayout.validate(); }
 	override private function getValidationManager ()	{ return target.invalidation; }
 	
 	

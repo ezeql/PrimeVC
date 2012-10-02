@@ -107,19 +107,19 @@ class DisplayList implements IEditableList <ChildType>
 	}
 	
 	
-	public inline function isEmpty () : Bool
+	public #if !noinline inline #end function isEmpty () : Bool
 	{
 		return length == 0;
 	}
 	
 	
-	public inline function clone () : IReadOnlyList <ChildType>
+	public #if !noinline inline #end function clone () : IReadOnlyList <ChildType>
 	{
 		return new DisplayList( target, owner );
 	}
 	
 	
-	public inline function duplicate () : IReadOnlyList <ChildType>
+	public #if !noinline inline #end function duplicate () : IReadOnlyList <ChildType>
 	{
 		return new DisplayList( target, owner );
 	}
@@ -177,9 +177,9 @@ class DisplayList implements IEditableList <ChildType>
 	public function forwardIterator () : IIterator <ChildType>	{ return new DisplayListForwardIterator(this); }
 	public function reversedIterator () : IIterator <ChildType>	{ return new DisplayListReversedIterator(this); }
 	
-	public inline function getItemAt	(pos:Int)				{ var v = target.getChildAt( pos ); return v.is(ChildType) ? v.as(ChildType) : null; }
-	public inline function has			(item:ChildType)		{ return target.contains( item.as( TargetChildType ) ); } 
-	public inline function indexOf		(item:ChildType)		{ return target.getChildIndex( item.as( TargetChildType ) ); }
+	public #if !noinline inline #end function getItemAt	(pos:Int)				{ var v = target.getChildAt( pos ); return v.is(ChildType) ? v.as(ChildType) : null; }
+	public #if !noinline inline #end function has			(item:ChildType)		{ return target.contains( item.as( TargetChildType ) ); } 
+	public #if !noinline inline #end function indexOf		(item:ChildType)		{ return target.getChildIndex( item.as( TargetChildType ) ); }
 	
 	
 	public function add (item:ChildType, pos:Int = -1) : ChildType
@@ -245,7 +245,7 @@ class DisplayList implements IEditableList <ChildType>
 		}
 		return name + "DisplayList ("+items.length+")\n" + items.join("\n");
 	}
-	public inline function toString () { return name + "DisplayList( "+length+" ) of " + target; }
+	public #if !noinline inline #end function toString () { return name + "DisplayList( "+length+" ) of " + target; }
 #end
 }
 
@@ -263,11 +263,11 @@ class DisplayListForwardIterator implements IIterator <ChildType>
 	public var current	: Int;
 	
 	public function new (list:DisplayList)			{ this.list = list; rewind(); }
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function rewind ()				{ current = 0; }
-	public inline function hasNext ()				{ return current < list.length; }
-	public inline function next ()					{ return list.getItemAt( current++ ); }
-	public inline function value ()					{ return list.getItemAt( current ); }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function rewind ()				{ current = 0; }
+	public #if !noinline inline #end function hasNext ()				{ return current < list.length; }
+	public #if !noinline inline #end function next ()					{ return list.getItemAt( current++ ); }
+	public #if !noinline inline #end function value ()					{ return list.getItemAt( current ); }
 }
 
 
@@ -284,9 +284,9 @@ class DisplayListReversedIterator implements IIterator <ChildType>
 	public var current	: Int;
 
 	public function new (list:DisplayList)			{ this.list = list; rewind(); }
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function rewind ()				{ current = list.length; }
-	public inline function hasNext ()				{ return current >= 0; }
-	public inline function next ()					{ return list.getItemAt( current-- ); }
-	public inline function value ()					{ return list.getItemAt( current ); }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function rewind ()				{ current = list.length; }
+	public #if !noinline inline #end function hasNext ()				{ return current >= 0; }
+	public #if !noinline inline #end function next ()					{ return list.getItemAt( current-- ); }
+	public #if !noinline inline #end function value ()					{ return list.getItemAt( current ); }
 }

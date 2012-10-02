@@ -172,7 +172,7 @@ class ToolTipManager implements IDisposable
 	
 	
 	
-	public inline function isVisible ()
+	public #if !noinline inline #end function isVisible ()
 	{
 		return toolTip.window != null;
 	}

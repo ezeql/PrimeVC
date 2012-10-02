@@ -67,7 +67,7 @@ class ChildFacade <
 	/**
 	 * Method for connecting a facade with channels of another facade
 	 */
-	public inline function connect (external:ChannelsType) : Void
+	public #if !noinline inline #end function connect (external:ChannelsType) : Void
 	{
 		Assert.that(!isConnected());
 		Assert.notNull(external);
@@ -79,7 +79,7 @@ class ChildFacade <
 	/**
 	 * Method for disconnecting a facade with channels of another facade
 	 */
-	public inline function disconnect () : Void
+	public #if !noinline inline #end function disconnect () : Void
 	{
 		if (isConnected())
 			stop();
@@ -88,7 +88,7 @@ class ChildFacade <
 	}
 
 
-	public inline function isConnected () : Bool
+	public #if !noinline inline #end function isConnected () : Bool
 	{
 		return channels != null;
 	}

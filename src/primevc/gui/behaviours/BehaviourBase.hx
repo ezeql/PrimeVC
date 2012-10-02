@@ -46,7 +46,7 @@ class BehaviourBase < TargetType > implements IBehaviour < TargetType >
 	private function reset()							{ Assert.abstract(this+""); }
 	
 	
-	public inline function initialize ()
+	public #if !noinline inline #end function initialize ()
 	{
 		if (!initialized)
 		{

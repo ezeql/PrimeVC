@@ -118,7 +118,7 @@ package primevc.tools;
   using Type;
 
 
-extern class R {
+ #if !noinline extern #end class R {
 	public static inline var WHITESPACE				= "\\s"; //"\n\r\t ";
 	public static inline var WS						= "[" + WHITESPACE + "]*";	//can have any kind of whitespace
 	public static inline var WS_MUST				= "[" + WHITESPACE + "]+";	//must have at least one whitespace charater

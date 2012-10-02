@@ -46,7 +46,7 @@ package primevc.gui.layout.algorithms.float;
  */
 class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHorizontalAlgorithm
 {
-	public inline function validate ()
+	public #if !noinline inline #end function validate ()
 	{
 		if (group.children.length == 0)
 			return;
@@ -182,7 +182,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 	}
 
 	
-	public inline function getDepthForBounds (bounds:IRectangle) : Int
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle) : Int
 	{
 		return switch (direction) {
 			case Horizontal.left:		getDepthForBoundsLtR(bounds);

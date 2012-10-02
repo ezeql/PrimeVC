@@ -35,7 +35,7 @@ package primevc.tools.valueobjects;
  */
 class PropertyValueChangeVO extends PropertyChangeVO
 {
-    public static inline function make(propertyID, oldValue, newValue)
+    public static #if !noinline inline #end function make(propertyID, oldValue, newValue)
     {
         var p = new PropertyValueChangeVO(); // Could come from freelist if profiling tells us to
         p.propertyID = propertyID;

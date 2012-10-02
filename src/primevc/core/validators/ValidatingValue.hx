@@ -66,7 +66,7 @@ class ValidatingValue < DataType > extends QueueingInvalidatable
 	}
 	
 	
-	public inline function validateValue ()
+	public #if !noinline inline #end function validateValue ()
 	{
 		value = applyValidator(value);
 	}

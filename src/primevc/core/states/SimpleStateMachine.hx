@@ -95,7 +95,7 @@ class SimpleStateMachine <StateType> implements IDisposable
 	
 	
 	
-	public inline function is (state : StateType) : Bool
+	public #if !noinline inline #end function is (state : StateType) : Bool
 	{
 		return current == state;
 	}

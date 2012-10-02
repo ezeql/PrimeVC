@@ -71,7 +71,7 @@ class Signals implements IUnbindable<Dynamic>, implements IDisposable, implement
 	public function unbind (listener:Dynamic, ?handler:Null<Dynamic>) {}
 	public function unbindAll () {}
 	
-	public inline function isEnabled ()	{ return _enabled; }
+	public #if !noinline inline #end function isEnabled ()	{ return _enabled; }
 	
 /*	public function dispose()	{ MacroUtils.disposeFields(); }
 	public function enable()	{ MacroUtils.enableFields(); }

@@ -50,7 +50,7 @@ class FastDoubleCell <T> #if (flash9 || cpp) implements haxe.rtti.Generic #end
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		data = null;
 		next = prev = null;

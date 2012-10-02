@@ -105,9 +105,9 @@ class Panel extends UIContainer
 	}
 
 
-	public inline function open ()		{ if (!isOnStage() ||  isDetaching()) { sys.popups.add(this, false); } }
-	public inline function openModal()	{ if (!isOnStage() ||  isDetaching()) { sys.popups.add(this, true); } }
-	public inline function close ()		{ if ( isOnStage() && !isDetaching()) { sys.popups.remove(this); closed.send(); } }
+	public #if !noinline inline #end function open ()		{ if (!isOnStage() ||  isDetaching()) { sys.popups.add(this, false); } }
+	public #if !noinline inline #end function openModal()	{ if (!isOnStage() ||  isDetaching()) { sys.popups.add(this, true); } }
+	public #if !noinline inline #end function close ()		{ if ( isOnStage() && !isDetaching()) { sys.popups.remove(this); closed.send(); } }
 
 
 	public function addToFooter (b:IUIElement) : Void

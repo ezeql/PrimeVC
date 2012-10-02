@@ -70,7 +70,7 @@ class VerticalCircleAlgorithm extends VerticalBaseAlgorithm, implements IVertica
 	//
 	
 	
-	public inline function validate ()
+	public #if !noinline inline #end function validate ()
 	{
 		if (group.children.length == 0)
 			return;
@@ -80,7 +80,7 @@ class VerticalCircleAlgorithm extends VerticalBaseAlgorithm, implements IVertica
 	}
 	
 	
-	public inline function validateVertical ()
+	public #if !noinline inline #end function validateVertical ()
 	{
 	/*	var height:Int = group.height;
 		
@@ -146,7 +146,7 @@ class VerticalCircleAlgorithm extends VerticalBaseAlgorithm, implements IVertica
 	private inline function applyBottomToTop () : Void		{ applyCircle( -FastMath.PI ); }		//-180 degrees
 	
 	
-	public inline function getDepthForBounds (bounds:IRectangle)
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle)
 	{
 		var childAngle		= (360 / group.children.length).degreesToRadians();
 		var radius:Float	= getRadius();

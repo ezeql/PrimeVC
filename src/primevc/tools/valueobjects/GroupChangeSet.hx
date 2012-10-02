@@ -42,7 +42,7 @@ package primevc.tools.valueobjects;
  class GroupChangeSet extends ChangeSet
 {
     // Could come from freelist if profiling tells us to
-    public static inline function make ()   { return new GroupChangeSet(); }
+    public static #if !noinline inline #end function make ()   { return new GroupChangeSet(); }
     public var length   (getLength, never)  : Int;
 
 
