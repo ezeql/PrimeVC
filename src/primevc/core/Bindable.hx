@@ -115,7 +115,7 @@ class Bindable <DataType> implements IBindable<DataType>, implements IClonable<B
 	}
 	
 	
-	public inline function isEmpty () : Bool
+	public #if !noinline inline #end function isEmpty () : Bool
 	{
 		return (untyped this).value == null;
 	}
@@ -130,7 +130,7 @@ class Bindable <DataType> implements IBindable<DataType>, implements IClonable<B
 	/**
 	 * Sets value directly, without the requirement to be in edit mode, and without dispatching any events.
 	 */
-	public inline function set (val:DataType) : Void
+	public #if !noinline inline #end function set (val:DataType) : Void
 	{
 		(untyped this).value = val;
 	}
@@ -139,7 +139,7 @@ class Bindable <DataType> implements IBindable<DataType>, implements IClonable<B
 	/**
 	 * Checks if the bindable has listeners
 	 */
-	public inline function hasListeners () : Bool
+	public #if !noinline inline #end function hasListeners () : Bool
 	{
 		return (writeTo.notNull() && !writeTo.isEmpty()) || change.hasListeners();
 	}
@@ -183,7 +183,7 @@ class Bindable <DataType> implements IBindable<DataType>, implements IClonable<B
 	 * In other words: 
 	 * - update this when otherBindable.value changes
 	 */
-	public inline function bind (otherBindable:IBindableReadonly<DataType>)
+	public #if !noinline inline #end function bind (otherBindable:IBindableReadonly<DataType>)
 	{
 	//	registerBoundTo(otherBindable);
 		(untyped otherBindable).keepUpdated(this);
@@ -287,7 +287,7 @@ class Bindable <DataType> implements IBindable<DataType>, implements IClonable<B
 	
 	
 #if debug
-	public inline function toString () : String {
+	public #if !noinline inline #end function toString () : String {
 		return "Bindable("+value+")";
 	}
 #end
@@ -301,7 +301,7 @@ class BindableTools
 	/**
 	 * Propagate a value to Bindables in the given FastList.
 	 */
-	public static inline function dispatchValueToBound<T> (list:FastList<IBindable<T>>, newValue:T)
+	public static #if !noinline inline #end function dispatchValueToBound<T> (list:FastList<IBindable<T>>, newValue:T)
 	{
 		if (list != null)
 		{

@@ -90,7 +90,7 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	}
 	
 	
-	public inline function unbindAll ()
+	public #if !noinline inline #end function unbindAll ()
 	{
 		response.unbindAll();
 		error.unbindAll();
@@ -126,7 +126,7 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	}
 	
 	
-	public inline function cancel () : Void
+	public #if !noinline inline #end function cancel () : Void
 	{
 		if (state != REQUESTED)
 			return;
@@ -140,7 +140,7 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	}
 	
 	
-	public inline function reply (data:DataType) : ASync<DataType>
+	public #if !noinline inline #end function reply (data:DataType) : ASync<DataType>
 	{
 		Assert.that( state.hasNone(DISPOSED) );
 		if (response.hasListeners()) {
@@ -153,7 +153,7 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	}
 	
 	
-	public inline function sendError (message:String) : Void
+	public #if !noinline inline #end function sendError (message:String) : Void
 	{
 		Assert.that( state.hasNone(DISPOSED) );
 		error.send(message);

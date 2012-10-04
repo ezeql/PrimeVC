@@ -220,14 +220,14 @@ class BaseMediaStream implements IMediaStream
     // STATE METHODS
     //
     
-    public inline function isStopped () : Bool  { return state.current == MediaStates.stopped; }
-    public inline function isPaused ()  : Bool  { return state.current == MediaStates.paused; }
-    public inline function isPlaying () : Bool  { return state.current == MediaStates.playing; }
-    public inline function isEmpty ()   : Bool  { return state.current == MediaStates.empty; }
-    public inline function isDisposed (): Bool  { return state == null; }
-    public inline function hasError ()  : Bool    return switch(state.current) { case MediaStates.error(s): true; default: false; }
-    public inline function isMuted ()   : Bool  { return volume.value == 0; }
-    public inline function isFrozen ()  : Bool
+    public #if !noinline inline #end function isStopped () : Bool  { return state.current == MediaStates.stopped; }
+    public #if !noinline inline #end function isPaused ()  : Bool  { return state.current == MediaStates.paused; }
+    public #if !noinline inline #end function isPlaying () : Bool  { return state.current == MediaStates.playing; }
+    public #if !noinline inline #end function isEmpty ()   : Bool  { return state.current == MediaStates.empty; }
+    public #if !noinline inline #end function isDisposed (): Bool  { return state == null; }
+    public #if !noinline inline #end function hasError ()  : Bool    return switch(state.current) { case MediaStates.error(s): true; default: false; }
+    public #if !noinline inline #end function isMuted ()   : Bool  { return volume.value == 0; }
+    public #if !noinline inline #end function isFrozen ()  : Bool
     {
         return switch (state.current) {
             case frozen( prevState ):   true;

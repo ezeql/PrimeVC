@@ -209,7 +209,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	}
 	
 	
-	public inline function shouldDeselectByMouse (m:MouseState) : Bool
+	public #if !noinline inline #end function shouldDeselectByMouse (m:MouseState) : Bool
 	{
 	    var deselect = false;
 	    if (!m.related.is(IUIElement)) {

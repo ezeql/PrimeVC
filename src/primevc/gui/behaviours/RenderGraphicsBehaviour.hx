@@ -76,7 +76,7 @@ class RenderGraphicsBehaviour extends ValidatingBehaviour < IDrawable >, impleme
 	}
 	
 	
-	public inline function invalidateGraphics ()
+	public #if !noinline inline #end function invalidateGraphics ()
 	{
 	//	trace(target+" => "+target.graphicData.isEmpty()+"; "+target.graphicData.shape+"; "+target.graphicData.layout+"; queued? "+isQueued());
 		if (target.graphicData.isEmpty())

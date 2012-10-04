@@ -51,12 +51,12 @@ class FastDoubleCellReversedIterator <DataType> implements IIterator <DataType>
 #end
 	}
 
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function rewind ()				{ current = last; }
-	public inline function hasNext ()				{ return current != null; }
-	public inline function value ()					{ return current.data; }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function rewind ()				{ current = last; }
+	public #if !noinline inline #end function hasNext ()				{ return current != null; }
+	public #if !noinline inline #end function value ()					{ return current.data; }
 
-	public inline function next () : DataType
+	public #if !noinline inline #end function next () : DataType
 	{
 		var c = current;
 		current = current.prev;

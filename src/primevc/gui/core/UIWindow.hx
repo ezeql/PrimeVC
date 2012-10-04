@@ -238,29 +238,29 @@ class UIWindow extends primevc.gui.display.Window
 	
 	private function createChildren ()		: Void {}
 	
-	public inline function attach 			(child:IUIElement)          : UIWindow { child.attachLayoutTo(layoutContainer).attachToDisplayList(this); return this; }
-	public inline function attachDisplay 	(child:IUIElement)          : UIWindow { child.attachToDisplayList(this);                                 return this; }
-	public inline function attachLayout 	(layout:LayoutClient)       : UIWindow { layoutContainer.attach(layout);                                  return this; }
-	public inline function changeDepthOf	(child:IUIElement, pos:Int)	: UIWindow { child.changeDepth(pos);                                          return this; }
+	public #if !noinline inline #end function attach        (child:IUIElement)          : UIWindow { child.attachLayoutTo(layoutContainer).attachToDisplayList(this); return this; }
+	public #if !noinline inline #end function attachDisplay (child:IUIElement)          : UIWindow { child.attachToDisplayList(this);                                 return this; }
+	public #if !noinline inline #end function attachLayout  (layout:LayoutClient)       : UIWindow { layoutContainer.attach(layout);                                  return this; }
+	public #if !noinline inline #end function changeDepthOf (child:IUIElement, pos:Int)	: UIWindow { child.changeDepth(pos);                                          return this; }
 
 
 	//
 	// ISCROLLABLE
 	//
 
-	public inline function scrollToX     	(x:Float) : Void	{ var r = target.scrollRect; r.x = x; target.scrollRect = r; }
-	public inline function scrollToY     	(y:Float) : Void	{ var r = target.scrollRect; r.y = y; target.scrollRect = r; }
-    public inline function scrollTo         (x:Float, y:Float)  { var r = target.scrollRect; r.x = x; r.y = y; target.scrollRect = r; }
+	public #if !noinline inline #end function scrollToX     	(x:Float) : Void	{ var r = target.scrollRect; r.x = x; target.scrollRect = r; }
+	public #if !noinline inline #end function scrollToY     	(y:Float) : Void	{ var r = target.scrollRect; r.y = y; target.scrollRect = r; }
+    public #if !noinline inline #end function scrollTo         (x:Float, y:Float)  { var r = target.scrollRect; r.x = x; r.y = y; target.scrollRect = r; }
 
-	public inline function applyScrollX   	() : Void			{ scrollToX( layoutContainer.scrollPos.x ); }
-	public inline function applyScrollY   	() : Void			{ scrollToY( layoutContainer.scrollPos.y ); }
+	public #if !noinline inline #end function applyScrollX   	() : Void			{ scrollToX( layoutContainer.scrollPos.x ); }
+	public #if !noinline inline #end function applyScrollY   	() : Void			{ scrollToY( layoutContainer.scrollPos.y ); }
 
-    public inline function setClippingSize	(w:Float, h:Float) 	{ var r = target.scrollRect; r.width = w; r.height = h; target.scrollRect = r; }
-    public inline function createScrollRect (w:Float, h:Float)	{ isScrollable = true;  target.scrollRect	= new Rectangle(0,0, w, h); }
-    public inline function removeScrollRect () 					{ isScrollable = false; target.scrollRect	= null; }
+    public #if !noinline inline #end function setClippingSize	(w:Float, h:Float) 	{ var r = target.scrollRect; r.width = w; r.height = h; target.scrollRect = r; }
+    public #if !noinline inline #end function createScrollRect (w:Float, h:Float)	{ isScrollable = true;  target.scrollRect	= new Rectangle(0,0, w, h); }
+    public #if !noinline inline #end function removeScrollRect () 					{ isScrollable = false; target.scrollRect	= null; }
 
-    public inline function getScrollRect    ()                  { return target.scrollRect; }
-    public inline function setScrollRect    (v:Rectangle)       { return target.scrollRect = v; }
+    public #if !noinline inline #end function getScrollRect    ()                  { return target.scrollRect; }
+    public #if !noinline inline #end function setScrollRect    (v:Rectangle)       { return target.scrollRect = v; }
 
 
     public function enableClipping ()
@@ -311,7 +311,7 @@ class UIWindow extends primevc.gui.display.Window
 	// GETTERS / SETTERS
 	//
 	
-	public inline function isDisposed ()			{ return displayEvents == null; }
+	public #if !noinline inline #end function isDisposed ()			{ return displayEvents == null; }
 	private inline function getLayoutContainer ()	{ return layout.as(LayoutContainer); }
 	private inline function getScrollableLayout () 	{ return layout.as(IScrollableLayout); }
 	private inline function getPopupManager ()		{ if (popups == null) { popups = new primevc.gui.managers.PopupManager(this); } return popups; }

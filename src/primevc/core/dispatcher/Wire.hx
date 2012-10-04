@@ -95,7 +95,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 		return cast w;
 	}
 	
-	static public inline function sendVoid<T>( wire:Wire<Dynamic> ) {
+	static public #if !noinline inline #end function sendVoid<T>( wire:Wire<Dynamic> ) {
 		wire.handler();
 	}
 	
@@ -129,7 +129,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	
 #else
 	
-	public inline function pos() : Wire<FunctionSignature> {
+	public #if !noinline inline #end function pos() : Wire<FunctionSignature> {
 		return this;
 	}
 #end
@@ -146,7 +146,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 		#if debug instanceNum = ++instanceCount; #end
 	}
 	
-	public inline function isEnabled() : Bool
+	public #if !noinline inline #end function isEnabled() : Bool
 	{
 		#if DebugEvents
 		{
@@ -178,7 +178,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	}
 	
 	/** Enable propagation for the handler this link belongs too. **/
-	public inline function enable()
+	public #if !noinline inline #end function enable()
 	{
 		if (!isEnabled())
 		{
@@ -249,7 +249,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	}
 	
 	
-	public inline function isBoundTo( target : Dynamic, ?handlerFn : Dynamic )
+	public #if !noinline inline #end function isBoundTo( target : Dynamic, ?handlerFn : Dynamic )
 	{
 		return this.owner == target 
 			&& (handlerFn == null ||
@@ -263,7 +263,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	}
 	
 	
-	public inline function isDisposed () : Bool
+	public #if !noinline inline #end function isDisposed () : Bool
 	{
 		return signal == null || owner == null || handler == null;
 	}

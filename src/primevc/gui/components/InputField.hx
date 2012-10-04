@@ -153,7 +153,7 @@ class InputField <VOType> extends DataButton <VOType>
 	}
 
 
-	/*public inline function pair (data:Bindable<VOType>)
+	/*public #if !noinline inline #end function pair (data:Bindable<VOType>)
 	{
 		var d = getRevertableData();
 		d.beginEdit();

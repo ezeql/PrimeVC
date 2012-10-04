@@ -220,7 +220,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	public inline function resetValidation ()
+	public #if !noinline inline #end function resetValidation ()
 	{
 		state.current	= ValidateStates.validated;
 		changes			= 0;
@@ -228,9 +228,9 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 
 
-	public inline function attachTo 	(c:ILayoutContainer, d:Int = -1)	{ c.children.add(this, d);		 								return this; }
-	public inline function detach 		()									{ if (parent != null) { parent.children.remove( this ); } 		return this; }
-	public inline function changeDepth	(newPos:Int)						{ if (parent != null) { parent.children.move(this, newPos); } 	return this; }
+	public #if !noinline inline #end function attachTo 	(c:ILayoutContainer, d:Int = -1)	{ c.children.add(this, d);		 								return this; }
+	public #if !noinline inline #end function detach 		()									{ if (parent != null) { parent.children.remove( this ); } 		return this; }
+	public #if !noinline inline #end function changeDepth	(newPos:Int)						{ if (parent != null) { parent.children.move(this, newPos); } 	return this; }
 	
 	
 	
@@ -341,14 +341,14 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 
-	public inline function isChanged ()			{ return changes > 0; }
-	public inline function isValidated ()		{ return state.is(ValidateStates.validated); }
-	public inline function isValidating ()		{ return state == null ? false : state.is(ValidateStates.validating) || (parent != null && parent.isValidating()); }
-	public inline function isInvalidated ()		{ return state == null ? false : state.is(ValidateStates.invalidated) || state.is(ValidateStates.parent_invalidated); }
+	public #if !noinline inline #end function isChanged ()			{ return changes > 0; }
+	public #if !noinline inline #end function isValidated ()		{ return state.is(ValidateStates.validated); }
+	public #if !noinline inline #end function isValidating ()		{ return state == null ? false : state.is(ValidateStates.validating) || (parent != null && parent.isValidating()); }
+	public #if !noinline inline #end function isInvalidated ()		{ return state == null ? false : state.is(ValidateStates.invalidated) || state.is(ValidateStates.parent_invalidated); }
 	
 
-	public inline function hasEmptyPadding ()	{ return padding == EMPTY_BOX; }
-	public inline function hasEmptyMargin ()	{ return margin == EMPTY_BOX; }
+	public #if !noinline inline #end function hasEmptyPadding ()	{ return padding == EMPTY_BOX; }
+	public #if !noinline inline #end function hasEmptyMargin ()	{ return margin == EMPTY_BOX; }
 
 	
 	
@@ -833,7 +833,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	// GETTERS / SETTERS
 	//
 	
-	public inline function getHorPosition ()
+	public #if !noinline inline #end function getHorPosition ()
 	{
 		var pos = innerBounds.left;
 		if (parent.is(VirtualLayoutContainer))
@@ -843,7 +843,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	public inline function getVerPosition ()
+	public #if !noinline inline #end function getVerPosition ()
 	{
 		var pos = innerBounds.top;
 		if (parent.is(VirtualLayoutContainer))
@@ -853,13 +853,13 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	public inline function getHorPadding () : Int	{ return /*padding == null ? 0 : */padding.left	+ padding.right; }
-	public inline function getVerPadding() : Int	{ return /*padding == null ? 0 : */padding.top	+ padding.bottom; }
-	public inline function getHorMargin () : Int	{ return /*margin  == null ? 0 : */margin.left	+ margin.right; }
-	public inline function getVerMargin() : Int		{ return /*margin  == null ? 0 : */margin.top	+ margin.bottom; }
+	public #if !noinline inline #end function getHorPadding () : Int	{ return /*padding == null ? 0 : */padding.left	+ padding.right; }
+	public #if !noinline inline #end function getVerPadding() : Int	{ return /*padding == null ? 0 : */padding.top	+ padding.bottom; }
+	public #if !noinline inline #end function getHorMargin () : Int	{ return /*margin  == null ? 0 : */margin.left	+ margin.right; }
+	public #if !noinline inline #end function getVerMargin() : Int		{ return /*margin  == null ? 0 : */margin.top	+ margin.bottom; }
 	
-	public inline function hasMaxWidth () : Bool	{ return widthValidator  != null && widthValidator.max.isSet(); }
-	public inline function hasMaxHeight () : Bool	{ return heightValidator != null && heightValidator.max.isSet(); }
+	public #if !noinline inline #end function hasMaxWidth () : Bool	{ return widthValidator  != null && widthValidator.max.isSet(); }
+	public #if !noinline inline #end function hasMaxHeight () : Bool	{ return heightValidator != null && heightValidator.max.isSet(); }
 	
 	
 	
@@ -1059,7 +1059,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	
 	
 #if debug
-	public inline function readChanges (changes:Int = -1) : String
+	public #if !noinline inline #end function readChanges (changes:Int = -1) : String
 	{
 		if (changes == -1)
 			changes = this.changes;

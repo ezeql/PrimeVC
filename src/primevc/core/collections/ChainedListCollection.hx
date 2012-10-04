@@ -104,14 +104,14 @@ class ChainedListCollection <DataType>
 	}
 
 
-	public inline function removeAll ()
+	public #if !noinline inline #end function removeAll ()
 	{
 		while (length > 0)
 			removeItem( getItemAt(0) );
 	}
 	
 	
-	public inline function isEmpty()
+	public #if !noinline inline #end function isEmpty()
 	{
 		return length == 0;
 	}
@@ -151,7 +151,7 @@ class ChainedListCollection <DataType>
 	// LIST MANIPULATION METHODS
 	//
 	
-	public inline function add (item:DataType, pos:Int = -1) : DataType
+	public #if !noinline inline #end function add (item:DataType, pos:Int = -1) : DataType
 	{
 		pos = insertAt( item, pos );
 		change.send( ListChange.added( item, pos ) );
@@ -159,7 +159,7 @@ class ChainedListCollection <DataType>
 	}
 	
 	
-	public inline function remove (item:DataType, oldPos:Int = -1) : DataType
+	public #if !noinline inline #end function remove (item:DataType, oldPos:Int = -1) : DataType
 	{
 		oldPos = removeItem(item, oldPos);
 		if (oldPos > -1)
@@ -168,7 +168,7 @@ class ChainedListCollection <DataType>
 	}
 	
 	
-	public inline function move (item:DataType, newPos:Int, curPos:Int = -1) : DataType
+	public #if !noinline inline #end function move (item:DataType, newPos:Int, curPos:Int = -1) : DataType
 	{
 		if		(curPos == -1)				curPos = indexOf( item );
 		if		(newPos > (length - 1))		newPos = length - 1;
@@ -185,7 +185,7 @@ class ChainedListCollection <DataType>
 	}
 	
 	
-	public inline function has (item:DataType) : Bool
+	public #if !noinline inline #end function has (item:DataType) : Bool
 	{
 		var found:Bool	= false;
 		for (list in lists)
@@ -199,7 +199,7 @@ class ChainedListCollection <DataType>
 	}
 	
 	
-	public inline function indexOf (item:DataType) : Int
+	public #if !noinline inline #end function indexOf (item:DataType) : Int
 	{
 		var pos:Int = 0;
 		for (list in lists)
@@ -287,7 +287,7 @@ class ChainedListCollection <DataType>
 	// ITERATION METHODS
 	//
 	
-	public inline function getItemAt (pos:Int) : DataType
+	public #if !noinline inline #end function getItemAt (pos:Int) : DataType
 	{
 		var itemPos:Int	= calculateItemPosition( pos );		//calculate the position of the item in the list
 		return getListForPosition(pos).getItemAt(itemPos);
@@ -295,8 +295,8 @@ class ChainedListCollection <DataType>
 	
 	
 	public function iterator () : Iterator <DataType>					{ return forwardIterator(); }
-	public inline function forwardIterator () : IIterator <DataType>	{ return new ChainedListCollectionIterator<DataType>(this); }
-	public inline function reversedIterator () : IIterator <DataType>	{ return new ChainedListCollectionIterator<DataType>(this); }
+	public #if !noinline inline #end function forwardIterator () : IIterator <DataType>	{ return new ChainedListCollectionIterator<DataType>(this); }
+	public #if !noinline inline #end function reversedIterator () : IIterator <DataType>	{ return new ChainedListCollectionIterator<DataType>(this); }
 	
 	
 	/**
@@ -445,12 +445,12 @@ class ChainedListCollectionIterator <DataType> implements IIterator <DataType>
 	}
 	
 	
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function hasNext () : Bool		{ return current < target.length; }
-	public inline function value () : DataType		{ return cast listIterator.value; }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function hasNext () : Bool		{ return current < target.length; }
+	public #if !noinline inline #end function value () : DataType		{ return cast listIterator.value; }
 	
 	
-	public inline function rewind () {
+	public #if !noinline inline #end function rewind () {
 		current		= 0;
 		currentList	= target.lists.getItemAt(0);
 	}

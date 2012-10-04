@@ -44,7 +44,7 @@ package primevc.tools;
  */
 class CSSParserMain
 {
-	public static inline function print(v:String)
+	public static #if !noinline inline #end function print(v:String)
 		#if js 	untyped console.log(v)
 		#else	neko.Lib.print(v+"\n") #end
 
@@ -93,7 +93,7 @@ class CSSParserMain
 		generator.instanceIgnoreList.set( styles._oid, styles );
 		
 		var tplName = primevcDir + "/tools/StyleSheet.tpl.hx";
-		if (#if nodejs !js.Node.path.existsSync(tplName) #else !sys.FileSystem.exists( tplName ) #end)
+		if (#if nodejs !js.Node.fs.existsSync(tplName) #else !sys.FileSystem.exists( tplName ) #end)
 			throw "Template does not exist! "+tplName;
 		
 		template = #if nodejs Std.string(js.Node.fs.readFileSync(tplName)); #else sys.io.File.getContent(tplName); #end

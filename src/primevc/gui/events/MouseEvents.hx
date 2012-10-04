@@ -185,14 +185,14 @@ class MouseState extends KeyModState, implements IClonable<MouseState>
 	
 	
 #if flash9
-	public inline function isDispatchedBy (obj:UserEventTarget) : Bool
+	public #if !noinline inline #end function isDispatchedBy (obj:UserEventTarget) : Bool
 	{
 		return obj != null && obj == related;
 	}
 #end
 	
 	
-	public inline function clone () : MouseState
+	public #if !noinline inline #end function clone () : MouseState
 	{
 		return new MouseState( flags, target, local, stage, related);
 	}

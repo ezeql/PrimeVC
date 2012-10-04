@@ -95,7 +95,7 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 	}
 	
 	
-	public inline function isDisposed ()			: Bool		{ return state == null; }
+	public #if !noinline inline #end function isDisposed ()			: Bool		{ return state == null; }
 	public function setValues( v:EffectProperties ) : Void		{ Assert.abstract(); }
 	private function initStartValues()				: Void		{ Assert.abstract(); }
 	private function tweenUpdater( tweenPos:Float )	: Void		{ Assert.abstract(); }
@@ -103,7 +103,7 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 
 	
 	
-	public inline function revert ( withEffect:Bool = true, directly:Bool = false ) : Void
+	public #if !noinline inline #end function revert ( withEffect:Bool = true, directly:Bool = false ) : Void
 	{
 		isReverted = !isReverted;
 		play( withEffect, directly );
@@ -275,8 +275,8 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 	//
 	
 	
-	public inline function isPlaying () : Bool	{ return state == EffectStates.playing || state == waiting; }
-	public inline function isWaiting () : Bool	{ return delayTimer != null; }
+	public #if !noinline inline #end function isPlaying () : Bool	{ return state == EffectStates.playing || state == waiting; }
+	public #if !noinline inline #end function isWaiting () : Bool	{ return delayTimer != null; }
 
 	
 	private function setIsReverted (v:Bool)

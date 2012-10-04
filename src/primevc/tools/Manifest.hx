@@ -158,7 +158,7 @@ class Manifest implements IDisposable
 	}
 	
 	
-	public inline function getFullSuperClassName (className:String) : String
+	public #if !noinline inline #end function getFullSuperClassName (className:String) : String
 	{
 		return getFullName( getSuperClassName( className ) );
 	}

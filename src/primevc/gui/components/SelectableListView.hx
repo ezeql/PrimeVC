@@ -185,14 +185,14 @@ class SelectableListView<ListDataType> extends ListView<ListDataType>
     //
     
 
-    public inline function select (item:ListDataType)
+    public #if !noinline inline #end function select (item:ListDataType)
     {
         selected.value = item;
         itemSelected.send();
     }
 
 
-    public inline function deselectRenderers ()
+    public #if !noinline inline #end function deselectRenderers ()
     {
         selected.set(null);
         previousSelected = null;

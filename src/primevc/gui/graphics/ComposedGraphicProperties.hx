@@ -77,7 +77,7 @@ class ComposedGraphicProperties extends GraphicProperties
 	// LIST METHODS
 	//
 
-	public inline function add ( child:GraphicProperties, depth:Int = -1 )
+	public #if !noinline inline #end function add ( child:GraphicProperties, depth:Int = -1 )
 	{
 		children.insertAt( child, depth );
 		child.listeners.add(this);
@@ -85,7 +85,7 @@ class ComposedGraphicProperties extends GraphicProperties
 	}
 
 
-	public inline function remove ( child:GraphicProperties )
+	public #if !noinline inline #end function remove ( child:GraphicProperties )
 	{
 		child.listeners.add(this);
 		children.remove(child);

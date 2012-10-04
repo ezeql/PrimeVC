@@ -94,7 +94,7 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	}
 	
 	
-	public inline function concat (a2:Float, b2:Float, c2:Float, d2:Float, tx2:Float, ty2:Float)
+	public #if !noinline inline #end function concat (a2:Float, b2:Float, c2:Float, d2:Float, tx2:Float, ty2:Float)
 	{
 		var a1	= a;
 		var b1	= b;
@@ -112,7 +112,7 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	}
 	
 	
-	public inline function concatMatrix (m:IntMatrix2D)
+	public #if !noinline inline #end function concatMatrix (m:IntMatrix2D)
 	{
 		concat(m.a, m.b, m.c, m.d, m.tx, m.ty);
 	}
@@ -122,14 +122,14 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	// setters
 	//
 	
-	public inline function translate (dx:Float, dy:Float)
+	public #if !noinline inline #end function translate (dx:Float, dy:Float)
 	{
 		tx += dx;
 		ty += dy;
 	}
 	
 	
-	public inline function scale (sx:Float, sy:Float)
+	public #if !noinline inline #end function scale (sx:Float, sy:Float)
 	{
 		a *= sx;
 		d *= sy;
@@ -138,14 +138,14 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	}
 	
 	
-	public inline function resize (dw:Float, dh:Float)
+	public #if !noinline inline #end function resize (dw:Float, dh:Float)
 	{
 		tw = dw;
 		th = dh;
 	}
 	
 	
-	public inline function rotate (angle:Float)
+	public #if !noinline inline #end function rotate (angle:Float)
 	{
 		var cos = FastMath.cos(angle);
 		var sin = FastMath.sin(angle);
@@ -163,20 +163,20 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	}
 	
 	
-	public inline function identity ()
+	public #if !noinline inline #end function identity ()
 	{
 		a = d = 1;
 		b = c = tx = ty = 0;
 	}
 	
 	
-	public inline function invert ()
+	public #if !noinline inline #end function invert ()
 	{
 		//TODO
 	}
 	
 	
-	public inline function apply (rect:IntRectangle) : Void
+	public #if !noinline inline #end function apply (rect:IntRectangle) : Void
 	{
 		//TODO: implement rotate
 		rect.invalidatable = false;

@@ -102,14 +102,14 @@ class TouchState implements IClonable<TouchState>, implements haxe.Public
     }
     
 #if flash9
-    public inline function isDispatchedBy (obj:UserEventTarget) : Bool
+    public #if !noinline inline #end function isDispatchedBy (obj:UserEventTarget) : Bool
     {
         return obj != null && obj == related;
     }
 #end
     
     
-    public inline function clone () : TouchState
+    public #if !noinline inline #end function clone () : TouchState
     {
         return new TouchState(target, local, stage);
     }

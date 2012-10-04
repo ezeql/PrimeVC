@@ -93,7 +93,7 @@ typedef Sprite =
 	public function render () {}
 	
 	
-	public inline function dispose() : Void
+	public #if !noinline inline #end function dispose() : Void
 	{
 		displayEvents.dispose();
 		userEvents.dispose();

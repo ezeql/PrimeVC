@@ -39,7 +39,7 @@ package primevc.tools.valueobjects;
  */
 class ListChangeVO extends PropertyChangeVO
 {
-    public static inline function make(propertyID, changes : FastArray<ListChange<Dynamic>>)
+    public static #if !noinline inline #end function make(propertyID, changes : FastArray<ListChange<Dynamic>>)
     {
         var l = new ListChangeVO(); // Could come from freelist if profiling tells us to
         l.propertyID = propertyID;

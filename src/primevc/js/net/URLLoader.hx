@@ -165,12 +165,12 @@ class URLLoader implements ICommunicator
 		this.isStarted = true;
 	}
 	
-	public inline function close() { this.isStarted = false; return request.abort(); }
+	public #if !noinline inline #end function close() { this.isStarted = false; return request.abort(); }
 
 	private var _isBinary : Bool;
-	public inline function isBinary ()		: Bool	{ return true; }
-	public inline function isCompleted()	: Bool	{ return request.readyState == 4; }
-	public inline function isInProgress()	: Bool	{ return isStarted && request.readyState != 4; }
+	public #if !noinline inline #end function isBinary ()		: Bool	{ return true; }
+	public #if !noinline inline #end function isCompleted()	: Bool	{ return request.readyState == 4; }
+	public #if !noinline inline #end function isInProgress()	: Bool	{ return isStarted && request.readyState != 4; }
 	
 	private inline function getBytes () : BytesData	{ return data; }
 	public  inline function getRawData ()			{ return data; }

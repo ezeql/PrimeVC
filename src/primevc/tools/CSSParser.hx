@@ -118,7 +118,7 @@ package primevc.tools;
   using Type;
 
 
-extern class R {
+ #if !noinline extern #end class R {
 	public static inline var WHITESPACE				= "\\s"; //"\n\r\t ";
 	public static inline var WS						= "[" + WHITESPACE + "]*";	//can have any kind of whitespace
 	public static inline var WS_MUST				= "[" + WHITESPACE + "]+";	//must have at least one whitespace charater
@@ -590,7 +590,10 @@ class CSSParser
 #else		throw "not implemented yet!";
 			return "";
 #end	} catch (e:Dynamic) {
-			trace("ERROR IMPORTING STYLESHEET (" + file + "): " + e);
+			CSSParserMain.print("\n=============ERROR IMPORTING STYLESHEET=============\n");
+			CSSParserMain.print("file: " + file);
+			CSSParserMain.print("error: " + e);
+			
 			return "";
 		}
 	}
@@ -659,6 +662,10 @@ class CSSParser
 			item.content		= content;
 			styleSheetBasePath	= origBase;
 			styleSheetQueue.add( item );
+		}
+		else
+		{
+			throw("Exiting...");
 		}
 	}
 	
@@ -845,7 +852,11 @@ class CSSParser
 			
 			//we don't botter checking elements without subclasses
 			if (elementStyle.isEmpty() || elementStyle.parentStyle == styles || !manifest.hasSubClasses(elementName))
+			{
+				//TODO: Add a flag for traceLevel detail?
+				CSSParserMain.print("INFO: Omitting " + elementName);
 				continue;
+			}
 			
 	//		trace("\tsearching for subclasses of "+elementName+": ");
 			//So according to the manifest it is possible that the element can have subclasses.

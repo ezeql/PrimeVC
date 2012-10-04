@@ -118,7 +118,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	}
 	
 	
-	public inline function removeAll ()
+	public #if !noinline inline #end function removeAll ()
 	{
 		while (length > 0)
 			removeItem( getItemAt(0) );
@@ -147,7 +147,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	}
 	
 	
-	public inline function isEmpty()
+	public #if !noinline inline #end function isEmpty()
 	{
 		return length == 0;
 	}
@@ -157,7 +157,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	// ILISTCOLLECTION METHODS
 	//
 	
-	public inline function addList (list:BalancingList<DataType>)
+	public #if !noinline inline #end function addList (list:BalancingList<DataType>)
 	{
 		//give the previous list a reference to the new list
 		if (lists.length > 0)
@@ -180,7 +180,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	// LIST MANIPULATION METHODS
 	//
 	
-	public inline function add (item:DataType, pos:Int = -1) : DataType
+	public #if !noinline inline #end function add (item:DataType, pos:Int = -1) : DataType
 	{
 		pos = insertAt( item, pos );
 		change.send( ListChange.added( item, pos ) );
@@ -188,7 +188,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	}
 	
 	
-	public inline function remove (item:DataType, oldPos:Int = -1) : DataType
+	public #if !noinline inline #end function remove (item:DataType, oldPos:Int = -1) : DataType
 	{
 		oldPos = removeItem(item, oldPos);
 		if (oldPos > -1)
@@ -215,7 +215,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	 * @param	newpos
 	 * @return	item
 	 */
-	public inline function move (item:DataType, newPos:Int, curPos:Int = -1) : DataType
+	public #if !noinline inline #end function move (item:DataType, newPos:Int, curPos:Int = -1) : DataType
 	{
 		curPos = moveItem(item, newPos, curPos);
 		if (curPos != newPos)
@@ -224,7 +224,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	}
 	
 	
-	public inline function has (item:DataType) : Bool
+	public #if !noinline inline #end function has (item:DataType) : Bool
 	{
 		var found:Bool	= false;
 		for (list in lists) {
@@ -237,7 +237,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	}
 	
 	
-	public inline function indexOf (item:DataType) : Int
+	public #if !noinline inline #end function indexOf (item:DataType) : Int
 	{
 		var pos:Int = -1;
 		var listNum:Int = 0;
@@ -406,7 +406,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>,
 	// ITERATION METHODS
 	//
 	
-	public inline function getItemAt (pos:Int) : DataType
+	public #if !noinline inline #end function getItemAt (pos:Int) : DataType
 	{
 		var itemPos:Int	= calculateItemDepth( pos );		//calculate the position of the item in the list
 		return getListForPosition(pos).getItemAt(itemPos);
@@ -509,19 +509,19 @@ class BalancingListCollectionForwardIterator <DataType> implements IIterator <Da
 	}
 	
 	
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function value ()					{ return target.lists.getItemAt(currentListNum).getItemAt(currentDepth); }
-	public inline function hasNext () : Bool		{ return current < target.length; }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function value ()					{ return target.lists.getItemAt(currentListNum).getItemAt(currentDepth); }
+	public #if !noinline inline #end function hasNext () : Bool		{ return current < target.length; }
 	
 	
-	public inline function rewind () {
+	public #if !noinline inline #end function rewind () {
 		currentDepth	= 0;
 		current			= 0;
 		currentListNum	= 0;
 	}
 	
 	
-	public inline function next () : DataType
+	public #if !noinline inline #end function next () : DataType
 	{
 		if (currentListNum >= target.maxLists) {
 			currentListNum = 0;
@@ -562,19 +562,19 @@ class BalancingListCollectionReversedIterator <DataType> implements IIterator <D
 	}
 	
 	
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function value ()					{ return target.lists.getItemAt(currentListNum).getItemAt(currentDepth); }
-	public inline function hasNext () : Bool		{ return current > 0; }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function value ()					{ return target.lists.getItemAt(currentListNum).getItemAt(currentDepth); }
+	public #if !noinline inline #end function hasNext () : Bool		{ return current > 0; }
 	
 	
-	public inline function rewind () {
+	public #if !noinline inline #end function rewind () {
 		currentListNum	= target.maxLists - 1;
 		currentDepth	= target.lists.length - 1;
 		current			= target.length;
 	}
 	
 	
-	public inline function next () : DataType
+	public #if !noinline inline #end function next () : DataType
 	{
 		if (currentListNum <= 0) {
 			currentListNum = target.maxLists - 1;

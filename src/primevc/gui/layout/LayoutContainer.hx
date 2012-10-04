@@ -98,7 +98,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	}
 	
 	
-	public inline function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
+	public #if !noinline inline #end function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
 	{
 		children.add( target, depth );
 		return this;
@@ -474,7 +474,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	private inline function setMinScrollXPos (v:Int)				{ return minScrollXPos = v <= 0 ? v : 0; }
 	private inline function setMinScrollYPos (v:Int)				{ return minScrollYPos = v <= 0 ? v : 0; }
 	
-	public inline function validateScrollPosition (pos:IntPoint)
+	public #if !noinline inline #end function validateScrollPosition (pos:IntPoint)
 	{
 		pos.x = horScrollable() ? pos.x.within( 0, scrollableWidth ) : 0;
 		pos.y = verScrollable() ? pos.y.within( 0, scrollableHeight ) : 0;
@@ -587,7 +587,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	}
 
 	
-	public inline function setFixedChildLength (length:Int)
+	public #if !noinline inline #end function setFixedChildLength (length:Int)
 	{
 		fixedLength = true;
 		if (childrenLength != length) {
@@ -597,7 +597,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	}
 	
 	
-	public inline function unsetFixedChildLength ()
+	public #if !noinline inline #end function unsetFixedChildLength ()
 	{
 		fixedLength = false;
 		if (childrenLength != children.length) {

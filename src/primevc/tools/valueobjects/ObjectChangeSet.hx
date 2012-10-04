@@ -42,7 +42,7 @@ package primevc.tools.valueobjects;
  */
 class ObjectChangeSet extends ChangeSet
 {
-    public static inline function make (vo:ValueObjectBase, changes:Int)
+    public static #if !noinline inline #end function make (vo:ValueObjectBase, changes:Int)
     {
         var s = new ObjectChangeSet();  // Could come from freelist if profiling tells us to
         s.vo = vo;
@@ -64,21 +64,21 @@ class ObjectChangeSet extends ChangeSet
     public function has (propertyID : Int) : Bool   { return (propertiesChanged & (1 << ((propertyID & 0xFF) + untyped vo._fieldOffset(propertyID >>> 8)))).not0(); }
     
     
-    public inline function addChange (id:Int, flagBit:Int, value:Dynamic)
+    public #if !noinline inline #end function addChange (id:Int, flagBit:Int, value:Dynamic)
     {
         if (flagBit.not0())
             add(PropertyValueChangeVO.make(id, null, value));
     }
     
     
-    public inline function addBindableChange<T> (id:Int, flagBit:Int, oldValue:Dynamic, value:Dynamic)
+    public #if !noinline inline #end function addBindableChange<T> (id:Int, flagBit:Int, oldValue:Dynamic, value:Dynamic)
     {
         if (flagBit.not0())
             add(PropertyValueChangeVO.make(id, oldValue, value));
     }
     
     
-    public inline function addListChanges<T> (id:Int, flagBit:Int, list:IRevertableList<T>)
+    public #if !noinline inline #end function addListChanges<T> (id:Int, flagBit:Int, list:IRevertableList<T>)
     {
         if (flagBit.not0())
             add(ListChangeVO.make(id, list.changes));

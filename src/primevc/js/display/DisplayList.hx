@@ -18,7 +18,7 @@ class DisplayList
 		target = object;
 	}
 	
-	public inline function add(object:DOMElem)
+	public #if !noinline inline #end function add(object:DOMElem)
 	{
 		if (object.elem.parentNode != target.elem)
 		{
@@ -27,7 +27,7 @@ class DisplayList
 		}
 	}
 	
-	public inline function remove(object:DOMElem)
+	public #if !noinline inline #end function remove(object:DOMElem)
 	{
 		if (object.elem.parentNode == target.elem)
 		{

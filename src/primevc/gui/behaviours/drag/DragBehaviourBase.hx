@@ -91,8 +91,8 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 	}
 
 
-	public inline function enable ()	{ dragHelper.start.on( mouseTarget.userEvents.mouse.down, this ); }
-	public inline function disable ()	{ mouseTarget.userEvents.mouse.down.unbind( this ); }
+	public #if !noinline inline #end function enable ()	{ dragHelper.start.on( mouseTarget.userEvents.mouse.down, this ); }
+	public #if !noinline inline #end function disable ()	{ mouseTarget.userEvents.mouse.down.unbind( this ); }
 	
 	
 	private function startDrag (mouseObj:MouseState) : Void
