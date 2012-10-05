@@ -47,13 +47,13 @@ package primevc.gui.components;
  */
 class Form
 {
-    public static inline function addHorLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Horizontal = null, percentWidth:Float = 1.0)
+    public static #if !noinline inline #end function addHorLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Horizontal = null, percentWidth:Float = 1.0)
     {
         return createLabelRow( form, labelStr, input, createHorizontalRow(direction, percentWidth), "horLabel" );
     }
 
 
-    public static inline function addVerLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Vertical = null, percentWidth:Float = 1.0)
+    public static #if !noinline inline #end function addVerLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Vertical = null, percentWidth:Float = 1.0)
     {
         return createLabelRow( form, labelStr, input, createVerticalRow(direction, percentWidth), "verLabel" );
     }
@@ -104,7 +104,7 @@ class Form
     }
 
 
-    public static inline function rowIndexOf (input:UIComponent) : Int
+    public static #if !noinline inline #end function rowIndexOf (input:UIComponent) : Int
     {
         var form = input.container.as(IUIContainer);
         return form.layoutContainer.children.indexOf( cast input.layout.parent ) + 1;

@@ -92,7 +92,7 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	
 	
 	// method is called by the static main function or the object that created the facade
-	public inline function start ()
+	public #if !noinline inline #end function start ()
 	{
 		if (controller != null)
 			controller.startListening();
@@ -102,7 +102,7 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	}
 	
 	
-	public inline function stop ()
+	public #if !noinline inline #end function stop ()
 	{
 		view.stopListening();
 		if (controller != null)

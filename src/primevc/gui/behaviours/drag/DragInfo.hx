@@ -129,7 +129,7 @@ class DragInfo implements primevc.core.traits.IDisposable
 	}
 	
 	
-	public inline function restore ()
+	public #if !noinline inline #end function restore ()
 	{
 		if (displayCursor != null)		displayCursor.restore();
 		if (dataCursor != null)			dataCursor.restore();

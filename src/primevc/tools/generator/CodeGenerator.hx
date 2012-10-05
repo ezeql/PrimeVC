@@ -83,7 +83,7 @@ class CodeGenerator implements ICodeGenerator
 	}
 	
 	
-	public inline function start () : Void
+	public #if !noinline inline #end function start () : Void
 	{
 		if (!isStarted)
 		{
@@ -118,7 +118,7 @@ class CodeGenerator implements ICodeGenerator
 	
 	
 	
-	public inline function setSelfAction (name:String, ?params:Array<Dynamic>) : Void
+	public #if !noinline inline #end function setSelfAction (name:String, ?params:Array<Dynamic>) : Void
 	{
 		values.push( tCallMethod(null, name, formatParams(params)) );
 	}

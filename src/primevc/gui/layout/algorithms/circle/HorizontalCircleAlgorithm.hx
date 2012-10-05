@@ -70,7 +70,7 @@ class HorizontalCircleAlgorithm extends HorizontalBaseAlgorithm, implements IHor
 	//
 	
 	
-	public inline function validate ()
+	public #if !noinline inline #end function validate ()
 	{
 		if (group.children.length == 0)
 			return;
@@ -83,7 +83,7 @@ class HorizontalCircleAlgorithm extends HorizontalBaseAlgorithm, implements IHor
 	/**
 	 * Method will return the total width of all the children.
 	 */
-	public inline function validateHorizontal ()
+	public #if !noinline inline #end function validateHorizontal ()
 	{
 	//	var width:Int = group.width;
 	/*	if (group.childWidth.notSet())
@@ -146,7 +146,7 @@ class HorizontalCircleAlgorithm extends HorizontalBaseAlgorithm, implements IHor
 	private inline function applyRightToLeft () : Void		{ applyCircle( -FastMath.PI ); }		//-180 degrees
 	
 	
-	public inline function getDepthForBounds (bounds:IRectangle)
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle)
 	{
 		var childAngle		= (360 / group.children.length).degreesToRadians();
 		var radius:Float	= getRadius();

@@ -178,7 +178,7 @@ class UIElementEffects implements IDisposable
 	}
 	
 	
-	public inline function playRotate ( endV:Float )
+	public #if !noinline inline #end function playRotate ( endV:Float )
 	{
 #if !CSSParser
 		if (enabled && rotate.notNull())
@@ -194,7 +194,7 @@ class UIElementEffects implements IDisposable
 	}
 	
 	
-	public inline function playScale ( endSx:Float, endSy:Float )
+	public #if !noinline inline #end function playScale ( endSx:Float, endSy:Float )
 	{
 #if !CSSParser
 		if (enabled && scale.notNull())
@@ -253,8 +253,8 @@ class UIElementEffects implements IDisposable
 	}
 	
 	
-	public inline function isPlayingHide ()	{ return hide.notNull() && (hide.isPlaying() || hide.isWaiting()) && (show != hide || hide.isReverted != hide.effect.isReverted); }
-	public inline function isPlayingShow ()	{ return show.notNull() && (show.isPlaying() || show.isWaiting()) && (show != hide || show.isReverted == show.effect.isReverted); }
+	public #if !noinline inline #end function isPlayingHide ()	{ return hide.notNull() && (hide.isPlaying() || hide.isWaiting()) && (show != hide || hide.isReverted != hide.effect.isReverted); }
+	public #if !noinline inline #end function isPlayingShow ()	{ return show.notNull() && (show.isPlaying() || show.isWaiting()) && (show != hide || show.isReverted == show.effect.isReverted); }
 	
 	
 	

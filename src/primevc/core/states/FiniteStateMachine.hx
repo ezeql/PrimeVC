@@ -133,25 +133,25 @@ class FiniteStateMachine implements IFiniteStateMachine
 	// METHODS
 	//
 	
-	public inline function is (otherState:IState)			{ return current == otherState; }
+	public #if !noinline inline #end function is (otherState:IState)			{ return current == otherState; }
 	
 	/**
 	 * Method checks of the given state exists in this FSM instance.
 	 * FIXME: check if looking up if a state is a property of an FSM is more efficient with reflection
 	 */
-//	public inline function has (state:IState)				{ return state != null && states[ state.id ] == state; }
+//	public #if !noinline inline #end function has (state:IState)				{ return state != null && states[ state.id ] == state; }
 	
-	public inline function enable ()						{ enabled = true; }
+	public #if !noinline inline #end function enable ()						{ enabled = true; }
 	/**
 	 * Disabling the FSM means that the current state can't change until it's
 	 * enabled again. Before the FSM is disabled, the currentState is changed to
 	 * the default-state.
 	 */
-	public inline function disable ()						{ if (enabled) { current = defaultState; enabled = false; } }
-	public inline function isEnabled ()						{ return enabled; }
+	public #if !noinline inline #end function disable ()						{ if (enabled) { current = defaultState; enabled = false; } }
+	public #if !noinline inline #end function isEnabled ()						{ return enabled; }
 	
 	
-	public inline function changeTo (toState:IState) : Void -> Void
+	public #if !noinline inline #end function changeTo (toState:IState) : Void -> Void
 	{
 		return function () { this.setCurrent( toState ); };
 	}

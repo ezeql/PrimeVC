@@ -82,13 +82,13 @@ class Loader implements ICommunicator
 	private static var firstLoader : Loader 	= null;
 	private static var lastLoader  : Loader 	= null;
 	
-	public static inline function pauseAll ()
+	public static #if !noinline inline #end function pauseAll ()
 	{
 		isPaused = true;
 	}
 
 
-	public static inline function resumeAll ()
+	public static #if !noinline inline #end function resumeAll ()
 	{
 		if (isPaused) {
 			isPaused = false;
@@ -353,7 +353,7 @@ class Loader implements ICommunicator
 	}
 	
 	
-	public inline function loadBytes (v:BytesData, ?c:LoaderContext) : BytesData
+	public #if !noinline inline #end function loadBytes (v:BytesData, ?c:LoaderContext) : BytesData
 	{
 		Assert.notNull(v);
 		if (isStarted)
@@ -375,7 +375,7 @@ class Loader implements ICommunicator
 	}
 	
 	
-	public inline function unload () : Void
+	public #if !noinline inline #end function unload () : Void
 	{
 #if flash10	loader.unloadAndStop();
 #else		loader.unload(); #end
@@ -403,11 +403,11 @@ class Loader implements ICommunicator
 	}
 
 
-	public inline function isSwf () : Bool			{ return fileType == FileType.SWF; }
-	public inline function isLoaded () : Bool		{ return bytesTotal > 0 && bytesProgress >= bytesTotal; }
-	public inline function isCompleted () : Bool	{ return isFinished; } //bytesTotal > 0 && bytesProgress >= bytesTotal; }
-	public inline function isInProgress ()			{ return isStarted && !isCompleted(); }
-//	public inline function isAnimated () : Bool		{ return info.frameRate > 2; }
+	public #if !noinline inline #end function isSwf () : Bool			{ return fileType == FileType.SWF; }
+	public #if !noinline inline #end function isLoaded () : Bool		{ return bytesTotal > 0 && bytesProgress >= bytesTotal; }
+	public #if !noinline inline #end function isCompleted () : Bool	{ return isFinished; } //bytesTotal > 0 && bytesProgress >= bytesTotal; }
+	public #if !noinline inline #end function isInProgress ()			{ return isStarted && !isCompleted(); }
+//	public #if !noinline inline #end function isAnimated () : Bool		{ return info.frameRate > 2; }
 	
 	
 	

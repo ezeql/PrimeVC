@@ -102,10 +102,10 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 	}
 	
 	
-	public inline function has (propFlag:Int) : Bool		{ return allFilledProperties.has( propFlag ); }
-	public inline function doesntHave (propFlag:Int) : Bool	{ return allFilledProperties.hasNone( propFlag ); }
-	public inline function owns (propFlag:Int) : Bool		{ return filledProperties.has( propFlag ); }
-	public inline function doesntOwn (propFlag:Int) : Bool	{ return filledProperties.hasNone( propFlag ); }
+	public #if !noinline inline #end function has (propFlag:Int) : Bool		{ return allFilledProperties.has( propFlag ); }
+	public #if !noinline inline #end function doesntHave (propFlag:Int) : Bool	{ return allFilledProperties.hasNone( propFlag ); }
+	public #if !noinline inline #end function owns (propFlag:Int) : Bool		{ return filledProperties.has( propFlag ); }
+	public #if !noinline inline #end function doesntOwn (propFlag:Int) : Bool	{ return filledProperties.hasNone( propFlag ); }
 	public function isEmpty () : Bool						{ return filledProperties == 0; }
 	
 	
@@ -115,7 +115,7 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 	
 #if debug
 	public function readProperties ( flags:Int = -1 )	: String	{ Assert.abstract(); return null; }
-	public inline function readAll () : String						{ return readProperties( allFilledProperties ); }
+	public #if !noinline inline #end function readAll () : String						{ return readProperties( allFilledProperties ); }
 	#if !CSSParser
 	public function toString ()
 	{

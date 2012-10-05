@@ -315,7 +315,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	/**
 	 * Method returns the item-renderer for the given data item
 	 */
-	public inline function getRendererFor ( dataItem:ListDataType ) : IUIDataElement<ListDataType>
+	public #if !noinline inline #end function getRendererFor ( dataItem:ListDataType ) : IUIDataElement<ListDataType>
 		return renderMap.get(dataItem)
 	
 	
@@ -323,7 +323,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	 * Method returns the item-renderer at the given depth. If the depth is -1,
 	 * the method will return null.
 	 */
-/*	public inline function getRendererAt(depth:Int) : IUIDataElement<ListDataType>
+/*	public #if !noinline inline #end function getRendererAt(depth:Int) : IUIDataElement<ListDataType>
 	{
 		return hasRendererAtDepth(depth) ? cast children.getItemAt(depth).as(IUIDataElement) : null;
 	}*/
@@ -332,7 +332,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	/**
 	 * Method returns the position of the item-renderer with the given data-item
 	 */
-//	public inline function getDepthFor (dataItem:ListDataType) : Int
+//	public #if !noinline inline #end function getDepthFor (dataItem:ListDataType) : Int
 //		return indexToDepth(data.indexOf(dataItem))
 	
 	
@@ -341,7 +341,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	 * If there's no item-renderer for the given index, the method will return
 	 * -1.
 	 */
-	public inline function indexToDepth (index:Int) : Int
+	public #if !noinline inline #end function indexToDepth (index:Int) : Int
 	{
 	    var depth = index;
 	    if (depth > -1)                 depth -= layoutContainer.fixedChildStart;
@@ -354,21 +354,21 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	 * Method will return the index of the data-item at the given renderer-depth.
 	 * If the index is -1, the method will return -1.
 	 */
-	public inline function depthToIndex (depth:Int) : Int
+	public #if !noinline inline #end function depthToIndex (depth:Int) : Int
 	    return depth > -1 ? depth + layoutContainer.fixedChildStart : -1
 	
 	
 	/**
 	 * returns true if there's an item-renderer for the given data-item.
 	 */
-	public inline function hasRendererFor (dataItem:ListDataType) : Bool
+	public #if !noinline inline #end function hasRendererFor (dataItem:ListDataType) : Bool
 	    return renderMap.exists(dataItem)
 	
 	
 	/**
 	 * returns true if there's an item-renderer for the given data-item.
 	 */
-	public inline function hasRendererAtDepth (depth:Int) : Bool
+	public #if !noinline inline #end function hasRendererAtDepth (depth:Int) : Bool
 	    return depth < children.length && depth > -1
 	
 	

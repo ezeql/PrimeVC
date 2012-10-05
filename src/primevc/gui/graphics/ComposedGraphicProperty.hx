@@ -109,10 +109,10 @@ class ComposedGraphicProperty extends GraphicElement, implements IComposedGraphi
 	// IITERATOR METHODS
 	//
 	
-	public inline function rewind ()		{ nextCell = firstCell; }
-	public inline function hasNext ()		{ return nextCell != null; }
-	public inline function setCurrent (v)	{}
-	public inline function value ()			{ return nextCell.data; }
+	public #if !noinline inline #end function rewind ()		{ nextCell = firstCell; }
+	public #if !noinline inline #end function hasNext ()		{ return nextCell != null; }
+	public #if !noinline inline #end function setCurrent (v)	{}
+	public #if !noinline inline #end function value ()			{ return nextCell.data; }
 	
 	
 	public function next () : IGraphicProperty

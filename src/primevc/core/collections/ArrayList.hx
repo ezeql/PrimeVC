@@ -58,7 +58,7 @@ class ArrayList <DataType> extends ReadOnlyArrayList <DataType>, implements IEdi
 	}
 	
 	
-	@:keep public inline function isEmpty()
+	@:keep public #if !noinline inline #end function isEmpty()
 	{
 		return length == 0;
 	}

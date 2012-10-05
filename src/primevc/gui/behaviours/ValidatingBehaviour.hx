@@ -69,7 +69,7 @@ class ValidatingBehaviour < TargetType:primevc.gui.traits.IDisplayable > extends
 	}
 	
 	
-	public inline function isOnStage ()	{ return target.window != null; }
-//	public inline function isQueued ()	{ return (nextValidatable != null && nextValidatable.isOnStage()) || (prevValidatable != null && prevValidatable.isOnStage()); }
-	public inline function isQueued ()	{ return nextValidatable != null || prevValidatable != null; }
+	public #if !noinline inline #end function isOnStage ()	{ return target.window != null; }
+//	public #if !noinline inline #end function isQueued ()	{ return (nextValidatable != null && nextValidatable.isOnStage()) || (prevValidatable != null && prevValidatable.isOnStage()); }
+	public #if !noinline inline #end function isQueued ()	{ return nextValidatable != null || prevValidatable != null; }
 }

@@ -272,18 +272,18 @@ class StyleBlock extends StyleBlockBase
 	//
 	
 	
-	public inline function getPriority ()		: Int	{ return type.enumIndex(); }
-	public inline function isState ()			: Bool	{ return type == SType.elementState || type == SType.styleNameState || type == SType.idState; }
-	public inline function isElementState ()	: Bool	{ return type == SType.elementState; }
-	public inline function isStyleNameState ()	: Bool	{ return type == SType.styleNameState; }
-	public inline function isIdState ()			: Bool	{ return type == SType.idState; }
-	public inline function isElement ()			: Bool	{ return type == SType.element; }
-	public inline function isStyleName ()		: Bool	{ return type == SType.styleName; }
-	public inline function isId ()				: Bool	{ return type == SType.id; }
+	public #if !noinline inline #end function getPriority ()		: Int	{ return type.enumIndex(); }
+	public #if !noinline inline #end function isState ()			: Bool	{ return type == SType.elementState || type == SType.styleNameState || type == SType.idState; }
+	public #if !noinline inline #end function isElementState ()	: Bool	{ return type == SType.elementState; }
+	public #if !noinline inline #end function isStyleNameState ()	: Bool	{ return type == SType.styleNameState; }
+	public #if !noinline inline #end function isIdState ()			: Bool	{ return type == SType.idState; }
+	public #if !noinline inline #end function isElement ()			: Bool	{ return type == SType.element; }
+	public #if !noinline inline #end function isStyleName ()		: Bool	{ return type == SType.styleName; }
+	public #if !noinline inline #end function isId ()				: Bool	{ return type == SType.id; }
 	
 	
 #if debug
-	public inline function getPriorityName () : String
+	public #if !noinline inline #end function getPriorityName () : String
 	{
 		return type.enumConstructor();
 	}
@@ -291,13 +291,13 @@ class StyleBlock extends StyleBlockBase
 	
 	
 	/*
-	public inline function hasChildren () : Bool
+	public #if !noinline inline #end function hasChildren () : Bool
 	{
 		return filledProperties.has( Flags.CHILDREN ); // _children != null && !_children.isEmpty();
 	}
 	
 	
-	public inline function hasStates () : Bool
+	public #if !noinline inline #end function hasStates () : Bool
 	{
 		return filledProperties.has( Flags.STATES ); // _states != null && !_states.isEmpty();
 	}
@@ -373,7 +373,7 @@ class StyleBlock extends StyleBlockBase
 #end
 	
 	
-	public inline function findChild (name:String, childType:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock
+	public #if !noinline inline #end function findChild (name:String, childType:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock
 	{
 		return switch (childType) {
 			case id:		findIdStyle(name, exclude);

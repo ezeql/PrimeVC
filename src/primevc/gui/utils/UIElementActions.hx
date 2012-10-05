@@ -51,7 +51,7 @@ class UIElementActions
 	// ACTION METHODS
 	//
 	
-	public static inline function doShow (target:IUIElement)
+	public static #if !noinline inline #end function doShow (target:IUIElement)
 	{
 		// Check if the show-effect is defined and should be played.
 		//
@@ -64,21 +64,21 @@ class UIElementActions
 	}
 	
 	
-	public static inline function doHide (target:IUIElement)
+	public static #if !noinline inline #end function doHide (target:IUIElement)
 	{
 		if (shouldPlay(Flags.HIDE, target))		target.effects.playHide();
 		else 									target.visible = false;
 	}
 	
 	
-	public static inline function doMove (target:IUIElement, newX:Float = Number.INT_NOT_SET, newY:Float = Number.INT_NOT_SET) 	// using Number.FLOAT_NOT_SET is not allowed since Float.NaN is not a constant value
+	public static #if !noinline inline #end function doMove (target:IUIElement, newX:Float = Number.INT_NOT_SET, newY:Float = Number.INT_NOT_SET) 	// using Number.FLOAT_NOT_SET is not allowed since Float.NaN is not a constant value
 	{
 		if (newX.isSet() && newX != Number.INT_NOT_SET)		target.layout.x = newX.roundFloat();
 		if (newY.isSet() && newY != Number.INT_NOT_SET)		target.layout.y = newY.roundFloat();
 	}
 	
 	
-	public static inline function doRotate (target:IUIElement, v:Float)
+	public static #if !noinline inline #end function doRotate (target:IUIElement, v:Float)
 	{
 		if (shouldPlay(Flags.ROTATE, target)) 	target.effects.playRotate(v);
 		else 									target.rotation = v;
@@ -86,14 +86,14 @@ class UIElementActions
 	}
 	
 	
-	public static inline function doResize (target:IUIElement, newW:Float = Number.INT_NOT_SET, newH:Float = Number.INT_NOT_SET)
+	public static #if !noinline inline #end function doResize (target:IUIElement, newW:Float = Number.INT_NOT_SET, newH:Float = Number.INT_NOT_SET)
 	{
 		if (newW.isSet() && newW != Number.INT_NOT_SET)		target.layout.width		= newW.roundFloat();
 		if (newH.isSet() && newH != Number.INT_NOT_SET)		target.layout.height	= newH.roundFloat();
 	}
 	
 	
-	public static inline function doScale (target:IUIElement, newScaleX:Float, newScaleY:Float)
+	public static #if !noinline inline #end function doScale (target:IUIElement, newScaleX:Float, newScaleY:Float)
 	{
 		if (shouldPlay(Flags.SCALE, target)) {
 			target.effects.playScale(newScaleX, newScaleY);
@@ -104,7 +104,7 @@ class UIElementActions
 	}
 
 
-	public static inline function shouldPlay(effect:Int, target:IUIElement) : Bool
+	public static #if !noinline inline #end function shouldPlay(effect:Int, target:IUIElement) : Bool
 	{
 		var e = target.effects;
 		return target.container.notNull() && e.notNull() && e.has(effect);

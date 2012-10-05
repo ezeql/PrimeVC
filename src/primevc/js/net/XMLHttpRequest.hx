@@ -9,7 +9,7 @@ import js.Lib;
  * @since	Arpil 5, 2011
  */
 
-extern class XMLHttpRequest {
+ #if !noinline extern #end class XMLHttpRequest {
 
 	var onreadystatechange : Void -> Void;
 	

@@ -88,7 +88,7 @@ class SimpleTileAlgorithm extends LayoutAlgorithmBase, implements ITileAlgorithm
 	 * Method indicating if the changes of a layoutcontainer-child should make
 	 * the layoutcontainer revalidate
 	 */
-	public inline function isInvalid (changes:Int)
+	public #if !noinline inline #end function isInvalid (changes:Int)
 	{
 		return	changes.has( LayoutFlags.WIDTH  * group.childWidth.notSet().boolCalc() )
 			||	changes.has( LayoutFlags.HEIGHT * group.childHeight.notSet().boolCalc() );
@@ -315,7 +315,7 @@ class SimpleTileAlgorithm extends LayoutAlgorithmBase, implements ITileAlgorithm
 	}
 	
 	
-	public inline function validate () {}
+	public #if !noinline inline #end function validate () {}
 	public function validateHorizontal () {}
 	public function validateVertical () {}
 	

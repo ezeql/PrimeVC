@@ -53,8 +53,8 @@ class DisplayContainer extends DisplayObjectContainer, implements IDisplayContai
 	
 #if !CSSParser
 	public function getDisplayCursor			() : DisplayDataCursor								{ return new DisplayDataCursor(this); }
-	public inline function attachDisplayTo		(target:ISprite, pos:Int = -1)	: IDisplayObject	{ target.children.add( this, pos ); return this; }
-	public inline function detachDisplay		()								: IDisplayObject	{ container.children.remove( this ); return this; }
-	public inline function changeDisplayDepth	(newPos:Int)					: IDisplayObject	{ container.children.move( this, newPos ); return this; }
+	public #if !noinline inline #end function attachDisplayTo		(target:ISprite, pos:Int = -1)	: IDisplayObject	{ target.children.add( this, pos ); return this; }
+	public #if !noinline inline #end function detachDisplay		()								: IDisplayObject	{ container.children.remove( this ); return this; }
+	public #if !noinline inline #end function changeDisplayDepth	(newPos:Int)					: IDisplayObject	{ container.children.move( this, newPos ); return this; }
 #end
 }

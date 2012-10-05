@@ -230,7 +230,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{	
 		isFinished = false;
 #if flash9

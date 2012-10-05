@@ -90,26 +90,26 @@ class Browser
 	// BROWSER METHODS
 	//
 	
-	public inline function openURI (uri:URI, target:String = "_self")
+	public #if !noinline inline #end function openURI (uri:URI, target:String = "_self")
 	{
 		openUrl( uri.toString(), target );
 	}
 	
 	
-	public inline function openUrl (url:String, target:String = "_self")
+	public #if !noinline inline #end function openUrl (url:String, target:String = "_self")
 	{
 		if (!available)		flash.Lib.getURL( new URLRequest(url), target);
 		else				SWFAddress.href( url, target );
 	}
 	
 	
-	public inline function openPopup (uri:URI, name:String = "", options:String = "")
+	public #if !noinline inline #end function openPopup (uri:URI, name:String = "", options:String = "")
 	{
 		SWFAddress.popup( uri.toString(), name, options );
 	}
 	
 	
-	public inline function sendMail (to:String, subject:String, body:String)
+	public #if !noinline inline #end function sendMail (to:String, subject:String, body:String)
 	{
 		openUrl( "mailto:"+to+"?subject="+subject+"&body="+StringTools.urlEncode( body ) );
 	//	if (!available)		openUrl( url );
@@ -120,17 +120,17 @@ class Browser
 	/**
 	 * Loads the previous URL in the history URL
 	 */
-	public inline function goBack ()			{ SWFAddress.back(); }
+	public #if !noinline inline #end function goBack ()			{ SWFAddress.back(); }
 	/**
 	 * Loads the next URL in the history lsit
 	 */
-	public inline function goForward ()			{ SWFAddress.forward(); }
+	public #if !noinline inline #end function goForward ()			{ SWFAddress.forward(); }
 	
 	/**
 	 * Loads a URL from the history list.
 	 * @param Int represeting the relative position in the history list.
 	 */
-	public inline function goBackTo (pos:Int)	{ SWFAddress.go(pos); }
+	public #if !noinline inline #end function goBackTo (pos:Int)	{ SWFAddress.go(pos); }
 	
 	
 	
@@ -143,7 +143,7 @@ class Browser
 	 * Method will add a listener for javscript-method calls
 	 * @return 		true when the externalinterface is available, else false
 	 */
-	public inline function addJsCallback (jsFunctionName:String, appMethod:Dynamic) : Bool
+	public #if !noinline inline #end function addJsCallback (jsFunctionName:String, appMethod:Dynamic) : Bool
 	{
 		if (available)
 			ExternalInterface.addCallback( jsFunctionName, appMethod );
@@ -156,7 +156,7 @@ class Browser
 	 * Method allows application to call a javascript method
 	 * @return 	Whatever the method returns
 	 */
-	public inline function callJsMethod (jsFunctionName:String, ?info:haxe.PosInfos)
+	public #if !noinline inline #end function callJsMethod (jsFunctionName:String, ?info:haxe.PosInfos)
 	{
 		if (available)
 			Reflect.callMethod( null, ExternalInterface.call, info.customParams );

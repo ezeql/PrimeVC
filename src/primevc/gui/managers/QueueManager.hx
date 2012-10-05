@@ -168,8 +168,8 @@ class QueueManager implements IDisposable, implements IValidatable
 	//properties are only here to make the manager also an IValidatable
 	public var prevValidatable		: IValidatable;
 	public var nextValidatable		: IValidatable;
-	public inline function isOnStage ()		{ return true; }
-	public inline function isQueued ()		{ return true; }
+	public #if !noinline inline #end function isOnStage ()		{ return true; }
+	public #if !noinline inline #end function isQueued ()		{ return true; }
 	
 	
 #if debug

@@ -65,19 +65,19 @@ class SoundMixer
     }
 
 
-    public static inline function stopAll ()                        { instance.stopAll(); }
-    public static inline function stopAllExcept (s:BaseMediaStream) { instance.stopAllExcept(s); }
-    public static inline function freezeAll ()                      { instance.freezeAll(); }
-    public static inline function defrostAll ()                     { instance.defrostAll(); }
+    public static #if !noinline inline #end function stopAll ()                        { instance.stopAll(); }
+    public static #if !noinline inline #end function stopAllExcept (s:BaseMediaStream) { instance.stopAllExcept(s); }
+    public static #if !noinline inline #end function freezeAll ()                      { instance.freezeAll(); }
+    public static #if !noinline inline #end function defrostAll ()                     { instance.defrostAll(); }
 
 
-    public static inline function add (s:BaseMediaStream)           { instance.add(s); }
-    public static inline function remove (s:BaseMediaStream)        { instance.remove(s); }
+    public static #if !noinline inline #end function add (s:BaseMediaStream)           { instance.add(s); }
+    public static #if !noinline inline #end function remove (s:BaseMediaStream)        { instance.remove(s); }
 
 
-    public static inline function mute ()                           { instance.mute(); }
-    public static inline function unmute ()                         { instance.unmute(); }
-    public static inline function toggleMute ()                     { instance.toggleMute(); }
+    public static #if !noinline inline #end function mute ()                           { instance.mute(); }
+    public static #if !noinline inline #end function unmute ()                         { instance.unmute(); }
+    public static #if !noinline inline #end function toggleMute ()                     { instance.toggleMute(); }
 
 
 
@@ -179,7 +179,7 @@ private class SoundMixerInstance
     }
 
 
-    public inline function add (stream:BaseMediaStream)
+    public #if !noinline inline #end function add (stream:BaseMediaStream)
     {
         Assert.notNull(stream);
         if (isFrozen)
@@ -216,15 +216,15 @@ private class SoundMixerInstance
     }
 
 
-    public inline function mute ()     isMuted.value = true
-    public inline function unmute ()   isMuted.value = false
+    public #if !noinline inline #end function mute ()     isMuted.value = true
+    public #if !noinline inline #end function unmute ()   isMuted.value = false
 
     
     /**
      * Mutes or unmutes all soundClients. If a client is muted, the sound will
      * be paused instead of turning the volume to zero.
      */
-    public inline function toggleMute ()
+    public #if !noinline inline #end function toggleMute ()
     {
         if (isMuted.value)  unmute();
         else                mute();

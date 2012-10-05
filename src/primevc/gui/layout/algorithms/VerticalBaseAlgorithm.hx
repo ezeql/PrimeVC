@@ -108,7 +108,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	/**
 	 * Method indicating if the size is invalidated or not.
 	 */
-	public inline function isInvalid (changes:Int)	: Bool
+	public #if !noinline inline #end function isInvalid (changes:Int)	: Bool
 	{
 		return (changes.has( LayoutFlags.HEIGHT ) && group.childHeight.notSet()) || ( horizontal != null && changes.has( LayoutFlags.WIDTH ) );
 	}

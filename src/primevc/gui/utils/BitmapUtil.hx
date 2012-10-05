@@ -42,7 +42,7 @@ package primevc.gui.utils;
 class BitmapUtil
 {
 #if flash9
-	public static inline function toBytes (bmp:BitmapData)
+	public static #if !noinline inline #end function toBytes (bmp:BitmapData)
 		return bmp.getPixels(bmp.rect)
 #end
 }
