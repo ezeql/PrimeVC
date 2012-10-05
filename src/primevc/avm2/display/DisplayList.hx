@@ -262,9 +262,9 @@ class DisplayListForwardIterator implements IIterator <ChildType>
 	private var list 	: DisplayList;
 	public var current	: Int;
 	
-	public function new (list:DisplayList)			{ this.list = list; rewind(); }
+	public function new (list:DisplayList)								{  this.list = list; rewind(); }
 	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
-	public #if !noinline inline #end function rewind ()				{ current = 0; }
+	public #if !noinline inline #end function rewind ()					{ current = 0; }
 	public #if !noinline inline #end function hasNext ()				{ return current < list.length; }
 	public #if !noinline inline #end function next ()					{ return list.getItemAt( current++ ); }
 	public #if !noinline inline #end function value ()					{ return list.getItemAt( current ); }
@@ -283,9 +283,9 @@ class DisplayListReversedIterator implements IIterator <ChildType>
 	private var list 	: DisplayList;
 	public var current	: Int;
 
-	public function new (list:DisplayList)			{ this.list = list; rewind(); }
+	public function new (list:DisplayList)								{ this.list = list; rewind(); }
 	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
-	public #if !noinline inline #end function rewind ()				{ current = list.length; }
+	public #if !noinline inline #end function rewind ()					{ current = list.length-1; }
 	public #if !noinline inline #end function hasNext ()				{ return current >= 0; }
 	public #if !noinline inline #end function next ()					{ return list.getItemAt( current-- ); }
 	public #if !noinline inline #end function value ()					{ return list.getItemAt( current ); }
