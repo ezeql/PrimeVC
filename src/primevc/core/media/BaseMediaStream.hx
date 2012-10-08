@@ -152,16 +152,16 @@ class BaseMediaStream implements IMediaStream
      * stream is already playing, it will be stopped.
      * If the current url is already playing, the stream will start again.
      */
-    public function play ( ?newUrl:URI )        { Assert.abstract(); }
+    public function play ( ?newUrl:URI )        { Assert.abstractMethod(); }
     
     
     /**
      * Method will pause the stream if it was playing
      */
-    public function pause ()                    { Assert.abstract(); }
-    public function resume ()                   { Assert.abstract(); }
-    public function stop ()                     { Assert.abstract(); }
-    public function seek (newPosition:Float)    { Assert.abstract(); }
+    public function pause ()                    { Assert.abstractMethod(); }
+    public function resume ()                   { Assert.abstractMethod(); }
+    public function stop ()                     { Assert.abstractMethod(); }
+    public function seek (newPosition:Float)    { Assert.abstractMethod(); }
 
 
     private inline function validatePosition (pos:Float) : Float
@@ -210,8 +210,8 @@ class BaseMediaStream implements IMediaStream
     }
 
 
-    public  function freeze ()          { Assert.abstract(); }
-    public  function defrost ()         { Assert.abstract(); }
+    public  function freeze ()          { Assert.abstractMethod(); }
+    public  function defrost ()         { Assert.abstractMethod(); }
     private function getCurrentTime()   { return currentTime; }
     
     

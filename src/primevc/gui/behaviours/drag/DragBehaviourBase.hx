@@ -125,7 +125,7 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 	
 	private function cancelDrag (mouseObj:MouseState) : Void
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 
 

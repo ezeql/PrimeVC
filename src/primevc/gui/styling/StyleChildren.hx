@@ -91,7 +91,7 @@ class StyleChildren
 	}
 	
 	
-	private function fillSelectors () : Void {} // Assert.abstract(); }
+	private function fillSelectors () : Void {} // Assert.abstractMethod(); }
 	
 	
 	private inline function getListForType (type:StyleBlockType) : SelectorMapType

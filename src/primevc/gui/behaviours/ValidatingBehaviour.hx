@@ -44,7 +44,7 @@ class ValidatingBehaviour < TargetType:primevc.gui.traits.IDisplayable > extends
 	
 	private function getValidationManager () : QueueManager
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 		return null;
 	}
 	

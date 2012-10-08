@@ -236,17 +236,17 @@ class Asset		implements primevc.core.traits.IDisposable
 	// ABSTRACT METHODS
 	//
 	
-//	private function setData (v:SourceType)	: SourceType		{ Assert.abstract(); return v; }
-	public  function toDisplayObject ()		: DisplayObject		{ Assert.abstract(); return null; }
+//	private function setData (v:SourceType)	: SourceType		{ Assert.abstractMethod(); return v; }
+	public  function toDisplayObject ()		: DisplayObject		{ Assert.abstractMethod(); return null; }
 #if flash9
-	public  function toDrawable ()			: IBitmapDrawable	{ Assert.abstract(); return null; }
+	public  function toDrawable ()			: IBitmapDrawable	{ Assert.abstractMethod(); return null; }
 #end
-	public  function load ()				: Void				{ Assert.abstract(); }
-	public  function close ()				: Void				{ Assert.abstract(); }
+	public  function load ()				: Void				{ Assert.abstractMethod(); }
+	public  function close ()				: Void				{ Assert.abstractMethod(); }
 #if CSSParser
 	public  function isEmpty ()				: Bool				{ return source == null; }
 #else
-	public  function isEmpty ()				: Bool				{ Assert.abstract(); return false; }
+	public  function isEmpty ()				: Bool				{ Assert.abstractMethod(); return false; }
 #end
 	
 

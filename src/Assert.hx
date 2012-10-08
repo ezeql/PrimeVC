@@ -52,7 +52,7 @@ class Assert
 	}
 	
 	
-	static inline public function abstract	(msg:String = "", ?pos:haxe.PosInfos)								{ #if debug	sendError("Abstract method", msg, pos); #end }
+	static inline public function abstractMethod	(msg:String = "", ?pos:haxe.PosInfos)								{ #if debug	sendError("Abstract method", msg, pos); #end }
 	static inline public function that		(expr:Bool, msg:Dynamic = "", ?pos:haxe.PosInfos)					{ #if debug if (!expr)			sendError(expr+" == false", msg, pos); #end }
 	static inline public function notThat	(expr:Bool, msg:Dynamic = "", ?pos:haxe.PosInfos)					{ #if debug if (expr)			sendError(expr+" == true", msg, pos); #end }
 	static inline public function equal		(var1:Dynamic, var2:Dynamic, msg:Dynamic = "", ?pos:haxe.PosInfos)	{ #if debug if (var1 != var2)	sendError(var1+" != "+var2, msg, pos); #end }

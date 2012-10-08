@@ -91,7 +91,7 @@ class ComposedBorder extends ComposedGraphicProperty, implements IBorder
 	
 	private inline function setInnerBorder (v:Bool)
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 		return v;
 	}
 }

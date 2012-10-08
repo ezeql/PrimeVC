@@ -153,7 +153,7 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 			data = bytes;
 		
 #if flash10			loader.save( data, filename );
-#elseif flash9		Assert.abstract('not possible in flash-9');		#end
+#elseif flash9		Assert.abstractMethod('not possible in flash-9');		#end
 	}
 	
 	

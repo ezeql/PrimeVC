@@ -75,7 +75,7 @@ class StyleSubBlock extends StyleBlockBase
 	 */
 	private function updateOwnerReferences (changedReference:Int) : Void
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 	
 	
