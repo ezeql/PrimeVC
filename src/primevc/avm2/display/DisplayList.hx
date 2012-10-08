@@ -35,6 +35,7 @@ package primevc.avm2.display;
  import primevc.core.collections.IReadOnlyList;
  import primevc.core.events.ListChangeSignal;
  import primevc.core.traits.IDisposable;
+ import primevc.core.traits.IIdentifiable;
  import primevc.gui.display.IDisplayContainer;
  import primevc.gui.display.IDisplayObject;
   using primevc.utils.TypeUtil;
@@ -231,6 +232,14 @@ class DisplayList implements IEditableList <ChildType>
 		target.setChildIndex( item.as( TargetChildType ), newPos );
 		change.send( ListChange.moved( item, newPos, curPos ) );
 		return item;
+	}
+	
+	public function getChildById(id:String):ChildType
+	{
+		for (c in this)	
+			if (c.as(IIdentifiable).id.value == id) 
+				return c;	
+		return null;
 	}
 
 #if debug
