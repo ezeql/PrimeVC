@@ -50,15 +50,15 @@ class BitmapFilter implements IBitmapFilter
 	}
 	
 	
-	public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+	public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 	public function toString ()							{ return toCSS(); }
 	
 	
 #if (CSSParser || debug)	
 	public var _oid			(default, null)	: Int;
 	public function cleanUp () : Void				{}
-	public function toCode (code:ICodeGenerator)	{ Assert.abstract(); }
-	public function isEmpty () : Bool				{ Assert.abstract(); return false; }
+	public function toCode (code:ICodeGenerator)	{ Assert.abstractMethod(); }
+	public function isEmpty () : Bool				{ Assert.abstractMethod(); return false; }
 #end
 }
 

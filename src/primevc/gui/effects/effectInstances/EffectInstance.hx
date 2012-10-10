@@ -96,10 +96,10 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 	
 	
 	public #if !noinline inline #end function isDisposed ()			: Bool		{ return state == null; }
-	public function setValues( v:EffectProperties ) : Void		{ Assert.abstract(); }
-	private function initStartValues()				: Void		{ Assert.abstract(); }
-	private function tweenUpdater( tweenPos:Float )	: Void		{ Assert.abstract(); }
-	private function calculateTweenStartPos ()		: Float		{ Assert.abstract(); return 0; }
+	public function setValues( v:EffectProperties ) : Void		{ Assert.abstractMethod(); }
+	private function initStartValues()				: Void		{ Assert.abstractMethod(); }
+	private function tweenUpdater( tweenPos:Float )	: Void		{ Assert.abstractMethod(); }
+	private function calculateTweenStartPos ()		: Float		{ Assert.abstractMethod(); return 0; }
 
 	
 	

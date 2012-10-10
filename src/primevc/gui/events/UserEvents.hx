@@ -66,11 +66,11 @@ class UserSignals extends Signals
 #end
 	
 	
-	private function createMouse ()		{ Assert.abstract(); }
-	private function createKey ()		{ Assert.abstract(); }
-	private function createFocus ()		{ Assert.abstract(); }
-	private function createBlur ()		{ Assert.abstract(); }
-	private function createEdit ()		{ Assert.abstract(); }
+	private function createMouse ()		{ Assert.abstractMethod(); }
+	private function createKey ()		{ Assert.abstractMethod(); }
+	private function createFocus ()		{ Assert.abstractMethod(); }
+	private function createBlur ()		{ Assert.abstractMethod(); }
+	private function createEdit ()		{ Assert.abstractMethod(); }
 #if dragEnabled
 	private function createDrag ()		{ drag = new DragEvents(); }
 #end

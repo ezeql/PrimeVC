@@ -78,6 +78,11 @@ class Window implements IDisplayContainer, implements IDisablable
 		haxe.Log.trace	= primevc.utils.DebugTrace.trace;
 		haxe.Log.clear	= com.hexagonstar.util.debug.Debug.clear;
 		com.hexagonstar.util.debug.Debug.monitor( stage );
+	#elseif (debug && CC)
+		haxe.Log.trace	= primevc.utils.DebugTrace.trace;
+		//haxe.Log.clear	= com.junkbyte.console.Cc.clear
+		com.junkbyte.console.Cc.startOnStage(stage);
+	
 	#end
 #end
 #if debug

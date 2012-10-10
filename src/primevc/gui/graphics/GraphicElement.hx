@@ -64,13 +64,13 @@ class GraphicElement extends Invalidatable, implements IGraphicElement
 #end
 
 #if CSSParser	
-	public function toCode (code:ICodeGenerator) { Assert.abstract(); }
+	public function toCode (code:ICodeGenerator) { Assert.abstractMethod(); }
 #end
 
 
 #if (CSSParser || debug)
 	public function toString () : String				{ return toCSS(); }
-	public function toCSS (prefix:String = "") : String	{ /*Assert.abstract();*/ return "GraphicElement"; }
+	public function toCSS (prefix:String = "") : String	{ /*Assert.abstractMethod();*/ return "GraphicElement"; }
 	public function isEmpty () : Bool					{ return false; }
 	public function cleanUp () : Void					{}
 #end
