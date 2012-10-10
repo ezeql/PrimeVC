@@ -78,7 +78,7 @@ class CodeGenerator implements ICodeGenerator
 	
 	public function new ()
 	{
-#if !CSSParser Assert.abstract(); #end
+#if !CSSParser Assert.abstractMethod(); #end
 		instanceIgnoreList	= new IntHash();
 	}
 	

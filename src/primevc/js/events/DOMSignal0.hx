@@ -42,6 +42,6 @@ class DOMSignal0 extends Signal0, implements IWireWatcher<Void->Void>
 	
 	private function dispatch(e:Event) 
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 }

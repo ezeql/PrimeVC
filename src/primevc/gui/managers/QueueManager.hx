@@ -90,7 +90,7 @@ class QueueManager implements IDisposable, implements IValidatable
 	
 	private function enableBinding ()			{ updateQueueBinding.enable(); }
 	private inline function disableBinding ()	{ updateQueueBinding.disable(); }
-	private function validateQueue ()			{ Assert.abstract(); }
+	private function validateQueue ()			{ Assert.abstractMethod(); }
 	
 	
 	

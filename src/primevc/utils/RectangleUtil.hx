@@ -30,6 +30,7 @@ package primevc.utils;
  import primevc.core.geom.IRectangle;
  import primevc.core.geom.IntRectangle;
  import primevc.core.geom.Rectangle;
+  using primevc.utils.TypeUtil;
 
 
 /**
@@ -50,4 +51,24 @@ extern class RectangleUtil
 		return new Rectangle (0, 0, r.width, r.height);
 	}
 #end
+}
+
+
+class IntRectangleUtil
+{
+	public static inline function add(r1:IntRectangle, r2:IntRectangle):IntRectangle
+	{
+		var r:IntRectangle = r1.clone().as(IntRectangle);
+		r.width += r2.width;
+		r.height += r2.height;
+		return r;
+	}
+	
+	public static inline function sub(r1:IntRectangle, r2:IntRectangle):IntRectangle
+	{
+		var r:IntRectangle = r1.clone().as(IntRectangle);
+		r.width -= r2.width;
+		r.height -= r2.height;
+		return r;
+	}
 }

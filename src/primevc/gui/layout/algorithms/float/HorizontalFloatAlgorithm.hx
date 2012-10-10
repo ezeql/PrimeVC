@@ -246,7 +246,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 	
 	private inline function getDepthForBoundsC (bounds:IRectangle) : Int
 	{
-		Assert.abstract( "Wrong implementation since the way centered layouts behave is changed");
+		Assert.abstractMethod( "Wrong implementation since the way centered layouts behave is changed");
 		return 0;
 	/*	var depth:Int	= 0;
 		var posX:Int	= bounds.left - getHorCenterStartValue();
@@ -392,7 +392,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 			    
 			
 			case Horizontal.center:
-			    Assert.abstract();
+			    Assert.abstractMethod();
 			
 			
 			case Horizontal.right:

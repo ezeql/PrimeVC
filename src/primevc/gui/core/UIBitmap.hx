@@ -371,7 +371,7 @@ class UIBitmap extends primevc.gui.display.BitmapShape, implements IUIElement
     // ABSTRACT METHODS
     //
     
-    private function createBehaviours ()    : Void      {} //   { Assert.abstract(); }
+    private function createBehaviours ()    : Void      {} //   { Assert.abstractMethod(); }
     
     
 #if debug

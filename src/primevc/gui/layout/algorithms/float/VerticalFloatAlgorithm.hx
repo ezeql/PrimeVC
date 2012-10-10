@@ -251,7 +251,7 @@ class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVertical
 
 	private inline function getDepthForBoundsC (bounds:IRectangle) : Int
 	{
-		Assert.abstract( "Wrong implementation since the way centered layouts behave is changed");
+		Assert.abstractMethod( "Wrong implementation since the way centered layouts behave is changed");
 		return 0;
 	/*	var depth:Int	= 0;
 		var posY:Int	= bounds.top;
@@ -407,7 +407,7 @@ class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVertical
 			    }
 			
 			case center:
-			    Assert.abstract();
+			    Assert.abstractMethod();
 			
 			
 			case bottom:

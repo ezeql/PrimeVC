@@ -70,5 +70,5 @@ class ParentFacade <
 	/**
 	 * Can instantiate the channels for this Facade.
 	 */
-	function setupChannels()	{ Assert.abstract(); }
+	function setupChannels()	{ Assert.abstractMethod(); }
 }

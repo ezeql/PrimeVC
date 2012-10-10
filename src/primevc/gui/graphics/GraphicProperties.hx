@@ -368,7 +368,7 @@ class GraphicProperties implements IGraphicElement
 	
 #if CSSParser
 	public function toString ()						{ return "GraphicProperties: l: "+layout+"; s: "+shape+"; f: "+fill+"; b: "+border; }
-	public function toCSS (prefix:String = "")		{ Assert.abstract(); return ""; }
+	public function toCSS (prefix:String = "")		{ Assert.abstractMethod(); return ""; }
 	public function toCode (code:ICodeGenerator)	{ code.construct(this, [ layout, shape, fill, border, borderRadius ]); }
 #end
 }

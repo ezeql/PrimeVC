@@ -223,7 +223,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	
 	
 #if (CSSParser || debug)
-	override public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+	override public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 #end
 #if CSSParser
 	override public function toCode (code:ICodeGenerator)

@@ -109,12 +109,12 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 	public function isEmpty () : Bool						{ return filledProperties == 0; }
 	
 	
-	public function updateAllFilledPropertiesFlag () : Void									{ Assert.abstract(); }
-	public function getPropertiesWithout (noExtendedStyle:Bool, noSuperStyle:Bool) : Int	{ Assert.abstract(); return 0; }
+	public function updateAllFilledPropertiesFlag () : Void									{ Assert.abstractMethod(); }
+	public function getPropertiesWithout (noExtendedStyle:Bool, noSuperStyle:Bool) : Int	{ Assert.abstractMethod(); return 0; }
 	
 	
 #if debug
-	public function readProperties ( flags:Int = -1 )	: String	{ Assert.abstract(); return null; }
+	public function readProperties ( flags:Int = -1 )	: String	{ Assert.abstractMethod(); return null; }
 	public #if !noinline inline #end function readAll () : String						{ return readProperties( allFilledProperties ); }
 	#if !CSSParser
 	public function toString ()
@@ -135,8 +135,8 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 		public function toString ()						{ return toCSS(); }
 	#end
 	
-	public function toCSS (prefix:String = "") 								{ Assert.abstract(); return ""; }
-	public function cleanUp ()												{ Assert.abstract(); }
-	public function toCode (code:primevc.tools.generator.ICodeGenerator)	{ Assert.abstract(); }
+	public function toCSS (prefix:String = "") 								{ Assert.abstractMethod(); return ""; }
+	public function cleanUp ()												{ Assert.abstractMethod(); }
+	public function toCode (code:primevc.tools.generator.ICodeGenerator)	{ Assert.abstractMethod(); }
 #end
 }

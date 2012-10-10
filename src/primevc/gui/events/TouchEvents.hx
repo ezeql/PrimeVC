@@ -69,10 +69,10 @@ class TouchSignals extends Signals
     private inline function getCancel ()    { if (cancel == null)       { createCancel(); } return cancel; }
     
     
-    private function createStart ()         { Assert.abstract(); }
-    private function createEnd ()           { Assert.abstract(); }
-    private function createMove ()          { Assert.abstract(); }
-    private function createCancel ()        { Assert.abstract(); }
+    private function createStart ()         { Assert.abstractMethod(); }
+    private function createEnd ()           { Assert.abstractMethod(); }
+    private function createMove ()          { Assert.abstractMethod(); }
+    private function createCancel ()        { Assert.abstractMethod(); }
 }
 
 /**

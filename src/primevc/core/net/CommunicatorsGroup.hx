@@ -154,8 +154,8 @@ class CommunicatorsGroup implements ICommunicator
 	private inline function getBytesProgress ()		{ return bytesProgress; }
 	private inline function getBytesTotal ()		{ return bytesTotal; }
 	
-	private inline function getBytes ()				{ Assert.abstract(); return null; }
-	private inline function setBytes (v)			{ Assert.abstract(); return null; }
+	private inline function getBytes ()				{ Assert.abstractMethod(); return null; }
+	private inline function setBytes (v)			{ Assert.abstractMethod(); return null; }
 	
 	
 	
