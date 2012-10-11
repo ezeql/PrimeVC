@@ -238,10 +238,10 @@ class UIWindow extends primevc.gui.display.Window
 	
 	private function createChildren ()		: Void {}
 	
-	public #if !noinline inline #end function attach 			(child:IUIElement) : UIWindow 				{ child.attachLayoutTo(layoutContainer).attachToDisplayList(this); return this; }
-	public #if !noinline inline #end function attachDisplay 	(child:IUIElement) : UIWindow 				{ child.attachToDisplayList(this); return this; }
-	public #if !noinline inline #end function attachLayout 	(layout:LayoutClient) : UIWindow			{ layoutContainer.attach(layout); return this; }
-	public #if !noinline inline #end function changeDepthOf	(child:IUIElement, pos:Int)	: IUIContainer	{ child.changeDepth(pos);           return this; }
+	public #if !noinline inline #end function attach        (child:IUIElement)          : UIWindow { child.attachLayoutTo(layoutContainer).attachToDisplayList(this); return this; }
+	public #if !noinline inline #end function attachDisplay (child:IUIElement)          : UIWindow { child.attachToDisplayList(this);                                 return this; }
+	public #if !noinline inline #end function attachLayout  (layout:LayoutClient)       : UIWindow { layoutContainer.attach(layout);                                  return this; }
+	public #if !noinline inline #end function changeDepthOf (child:IUIElement, pos:Int)	: UIWindow { child.changeDepth(pos);                                          return this; }
 
 
 	//
