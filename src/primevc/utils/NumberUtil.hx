@@ -31,64 +31,6 @@ package primevc.utils;
  import primevc.types.Number;
   using primevc.utils.NumberUtil;
   using Std;
- 
-
-/**
- * Quick convenience utilities for integers.
- * 
- * @creation-date	Jun 21, 2010
- * @author			Ruben Weijers
- */
-extern class IntUtil
-{
-	/**
-	 * Helper function which will return the int-value of the first parameter 
-	 * as long as it is between the min and max values.
-	 * 
-	 * @param	value
-	 * @param	min
-	 * @param	max
-	 */
-	public static inline function within (value:Int, min:Int, max:Int) : Int {
-		if (value < min)		value = min;
-		else if (value > max)	value = max;
-		return value;
-	}
-	
-	
-	/**
-	 * Helper function to check of the given value is between the min and max 
-	 * value.
-	 * 
-	 * @param	value
-	 * @param	min
-	 * @param	max
-	 * @return	true or false
-	 */
-	public static inline function isWithin (value:Int, min:Int, max:Int) : Bool {
-		return value >= min && value <= max;
-	}
-	
-	
-#if flash9
-	public static inline function notSet (value:Int) : Bool		{ return value == Number.INT_NOT_SET; }
-	public static inline function isSet (value:Int) : Bool		{ return value != Number.INT_NOT_SET; }
-	public static inline function notEmpty (value:Int) : Bool	{ return value != Number.EMPTY; }
-	public static inline function isEmpty (value:Int) : Bool	{ return value == Number.EMPTY; }
-#else
-	public static inline function notSet (value:Int) : Bool		{ return value == Number.INT_NOT_SET || value == null; }
-	public static inline function isSet (value:Int) : Bool		{ return value != Number.INT_NOT_SET && value != null; }
-#end
-	
-	public static inline function unset () : Int				{ return Number.INT_NOT_SET; }
-	public static inline function getValue (v:Int) : Int		{ return v.isEmpty() ? Number.INT_NOT_SET : v; }
-	
-	public static inline function getBiggest (var1:Int, var2:Int) : Int		{ return IntMath.max(var1, var2); }
-	public static inline function getSmallest (var1:Int, var2:Int) : Int	{ return IntMath.min(var1, var2); }
-}
-
-
-
 
 /**
  * Quick convenience utilities for floating point numbers.
@@ -159,6 +101,64 @@ extern class FloatUtil
 	public static inline function getBiggest (var1:Float, var2:Float) : Float	{ return FloatMath.max(var1, var2); }
 	public static inline function getSmallest (var1:Float, var2:Float) : Float	{ return FloatMath.min(var1, var2); }
 }
+
+ 
+
+/**
+ * Quick convenience utilities for integers.
+ * 
+ * @creation-date	Jun 21, 2010
+ * @author			Ruben Weijers
+ */
+extern class IntUtil
+{
+	/**
+	 * Helper function which will return the int-value of the first parameter 
+	 * as long as it is between the min and max values.
+	 * 
+	 * @param	value
+	 * @param	min
+	 * @param	max
+	 */
+	public static inline function within (value:Int, min:Int, max:Int) : Int {
+		if (value < min)		value = min;
+		else if (value > max)	value = max;
+		return value;
+	}
+	
+	
+	/**
+	 * Helper function to check of the given value is between the min and max 
+	 * value.
+	 * 
+	 * @param	value
+	 * @param	min
+	 * @param	max
+	 * @return	true or false
+	 */
+	public static inline function isWithin (value:Int, min:Int, max:Int) : Bool {
+		return value >= min && value <= max;
+	}
+	
+	
+#if flash9
+	public static inline function notSet (value:Int) : Bool		{ return value == Number.INT_NOT_SET; }
+	public static inline function isSet (value:Int) : Bool		{ return value != Number.INT_NOT_SET; }
+	public static inline function notEmpty (value:Int) : Bool	{ return value != Number.EMPTY; }
+	public static inline function isEmpty (value:Int) : Bool	{ return value == Number.EMPTY; }
+#else
+	public static inline function notSet (value:Int) : Bool		{ return value == Number.INT_NOT_SET || value == null; }
+	public static inline function isSet (value:Int) : Bool		{ return value != Number.INT_NOT_SET && value != null; }
+#end
+	
+	public static inline function unset () : Int				{ return Number.INT_NOT_SET; }
+	public static inline function getValue (v:Int) : Int		{ return v.isEmpty() ? Number.INT_NOT_SET : v; }
+	
+	public static inline function getBiggest (var1:Int, var2:Int) : Int		{ return IntMath.max(var1, var2); }
+	public static inline function getSmallest (var1:Int, var2:Int) : Int	{ return IntMath.min(var1, var2); }
+}
+
+
 
 
 
