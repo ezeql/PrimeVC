@@ -85,10 +85,11 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	}
 	
 	
-	public #if !noinline inline #end function isEmpty() : Bool				{ return !(_propertiesSet & (0x7FFFFFFF ^ this._uniquePropertyFlag)).not0(); }
-	public #if !noinline inline #end function isEditable() : Bool			{ return _flags.has(Flags.IN_EDITMODE); }
-	public #if !noinline inline #end function isDisposed() : Bool			{ return change == null; }
-	public #if !noinline inline #end function changed () : Bool			{ return _changedFlags.not0(); }
+	public #if !noinline inline #end function isEmpty   () : Bool { return !(_propertiesSet & (0x7FFFFFFF ^ this._uniquePropertyFlag)).not0(); }
+	public #if !noinline inline #end function isEditable() : Bool { return _flags.has(Flags.IN_EDITMODE); }
+	public #if !noinline inline #end function isDisposed() : Bool { return change == null; }
+	public #if !noinline inline #end function isChanged () : Bool { return _changedFlags.not0(); }
+
 	public function has (propertyID : Int) : Bool		{ return (_propertiesSet & (1 << ((propertyID & 0xFF) + _fieldOffset(propertyID >>> 8)))).not0(); }
 	public function getPropertyById (id:Int) : Dynamic	{ Assert.abstractMethod(); return null; }
 	public function setPropertyById (id:Int, v:Dynamic)	{ Assert.abstractMethod(); }
@@ -104,7 +105,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	{
 		if(!isEditable()) return;
 		
-		if (changed())
+		if (isChanged())
 		{
 			var set = ObjectChangeSet.make(this, _changedFlags);
 			addChanges(set);
