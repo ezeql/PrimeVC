@@ -69,6 +69,9 @@ while [ "${1+isset}" ]; do
 		--xml)
 			XML=true;
 			shift ;;
+		--buildserver)
+			BUILDSERVER=true;
+			shift ;;
 
 		-z)	PROFILING=true
 			shift ;;
@@ -145,7 +148,7 @@ else
 		$CONSOLE \
 		${CODECOVERAGE:+-D CodeCoverage -lib mcover --macro massive.mcover.MCover.includeAll()} \
 		${XML:+-xml $OUTPUTDIR/classes.xml $MainClass} \
-		| xargs -t haxe --connect 6543 \
+		| xargs -t haxe ${BUILDSERVER:+--connect 6543}\
 		 	|| exit 1;
 	
 	if (set -u; : $Debug) 2> /dev/null ; then
