@@ -8,8 +8,6 @@ package primevc.js.display;
  */
 class Image extends DOMElem {
     
-	override public var height	(default, setHeight):Int;
-	override public var width	(default, setWidth):Int;
 	public var src 				(default, setSrc):String;
 	
 	public function new() {

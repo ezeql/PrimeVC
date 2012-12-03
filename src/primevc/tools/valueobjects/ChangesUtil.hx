@@ -204,7 +204,7 @@ class ChangesUtil
 			while (path != null && !path.object.is(classType))
 				path = path.parent;
 		
-			Assert.notNull(path);
+			Assert.isNotNull(path);
 			vo = path.object;
 		}
 		return vo;

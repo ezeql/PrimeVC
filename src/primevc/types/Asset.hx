@@ -219,7 +219,7 @@ class Asset
 		if (state.current == loadable)
 			load();
 		
-		Assert.notNull(type);
+		Assert.isNotNull(type);
 		return switch (type) {
 			//don't use flashes own bitmap class but use the bitmap of prime instead..
 			case AssetType.bitmapData:		cast new primevc.gui.display.BitmapShape( bitmapData );
@@ -232,7 +232,7 @@ class Asset
 	
 	private inline function createAssetInstance ()
 	{
-		Assert.notNull(assetClass);
+		Assert.isNotNull(assetClass);
 		
 #if flash9
 		var inst = Type.createInstance(assetClass, []);
@@ -403,7 +403,7 @@ class Asset
 			
 			try
 			{
-				Assert.notNull( v );
+				Assert.isNotNull( v );
 				var asset = v;
 				
 				while (asset != null)
