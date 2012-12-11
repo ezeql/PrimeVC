@@ -50,8 +50,8 @@ class IntPoint	implements IClonable <IntPoint>
 	public static #if !noinline inline #end function fromFloat (x:Float, y:Float)	: IntPoint	{ return new IntPoint( x.roundFloat(), y.roundFloat() ); }
 	public static #if !noinline inline #end function fromPoint (p:Point)			: IntPoint	{ return new IntPoint( p.x.roundFloat(), p.y.roundFloat() ); }
 	
-	public var x		(getX, setX)	: Int;
-	public var y		(getY, setY)	: Int;
+	@:isVar public var x		(getX, setX)	: Int;
+	@:isVar public var y		(getY, setY)	: Int;
 	
 #if CSSParser
 	public var _oid		(default, null) : Int;

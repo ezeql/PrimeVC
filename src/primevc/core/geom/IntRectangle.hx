@@ -43,13 +43,13 @@ class IntRectangle extends QueueingInvalidatable, implements IRectangle
 	public var centerX	(getCenterX, setCenterX)	: Int;
 	public var centerY	(getCenterY, setCenterY)	: Int;
 	
-	public var left		(getLeft, setLeft)			: Int;
-	public var right	(getRight, setRight)		: Int;
-	public var top		(getTop, setTop)			: Int;
-	public var bottom	(getBottom, setBottom)		: Int;
+	@:isVar public var left		(getLeft, setLeft)			: Int;
+	@:isVar public var right	(getRight, setRight)		: Int;
+	@:isVar public var top		(getTop, setTop)			: Int;
+	@:isVar public var bottom	(getBottom, setBottom)		: Int;
 	
-	public var width	(getWidth, setWidth)		: Int;
-	public var height	(getHeight, setHeight)		: Int;
+	@:isVar public var width	(getWidth, setWidth)		: Int;
+	@:isVar public var height	(getHeight, setHeight)		: Int;
 	
 	
 	public function new ( x:Int = 0, y:Int = 0, width:Int = 0, height:Int = 0 )

@@ -46,10 +46,10 @@ class Box
 #if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable		#end
 {
-	public var left		(getLeft, setLeft)		: Int;
-	public var right	(getRight, setRight)	: Int;
-	public var top		(getTop, setTop)		: Int;
-	public var bottom	(getBottom, setBottom)	: Int;
+	@:isVar public var left		(getLeft, setLeft)		: Int;
+	@:isVar public var right	(getRight, setRight)	: Int;
+	@:isVar public var top		(getTop, setTop)		: Int;
+	@:isVar public var bottom	(getBottom, setBottom)	: Int;
 	
 #if CSSParser
 	public var _oid		(default, null)			: Int;
