@@ -56,6 +56,8 @@ typedef FastArray<T> =
 		return untyped __new__(Array, size);
 #elseif neko
 		return untyped Array.new1(neko.NativeArray.alloc(size), size);
+#elseif cpp
+		return new Array<T>();
 #elseif js
 		// if size is the constant value 0, only [] will be inlined at the call site.
 		return if (size == 0) [] else (untyped Array)(size);
@@ -187,7 +189,7 @@ typedef FastArray<T> =
 	public static inline function removeAll<T> (list:FastArray<T>) : FastArray<T>
 	{
 #if (php || cpp)
-		list.splice(0);
+		list.splice(0, list.length);
 #else
 	#if flash10	Assert.notThat(list.fixed); #end
 		(untyped list).length = 0;

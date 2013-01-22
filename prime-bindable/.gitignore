@@ -1,3 +1,4 @@
 /report
 /tmp
 .mcover
+TestMain.hx

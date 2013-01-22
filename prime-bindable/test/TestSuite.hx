@@ -1,6 +1,8 @@
 import massive.munit.TestSuite;
 
+import ExampleTest;
 import prime.bindable.AllClassesTest;
+import prime.bindable.BindableTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -14,6 +16,8 @@ class TestSuite extends massive.munit.TestSuite
 	{
 		super();
 
+		add(ExampleTest);
 		add(prime.bindable.AllClassesTest);
+		add(prime.bindable.BindableTest);
 	}
 }
