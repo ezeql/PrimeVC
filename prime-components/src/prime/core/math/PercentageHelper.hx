@@ -26,13 +26,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.math;
+package prime.core.math;
  import prime.signal.Wire;
- import primevc.core.traits.IDisposable;
- import primevc.core.Bindable;
- import primevc.core.validators.FloatRangeValidator;
-  using primevc.utils.Bind;
-  using primevc.utils.NumberUtil;
+ import prime.core.traits.IDisposable;
+ import prime.core.Bindable;
+ import prime.core.validators.FloatRangeValidator;
+  using prime.utils.Bind;
+  using prime.utils.NumberUtil;
 
 
 /**

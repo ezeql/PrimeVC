@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
-  using primevc.utils.NumberUtil;
+package prime.utils;
+  using prime.utils.NumberUtil;
   using Std;
 
 
 /**
  * Utility with methods to handle time formatting
- * 
+ *
  * @author Ruben Weijers
  * @creation-date Jan 13, 2011
  */
@@ -45,8 +45,8 @@ package primevc.utils;
 		var m	= ( seconds / 60 ).floorFloat();
 		return m.string() + ":" + ((s < 10) ? "0" + s : s.string());
 	}
-	
-	
+
+
 	/**
 	 * Method will make a string out of the given date object, formatted as:
 	 * 		YearMonthDayHoursMinutesSeconds

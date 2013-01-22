@@ -26,17 +26,17 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core;
- import primevc.types.Number;
- 
+package prime.core;
+ import prime.types.Number;
+
 
 /**
  * Iterator object
- * 
+ *
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
-class RangeIterator 
+class RangeIterator
 {
 	public var start	(default, setStart) : Int;
 	public var max		: Int;
@@ -44,7 +44,7 @@ class RangeIterator
 	public var current	: Int;
 	
 	
-	public function new(max:Int, stepSize:Int = 1, start:Int = 0) 
+	public function new(max:Int, stepSize:Int = 1, start:Int = 0)
 	{
 		if (max == 0)
 			max = Number.INT_MAX;

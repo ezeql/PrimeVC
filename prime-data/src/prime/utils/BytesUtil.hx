@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
+package prime.utils;
  import haxe.io.BytesData;
-  using primevc.utils.NumberUtil;
+  using prime.utils.NumberUtil;
   using StringTools;
 
 
