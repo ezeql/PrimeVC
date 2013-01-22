@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.types;
-package prime.types;
  import prime.core.geom.Matrix2D;
  import prime.core.net.ICommunicator;
  import prime.fsm.SimpleStateMachine;
@@ -134,7 +133,7 @@ class Asset		implements IDisposable
 #if (neko && prime_css)
 	private var source		: Dynamic;
 #end
-#if ((neko && prime_css) || debug)
+#if (debug || (neko && prime_css))
 	public var _oid			(default, null)				: Int;
 #end
 	public var state		(default, null)				: SimpleStateMachine<AssetStates>;
@@ -148,9 +147,9 @@ class Asset		implements IDisposable
 	{
 		state	= new SimpleStateMachine<AssetStates>(empty);
 		width	= height = Number.INT_NOT_SET;
-#if flash9					Assert.notNull(type); #end
+#if flash9					Assert.isNotNull(type); #end
 #if (neko && prime_css)		source	= data; #end
-#if ((neko && prime_css) || debug)
+#if (debug || (neko && prime_css))
 		_oid	= prime.utils.ID.getNext();
 #end
 	}
@@ -162,7 +161,7 @@ class Asset		implements IDisposable
 		state.dispose();
 		state = null;
 #if (neko && prime_css)		source	= null; #end
-#if ((neko && prime_css) || debug)
+#if (debug || (neko && prime_css))
 		_oid = 0;
 #end
 	}
@@ -433,7 +432,7 @@ class BytesAssetBase extends Asset
 	private function loadBytes (bytes:BytesData)
 	{
 #if flash9
-		Assert.notNull(bytes);
+		Assert.isNotNull(bytes);
 		if (loader == null)
 		{
 			loader = Loader.get();
@@ -658,7 +657,7 @@ class ExternalAsset extends BytesAssetBase
 	
 	private function handleURILoaded ()
 	{
-		Assert.notNull( externalLoader );
+		Assert.isNotNull( externalLoader );
 	//	Assert.that( externalLoader.isCompleted(), ""+externalLoader );
 		loadBytes( externalLoader.bytes );
 	}

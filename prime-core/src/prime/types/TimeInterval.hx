@@ -35,7 +35,7 @@ package prime.types;
  * @author Danny Wilson
  * @creation-date Dec 14, 2010
  */
-class DateInterval
+class TimeInterval
 {
 	static inline public var TYPE_ID = 10;
 	
@@ -50,6 +50,6 @@ class DateInterval
 	
 	public function toString()
 	{
-		return "{ DateInterval start: "+ start +", end: "+ end +" }";
+		return "TimeInterval{ start: "+ start +", end: "+ end +" }";
 	}
 }
