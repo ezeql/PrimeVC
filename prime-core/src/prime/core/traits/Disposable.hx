@@ -24,35 +24,11 @@
  *
  *
  * Authors:
- *  Ruben Weijers	<ruben @ onlinetouch.nl>
+ *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package primevc.core.traits;
+package prime.core.traits;
 
-/**
- * Interface for invalidatable objects which can wait with dispatching their
- * changes until the flag 'validatable' is set to true
- * @author Ruben Weijers
- * @creation-date Feb 06, 2011
- */
-interface IQueueingInvalidatable implements IInvalidatable
-{
-	/**
-	 * Flag indicating if the object should broadcast an invalidate call or do
-	 * nothing with it.
-	 * 
-	 * @default	true
-	 */
-	public var invalidatable	(default, setInvalidatable)	: Bool;
-	
-	/**
-	 * bitflag with all the changes that have happened to the invalidatable
-	 * object.
-	 */
-	public var changes			(default, null)				: Int;
-	
-	/**
-	 * Method to set the invalidatable flag to true and reset the 'changes'
-	 * flags to '0'.
-	 */
-	public function resetValidation () : Void;
+
+typedef Disposable = {
+	public function dispose() : Void;
 }

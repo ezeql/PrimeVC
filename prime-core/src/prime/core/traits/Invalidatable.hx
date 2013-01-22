@@ -26,14 +26,53 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.traits;
+package prime.core.traits;
+ import haxe.FastList;
+  using prime.utils.BitUtil;
+
 
 
 /**
+ * Base class to allow simple invalidation on objects.
+ * 
  * @author Ruben Weijers
- * @creation-date Oct 14, 2010
+ * @creation-date Jul 31, 2010
  */
-interface IInvalidateListener implements IDisposable
+class Invalidatable implements IInvalidatable
 {
-	public function invalidateCall ( changeFromOther:Int, sender:IInvalidatable ) : Void;
+	public var listeners		(default, null)	: FastList<IInvalidateListener>;
+	
+	
+	public function new ()
+	{
+		listeners = new FastList< IInvalidateListener >();
+	}
+	
+	
+	public function dispose ()
+	{
+		while (!listeners.isEmpty())
+			listeners.pop();
+		
+		listeners = null;
+	}
+	
+	
+	public function invalidate (change:Int) : Void
+	{
+	//	Assert.isNotNull(listeners, this+" is already disposed.");
+		var current = listeners.head;
+		while (current != null)
+		{
+			current.elt.invalidateCall( change, this );
+			current = current.next;
+		}
+	}
+	
+	
+	public function invalidateCall ( changeFromOther:Int, sender:IInvalidatable ) : Void
+	{
+		Assert.notEqual( sender, this );	// <-- prevent infinite loops
+		invalidate( changeFromOther );
+	}
 }

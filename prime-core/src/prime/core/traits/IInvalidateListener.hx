@@ -1,4 +1,4 @@
-	/*
+/*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
@@ -26,22 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.traits;
- import haxe.FastList;
+package prime.core.traits;
 
 
 /**
  * @author Ruben Weijers
- * @creation-date Jul 30, 2010
+ * @creation-date Oct 14, 2010
  */
-interface IInvalidatable implements IInvalidateListener
+interface IInvalidateListener implements IDisposable
 {
-//	public var changes (default, null)			: Int;
-	
-	/**
-	 * List with IInvalidatables that want to be notified when values in this
-	 * instance changes
-	 */
-	public var listeners (default, null)	: FastList< IInvalidateListener >;
-	public function invalidate (change:Int)	: Void;
+	public function invalidateCall ( changeFromOther:Int, sender:IInvalidatable ) : Void;
 }

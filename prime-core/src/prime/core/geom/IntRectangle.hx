@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.geom;
- import primevc.core.traits.QueueingInvalidatable;
- import primevc.utils.NumberUtil;
-  using primevc.utils.NumberUtil;
+package prime.core.geom;
+ import prime.core.traits.QueueingInvalidatable;
+ import prime.utils.NumberUtil;
+  using prime.utils.NumberUtil;
 
 
 /**

@@ -26,16 +26,33 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.traits;
-
+package prime.core.traits;
 
 /**
- * Forces implementors to have an integer 'Object Instance ID' named: _oid.
- * 
+ * Interface for invalidatable objects which can wait with dispatching their
+ * changes until the flag 'validatable' is set to true
  * @author Ruben Weijers
- * @creation-date Sep 14, 2010
+ * @creation-date Feb 06, 2011
  */
-interface IUIdentifiable
+interface IQueueingInvalidatable implements IInvalidatable
 {
-	public var _oid (default, null)		: Int;
+	/**
+	 * Flag indicating if the object should broadcast an invalidate call or do
+	 * nothing with it.
+	 * 
+	 * @default	true
+	 */
+	public var invalidatable	(default, setInvalidatable)	: Bool;
+	
+	/**
+	 * bitflag with all the changes that have happened to the invalidatable
+	 * object.
+	 */
+	public var changes			(default, null)				: Int;
+	
+	/**
+	 * Method to set the invalidatable flag to true and reset the 'changes'
+	 * flags to '0'.
+	 */
+	public function resetValidation () : Void;
 }

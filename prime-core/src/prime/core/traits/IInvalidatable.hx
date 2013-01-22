@@ -1,4 +1,4 @@
-/*
+	/*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
@@ -26,49 +26,22 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
- import primevc.core.geom.IRectangle;
- import primevc.core.geom.IntRectangle;
- import primevc.core.geom.Rectangle;
-  using primevc.utils.TypeUtil;
+package prime.core.traits;
+ import haxe.FastList;
 
 
 /**
- * Utility for working with IRectangle's.
- * 
  * @author Ruben Weijers
  * @creation-date Jul 30, 2010
  */
-extern class RectangleUtil
+interface IInvalidatable implements IInvalidateListener
 {
-	public static inline function isEqualTo (r1:IRectangle, r2:IRectangle) : Bool {
-		return r1.left != r2.left || r1.top != r2.top || r1.right != r2.right || r1.bottom != r2.bottom;
-	}
+//	public var changes (default, null)			: Int;
 	
-	
-#if flash9
-	public static inline function toFloatRectangle (r:IntRectangle) : Rectangle {
-		return new Rectangle (0, 0, r.width, r.height);
-	}
-#end
-}
-
-
-class IntRectangleUtil
-{
-	public static inline function add(r1:IntRectangle, r2:IntRectangle):IntRectangle
-	{
-		var r:IntRectangle = r1.clone().as(IntRectangle);
-		r.width += r2.width;
-		r.height += r2.height;
-		return r;
-	}
-	
-	public static inline function sub(r1:IntRectangle, r2:IntRectangle):IntRectangle
-	{
-		var r:IntRectangle = r1.clone().as(IntRectangle);
-		r.width -= r2.width;
-		r.height -= r2.height;
-		return r;
-	}
+	/**
+	 * List with IInvalidatables that want to be notified when values in this
+	 * instance changes
+	 */
+	public var listeners (default, null)	: FastList< IInvalidateListener >;
+	public function invalidate (change:Int)	: Void;
 }

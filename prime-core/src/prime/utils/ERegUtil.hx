@@ -26,8 +26,8 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
-  using primevc.utils.ERegUtil;
+package prime.utils;
+  using prime.utils.ERegUtil;
 
 
 /**

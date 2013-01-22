@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
@@ -24,19 +24,55 @@
  *
  *
  * Authors:
- *  Ruben Weijers	<ruben @ onlinetouch.nl>
+ *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package primevc.core.traits;
+package prime.core.geom;
+
+#if flash9
+typedef Matrix2D = flash.geom.Matrix;
+#elseif flash
+typedef Matrix2D = flash.geom.Matrix;
+#else
+
+ import prime.utils.ID;
+ import prime.tools.generator.ICodeFormattable;
+ import prime.tools.generator.ICodeGenerator;
 
 
 /**
- * Forces object to have a bindable id.
+ * Neko implementation for prime.core.geom.Matrix2D
  * 
  * @author Ruben Weijers
- * @creation-date Aug 04, 2010
+ * @creation-date Sep 14, 2010
+ * @see http://livedocs.adobe.com/flash/9.0/ActionScriptLangRefV3/flash/geom/Matrix.html
  */
-interface IIdentifiable
+class Matrix2D implements ICodeFormattable
 {
-	public var id	(default, null)		: primevc.core.Bindable<String>;
-#if debug public function toString ()	: String; #end
+	public var a	: Float;
+	public var b	: Float;
+	public var c	: Float;
+	public var d 	: Float;
+	public var tx	: Float;
+	public var ty	: Float;
+	
+	public var _oid	(default, null) : Int;
+	
+	
+	public function new (a:Float = 1, b:Float = 0, c:Float = 0, d:Float = 1, tx:Float = 0, ty:Float = 0)
+	{
+		_oid = ID.getNext();
+		this.a = a;
+		this.b = b;
+		this.c = c;
+		this.d = d;
+		this.tx = tx;
+		this.ty = ty;
+	}
+	
+	
+	public function toCode (code:ICodeGenerator)	{ code.construct( this, [ a, b, c, d, tx, ty ] ); }
+	public function isEmpty ()						{ return false; }
+	public function cleanUp () : Void				{}
 }
+
+#end

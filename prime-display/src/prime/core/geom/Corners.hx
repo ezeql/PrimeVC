@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.geom;
+package prime.core.geom;
 #if CSSParser
- import primevc.tools.generator.ICodeFormattable;
- import primevc.tools.generator.ICodeGenerator;
- import primevc.utils.ID;
+ import prime.tools.generator.ICodeFormattable;
+ import prime.tools.generator.ICodeGenerator;
+ import prime.utils.ID;
 #end
- import primevc.core.traits.IClonable;
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+ import prime.core.traits.IClonable;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 
 
 /**

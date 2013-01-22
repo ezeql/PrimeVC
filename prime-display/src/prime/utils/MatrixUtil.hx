@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers   <ruben @ rubenw.nl>
  */
-package primevc.utils;
- import primevc.core.geom.Matrix2D;
- import primevc.core.geom.Rectangle;
-  using primevc.utils.Formulas;
+package prime.utils;
+ import prime.core.geom.Matrix2D;
+ import prime.core.geom.Rectangle;
+  using prime.utils.Formulas;
  
 
 /**

@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
+package prime.utils;
 
 #if neko
-typedef Color = primevc.neko.utils.Color;
+typedef Color = prime.neko.utils.Color;
 #else
- import primevc.types.RGBA;
-  using primevc.utils.Color;
-  using primevc.utils.NumberUtil;
+ import prime.types.RGBA;
+  using prime.utils.Color;
+  using prime.utils.NumberUtil;
 //  using Math;
   using Std;
   using StringTools;

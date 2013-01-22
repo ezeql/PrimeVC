@@ -26,19 +26,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.geom;
+package prime.core.geom;
  import apparat.math.FastMath;
- import primevc.core.traits.IClonable;
-  using primevc.utils.NumberUtil;
+ import prime.core.traits.IClonable;
+  using prime.utils.NumberUtil;
 
 
 /**
- * Matrix class for integers
+ * 2D Matrix class with inlined operations.
  * 
  * @author Ruben Weijers
  * @creation-date Dec 15, 2010
  */
-class IntMatrix2D implements IClonable < IntMatrix2D >
+class InlineMatrix2D implements IClonable < InlineMatrix2D >
 {
 	/**
 	 * scaleX property
@@ -90,7 +90,7 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	
 	public function clone ()
 	{
-		return new IntMatrix2D( a, b, c, d, tx, ty, tw, th );
+		return new InlineMatrix2D( a, b, c, d, tx, ty, tw, th );
 	}
 	
 	
@@ -112,7 +112,7 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 	}
 	
 	
-	public #if !noinline inline #end function concatMatrix (m:IntMatrix2D)
+	public #if !noinline inline #end function concatMatrix (m:InlineMatrix2D)
 	{
 		concat(m.a, m.b, m.c, m.d, m.tx, m.ty);
 	}
@@ -191,7 +191,7 @@ class IntMatrix2D implements IClonable < IntMatrix2D >
 #if debug
 	public function toString()
 	{
-		return "[Matrix2D a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", tx=" + tx + ", ty=" + ty + ", tw=" + tw + ", th=" + th + "]";
+		return "[InlineMatrix2D a=" + a + ", b=" + b + ", c=" + c + ", d=" + d + ", tx=" + tx + ", ty=" + ty + ", tw=" + tw + ", th=" + th + "]";
 	}
 #end
 }

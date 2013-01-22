@@ -24,20 +24,51 @@
  *
  *
  * Authors:
- *  Danny Wilson	<danny @ onlinetouch.nl>
+ *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
+package prime.utils;
+ import prime.core.geom.IRectangle;
+ import prime.core.geom.IntRectangle;
+ import prime.core.geom.Rectangle;
+  using prime.utils.TypeUtil;
 
 
 /**
- * Simple Int counter for identifying instances.
+ * Utility for working with IRectangle's.
  * 
- * @author Danny Wilson
- * @creation-date feb 18, 2011
+ * @author Ruben Weijers
+ * @creation-date Jul 30, 2010
  */
-class ID
+extern class RectangleUtil
 {
-#if neko 	public static function __init__ ()	next = 0 #end
-	static var next : Int = 0;
-	static inline public function getNext ()	return next++
+	public static inline function isEqualTo (r1:IRectangle, r2:IRectangle) : Bool {
+		return r1.left != r2.left || r1.top != r2.top || r1.right != r2.right || r1.bottom != r2.bottom;
+	}
+	
+	
+#if flash9
+	public static inline function toFloatRectangle (r:IntRectangle) : Rectangle {
+		return new Rectangle (0, 0, r.width, r.height);
+	}
+#end
+}
+
+
+class IntRectangleUtil
+{
+	public static inline function add(r1:IntRectangle, r2:IntRectangle):IntRectangle
+	{
+		var r:IntRectangle = r1.clone().as(IntRectangle);
+		r.width += r2.width;
+		r.height += r2.height;
+		return r;
+	}
+	
+	public static inline function sub(r1:IntRectangle, r2:IntRectangle):IntRectangle
+	{
+		var r:IntRectangle = r1.clone().as(IntRectangle);
+		r.width -= r2.width;
+		r.height -= r2.height;
+		return r;
+	}
 }

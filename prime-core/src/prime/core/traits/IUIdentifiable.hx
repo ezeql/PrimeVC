@@ -26,65 +26,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.traits;
-  using primevc.utils.BitUtil;
+package prime.core.traits;
 
 
 /**
- * QueueingInvalidatable allows to disable the broadcasting of an invalidate
- * call. When the broadcasting is disabled, all of the changes will be stored
- * in the "changes" flag.
- * 
- * When the broadcasting is enabled again, the changes will be dispatched.
+ * Forces implementors to have an integer 'Object Instance ID' named: _oid.
  * 
  * @author Ruben Weijers
- * @creation-date Nov 08, 2010
+ * @creation-date Sep 14, 2010
  */
-class QueueingInvalidatable extends Invalidatable, implements IQueueingInvalidatable
+interface IUIdentifiable
 {
-	/**
-	 * Flag indicating if the object should broadcast an invalidate call or do
-	 * nothing with it.
-	 */
-	public var invalidatable	(default, setInvalidatable)	: Bool;
-	public var changes			(default, null)				: Int;
-	
-	
-	public function new ()
-	{
-		super();
-		resetValidation();
-	}
-	
-	
-	public #if !noinline inline #end function resetValidation ()
-	{
-		changes = 0;
-		(untyped this).invalidatable = true;
-	}
-	
-	
-	override public function invalidate (change:Int) : Void
-	{
-		if (invalidatable)
-			super.invalidate(change);
-		else
-			changes = changes.set(change);
-	}
-	
-	
-	private inline function setInvalidatable (v:Bool)
-	{
-		if (v != invalidatable)
-		{
-			invalidatable = v;
-			
-			//broadcast queued changes?
-			if (v && changes > 0) {
-				invalidate(changes);
-				changes = 0;
-			}
-		}
-		return v;
-	}
+	public var _oid (default, null)		: Int;
 }

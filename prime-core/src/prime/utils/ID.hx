@@ -26,59 +26,18 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package primevc.utils;
+package prime.utils;
 
-class ArrayUtils
+
+/**
+ * Simple Int counter for identifying instances.
+ * 
+ * @author Danny Wilson
+ * @creation-date feb 18, 2011
+ */
+class ID
 {
-	public static function sortAlphabetically(arr:Array<String>)
-	{
-		#if flash9
-		untyped arr.sort()
-		#else
-		arr.sort(compareAlphabetically);
-		#end
-	}
-	
-
-	public static function compareAlphabetically(x:String,y:String)
-	{
-		var s = x.length <= y.length? x : y;
-		
-		for (i in 0 ... s.length) {
-			var c1 = x.charCodeAt(i);
-			var c2 = y.charCodeAt(i);
-			
-			if (c1 == c2) continue;
-			return c1 - c2;
-		}
-		
-		return x == s? -1 : 1;
-	}
-
-
-	static public inline function indexOf<T> ( list:Array<T>, item:T, ?startPos:Int = 0 ) : Int
-	{
-		var pos:Int = -1;
-		for (i in startPos...list.length) {
-			if (list[i] == item) {
-				pos = i;
-				break;
-			}
-		}
-		return pos;
-	}
-	
-
-	static public inline function lastIndexOf<T> ( list:Array<T>, item:T, ?startPos:Int = 0 ) : Int
-	{
-		var pos:Int = -1;
-		var i = list.length;
-		while (i-- >= startPos) {
-			if (list[i] == item) {
-				pos = i;
-				break;
-			}
-		}
-		return pos;
-	}
+#if neko 	public static function __init__ ()	next = 0 #end
+	static var next : Int = 0;
+	static inline public function getNext ()	return next++
 }

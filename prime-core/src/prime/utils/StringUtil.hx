@@ -26,8 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.utils;
-  using primevc.utils.StringUtil;
+package prime.utils;
   using Std;
   using StringTools;
   using String;
