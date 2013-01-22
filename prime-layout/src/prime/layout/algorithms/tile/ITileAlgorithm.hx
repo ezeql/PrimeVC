@@ -29,11 +29,10 @@
 package prime.layout.algorithms.tile;
  import prime.layout.algorithms.ILayoutAlgorithm;
 
-/*
+/**
  * Interface indictating if a layout-algorithm is a tile-algorithm
  *
  * @author Ruben Weijers
  * @creation-date Sep 28, 2011
  */
-@:keep
 interface ITileAlgorithm implements ILayoutAlgorithm {}

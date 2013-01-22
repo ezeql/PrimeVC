@@ -64,8 +64,8 @@ package prime.utils;
 	{
 		return (bits & flag) == 0;
 	}
-	
-	
+
+
 	/**
 	 * Returns an UInt where only the bits that both parameters share are set. (AND operator..)
 	 */
@@ -98,7 +98,7 @@ package prime.utils;
 	 * Returns an UInt with the bits set in 'flag' added to 'bits'.
 	 */
 	@:macro static public function set (bits:ExprRequire<UInt>, flag:ExprRequire<UInt>) return AST.build({
-		$bits &= (0xffffffff ^ $flag);
+		$bits |= $flag;
 	})
 
 	/**

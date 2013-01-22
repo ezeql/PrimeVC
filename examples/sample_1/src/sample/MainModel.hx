@@ -16,6 +16,6 @@ class MainModel extends MVCCore<MainFacade>, implements IModel
 
     public function init ()
     {
-        mainProxy = new MainProxy( cast facade.events );
+        mainProxy = new MainProxy( facade.events );
     }
 }

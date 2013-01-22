@@ -175,7 +175,7 @@ class ChainedList<T> extends SimpleList <T> #if (flash9 || cpp) ,implements haxe
 			items.push( "[ " + i + " ] = " + item );
 			i++;
 		}
-		Assert.equal( items.length, length, "Length of "+name+" is invalid! ");
+		Assert.isEqual( items.length, length, "Length of "+name+" is invalid! ");
 		return name + "ChainedList( "+items.length+" / " + length + " )\n" + items.join("\n")+"\n";
 	}
 #end

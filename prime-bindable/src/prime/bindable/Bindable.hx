@@ -115,16 +115,35 @@ class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
 	}
 	
 	
-	public inline function isEmpty ()			return (untyped this).value == null
-	public function clone ()					return new Bindable<T>(value)
-	public inline function hasListeners ()		return (writeTo.notNull() && !writeTo.isEmpty()) || change.hasListeners()
+	public #if !noinline inline #end function isEmpty () : Bool
+	{
+		return (untyped this).value == null;
+	}
+	
+	
+	public function clone ()
+	{
+		return new Bindable<T>(value);
+	}
 	
 	
 	/**
 	 * Sets value directly, without the requirement to be in edit mode, and without dispatching any events.
 	 * NOTE: Int can't be set to null, so we trick the compiler with untyped
 	 */
-	public inline function set (val:T) : Void	(untyped this).value = val
+	public #if !noinline inline #end function set (val:T) : Void
+	{
+		(untyped this).value = val;
+	}
+
+
+	/**
+	 * Checks if the bindable has listeners
+	 */
+	public #if !noinline inline #end function hasListeners () : Bool
+	{
+		return (writeTo.notNull() && !writeTo.isEmpty()) || change.hasListeners();
+	}
 	
 	
 #if debug
@@ -165,7 +184,7 @@ class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
 	 * In other words: 
 	 * - update this when otherBindable.value changes
 	 */
-	public inline function bind (otherBindable:IBindableReadonly<T>)
+	public #if !noinline inline #end function bind (otherBindable:IBindableReadonly<T>)
 	{
 	//	registerBoundTo(otherBindable);
 		(untyped otherBindable).keepUpdated(this);
@@ -269,7 +288,7 @@ class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
 	
 	
 #if debug
-	public inline function toString () : String {
+	public #if !noinline inline #end function toString () : String {
 		return "Bindable("+value+")";
 	}
 #end
@@ -283,7 +302,7 @@ class BindableTools
 	/**
 	 * Propagate a value to Bindables in the given FastList.
 	 */
-	public static inline function dispatchValueToBound<T> (list:FastList<IBindable<T>>, newValue:T)
+	public static #if !noinline inline #end function dispatchValueToBound<T> (list:FastList<IBindable<T>>, newValue:T)
 	{
 		if (list != null)
 		{

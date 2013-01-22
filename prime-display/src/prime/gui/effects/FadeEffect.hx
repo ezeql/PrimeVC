@@ -26,17 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
- import primevc.gui.display.IDisplayObject;	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.FadeEffectInstance;
+package prime.gui.effects;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
+#if CSSParser
+  using prime.types.Reference;
 #end
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
-#end
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
 
 
 /**
@@ -45,7 +40,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class FadeEffect extends Effect < IDisplayObject, FadeEffect >
+class FadeEffect extends #if !CSSParser Effect<prime.gui.display.IDisplayObject, FadeEffect> #else Effect<Dynamic, Dynamic> #end
 {
 	/**
 	 * Explicit start alpha value. If this value is not set, the effect will 
@@ -60,9 +55,9 @@ class FadeEffect extends Effect < IDisplayObject, FadeEffect >
 	public var endValue		: Float;
 	
 	
-	public function new( duration:Int = 350, delay:Int = 0, easing:Easing = null, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET )
+	public function new( duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET )
 	{
-		super( duration, delay, easing );
+		super( duration, delay, easing, isReverted );
 		autoHideFilters	= false;
 		this.startValue	= startValue == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startValue;
 		this.endValue	= endValue == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endValue;
@@ -71,14 +66,14 @@ class FadeEffect extends Effect < IDisplayObject, FadeEffect >
 	
 	override public function clone ()
 	{
-		return cast new FadeEffect( duration, duration, easing, startValue, endValue );
+		return new FadeEffect( duration, duration, easing, isReverted, startValue, endValue );
 	}
 	
 	
-#if (flash8 || flash9 || js)
+#if !CSSParser
 	override public function createEffectInstance (target)
 	{
-		return cast new FadeEffectInstance(target, this);
+		return new prime.gui.effects.effectInstances.FadeEffectInstance(target, this);
 	}
 #end
 
@@ -96,7 +91,7 @@ class FadeEffect extends Effect < IDisplayObject, FadeEffect >
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (prefix:String = "") : String
 	{
 		var props = [];
@@ -106,15 +101,16 @@ class FadeEffect extends Effect < IDisplayObject, FadeEffect >
 		if (easing != null)			props.push( easing.toCSS() );
 		if (startValue.isSet())		props.push( (startValue * 100) + "%" );
 		if (endValue.isSet())		props.push( (endValue * 100) + "%" );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "fade " + props.join(" ");
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startValue, endValue ] );
 	}
 #end
 }

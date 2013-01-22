@@ -33,11 +33,12 @@ package prime.gui.events;
  import prime.gui.events.KeyModState;
 
 
-typedef TouchEvents = 
+typedef TouchEvents =
     #if     flash9  prime.avm2.events.TouchEvents;
     #elseif flash   prime.avm1.events.TouchEvents;
+    #elseif nodejs  #error;
     #elseif js      prime.js  .events.TouchEvents;
-    #elseif neko    prime.neko.events.TouchEvents;
+//  #elseif neko    prime.neko.events.TouchEvents;
     #else           #error; #end
 
 typedef TouchHandler    = TouchState -> Void;
@@ -68,10 +69,10 @@ class TouchSignals extends Signals
     private inline function getCancel ()    { if (cancel == null)       { createCancel(); } return cancel; }
     
     
-    private function createStart ()         { Assert.abstract(); }
-    private function createEnd ()           { Assert.abstract(); }
-    private function createMove ()          { Assert.abstract(); }
-    private function createCancel ()        { Assert.abstract(); }
+    private function createStart ()         { Assert.abstractMethod(); }
+    private function createEnd ()           { Assert.abstractMethod(); }
+    private function createMove ()          { Assert.abstractMethod(); }
+    private function createCancel ()        { Assert.abstractMethod(); }
 }
 
 /**
@@ -101,14 +102,14 @@ class TouchState implements IClonable<TouchState>, implements haxe.Public
     }
     
 #if flash9
-    public inline function isDispatchedBy (obj:UserEventTarget) : Bool
+    public #if !noinline inline #end function isDispatchedBy (obj:UserEventTarget) : Bool
     {
         return obj != null && obj == related;
     }
 #end
     
     
-    public inline function clone () : TouchState
+    public #if !noinline inline #end function clone () : TouchState
     {
         return new TouchState(target, local, stage);
     }

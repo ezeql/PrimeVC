@@ -1,14 +1,14 @@
 #!/bin/bash
 
-if test "`which open`" -nt '' ; then
-	# Use open on OS X
-	echo;
-elif test "`which start`" -nt '' ; then
-	# Do nothing on Windows (I can't get start to work :-S)
-	function open () {
-		echo;
-	}
-fi;
+#if test "`which open`" -nt '' ; then
+#	# Use open on OS X
+#	echo;
+#elif test "`which start`" -nt '' ; then
+#	# Do nothing on Windows (I can't get start to work :-S)
+#	function open () {
+#		echo;
+#	}
+#fi;
 
 BUILDSCRIPTDIR=`dirname "$0"`;
 PRIMEVC_ROOT=`cd "${BUILDSCRIPTDIR}/.."; pwd`
@@ -69,6 +69,9 @@ while [ "${1+isset}" ]; do
 		--xml)
 			XML=true;
 			shift ;;
+		--buildserver)
+			BUILDSERVER=true;
+			shift ;;
 
 		-z)	PROFILING=true
 			shift ;;
@@ -77,7 +80,6 @@ while [ "${1+isset}" ]; do
 	esac
 done
 
-echo "main: $MainClass"
 STYLEDIR="$PRJROOT/styles/$STYLE"
 OUTPUTDIR="$PRJROOT/bin${Debug:--release}"
 OUTPUT="$OUTPUTDIR/$OUTPUT"
@@ -95,51 +97,58 @@ fi;
 #ls $PRIMEVC_ROOT &&
 cd "$PRIMEVC_ROOT" &&
 
-echo -e "\n\n==================== BUILD${Debug:+ DEBUG} ====================" &&
 
 if [[ ${MainClass} == "" ]] ; then
 	echo "Error: Mainclass is not specified"
 else
-	echo -e "\tMain: $MainClass"
-	echo -e "\tStyle: $STYLEDIR"
-	echo -e "\tDebugging: ${Debug:-false}"
-	echo -e "\Profiling: ${PROFILING:-false}"
-	echo -e "\tConsole: ${CONSOLE}"
-	echo -e "\tAssets: $ASSETS"
-	echo -e "\tProject: $PRJROOT"
-	echo -e "\tOutput: $OUTPUT"
-	echo -e "\tPrimeVC: $PRIMEVC_ROOT"
-	echo -e "\tLocal file access: $ACCESS"
-	echo -e "\tExtra: ${EXTRA:-"no extra's"}"
-	echo -e "\tCode coverage: $CODECOVERAGE"
+#	echo -e "\tMain: $MainClass"
+#	echo -e "\tStyle: $STYLEDIR"
+#	echo -e "\tDebugging: ${Debug:-false}"
+#	echo -e "\tProfiling: ${PROFILING:-false}"
+#	echo -e "\tConsole: ${CONSOLE}"
+#	echo -e "\tAssets: $ASSETS"
+#	echo -e "\tProject: $PRJROOT"
+#	echo -e "\tOutput: $OUTPUT"
+#	echo -e "\tPrimeVC: $PRIMEVC_ROOT"
+#	echo -e "\tLocal file access: $ACCESS"
+#	echo -e "\tExtra: ${EXTRA:-"no extra's"}"
+#	echo -e "\tCode coverage: $CODECOVERAGE"
 	
-	echo "1. BUILDING ASSETS"
+#	echo "=== BUILDING ASSETS ==="
 	bash build/build-assets \
 		--release-lib "$PRIMEVC_ROOT/libs/macmousewheel" --release-lib "$PRIMEVC_ROOT/libs/as3-flexless" --release-lib "$PRIMEVC_ROOT/libs/swfaddress" \
 		--debug-lib "$PRIMEVC_ROOT/libs/monsterdebugger/v3" --debug-lib "$PRIMEVC_ROOT/libs/monsterdebugger/v2" --debug-lib "$PRIMEVC_ROOT/libs/alcon" \
 		 	|| exit 1;
 	
-	echo -e "\n2. BUILDING STYLES"
-	bash build/build-styles -s "${STYLEDIR}" ${Debug:+-d} ${Force:+-f} || exit 1;
+#	echo -e "\n=== BUILDING STYLES ==="
+	bash build/build-styles -s "${STYLEDIR}" ${Force:+-f} || exit 1;
 
-	echo -e "\n3. COMPILING SWF"
-	echo build/build.hxml \
+	if [[ -f "$OUTPUT" ]] ; then
+		OLDSIZE=`wc -c < "$OUTPUT"`
+	else
+		OLDSIZE=0
+	fi;
+
+	echo -e "\tCompiling App ($(date))"
+#	haxe --connect 6543 build/build.hxml \
+	time echo build/build.hxml \
 		-swf "'$OUTPUT'" \
-		${Debug:---no-traces --dead-code-elimination --macro Undead.keepAlive()} \
+		--dead-code-elimination \
+		${Debug:---no-traces} \
 		$EXTRA \
-		-cp "'$PRJROOT/src'" \
+		--cwd "'$PRJROOT'" \
+		-cp "'${PRIMEVC_ROOT}/src'" \
 		-cp "'$STYLEDIR'" \
 		-main $MainClass \
 		-swf-header $WIDTH:$HEIGHT:$FPS:$BGCOLOR \
 		${ASSETS:+-swf-lib "'$ASSETS'"} \
-		-swf-lib "'assets/${Debug:+debug-}assets.swf'" \
+		-swf-lib "'${PRIMEVC_ROOT}/assets/${Debug:+debug-}assets.swf'" \
 		${ACCESS:--D local} \
 		${PROFILING:+-swf-lib "'$PRJROOT/bin-debug/swf/FlashPreloadProfiler_RC2.swf'" -D profiling} \
 		$CONSOLE \
-		-D dragEnabled \
 		${CODECOVERAGE:+-D CodeCoverage -lib mcover --macro massive.mcover.MCover.includeAll()} \
 		${XML:+-xml $OUTPUTDIR/classes.xml $MainClass} \
-		| xargs -t haxe --connect 6543 \
+		| xargs -t haxe ${BUILDSERVER:+--connect 6543}\
 		 	|| exit 1;
 	
 	if (set -u; : $Debug) 2> /dev/null ; then
@@ -151,4 +160,9 @@ else
 		open "$OUTPUT"
 	fi;
 
+	NEWSIZE=`wc -c < "$OUTPUT"`
+	echo -e "\t\tOld size: ${OLDSIZE} bytes"
+	echo -e "\t\tNew size: ${NEWSIZE} bytes"
+	echo -e "\t\t--------------------"
+	echo -e "\t\tDiff    : $((NEWSIZE-OLDSIZE)) bytes bigger"
 fi;

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -54,8 +54,8 @@ class DirectToolTipBehaviour extends BehaviourBase<UIComponent>
 	{
 		super(target);
 #if debug
-		Assert.notNull(target, "Target can't be null for tooltipbehaviour");
-		Assert.notNull(label,  "Label can't be null for tooltip of "+target);
+		Assert.isNotNull(target, "Target can't be null for tooltipbehaviour");
+		Assert.isNotNull(label,  "Label can't be null for tooltip of "+target);
 #end
 		this.label = label;
 	}
@@ -63,7 +63,7 @@ class DirectToolTipBehaviour extends BehaviourBase<UIComponent>
 	
 	override private function init ()
 	{
-//#if debug	Assert.notNull( target.window, "Target "+target+" must be on the stage for this behaviour to work." ); #end
+//#if debug	Assert.isNotNull( target.window, "Target "+target+" must be on the stage for this behaviour to work." ); #end
 			showToolTip.on( target.userEvents.mouse.rollOver, this );
 			hideToolTip.on( target.userEvents.mouse.rollOut, this );
 	}

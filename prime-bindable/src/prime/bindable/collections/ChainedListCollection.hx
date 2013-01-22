@@ -104,14 +104,14 @@ class ChainedListCollection<T>
 	}
 
 
-	public inline function removeAll ()
+	public #if !noinline inline #end function removeAll ()
 	{
 		while (length > 0)
 			removeItem( getItemAt(0) );
 	}
 	
 	
-	public inline function isEmpty()
+	public #if !noinline inline #end function isEmpty()
 	{
 		return length == 0;
 	}
@@ -151,7 +151,7 @@ class ChainedListCollection<T>
 	// LIST MANIPULATION METHODS
 	//
 	
-	public inline function add (item:T, pos:Int = -1) : T
+	public #if !noinline inline #end function add (item:T, pos:Int = -1) : T
 	{
 		pos = insertAt( item, pos );
 		change.send( ListChange.added( item, pos ) );
@@ -159,7 +159,7 @@ class ChainedListCollection<T>
 	}
 	
 	
-	public inline function remove (item:T, oldPos:Int = -1) : T
+	public #if !noinline inline #end function remove (item:T, oldPos:Int = -1) : T
 	{
 		oldPos = removeItem(item, oldPos);
 		if (oldPos > -1)
@@ -168,7 +168,7 @@ class ChainedListCollection<T>
 	}
 	
 	
-	public inline function move (item:T, newPos:Int, curPos:Int = -1) : T
+	public #if !noinline inline #end function move (item:T, newPos:Int, curPos:Int = -1) : T
 	{
 		if		(curPos == -1)				curPos = indexOf( item );
 		if		(newPos > (length - 1))		newPos = length - 1;
@@ -185,7 +185,7 @@ class ChainedListCollection<T>
 	}
 	
 	
-	public inline function has (item:T) : Bool
+	public #if !noinline inline #end function has (item:T) : Bool
 	{
 		var found:Bool	= false;
 		for (list in lists)
@@ -199,7 +199,7 @@ class ChainedListCollection<T>
 	}
 	
 	
-	public inline function indexOf (item:T) : Int
+	public #if !noinline inline #end function indexOf (item:T) : Int
 	{
 		var pos:Int = 0;
 		for (list in lists)
@@ -287,16 +287,16 @@ class ChainedListCollection<T>
 	// ITERATION METHODS
 	//
 	
-	public inline function getItemAt (pos:Int) : T
+	public #if !noinline inline #end function getItemAt (pos:Int) : T
 	{
 		var itemPos:Int	= calculateItemPosition( pos );		//calculate the position of the item in the list
 		return getListForPosition(pos).getItemAt(itemPos);
 	}
 	
 	
-	public function iterator () : Iterator<T>					{ return forwardIterator(); }
-	public inline function forwardIterator () : IIterator<T>	{ return new ChainedListCollectionIterator<T>(this); }
-	public inline function reversedIterator () : IIterator<T>	{ return new ChainedListCollectionIterator<T>(this); }
+	public #if !noinline inline #end function iterator         () : Iterator  <T> { return forwardIterator(); }
+	public #if !noinline inline #end function forwardIterator  () : IIterator <T> { return new ChainedListCollectionIterator<T>(this); }
+	public #if !noinline inline #end function reversedIterator () : IIterator <T> { return new ChainedListCollectionIterator<T>(this); }
 	
 	
 	/**
@@ -445,12 +445,12 @@ class ChainedListCollectionIterator<T> implements IIterator<T>
 	}
 	
 	
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function hasNext () : Bool		{ return current < target.length; }
-	public inline function value () : T		{ return cast listIterator.value; }
+	public #if !noinline inline #end function setCurrent (val:Dynamic) { current = val; }
+	public #if !noinline inline #end function hasNext    () : Bool	   { return current < target.length; }
+	public #if !noinline inline #end function value      () : T	       { return cast listIterator.value; }
 	
 	
-	public inline function rewind () {
+	public #if !noinline inline #end function rewind () {
 		current		= 0;
 		currentList	= target.lists.getItemAt(0);
 	}

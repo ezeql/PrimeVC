@@ -52,13 +52,13 @@ class FastDoubleCellForwardIterator<T> implements IIterator<T>
 	}
 	
 	
-	public inline function setCurrent (val:Dynamic)	current = val
-	public inline function rewind ()				current = first
-	public inline function hasNext () 				return current != null
-	public inline function value ()					return current.data
+	@:keep public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	@:keep public #if !noinline inline #end function rewind ()				{ current = first; }
+	@:keep public #if !noinline inline #end function hasNext () 				{ return current != null; }
+	@:keep public #if !noinline inline #end function value ()					{ return current.data; }
 	
 	
-	public inline function next () : T
+	@:keep public #if !noinline inline #end function next () : T
 	{
 		var c = current;
 		current = current.next;

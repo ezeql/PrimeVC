@@ -29,10 +29,10 @@
 package primevc.gui.styling;
  import primevc.core.traits.IDisposable;
  import Hash;
-#if ((neko && prime_css) || debug)
+#if (CSSParser || debug)
  import primevc.utils.ID;
 #end
-#if (neko && prime_css)
+#if CSSParser
  import primevc.types.SimpleDictionary;
  import primevc.tools.generator.ICodeFormattable;
  import primevc.tools.generator.ICodeGenerator;
@@ -41,7 +41,7 @@ package primevc.gui.styling;
 #end
 
 
-typedef SelectorMapType = #if (neko && prime_css) SimpleDictionary<String, StyleBlock> #else Hash<StyleBlock> #end;
+typedef SelectorMapType = #if CSSParser SimpleDictionary<String, StyleBlock> #else Hash<StyleBlock> #end;
 
 /**
  * @author Ruben Weijers
@@ -49,11 +49,10 @@ typedef SelectorMapType = #if (neko && prime_css) SimpleDictionary<String, Style
  */
 class StyleChildren 
 				implements IDisposable
-#if (neko && prime_css)
-			,	implements ICSSFormattable
+#if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable		#end
 {
-#if (neko || debug)
+#if (CSSParser || debug)
 	public var _oid					(default, null) : Int;
 #end
 	
@@ -68,7 +67,7 @@ class StyleChildren
 			idSelectors = null
 		)
 	{
-#if (neko || debug)
+#if (CSSParser || debug)
 		_oid = ID.getNext();
 #end
 		this.elementSelectors	= elementSelectors;
@@ -92,12 +91,12 @@ class StyleChildren
 	}
 	
 	
-	private function fillSelectors () : Void {} // Assert.abstract(); }
+	private function fillSelectors () : Void {} // Assert.abstractMethod(); }
 	
 	
 	private inline function getListForType (type:StyleBlockType) : SelectorMapType
 	{
-		Assert.notNull(type);
+		Assert.isNotNull(type);
 		return switch (type) {
 				case element:	elementSelectors;
 				case styleName:	styleNameSelectors;
@@ -151,7 +150,7 @@ class StyleChildren
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	public function toString ()	{ return toCSS(); }
 	
 	

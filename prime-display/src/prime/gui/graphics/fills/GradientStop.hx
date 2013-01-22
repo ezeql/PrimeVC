@@ -26,16 +26,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.fills;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics.fills;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.gui.graphics.GraphicElement;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.types.RGBA;
-#if (debug || (neko && prime_css))
-  using primevc.utils.Color;
-  using primevc.utils.NumberUtil;
+ import prime.gui.graphics.GraphicElement;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.types.RGBA;
+#if (debug || CSSParser)
+  using prime.utils.Color;
+  using prime.utils.NumberUtil;
 #end
 
 
@@ -79,7 +79,7 @@ class GradientStop extends GraphicElement
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (prefix:String = "")		{ return color.string() + " " + ((position / 255) * 100).roundFloat() + "%"; }
 	override public function toCode (code:ICodeGenerator)	{ code.construct( this, [ color, position ] ); }
 #end

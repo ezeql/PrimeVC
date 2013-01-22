@@ -27,12 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
-#end
  import primevc.core.geom.Box;
  import primevc.core.traits.IInvalidatable;
- import primevc.gui.layout.algorithms.ILayoutAlgorithm;
  import primevc.gui.layout.RelativeLayout;
  import primevc.types.Factory;
  import primevc.types.Number;
@@ -42,7 +38,7 @@ package primevc.gui.styling;
 
 
 private typedef Flags		= LayoutStyleFlags;
-private typedef Algorithm	= Factory<ILayoutAlgorithm>;
+private typedef Algorithm	= #if CSSParser Factory<Dynamic> #else Factory<primevc.gui.layout.algorithms.ILayoutAlgorithm> #end;
 
 
 /**
@@ -764,7 +760,7 @@ class LayoutStyle extends StyleSubBlock
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (prefix:String = "") : String
 	{
 		var css = [];
@@ -810,7 +806,7 @@ class LayoutStyle extends StyleSubBlock
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator)
+	override public function toCode (code:primevc.tools.generator.ICodeGenerator)
 	{
 		if (!isEmpty())
 		{
@@ -871,11 +867,6 @@ class LayoutStyle extends StyleSubBlock
 
 #if debug
 	override public function readProperties (flags:Int = -1) : String
-	{
-		if (flags == -1)
-			flags = filledProperties;
-		
-		return Flags.readProperties(flags);
-	}
+		return Flags.read(flags == -1 ? filledProperties : flags)
 #end
 }

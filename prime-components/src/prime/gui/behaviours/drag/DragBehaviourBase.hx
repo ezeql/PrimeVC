@@ -91,8 +91,8 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 	}
 
 
-	public inline function enable ()	{ dragHelper.start.on( mouseTarget.userEvents.mouse.down, this ); }
-	public inline function disable ()	{ mouseTarget.userEvents.mouse.down.unbind( this ); }
+	public #if !noinline inline #end function enable ()	{ dragHelper.start.on( mouseTarget.userEvents.mouse.down, this ); }
+	public #if !noinline inline #end function disable ()	{ mouseTarget.userEvents.mouse.down.unbind( this ); }
 	
 	
 	private function startDrag (mouseObj:MouseState) : Void
@@ -125,7 +125,7 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 	
 	private function cancelDrag (mouseObj:MouseState) : Void
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 
 
@@ -141,8 +141,8 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 	
 	private function stopDragging ()
 	{
-		Assert.notNull(dragInfo, "draginfo can't be null for "+target);
-		Assert.notNull(dragInfo.dragRenderer, "dragrenderer can't be null for "+target);
+		Assert.isNotNull(dragInfo, "draginfo can't be null for "+target);
+		Assert.isNotNull(dragInfo.dragRenderer, "dragrenderer can't be null for "+target);
 		var item = dragInfo.dragRenderer;
 		item.stopDrag();
 		item.mouseEnabled = mouseEnabledValue;

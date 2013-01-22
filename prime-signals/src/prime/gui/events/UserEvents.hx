@@ -30,9 +30,10 @@ package prime.gui.events;
  import prime.signal.Signals;
  import prime.signal.Signal1;
 
-typedef UserEvents = 
+typedef UserEvents =
 	#if     flash9 prime.avm2.events.UserEvents;
-	#elseif flash8 prime.avm1.events.UserEvents;
+	#elseif flash  prime.avm1.events.UserEvents;
+	#elseif nodejs #error;
 	#elseif js     prime.js  .events.UserEvents;
 	#elseif neko   prime.neko.events.UserEvents;
 	#else   #error #end
@@ -65,11 +66,11 @@ class UserSignals extends Signals
 #end
 	
 	
-	private function createMouse ()		{ Assert.abstract(); }
-	private function createKey ()		{ Assert.abstract(); }
-	private function createFocus ()		{ Assert.abstract(); }
-	private function createBlur ()		{ Assert.abstract(); }
-	private function createEdit ()		{ Assert.abstract(); }
+	private function createMouse ()		{ Assert.abstractMethod(); }
+	private function createKey ()		{ Assert.abstractMethod(); }
+	private function createFocus ()		{ Assert.abstractMethod(); }
+	private function createBlur ()		{ Assert.abstractMethod(); }
+	private function createEdit ()		{ Assert.abstractMethod(); }
 #if dragEnabled
 	private function createDrag ()		{ drag = new DragEvents(); }
 #end

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -33,6 +33,8 @@ package prime.gui.display;
  * @author Ruben Weijers
  * @creation-date Jun 06, 2011
  */
-typedef DisplayObject =	#if flash9	flash.display.DisplayObject;
-					#elseif js		js.Dom.HtmlDom;
-					#else			Dynamic; #end
+typedef DisplayObject =
+	#if 	flash9	flash.display.DisplayObject;
+	#elseif nodejs 	Dynamic;
+	#elseif js		js.Dom.HtmlDom;
+	#else			Dynamic; #end

@@ -42,7 +42,7 @@ class FastDoubleCell<T> #if (flash9 || cpp) implements haxe.rtti.Generic #end
 	public var next : FastDoubleCell<T>;
 	
 	
-	public function new (data, ?prev, ?next)
+	@:keep public function new (data:T, prev = null, next = null)
 	{
 		this.data = data;
 		this.prev = prev;
@@ -50,7 +50,7 @@ class FastDoubleCell<T> #if (flash9 || cpp) implements haxe.rtti.Generic #end
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		data = null;
 		next = prev = null;

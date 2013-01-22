@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.scroll;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.traits.IScrollable;
-#if !neko
+package prime.gui.behaviours.scroll;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.traits.IScrollable;
+#if !CSSParser
  import prime.signal.Wire;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.layout.IScrollableLayout;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.layout.IScrollableLayout;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 #end
 
 
@@ -46,7 +46,7 @@ package primevc.gui.behaviours.scroll;
  */
 class MouseScrollBehaviourBase extends BehaviourBase<IScrollable>, implements IScrollBehaviour
 {
-#if !neko
+#if !CSSParser
 	private var scrollLayout		: IScrollableLayout;
 	private var activateBinding		: Wire < Dynamic >;
 	private var deactivateBinding	: Wire < Dynamic >;
@@ -55,12 +55,13 @@ class MouseScrollBehaviourBase extends BehaviourBase<IScrollable>, implements IS
 	
 	override private function init ()
 	{
-		Assert.notNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
+		Assert.isNotNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
 		target.enableClipping();
+		var mouse = target.container.userEvents.mouse;
 		scrollLayout = target.scrollableLayout;
-		activateBinding		= activateScrolling		.on( target.userEvents.mouse.rollOver, this );
-		deactivateBinding	= deactivateScrolling	.on( target.userEvents.mouse.rollOut, this );
-		calcScrollBinding	= calculateScroll		.on( target.container.userEvents.mouse.move, this );
+		activateBinding		= activateScrolling		.on( mouse.rollOver, this );
+		deactivateBinding	= deactivateScrolling	.on( mouse.rollOut, this );
+		calcScrollBinding	= calculateScroll		.on( mouse.move, this );
 		deactivateBinding.disable();
 		calcScrollBinding.disable();
 	}

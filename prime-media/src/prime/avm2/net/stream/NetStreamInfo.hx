@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -48,14 +48,14 @@ class NetStreamInfo
 	
 	public function new (flashObj:Dynamic)
 	{
-		Assert.isNotNull( flashObj.code, "NetStreamInfo obj should have a code" );
+		Assert.isNotNull( flashObj.code,  "NetStreamInfo obj should have a code"  );
 		Assert.isNotNull( flashObj.level, "NetStreamInfo obj should have a level" );
 		
 		level = switch (flashObj.level) {
 		 	case "status":	Level.status;
 			case "error":	Level.error;
 			case "warning":	Level.warning;
-			default:		throw "unkown level '"+flashObj.level+"'";
+			default:		#if debug throw "unkown level '"+flashObj.level+"'"; #end
 		}
 		
 		this.flashObj = flashObj;
@@ -104,15 +104,19 @@ class NetStreamInfo
 				case "NetStream.Unpublish.Success":				Code.unpublishSuccess;
 				case "NetStream.Play.Start":					Code.playStart;
 				case "NetStream.Play.Stop":						Code.playStop;
+				case "NetStream.Play.Complete":					Code.playComplete;
 				case "NetStream.Play.Reset":					Code.playReset;
 				case "NetStream.Play.PublishNotify":			Code.notifyPublished;
 				case "NetStream.Play.UnpublishNotify":			Code.notifyUnpublished;
 				case "NetStream.Play.Transition":				Code.playTransition;
+				case "NetStream.Play.TransitionComplete":		Code.playTransitionComplete;
 				case "NetStream.Pause.Notify":					Code.notifyPaused;
 				case "NetStream.Unpause.Notify":				Code.notifyResumed;
 				case "NetStream.Record.Start":					Code.recordStarted;
 				case "NetStream.Record.Stop":					Code.recordStopped;
-				case "NetStream.Seek.Notify":					Code.notifySeek;
+				case "NetStream.Seek.Notify":					Code.notifySeekEnd;
+				case "NetStream.Seek.Complete":					Code.notifySeekComplete;
+				case "NetStream.SeekStart.Notify":				Code.notifySeekStart;
 				case "NetConnection.Connect.Closed":			Code.netConnectionClosed;
 				case "NetConnection.Connect.Success":			Code.netConnectionSuccess;
 				case "NetStream.Connect.Closed":				Code.streamConnectionClosed;
@@ -120,7 +124,7 @@ class NetStreamInfo
 				case "SharedObject.Flush.Success":				Code.sharedObjectFlushed;
 				
 				default:
-					throw "Unkown code '"+flashObj.code+"'";
+#if debug			throw "Unkown code '"+flashObj.code+"'"; #end
 			}
 		}
 		return code;

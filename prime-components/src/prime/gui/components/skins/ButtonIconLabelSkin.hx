@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -68,7 +68,7 @@ class ButtonIconLabelSkin extends Skin<Button>
 	}
 	
 	
-	override public  function removeChildren ()
+	override public  function disposeChildren ()
 	{
 		if (iconGraphic != null) {
 			iconGraphic.dispose();
@@ -85,7 +85,7 @@ class ButtonIconLabelSkin extends Skin<Button>
 	override public function validate (changes:Int)
 	{
 #if debug
-		Assert.notNull(iconGraphic, owner+"; "+iconGraphic+"; "+labelField+"; "+owner.isDisposed());
+		Assert.isNotNull(iconGraphic, owner+"; "+iconGraphic+"; "+labelField+"; "+owner.isDisposed());
 #end	if (changes.has( Flags.ICON )) {
 			iconGraphic.data = owner.icon;
 	/*		if 		(owner.icon == null)		iconGraphic.detach();

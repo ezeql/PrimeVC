@@ -27,8 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.types;
-#if (neko && prime_css)
- import prime.tools.generator.ICodeGenerator;
+#if CSSParser
  import prime.tools.generator.ValueType;
 #end
  import prime.types.Factory;
@@ -42,7 +41,7 @@ enum Reference {
 }
 
 
-#if (neko && prime_css)
+#if CSSParser
 class ReferenceUtil
 {
 	public static inline function toCSS (ref:Reference) : String
@@ -54,14 +53,15 @@ class ReferenceUtil
 			case func (name, css):				css != null ? css : "unkown-function";
 		}
 	}
-	
-	public static inline function toCode (ref:Reference, code:ICodeGenerator) : ValueType
+
+	public static inline function toCode (ref:Reference, code:prime.tools.generator.ICodeGenerator) : ValueType
 	{
-		switch (ref) {
-			case className ( name, css ):			return tClass(name);
-			case objInstance ( factory ):			return code.getObject(factory); //code.construct( factory ); return code.varName(factory); //code.createClassConstructor( factory.classRef, factory.params );
-			case classInstance ( name, p, css ):	return code.createClassNameConstructor( name, p );
-			case func ( name, css ):				return tFunction(name);
+		return switch (ref) {
+			case className ( name, css ):			tClass(name);
+			case objInstance ( factory ):			code.getObject(factory); //code.construct( factory ); return code.varName(factory); //code.createClassConstructor( factory.classRef, factory.params );
+			case classInstance ( name, p, css ):	code.createClassNameConstructor( name, p );
+			case func ( name, css ):				tFunction(name);
+			default:								null;
 		}
 	}
 }

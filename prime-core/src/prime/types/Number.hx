@@ -40,7 +40,7 @@ typedef IntType =
  * @creation-date	Jun 17, 2010
  * @author			Ruben Weijers
  */
-extern class Number
+class Number // FIXME: should be extern, but can't be because of FLOAT_NOT_SET
 {
 	//floats can actually be a lot bigger (64 bit) but this will work for now
 	public static inline var FLOAT_MIN:Float		= -3.40282346638528e+38;
@@ -49,7 +49,7 @@ extern class Number
 	public static inline var INT_MIN:Int			= #if neko -1073741824 #else 0x80000000 #end;
 	public static inline var INT_MAX:Int			= #if neko 1073741823  #else 0x7fffffff #end;
 
-#if !neko
+#if (flash9 || js) //breaks CPP
 	public static inline var UINT_MIN:UInt			=  0;
 	public static inline var UINT_MAX:UInt			=  0xffffffff; //4294967295;		//<-- not working, since value is seen as Float
 #end
@@ -59,7 +59,7 @@ extern class Number
 	 * Math.NaN for integers..
 	 */
 	public static inline var INT_NOT_SET:Int		=  INT_MIN; //#if flash9 INT_MIN #else null #end;
-	public static inline var FLOAT_NOT_SET:Float	=  Math.NaN;
+	public static        var FLOAT_NOT_SET:Float	=  Math.NaN;
 	
 	/**
 	 * Integer-value to indicate a value is set but doesn't have a value. 

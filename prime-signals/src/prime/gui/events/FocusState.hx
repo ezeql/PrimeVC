@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -28,7 +28,7 @@
  */
 package prime.gui.events;
 
-
+#if !CSSParser
 
 /**
  * FocusEvent state information
@@ -54,7 +54,7 @@ class FocusState extends KeyModState
 	
 	
 	
-	@:keep public function new(f:Int, t:UserEventTarget #if flash9, related:UserEventTarget #end)
+	public function new(f:Int, t:UserEventTarget #if flash9, related:UserEventTarget #end)
 	{
 		super(f,t);
 #if flash9
@@ -62,3 +62,4 @@ class FocusState extends KeyModState
 #end
 	}
 }
+#end

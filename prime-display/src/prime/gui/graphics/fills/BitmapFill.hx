@@ -26,20 +26,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.fills;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics.fills;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.geom.IRectangle;
- import primevc.core.geom.Matrix2D;
- import primevc.gui.display.BitmapData;
- import primevc.gui.graphics.GraphicElement;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.graphics.IGraphicProperty;
- import primevc.gui.traits.IGraphicsOwner;
- import primevc.types.Asset;
- import primevc.types.Factory;
-  using primevc.utils.Bind;
+ import prime.core.geom.IRectangle;
+ import prime.core.geom.Matrix2D;
+ import prime.gui.display.BitmapData;
+ import prime.gui.graphics.GraphicElement;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.graphics.IGraphicProperty;
+ import prime.gui.traits.IGraphicsOwner;
+ import prime.types.Asset;
+ import prime.types.Factory;
+  using prime.utils.Bind;
 
 
 /**
@@ -230,7 +230,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{	
 		isFinished = false;
 #if flash9
@@ -240,7 +240,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toString ()					{ return "BitmapFill( " + asset + ", " + smooth + ", " + repeat + " )"; }
 	override public function toCSS (prefix:String = "")		{ return asset + " " + repeat; }
 	override public function toCode (code:ICodeGenerator)	{ code.construct( this, [ assetFactory, asset, matrix, repeat, smooth ] ); }

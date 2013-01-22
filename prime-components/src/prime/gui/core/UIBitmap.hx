@@ -26,40 +26,35 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
+package prime.gui.core;
  import prime.signal.Wire;
- import primevc.core.Bindable;
- 
- import primevc.gui.behaviours.layout.ValidateLayoutBehaviour;
- import primevc.gui.behaviours.BehaviourList;
- import primevc.gui.display.BitmapData;
- import primevc.gui.display.BitmapShape;
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.effects.UIElementEffects;
- import primevc.gui.layout.ILayoutContainer;
- import primevc.gui.layout.AdvancedLayoutClient;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.managers.ISystem;
- import primevc.gui.states.UIElementStates;
+ import prime.core.Bindable;
+ import prime.gui.behaviours.BehaviourList;
+ import prime.gui.display.BitmapData;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.layout.ILayoutContainer;
+ import prime.gui.layout.AdvancedLayoutClient;
+ import prime.gui.managers.ISystem;
+ import prime.gui.states.UIElementStates;
 #if flash9
- import primevc.core.collections.SimpleList;
- import primevc.gui.styling.UIElementStyle;
+ import prime.core.collections.SimpleList;
+ import prime.gui.styling.UIElementStyle;
 #end
- import primevc.gui.traits.IValidatable;
- import primevc.types.Number;
- import primevc.utils.Formulas;
-  using primevc.gui.utils.UIElementActions;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.traits.IValidatable;
+ import prime.types.Number;
+ import prime.utils.Formulas;
+  using prime.gui.utils.UIElementActions;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**
  * @author Ruben Weijers
  * @creation-date Jul 08, 2011
  */
-class UIBitmap extends BitmapShape, implements IUIElement
+class UIBitmap extends prime.gui.display.BitmapShape, implements IUIElement
 {
     public var prevValidatable  : IValidatable;
     public var nextValidatable  : IValidatable;
@@ -69,9 +64,9 @@ class UIBitmap extends BitmapShape, implements IUIElement
     public var behaviours       (default, null)                 : BehaviourList;
     public var id               (default, null)                 : Bindable < String >;
     public var state            (default, null)                 : UIElementStates;
-    public var effects          (default, default)              : UIElementEffects;
+    public var effects          (default, default)              : prime.gui.effects.UIElementEffects;
     
-    public var layout           (default, null)                 : LayoutClient;
+    public var layout           (default, null)                 : prime.gui.layout.LayoutClient;
     public var system           (getSystem, never)              : ISystem;
     
 #if flash9
@@ -101,7 +96,7 @@ class UIBitmap extends BitmapShape, implements IUIElement
 #end
         
         //add default behaviours
-        behaviours.add( new ValidateLayoutBehaviour(this) );
+        behaviours.add( new prime.gui.behaviours.layout.ValidateLayoutBehaviour(this) );
         
         createBehaviours();
         if (layout == null)
@@ -154,8 +149,8 @@ class UIBitmap extends BitmapShape, implements IUIElement
     }
 
 
-    public inline function isDisposed ()    { return state == null || state.is(state.disposed); }
-    public inline function isInitialized () { return state != null && state.is(state.initialized); }
+    public #if !noinline inline #end function isDisposed ()    { return state == null || state.is(state.disposed); }
+    public #if !noinline inline #end function isInitialized () { return state != null && state.is(state.initialized); }
     public function isResizable ()          { return true; }
     
     
@@ -176,17 +171,24 @@ class UIBitmap extends BitmapShape, implements IUIElement
 
     private function updateScale (changes:Int)
     {
-        if (changes.has(LayoutFlags.SIZE) && data != null)
+        // Adjust the scale of the Bitmap since it's not allowed to change the size of the bitmapdata.
+        if (changes.has(prime.gui.layout.LayoutFlags.SIZE))
         {
-            // Adjust the scale of the Bitmap since it's not allowed to change the size of 
-            // the bitmapdata.
             var l = advancedLayout();
-            scaleX = scaleY = Formulas.scale( l.measuredWidth, l.measuredHeight, l.width, l.height );
+            if (data == null) {
+                l.maintainAspectRatio = false;
+                l.measuredWidth = l.measuredHeight = Number.INT_NOT_SET;
+            } else {
+#if flash9      if (l.explicitWidth.isSet() || l.explicitHeight.isSet())
+                    scaleX = scaleY = Formulas.scale(data.width, data.height, l.explicitWidth, l.explicitHeight);
+#end            l.maintainAspectRatio = true;
+                l.measuredResize((data.width * scaleX).roundFloat(), (data.height * scaleY).roundFloat());
+            }
         }
     }
 
 
-    public inline function advancedLayout () : AdvancedLayoutClient
+    public #if !noinline inline #end function advancedLayout () : AdvancedLayoutClient
     {
         return layout.as(AdvancedLayoutClient);
     }
@@ -204,27 +206,32 @@ class UIBitmap extends BitmapShape, implements IUIElement
     public  inline function changeDepth         (pos:Int)                           : IUIElement    { changeLayoutDepth(pos);                   changeDisplayDepth(pos);        return this; }
     
 
-    public  inline function attachToDisplayList (t:IDisplayContainer, pos:Int = -1) : IUIElement
+    public  /*inline*/ function attachToDisplayList (t:IDisplayContainer, pos:Int = -1) : IUIElement
     {
-        if (container != t)
-        {
-            if (effects != null && effects.isPlayingHide())
+        //  if (container != t)
+    //  {
+            var wasDetaching = isDetaching();
+            if (wasDetaching) {
+                effects.hide.ended.unbind(this);
                 effects.hide.stop();
+            }
             
             attachDisplayTo(t, pos);
-
-            var hasEffect = visible && effects != null && effects.show != null;
+            var hasEffect = effects != null && effects.show != null;
             var isPlaying = hasEffect && effects.show.isPlaying();
             
-            if (!isPlaying)
+            if (!hasEffect && !visible)
+                visible = true;
+            
+            else if (hasEffect && !isPlaying)
             {
-                if (hasEffect) {
+                if (!wasDetaching)
                     visible = false;
-                    if (!isInitialized())   haxe.Timer.delay( show, 100 ); //.onceOn( displayEvents.enterFrame, this );
-                    else                    effects.playShow();
-                }
+                
+                if (!isInitialized())   haxe.Timer.delay( show, 100 ); //.onceOn( displayEvents.enterFrame, this );
+                else                    effects.playShow();
             }
-        }
+    //  }
         
         return this;
     }
@@ -252,6 +259,10 @@ class UIBitmap extends BitmapShape, implements IUIElement
 
         return this;
     }
+
+
+    public #if !noinline inline #end function isDetaching ()               { return effects != null && effects.isPlayingHide(); }
+    public #if !noinline inline #end function isAttached ()                { return window  != null; }
 
 
     
@@ -305,11 +316,11 @@ class UIBitmap extends BitmapShape, implements IUIElement
     
     private inline function getSystem () : ISystem      { return window.as(ISystem); }
 #if flash9
-    public inline function isOnStage () : Bool          { return stage != null; }           // <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+    public #if !noinline inline #end function isOnStage () : Bool          { return stage != null; }           // <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
 #else
-    public inline function isOnStage () : Bool          { return window != null; }
+    public #if !noinline inline #end function isOnStage () : Bool          { return window != null; }
 #end
-    public inline function isQueued () : Bool           { return nextValidatable != null || prevValidatable != null; }
+    public #if !noinline inline #end function isQueued () : Bool           { return nextValidatable != null || prevValidatable != null; }
     
 
     override private function setData (v:BitmapData) : BitmapData
@@ -319,15 +330,7 @@ class UIBitmap extends BitmapShape, implements IUIElement
         {
 #if flash9  bitmapData  = v;
 #else       data        = v; #end
-            var l       = advancedLayout();
-
-            if (v != null)
-            {
-                l.measuredWidth  = v.width;
-                l.measuredHeight = v.height;
-            }
-            else
-                l.measuredWidth = l.measuredHeight = Number.INT_NOT_SET;
+            updateScale(prime.gui.layout.LayoutFlags.SIZE);
         }
         return v;
     }
@@ -356,12 +359,12 @@ class UIBitmap extends BitmapShape, implements IUIElement
     // ACTIONS (actual methods performed by UIElementActions util)
     //
 
-    public inline function show ()                      { this.doShow(); }
-    public inline function hide ()                      { this.doHide(); }
-    public inline function move (x:Int, y:Int)          { this.doMove(x, y); }
-    public inline function resize (w:Int, h:Int)        { this.doResize(w, h); }
-    public inline function rotate (v:Float)             { this.doRotate(v); }
-    public inline function scale (sx:Float, sy:Float)   { this.doScale(sx, sy); }
+    public #if !noinline inline #end function show ()                      { this.doShow(); }
+    public #if !noinline inline #end function hide ()                      { this.doHide(); }
+    public #if !noinline inline #end function move (x:Int, y:Int)          { this.doMove(x, y); }
+    public #if !noinline inline #end function resize (w:Int, h:Int)        { this.doResize(w, h); }
+    public #if !noinline inline #end function rotate (v:Float)             { this.doRotate(v); }
+    public #if !noinline inline #end function scale (sx:Float, sy:Float)   { this.doScale(sx, sy); }
     
     
     
@@ -369,7 +372,7 @@ class UIBitmap extends BitmapShape, implements IUIElement
     // ABSTRACT METHODS
     //
     
-    private function createBehaviours ()    : Void      {} //   { Assert.abstract(); }
+    private function createBehaviours ()    : Void      {} //   { Assert.abstractMethod(); }
     
     
 #if debug

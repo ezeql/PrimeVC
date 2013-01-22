@@ -1,8 +1,12 @@
--lib feffects
+#--js-modern
+#-debug
+#-lib nodejs
+-D nodejs
+-cp libs/nodejs
+
+-D CSSParser
 #-lib listtools
-#-cp ../libs
--cp libs/haxe/neko
-#-cp libs/haxe
+-cp libs/haxe
 -cp libs/apparat
 -cp src
 #-cp ../generated-src

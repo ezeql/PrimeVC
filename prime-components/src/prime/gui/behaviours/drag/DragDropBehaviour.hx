@@ -114,7 +114,8 @@ class DragDropBehaviour extends DragBehaviourBase
 #end
 		var item		= dragInfo.dragRenderer;
 		item.visible 	= false;
-		target.window.children.add( cast item );
+		target.window.children.add(item);
+	//	target.window.children.add( cast item );
 		
 		//start dragging and fire events
 		super.startDrag(mouseObj);

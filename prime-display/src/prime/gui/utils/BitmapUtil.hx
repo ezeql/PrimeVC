@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -42,7 +42,7 @@ package primevc.gui.utils;
 class BitmapUtil
 {
 #if flash9
-	public static inline function toBytes (bmp:BitmapData)
+	public static #if !noinline inline #end function toBytes (bmp:BitmapData)
 		return bmp.getPixels(bmp.rect)
 #end
 }

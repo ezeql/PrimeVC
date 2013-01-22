@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -81,9 +81,9 @@ class LinearProgressLabelSkin extends LinearProgressSkin
 	}
 
 
-	override public  function removeChildren ()
+	override public  function disposeChildren ()
 	{
-		super.removeChildren();
+		super.disposeChildren();
 		if (labelField != null)
 		{
 			labelField.dispose();

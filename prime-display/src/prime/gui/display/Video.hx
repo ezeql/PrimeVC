@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -35,7 +35,7 @@ package prime.gui.display;
  */
 typedef Video = 
 	#if		flash9	prime.avm2.display.Video;
-	#elseif	flash8	prime.avm1.display.Video;
+	#elseif	flash 	prime.avm1.display.Video;
+	#elseif nodejs 	#error;
 	#elseif	js		prime.js  .display.Video;
-	#else			Error	#end
-
+	#else			#error	#end

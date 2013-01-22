@@ -60,8 +60,8 @@ class TextStyleCollection extends StyleCollectionBase < TextStyle >
 
 
 	public function new (elementStyle:IUIElementStyle)			{ super( elementStyle, StyleFlags.FONT ); }
-	override public function forwardIterator ()					{ return cast new TextStyleCollectionForwardIterator( elementStyle, propertyTypeFlag); }
-	override public function reversedIterator ()				{ return cast new TextStyleCollectionReversedIterator( elementStyle, propertyTypeFlag); }
+	override public function forwardIterator ()					{ return new TextStyleCollectionForwardIterator( elementStyle, propertyTypeFlag); }
+	override public function reversedIterator ()				{ return new TextStyleCollectionReversedIterator( elementStyle, propertyTypeFlag); }
 
 #if debug
 	override public function readProperties (props:Int = -1)	{ return Flags.readProperties( (props == -1) ? filledProperties : props ); }

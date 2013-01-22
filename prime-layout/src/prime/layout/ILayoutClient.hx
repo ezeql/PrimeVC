@@ -282,5 +282,6 @@ interface ILayoutClient
 	
 #if debug
 	public var name:String;
+	public function toString () : String;
 #end
 }

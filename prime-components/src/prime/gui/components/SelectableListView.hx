@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -100,7 +100,7 @@ class SelectableListView<ListDataType> extends ListView<ListDataType>
         invalidateSelection.on( selected.change, this );
 
         if (selected.value.notNull() && focusIndex == -1)
-            focusRendererAt(data.indexOf(selected.value));
+            focusRendererOf(selected.value);
     }
     
     
@@ -175,7 +175,7 @@ class SelectableListView<ListDataType> extends ListView<ListDataType>
         }
         
         if (changes.has(CURRENT_FOCUS) && focusIndex > -1)
-            focusRendererAt(focusIndex);
+            focusRendererOf(data.getItemAt(focusIndex));
     }
 
 
@@ -185,14 +185,14 @@ class SelectableListView<ListDataType> extends ListView<ListDataType>
     //
     
 
-    public inline function select (item:ListDataType)
+    public #if !noinline inline #end function select (item:ListDataType)
     {
         selected.value = item;
         itemSelected.send();
     }
 
 
-    public inline function deselectRenderers ()
+    public #if !noinline inline #end function deselectRenderers ()
     {
         selected.set(null);
         previousSelected = null;
@@ -216,33 +216,28 @@ class SelectableListView<ListDataType> extends ListView<ListDataType>
             if (isOnStage() && child.is(IInteractiveObject))
                 window.focus = child.as(IInteractiveObject);
             
-#if flash9  Assert.equal(child.parent, this, child+" should be a direct child of "+this); #end
+#if flash9  Assert.isEqual(child.parent, this, child+" should be a direct child of "+this); #end
             currentFocus     = child;
             focusIndex       = depthToIndex( children.indexOf(child) );
         }
     }
-    
-    
-    public function focusRendererAt (index:Int)
-    {
-        if (focusIndex != index || currentFocus.isNull())
-        {
-            Assert.that(index > -1);
-            focusIndex   = index;
-            currentFocus = getRendererAt( indexToDepth(index) );
 
-            if (currentFocus.notNull())
-            {
-                if (isOnStage() && currentFocus.is(IInteractiveObject))
-                    window.focus = currentFocus.as(IInteractiveObject);
-                
-                layoutContainer.scrollTo(currentFocus.layout);
-            }
-            else
-            {
-                layoutContainer.scrollToDepth(index);
-                invalidate( CURRENT_FOCUS );
-            }
+
+    public function focusRendererOf (item:ListDataType)
+    {
+        var r = getRendererFor(item);
+        if (r.isNull()) {
+            layoutContainer.scrollToDepth(data.indexOf(item));
+            invalidate( CURRENT_FOCUS );
+        }
+        else if (r != currentFocus)
+        {
+            currentFocus = r;
+            focusIndex = data.indexOf(item);
+            if (isOnStage() && r.is(IInteractiveObject))
+                window.focus = r.as(IInteractiveObject);
+            
+            layoutContainer.scrollTo(r.layout);
         }
     }
     

@@ -28,16 +28,11 @@
  */
 package primevc.gui.effects;
  import primevc.core.geom.space.MoveDirection;
- import primevc.gui.display.IDisplayObject;	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.WipeEffectInstance;
-#end
-#if neko
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
-#end
  import primevc.types.Number;
   using primevc.utils.NumberUtil;
+#if CSSParser
+  using primevc.types.Reference;
+#end
 
 
 /**
@@ -47,7 +42,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class WipeEffect extends Effect < IDisplayObject, WipeEffect >
+class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObject,WipeEffect> #else Effect<Dynamic,Dynamic> #end
 {
 	/**
 	 * Move direction of the wipe effect.
@@ -67,9 +62,9 @@ class WipeEffect extends Effect < IDisplayObject, WipeEffect >
 	public var endValue				: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, direction:MoveDirection = null, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, direction:MoveDirection = null, startValue:Float = Number.INT_NOT_SET, endValue:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		this.direction	= direction == null					? LeftToRight			: direction;
 		this.startValue	= startValue == Number.INT_NOT_SET	? Number.FLOAT_NOT_SET	: startValue;
 		this.endValue	= endValue == Number.INT_NOT_SET	? Number.FLOAT_NOT_SET	: endValue;
@@ -77,13 +72,12 @@ class WipeEffect extends Effect < IDisplayObject, WipeEffect >
 	
 	
 	override public function setValues (v:EffectProperties) {}
-	override public function clone ()						{ return cast new WipeEffect( duration, delay, easing, direction, startValue, endValue ); }
-#if (flash8 || flash9 || js)
-	override public function createEffectInstance (target)	{ return cast new WipeEffectInstance(target, this); }
-#end
-	
-	
-#if neko
+	override public function clone ()						{ return new WipeEffect( duration, delay, easing, isReverted, direction, startValue, endValue ); }
+#if !CSSParser
+	override public function createEffectInstance (target)	{ return new primevc.gui.effects.effectInstances.WipeEffectInstance(target, this); }
+
+#else
+
 	override public function toCSS (prefix:String = "") : String
 	{
 		var props = [];
@@ -94,6 +88,7 @@ class WipeEffect extends Effect < IDisplayObject, WipeEffect >
 		if (direction != null)		props.push( directionToCSS() );
 		if (startValue.isSet())		props.push( startValue + "px" );
 		if (endValue.isSet())		props.push( endValue + "px" );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "wipe " + props.join(" ");
 	}
@@ -111,10 +106,10 @@ class WipeEffect extends Effect < IDisplayObject, WipeEffect >
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator) : Void
+	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, direction, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, direction, startValue, endValue ] );
 	}
 #end
 }

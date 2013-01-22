@@ -27,13 +27,13 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
+
 #if flash9
  import primevc.core.collections.FastDoubleCell;
  import primevc.core.collections.ListChange;
  import primevc.core.collections.PriorityList;
- import prime.signal.Signal0;
- import prime.signal.Wire;
- import primevc.core.traits.IInvalidatable;
+ import primevc.core.dispatcher.Signal0;
+ import primevc.core.dispatcher.Wire;
  import primevc.gui.traits.IDisplayable;
  import primevc.gui.traits.IStylable;
  import primevc.utils.FastArray;
@@ -178,7 +178,7 @@ class UIElementStyle implements IUIElementStyle
 		removedBinding	= disableStyleListeners	.on( owner.displayEvents.removedFromStage, this );
 		
 		if (owner.window != null) {
-			updateStyles();
+			enableStyleListeners();
 			addedBinding.disable();
 		} else {
 			removedBinding.disable();
@@ -300,9 +300,9 @@ class UIElementStyle implements IUIElementStyle
 	 */
 	private function enableStyleListeners ()
 	{
-		Assert.notNull( owner.container, "container of "+owner+" is null" );
+		Assert.isNotNull( owner.container, "container of "+owner+" is null" );
 		Assert.that( owner.container.is( IStylable ) );
-		Assert.notNull( owner.container.as( IStylable ).style );
+	//	Assert.isNotNull( owner.container.as( IStylable ).style );
 		
 		if (removedBinding != null)		removedBinding.enable();
 		if (addedBinding != null)		addedBinding.disable();
@@ -310,7 +310,7 @@ class UIElementStyle implements IUIElementStyle
 		styleNamesChangeBinding	.enable();
 		idChangeBinding			.enable();
 		
-		var parent = owner.container != null ? owner.container.as( IStylable ) : null;
+		var parent = owner.container != null && owner.container != owner ? owner.container.as( IStylable ) : null;
 		//remove styles if the new parent is not the same as the old parent
 		if (parent != null && parent.style != parentStyle)
 		{
@@ -359,7 +359,7 @@ class UIElementStyle implements IUIElementStyle
 			parentStyle = null;
 		}
 		
-		Assert.equal( styles.length, 0, styles.string() );
+		Assert.isEqual( styles.length, 0, styles.string() );
 		
 		filledProperties = 0;
 		broadcastChanges( changed );
@@ -424,7 +424,7 @@ class UIElementStyle implements IUIElementStyle
 		if (changedProperties.has( Flags.EFFECTS ))			effects		.apply();
 		if (changedProperties.has( Flags.BOX_FILTERS ))		boxFilters	.apply();
 		
-		Assert.notNull(childrenChanged);
+		Assert.isNotNull(childrenChanged);
 		if (changedProperties.has( Flags.CHILDREN ))
 			childrenChanged.send();
 		
@@ -474,7 +474,7 @@ class UIElementStyle implements IUIElementStyle
 	 */
 	public function removeStyleCell (styleCell:FastDoubleCell<StyleBlock>, isStyleStillInList:Bool = true) : Int
 	{
-		Assert.notNull( styleCell );
+		Assert.isNotNull( styleCell );
 		var style = styleCell.data;
 		
 		//
@@ -628,7 +628,7 @@ class UIElementStyle implements IUIElementStyle
 			var styleCell:FastDoubleCell<StyleBlock> = styles.getCellWithPriority( priority );
 			while (null != styleCell && newStyles.length > 0)
 			{
-				var style = styleCell.data;
+				var style = styleCell.data; //.as(StyleBlock);	//weird casting bug.. only appears without DCE
 				var next  = styleCell.next;
 				if (style.getPriority() != priority)
 					break;
@@ -691,7 +691,7 @@ class UIElementStyle implements IUIElementStyle
 	 */ 
 	private function getUsablePropertiesOf ( styleCell:FastDoubleCell < StyleBlock >, properties:Int = -1 ) : Int
 	{
-		Assert.notNull( styleCell );
+		Assert.isNotNull( styleCell );
 		if (properties == -1)
 			properties = styleCell.data.allFilledProperties;
 		
@@ -701,7 +701,7 @@ class UIElementStyle implements IUIElementStyle
 		//loop through all cell's with higher priority
 		while (null != (styleCell = styleCell.prev) && properties > 0)
 		{
-			Assert.notNull( styleCell.data, "found cell without data in "+target );
+			Assert.isNotNull( styleCell.data, "found cell without data in "+target );
 			var curData		= styleCell.data;
 			var curProps	= curData.allFilledProperties;
 			
@@ -742,8 +742,8 @@ class UIElementStyle implements IUIElementStyle
 	 */
 	private inline function hasUniqueProperies (uniqueStyle:StyleSubBlock, higherStyle:StyleSubBlock) : Bool
 	{
-		Assert.notNull(uniqueStyle);
-		Assert.notNull(higherStyle);
+		Assert.isNotNull(uniqueStyle);
+		Assert.isNotNull(higherStyle);
 		return uniqueStyle.allFilledProperties.unset( higherStyle.allFilledProperties ) > 0;
 	}
 	
@@ -781,11 +781,11 @@ class UIElementStyle implements IUIElementStyle
 	// IINVALIDATELIST METHODS
 	//
 	
-	public function invalidateCall (changes:Int, sender:IInvalidatable)
+	public function invalidateCall (changes:Int, sender:primevc.core.traits.IInvalidatable)
 	{
-		if (sender.is(UIElementStyle))
+		if (sender.is(StyleBlock))
 		{
-			var senderCell = styles.getCellForItem( cast sender );
+			var senderCell = styles.getCellForItem( sender.as(StyleBlock) );
 			if (senderCell != null)
 			{
 				//sender is a styleblock of this style 

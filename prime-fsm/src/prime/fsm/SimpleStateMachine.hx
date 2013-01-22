@@ -58,9 +58,9 @@ class SimpleStateMachine<StateType> implements IDisposable
 	
 	public function new(defaultState:StateType, currentState:StateType = null)
 	{
-		this.change			= new Signal2();
-		this.current		= currentState;
-		this.defaultState	= defaultState;
+		this.change					= new Signal2();
+		(untyped this).current		= currentState == null ? defaultState: currentState;
+		(untyped this).defaultState	= defaultState;
 	}
 	
 	
@@ -83,7 +83,7 @@ class SimpleStateMachine<StateType> implements IDisposable
 	}
 	
 	
-	private inline function setCurrent (v:StateType)
+	private /*inline*/ function setCurrent (v:StateType)
 	{
 		if (current != v) {
 			var old	= current;
@@ -94,8 +94,19 @@ class SimpleStateMachine<StateType> implements IDisposable
 	}
 	
 	
-	public inline function is (state:StateType)			return current == state
-	public inline function changeTo (toState:StateType) return callback(this.setCurrent, toState)
+	public #if !noinline inline #end function is (state : StateType) : Bool
+	{
+		return current == state;
+	}
+
+	
+	public function changeTo (toState:StateType) : Void -> Void
+	{
+		var self = this;
+		return function () { self.setCurrent( toState ); };
+	}
+	
+	
 #if debug
 	public inline function toString ()					return current
 #end
@@ -112,6 +123,10 @@ class StateMachineUtil
 {
 	public static function onceOnEntering<StateType>( fn:Void->Void, fsm:SimpleStateMachine<StateType>, searchedState:StateType, owner:Dynamic ):Wire<Dynamic>
 	{
+		if (fsm.current == searchedState) {
+			fn();
+			return null;
+		}
 		var w = fsm.change.bind( owner, null );
 		var f = function (newState:StateType, oldState:StateType) {
 			if (newState == searchedState) {
@@ -144,6 +159,8 @@ class StateMachineUtil
 			if (newState == searchedState)
 				fn();
 		}
+		if (fsm.current == searchedState)
+			fn();
 		return fsm.change.bind( owner, f );
 	}
 	

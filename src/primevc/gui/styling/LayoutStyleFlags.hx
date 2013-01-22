@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -46,6 +46,7 @@ package primevc.gui.styling;
 	public static inline var PERCENT_HEIGHT_CONSTRAINTS	= PERCENT_MIN_HEIGHT | PERCENT_MAX_HEIGHT;
 
 	public static inline var SIZE						= WIDTH | HEIGHT;
+	public static inline var PERCENT_SIZE				= PERCENT_WIDTH | PERCENT_HEIGHT;
 
 	public static inline var WIDTH					= 1 << 0;
 	public static inline var HEIGHT					= 1 << 1;
@@ -88,7 +89,7 @@ package primevc.gui.styling;
 
 
 #if debug
-	public static function readProperties (flags:Int) : String
+	public static function read (flags:Int) : String
 	{
 		var output	= [];
 

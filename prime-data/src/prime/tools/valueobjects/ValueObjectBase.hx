@@ -85,13 +85,14 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	}
 	
 	
-	public inline function isEmpty() : Bool				{ return !(_propertiesSet & (0x7FFFFFFF ^ this._uniquePropertyFlag)).not0(); }
-	public inline function isEditable() : Bool			{ return _flags.has(Flags.IN_EDITMODE); }
-	public inline function isDisposed() : Bool			{ return change == null; }
-	public inline function changed () : Bool			{ return _changedFlags.not0(); }
+	public #if !noinline inline #end function isEmpty   () : Bool { return !(_propertiesSet & (0x7FFFFFFF ^ this._uniquePropertyFlag)).not0(); }
+	public #if !noinline inline #end function isEditable() : Bool { return _flags.has(Flags.IN_EDITMODE); }
+	public #if !noinline inline #end function isDisposed() : Bool { return change == null; }
+	public #if !noinline inline #end function isChanged () : Bool { return _changedFlags.not0(); }
+
 	public function has (propertyID : Int) : Bool		{ return (_propertiesSet & (1 << ((propertyID & 0xFF) + _fieldOffset(propertyID >>> 8)))).not0(); }
-	public function getPropertyById (id:Int) : Dynamic	{ Assert.abstract(); return null; }
-	public function setPropertyById (id:Int, v:Dynamic)	{ Assert.abstract(); }
+	public function getPropertyById (id:Int) : Dynamic	{ Assert.abstractMethod(); return null; }
+	public function setPropertyById (id:Int, v:Dynamic)	{ Assert.abstractMethod(); }
 	
 	private inline function setPropertyFlag(propertyID : Int) : Void {
 		_propertiesSet = _propertiesSet.set(1 << ((propertyID & 0xFF) + _fieldOffset(propertyID >>> 8)));
@@ -104,7 +105,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	{
 		if(!isEditable()) return;
 		
-		if (changed())
+		if (isChanged())
 		{
 			var set = ObjectChangeSet.make(this, _changedFlags);
 			addChanges(set);
@@ -148,7 +149,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	
 	private function addChanges(changeSet:ObjectChangeSet) {} // Creates and adds all PropertyChangeVO and ListChangeVO
 	private function commitBindables() {}
-	private function _fieldOffset(typeID:Int): Int { Assert.abstract(); return -1; }
+	private function _fieldOffset(typeID:Int): Int { Assert.abstractMethod(); return -1; }
 	
 	
 	public function beginEdit()
@@ -167,7 +168,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 
 
 	//FIXME: Define different ValueObjectBase for the viewer (without ObjectChangeSet's)
-	public static inline function addChangeListener (vo:IValueObject, owner:Dynamic, handler:ObjectChangeSet->Void)
+	public static #if !noinline inline #end function addChangeListener (vo:IValueObject, owner:Dynamic, handler:ObjectChangeSet->Void)
 	{
 #if debug
 		Assert.isNotNull(vo);
@@ -179,7 +180,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 
 
 	//FIXME: Define different ValueObjectBase for the viewer
-	public static inline function removeChangeListener (vo:IValueObject, owner:Dynamic)
+	public static #if !noinline inline #end function removeChangeListener (vo:IValueObject, owner:Dynamic)
 	{
 #if debug
 		Assert.isNotNull(vo);

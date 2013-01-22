@@ -50,12 +50,11 @@ private typedef Flags = GraphicFlags;
  */
 class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 {
-	public function new (elementStyle:IUIElementStyle)			{ super( elementStyle, StyleFlags.GRAPHICS ); }
-	override public function forwardIterator ()					{ return cast new GraphicsCollectionForwardIterator( elementStyle, propertyTypeFlag); }
-	override public function reversedIterator ()				{ return cast new GraphicsCollectionReversedIterator( elementStyle, propertyTypeFlag); }
-
+	public function new (elementStyle:IUIElementStyle)			super( elementStyle, StyleFlags.GRAPHICS )
+	override public function forwardIterator ()					return new GraphicsCollectionForwardIterator(elementStyle, propertyTypeFlag)
+	override public function reversedIterator ()				return new GraphicsCollectionReversedIterator(elementStyle, propertyTypeFlag)
 #if debug
-	override public function readProperties (props:Int = -1)	{ return Flags.readProperties( (props == -1) ? filledProperties : props ); }
+	override public function readProperties (props:Int = -1)	return Flags.readProperties( (props == -1) ? filledProperties : props )
 #end
 	
 	

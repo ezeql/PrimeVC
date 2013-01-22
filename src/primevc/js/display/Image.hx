@@ -71,7 +71,7 @@ class Image extends DOMElem {
 		elem.src = "";
 	}
 	
-	@:keep private function onLoad(event:Event) {
+	private function onLoad(event:Event) {
 		loaded.send(this);
 	}
 	

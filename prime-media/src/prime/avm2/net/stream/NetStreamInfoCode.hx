@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -105,6 +105,11 @@ enum NetStreamInfoCode
 	 */
 	playStop;
 	/**
+	 * "NetStream.Play.Complete	"	"status"
+	 * Video has been played completly.
+	 */
+	playComplete;
+	/**
 	 * "NetStream.Play.Failed"	"error"
 	 * An error has occurred in playback for a reason other than those listed 
 	 * elsewhere in this table, such as the subscriber not having read access.
@@ -170,6 +175,11 @@ enum NetStreamInfoCode
 	 * instead. For Flash Player 10 and later.
 	 */
 	playTransition;
+	/**
+	 * "NetStream.Play.TransitionComplete"	"status"
+	 * The stream has changed from one bitrate to another in a multi-bitrate scenario; callback on NetStream.client
+	 */
+	playTransitionComplete;
 	
 	
 	
@@ -228,7 +238,13 @@ enum NetStreamInfoCode
 	 * "NetStream.Seek.Notify"	"status"
 	 * The seek operation is complete.
 	 */
-	notifySeek;
+	notifySeekEnd;
+	notifySeekComplete;
+	/**
+	 * "NetStream.SeekStart.Notify"	"status"
+	 * Seek has started.
+	 */
+	notifySeekStart;
 	
 	/**
 	 * "NetConnection.Call.BadVersion"	"error"

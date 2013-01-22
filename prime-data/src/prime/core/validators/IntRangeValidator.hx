@@ -57,14 +57,14 @@ class IntRangeValidator implements IValueValidator <Int>
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		change.dispose();
 		change = null;
 	}
 	
 	
-	public inline function getDiff ()
+	public #if !noinline inline #end function getDiff ()
 	{
 		return min.isSet() && max.isSet() ? max - min : 0;
 	}

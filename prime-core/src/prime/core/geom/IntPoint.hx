@@ -28,7 +28,7 @@
  */
 package prime.core.geom;
  import prime.core.traits.IClonable;
-#if (neko && prime_css)
+#if CSSParser
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.ICodeGenerator;
  import prime.tools.generator.ICSSFormattable;
@@ -44,17 +44,16 @@ package prime.core.geom;
  * @author			Ruben Weijers
  */
 class IntPoint	implements IClonable <IntPoint>	
-#if (neko && prime_css)
-			,	implements ICSSFormattable
+#if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable		#end
 {
-	public static inline function fromFloat (x:Float, y:Float)	: IntPoint	{ return new IntPoint( x.roundFloat(), y.roundFloat() ); }
-	public static inline function fromPoint (p:Point)			: IntPoint	{ return new IntPoint( p.x.roundFloat(), p.y.roundFloat() ); }
+	public static #if !noinline inline #end function fromFloat (x:Float, y:Float)	: IntPoint	{ return new IntPoint( x.roundFloat(), y.roundFloat() ); }
+	public static #if !noinline inline #end function fromPoint (p:Point)			: IntPoint	{ return new IntPoint( p.x.roundFloat(), p.y.roundFloat() ); }
 	
 	public var x		(getX, setX)	: Int;
 	public var y		(getY, setY)	: Int;
 	
-#if (neko && prime_css)
+#if CSSParser
 	public var _oid		(default, null) : Int;
 #end
 	
@@ -63,7 +62,7 @@ class IntPoint	implements IClonable <IntPoint>
 	
 	public function new(x = 0, y = 0)
 	{
-#if (neko && prime_css)
+#if CSSParser
 		this._oid	= ID.getNext();
 #end
 		this.x		= x;
@@ -82,7 +81,7 @@ class IntPoint	implements IClonable <IntPoint>
 	private function setY(v)	{ return y = v; }
 	
 	
-	public inline function subtract (v:IntPoint) {
+	public #if !noinline inline #end function subtract (v:IntPoint) {
 		return new IntPoint(
 			x - v.x,
 			y - v.y
@@ -90,7 +89,7 @@ class IntPoint	implements IClonable <IntPoint>
 	}
 	
 	
-	public inline function add (v:IntPoint) {
+	public #if !noinline inline #end function add (v:IntPoint) {
 		return new IntPoint(
 			x + v.x,
 			y + v.y
@@ -98,22 +97,22 @@ class IntPoint	implements IClonable <IntPoint>
 	}
 	
 	
-	public inline function isEqualTo (v:IntPoint) : Bool {
+	public #if !noinline inline #end function isEqualTo (v:IntPoint) : Bool {
 		return x == v.x && y == v.y;
 	}
 	
 	
-	public inline function setTo (v:IntPoint) : Void {
+	public #if !noinline inline #end function setTo (v:IntPoint) : Void {
 		x = v.x;
 		y = v.y;
 	}
 	
 	
-#if (neko && prime_css)
-	public inline function toString ()				{ return "IntPoint( "+x+", "+y+" )"; }
-	public function toCSS (prefix:String = "")		{ return x + "px, " + y + "px"; }
-	public function cleanUp () : Void				{}
-	public function toCode (code:ICodeGenerator)	{ code.construct( this, [ x, y ] ); }
-	public function isEmpty ()						{ return x.notSet() && y.notSet(); }
+#if CSSParser
+	public #if !noinline inline #end function toString () { return "IntPoint( "+x+", "+y+" )"; }
+	public function toCSS (prefix:String = "")            { return x + "px, " + y + "px"; }
+	public function cleanUp () : Void                     {}
+	public function toCode (code:ICodeGenerator)          { code.construct( this, [ x, y ] ); }
+	public function isEmpty ()                            { return x.notSet() && y.notSet(); }
 #end
 }

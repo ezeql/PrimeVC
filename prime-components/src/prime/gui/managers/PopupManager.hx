@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -43,7 +43,7 @@ package primevc.gui.managers;
 class PopupManager implements IPopupManager 
 {
 	private var window	: UIWindow;
-	private var modal	: UIComponent;	//can't be a UIGraphic since it needs to block mouse clicks
+	public  var modal	(default, null) : UIComponent;	//can't be a UIGraphic since it needs to block mouse clicks
 	
 	/**
 	 * List of all popups who also want a modal. If a new popup is opened above
@@ -73,7 +73,7 @@ class PopupManager implements IPopupManager
 	 * Method will open the given popup on the forground of the window
 	 * @return 	index of the popup in the displaylist
 	 */
-	public inline function add (popup:IUIComponent, modal:Bool = false) : Int
+	public #if !noinline inline #end function add (popup:IUIComponent, modal:Bool = false) : Int
 	{
 		var isFirst = window.popupLayout.children.length == 0;
 		Assert.isNull( popup.window );
@@ -97,10 +97,10 @@ class PopupManager implements IPopupManager
 	}
 	
 	
-	public inline function remove (popup:IUIComponent)
+	public #if !noinline inline #end function remove (popup:IUIComponent)
 	{
-		Assert.notNull( popup.window );
-		Assert.notNull( popup.layout.parent );
+		Assert.isNotNull( popup.window );
+		Assert.isNotNull( popup.layout.parent );
 		popup.detach();
 	//	popup.removeFocus();
 		removeModalFor( popup );
@@ -146,6 +146,6 @@ class PopupManager implements IPopupManager
 	
 	private inline function moveModalBgBehind (popup:IUIComponent)
 	{
-		window.children.move( modal, window.children.indexOf(popup) - 1 );
+		window.children.move( modal, window.children.indexOf(popup) );
 	}
 }

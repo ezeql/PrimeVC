@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.behaviours.scroll;
-#if !neko
+#if !CSSParser
  import primevc.gui.display.IDisplayObject;
  import primevc.gui.events.KeyModState;		// <= needed for typedef TargetType
  import primevc.gui.events.MouseEvents;
@@ -46,12 +46,12 @@ package primevc.gui.behaviours.scroll;
  */
 class ScrollHelper
 {
-#if !neko
+#if !CSSParser
 	public static function getLocalMouse (target:IScrollable, mouseObj:MouseState)
 	{
-		Assert.notNull( target );
-		Assert.notNull( target.container, "target's container can't be null for "+target);
-		Assert.notNull( mouseObj, "MouseObj for "+target+" can't be null" );
+		Assert.isNotNull( target );
+		Assert.isNotNull( target.container, "target's container can't be null for "+target);
+		Assert.isNotNull( mouseObj, "MouseObj for "+target+" can't be null" );
 		
 		var mousePos		 = target.container.globalToLocal(mouseObj.stage);
 		var scrollLayout	 = target.scrollableLayout;

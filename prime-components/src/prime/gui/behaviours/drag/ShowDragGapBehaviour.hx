@@ -92,8 +92,8 @@ class ShowDragGapBehaviour extends BehaviourBase <IDropTarget>
 	
 	private function removeTmpTileFromLayout (source:DragInfo)
 	{
-		Assert.notNull( source.layout );
-		Assert.notNull( mouseMoveBinding );
+		Assert.isNotNull( source.layout );
+		Assert.isNotNull( mouseMoveBinding );
 		
 		mouseMoveBinding.disable();
 		source.layout.detach();

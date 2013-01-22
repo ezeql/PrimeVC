@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -49,10 +49,10 @@ package primevc.gui.components;
  */
 class VideoPlayer extends UIDataContainer <Bindable<URI>>
 {
-	private var ctrlBar		: VideoControlBar;
+	public var ctrlBar		(default, null) : VideoControlBar;
 	private var video		: UIVideo;
 	private var bigPlayBtn	: Button;
-	public var stream		(default, null)	: VideoStream;
+	public var stream		(default, default)	: VideoStream;
 	
 	
 	override private function createChildren ()
@@ -62,7 +62,7 @@ class VideoPlayer extends UIDataContainer <Bindable<URI>>
 			.attach( bigPlayBtn	= new Button("bigPlayBtn") );
 		
 	//	bigPlayBtn.layout.maintainAspectRatio = true;
-	//	bigPlayBtn.disable();
+		bigPlayBtn.disable();
 		
 		stream = ctrlBar.stream = video.stream;
 		
@@ -71,27 +71,18 @@ class VideoPlayer extends UIDataContainer <Bindable<URI>>
 	}
 	
 	
-	override public  function removeChildren ()
+	override public  function disposeChildren ()
 	{
 		userEvents.mouse.click.unbind(this);
 		stream.state.change.unbind(this);
 		
-		ctrlBar.detach();
-		video.detach();
-		super.removeChildren();
-	}
-	
-	
-	override public function dispose ()
-	{
-		super.dispose();
-		ctrlBar	.dispose();
-		video	.dispose();
-		stream	.dispose();
-		
+		ctrlBar.dispose();
+		video.dispose();
+		stream.dispose();
 		ctrlBar = null;
 		video	= null;
 		stream	= null;
+		super.disposeChildren();
 	}
 	
 	
@@ -112,10 +103,10 @@ class VideoPlayer extends UIDataContainer <Bindable<URI>>
 	{
 		var b		= bigPlayBtn;
 		var oldV	= b.window != null;
-		b.visible	= show;
+	//	b.visible	= show;
 		
-		if		(!oldV && show)	children.add( b );
-		else if	(oldV && !show)	children.remove( b );
+		if		(!oldV && show)	b.attachTo(this);
+		else if	(oldV && !show)	b.detach();
 	}
 }
 
@@ -130,40 +121,20 @@ class VideoPlayer extends UIDataContainer <Bindable<URI>>
  */
 class VideoControlBar extends UIContainer
 {
-	public static inline var STREAM = 1 << 10;
-	
-	
-	private var playBtn			: Button;
-	private var stopBtn			: Button;
-	private var progressBar		: Slider;
-	private var timeDisplay		: Label;
-	private var muteBtn			: Button;
-	private var volumeSlider	: Slider;
-	private var fullScreenBtn	: Button;
+	public var playBtn			(default, null)	: Button;
+	public var stopBtn			(default, null)	: Button;
+	public var progressBar		(default, null)	: Slider;
+	public var timeDisplay		(default, null)	: Label;
+	public var muteBtn			(default, null)	: Button;
+	public var volumeSlider		(default, null)	: Slider;
+	public var fullScreenBtn	(default, null)	: Button;
 	
 	public var stream			(default, setStream)	: VideoStream;
-	
 	
 	
 	override public function dispose ()
 	{
 		stream = null;
-		if (isInitialized())
-		{
-			layout.changed.unbind( this );
-			
-			playBtn.dispose();
-			stopBtn.dispose();
-			progressBar.dispose();
-			timeDisplay.dispose();
-			muteBtn.dispose();
-			volumeSlider.dispose();
-			fullScreenBtn.dispose();
-			
-			playBtn = stopBtn = fullScreenBtn = muteBtn = null;
-			progressBar = volumeSlider = null;
-			timeDisplay = null;
-		}
 		super.dispose();
 	}
 	
@@ -195,6 +166,24 @@ class VideoControlBar extends UIContainer
 		
 		if (stream != null)
 			addStreamListeners();
+	}
+
+
+	override public function disposeChildren ()
+	{
+		playBtn.dispose();
+		stopBtn.dispose();
+		progressBar.dispose();
+		timeDisplay.dispose();
+		muteBtn.dispose();
+		volumeSlider.dispose();
+		fullScreenBtn.dispose();
+		playBtn = stopBtn = fullScreenBtn = muteBtn = null;
+		progressBar = volumeSlider = null;
+		timeDisplay = null;
+		super.disposeChildren();
+
+		layout.changed.unbind( this );
 	}
 
 
@@ -241,9 +230,8 @@ class VideoControlBar extends UIContainer
 	
 	override public function validate ()
 	{
-		if (changes.has(STREAM))
-			if (stream != null)
-				addStreamListeners();
+		if (changes.has(primevc.gui.core.UIElementFlags.STREAM) && stream != null)
+			addStreamListeners();
 		
 		super.validate();
 	}
@@ -263,7 +251,7 @@ class VideoControlBar extends UIContainer
 				removeStreamListeners();
 			
 			stream = v;
-			invalidate(STREAM);
+			invalidate(primevc.gui.core.UIElementFlags.STREAM);
 		}
 		return v;
 	}
@@ -302,7 +290,7 @@ class VideoControlBar extends UIContainer
 	
 	private function updateSliderValidator (newTime:Float, oldTime:Float)
 	{
-		Assert.notNull( progressBar );
+		Assert.isNotNull( progressBar );
 		progressBar.data.validator.max = newTime;
 		trace(oldTime+" => "+newTime);
 	}

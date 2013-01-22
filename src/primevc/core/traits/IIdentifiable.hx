@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.traits;
- import primevc.core.Bindable;
 
 
 /**
@@ -38,5 +37,6 @@ package primevc.core.traits;
  */
 interface IIdentifiable
 {
-	public var id	(default, null)		: Bindable < String >;
+	public var id	(default, null)		: primevc.core.Bindable<String>;
+#if debug public function toString ()	: String; #end
 }

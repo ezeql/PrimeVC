@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms.tile;
-#if neko
+#if CSSParser
  import prime.tools.generator.ICodeGenerator;
 #end
  import prime.core.geom.space.Direction;
@@ -81,7 +81,7 @@ class TileAlgorithmBase extends DynamicLayoutAlgorithm, implements ITileAlgorith
 	}
 	
 	
-#if neko
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)
 	{
 		code.construct( this, [ startDirection, horizontalDirection, verticalDirection ] );

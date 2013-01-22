@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -29,7 +29,7 @@
 package primevc.gui.behaviours.scroll;
  import primevc.gui.behaviours.BehaviourBase;
  import primevc.gui.traits.IScrollable;
-#if !neko
+#if !CSSParser
  import primevc.core.geom.space.Direction;
  import primevc.core.geom.Box;
  import primevc.gui.display.IDisplayObject;
@@ -52,7 +52,7 @@ package primevc.gui.behaviours.scroll;
  */
 class ShowScrollbarsBehaviour extends BehaviourBase<IScrollable>, implements IScrollBehaviour
 {
-#if !neko
+#if !CSSParser
 	private static inline var SIZE = 15;
 	
 	private var scrollbarHor	: ScrollBar;

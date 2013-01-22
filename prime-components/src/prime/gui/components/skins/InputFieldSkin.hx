@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -44,7 +44,6 @@ private typedef Flags = primevc.gui.core.UIElementFlags;
  * @author Ruben Weijers
  * @creation-date Jan 27, 2011
  */
-@:keep
 class InputFieldSkin extends ButtonIconLabelSkin
 {
 	override public function createChildren ()
@@ -67,11 +66,11 @@ class InputFieldSkin extends ButtonIconLabelSkin
 	}
 
 
-	override public function removeChildren ()
+	override public function disposeChildren ()
 	{
 		labelField.userEvents.key.down.unbind(this);
 		owner.userEvents.blur.unbind(this);
-		super.removeChildren();
+		super.disposeChildren();
 	}
 	
 	

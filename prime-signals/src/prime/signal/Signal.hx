@@ -42,7 +42,7 @@ package prime.signal;
  */
 class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements IUnbindable<FunctionSignature>, implements IDisposable, implements IDisablable
 {
-	static public inline function notifyEnabled<T>( s:Signal<T>, w:Wire<T> ) : Void
+	static public #if !noinline inline #end function notifyEnabled<T>(s:Signal<T>, w:Wire<T>) : Void
 	{
 		Assert.isNotNull(s);
 		Assert.isNotNull(w);
@@ -53,7 +53,7 @@ class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements
 		}
 	}
 
-	static public inline function notifyDisabled<T>( s:Signal<T>, w:Wire<T> ) : Void
+	static public #if !noinline inline #end function notifyDisabled<T>(s:Signal<T>, w:Wire<T>) : Void
 	{
 		if (s.is(IWireWatcher)) {
 			var x:IWireWatcher<T> = cast s;
@@ -76,9 +76,9 @@ class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements
 	public var nextSendable : Wire<FunctionSignature>;
 	
 	
-	public inline function    enable()	enabled = true
-	public inline function   disable()	enabled = false
-	public inline function isEnabled()	return enabled
+	public #if !noinline inline #end function  enable()   enabled = true
+	public #if !noinline inline #end function disable()   enabled = false
+	public #if !noinline inline #end function isEnabled() return enabled
 	
 	
 	/**
@@ -104,7 +104,7 @@ class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements
 	/**
 	 *  Unbind all handlers.
 	 */
-	public inline function dispose()
+	public #if !noinline inline #end function dispose()
 	{
 		unbindAll();
 	}
@@ -121,14 +121,14 @@ class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements
 	}
 
 
-	public inline function hasListeners() : Bool
+	public #if !noinline inline #end function hasListeners () : Bool
 	{
 		return n.notNull();
 	}
 	
 	
 	/** Identify where the event is called (nice for debugging) ** /
-	public inline function source(?pos:haxe.PosInfos)
+	public #if !noinline inline #end function source(?pos:haxe.PosInfos)
 	{
 	  #if debug
 		Event.callPos = pos;

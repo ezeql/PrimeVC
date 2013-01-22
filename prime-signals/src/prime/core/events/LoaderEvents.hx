@@ -33,12 +33,13 @@ package prime.core.events;
  import prime.signal.Signals;
 
 
-typedef LoaderEvents = 
-	#if		flash9	prime.avm2.events.LoaderEvents;
-	#elseif	flash8	prime.avm1.events.LoaderEvents;
-	#elseif	js		prime.js  .events.LoaderEvents;
-	#elseif neko	LoaderSignals;
-	#else	#error	#end
+typedef LoaderEvents =
+	#if     flash9 prime.avm2.events.LoaderEvents;
+	#elseif flash  prime.avm1.events.LoaderEvents;
+	#elseif nodejs Dynamic;
+	#elseif js     prime.js  .events.LoaderEvents;
+	#elseif neko   LoaderSignals;
+	#else          Dynamic;	#end
 
 
 /**

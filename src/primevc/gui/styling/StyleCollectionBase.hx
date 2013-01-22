@@ -40,7 +40,6 @@ package primevc.gui.styling;
 #end
 
 
-typedef CellType = FastDoubleCell < StyleBlock >;
 
 /**
  * Base class for style-proxy's
@@ -50,7 +49,7 @@ typedef CellType = FastDoubleCell < StyleBlock >;
  */
 class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 				implements IInvalidateListener
-#if flash9	,	implements haxe.rtti.Generic #end
+//#if flash9	,	implements haxe.rtti.Generic #end
 {
 	/**
 	 * Flag with all the style-declaration-properties that are defined for 
@@ -98,7 +97,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	}
 	
 	
-	public inline function has (properties:Int) : Bool
+	public #if !noinline inline #end function has (properties:Int) : Bool
 	{
 		return filledProperties.has(properties);
 	}
@@ -106,7 +105,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	
 	public function updateFilledPropertiesFlag (?excludedStyle:StyleGroupType) : Void
 	{	
-		Assert.notNull( groupIterator );
+		Assert.isNotNull( groupIterator );
 		filledProperties = 0;
 		groupIterator.rewind();
 		
@@ -128,7 +127,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 
 	public function add ( style:StyleGroupType ) : Int
 	{
-		Assert.notNull(style);
+		Assert.isNotNull(style);
 		if (isListeningTo(style))
 			return 0;
 		
@@ -145,7 +144,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	
 	public function remove ( style:StyleGroupType, isStyleStillInList:Bool = true ) : Int
 	{
-		Assert.notNull(style);
+		Assert.isNotNull(style);
 		if (!style.listeners.remove( this ))
 			return 0;
 		
@@ -159,7 +158,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	
 	public function apply ()
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 
 
@@ -198,7 +197,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	{
 		if (elementStyle.styles.length > 0)
 		{
-			var styleCell:CellType = null;
+			var styleCell:FastDoubleCell<StyleBlock> = null;
 			var iterator = groupRevIterator;
 			
 			iterator.rewind();
@@ -212,7 +211,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 			}
 			
 			Assert.that( styleCell != null );
-			iterator.setCurrent( cast styleCell.prev );
+			iterator.setCurrent( styleCell.prev );
 			
 			for (styleGroup in iterator)
 			{
@@ -229,11 +228,11 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	
 	public function iterator ()						: Iterator < StyleGroupType >							{ return forwardIterator(); }
 	public function reversed ()						: Iterator < StyleGroupType >							{ return reversedIterator(); }
-	public function forwardIterator ()				: StyleCollectionForwardIterator < StyleGroupType >		{ Assert.abstract(); return null; }
-	public function reversedIterator ()				: StyleCollectionReversedIterator < StyleGroupType >	{ Assert.abstract(); return null; }
+	public function forwardIterator ()				: StyleCollectionForwardIterator < StyleGroupType >		{ Assert.abstractMethod(); return null; }
+	public function reversedIterator ()				: StyleCollectionReversedIterator < StyleGroupType >	{ Assert.abstractMethod(); return null; }
 	
 #if debug
-	public function readProperties (props:Int = -1)	: String	{ Assert.abstract(); return null; }
+	public function readProperties (props:Int = -1)	: String	{ Assert.abstractMethod(); return null; }
 	public function readChanges (props:Int = -1)	: String	{ return readProperties(changes); }
 	public function toString () : String						{ return this.getClass().getClassName(); }
 #end
@@ -253,7 +252,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 class StyleCollectionIteratorBase implements IDisposable
 {
 	private var elementStyle	: IUIElementStyle;
-	public var currentCell		: CellType;
+	public var currentCell		: FastDoubleCell<StyleBlock>;
 	/**
 	 * Flag to search for in target styles to see if the style contains the group
 	 */
@@ -276,29 +275,29 @@ class StyleCollectionIteratorBase implements IDisposable
 	}
 	
 	
-	public function rewind () : Void		{ Assert.abstract(); }
+	public function rewind () : Void		{ Assert.abstractMethod(); }
 	
 	/**
 	 * Method will set the current property to the next cell and will return 
 	 * the previous current value.
 	 */
-	private function setNext() : CellType	{ Assert.abstract(); return null; }
+	private function setNext() : FastDoubleCell<StyleBlock>	{ Assert.abstractMethod(); return null; }
 	public  function hasNext () : Bool		{ return currentCell != null; }
 	
 	
-	public function setCurrent ( cur:Dynamic )
+	/*public function setCurrent(cur:FastDoubleCell<StyleBlock>)
 	{
-		if (cur == null) {
-			currentCell = null;
-			return;
+		currentCell = cur;
+		if (cur != null && !cur.data.has(flag) && hasNext()) {
+#if debug	Assert.notEqual(cur.next, cur); #end
+			setNext();
 		}
-		
-		Assert.isType( cur, CellType );
-		var styleCell = cast ( cur, CellType );
-		
-		currentCell = styleCell;
-		if (!styleCell.data.has( flag ) && hasNext()) {
-			Assert.notEqual(currentCell.next, currentCell);
+	}*/
+	public function setCurrent(cur:Dynamic)
+	{
+		var cur = currentCell = cast cur;
+		if (cur != null && !cur.data.has(flag) && hasNext()) {
+#if debug	Assert.notEqual(cur.next, cur); #end
 			setNext();
 		}
 	}
@@ -313,12 +312,12 @@ class StyleCollectionIteratorBase implements IDisposable
  */
 class StyleCollectionForwardIterator < StyleGroupType > extends StyleCollectionIteratorBase
 			,	implements IIterator < StyleGroupType >
-#if flash9	,	implements haxe.rtti.Generic #end
+//#if flash9	,	implements haxe.rtti.Generic #end
 {
 	public function new (elementStyle:IUIElementStyle, groupFlag:Int) super(elementStyle, groupFlag)	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 	override public function rewind () : Void	{ setCurrent( elementStyle.styles.first ); }
-	public function next () : StyleGroupType	{ Assert.abstract(); return null; }
-	public function value () : StyleGroupType	{ Assert.abstract(); return null; }
+	public function next () : StyleGroupType	{ Assert.abstractMethod(); return null; }
+	public function value () : StyleGroupType	{ Assert.abstractMethod(); return null; }
 	
 	
 	override private function setNext ()
@@ -339,11 +338,11 @@ class StyleCollectionForwardIterator < StyleGroupType > extends StyleCollectionI
 	
 	public function test ()
 	{
-		var cur = elementStyle.styles.first, prev:CellType = null;
+		var cur = elementStyle.styles.first, prev:FastDoubleCell<StyleBlock> = null;
 		while (cur != null)
 		{
 			if (prev == null)	Assert.isNull( cur.prev, "first incorrect" );
-			else				Assert.equal( cur.prev, prev, "previous incorrect" );
+			else				Assert.isEqual( cur.prev, prev, "previous incorrect" );
 			
 			prev	= cur;
 			cur		= cur.next;
@@ -360,12 +359,12 @@ class StyleCollectionForwardIterator < StyleGroupType > extends StyleCollectionI
  */
 class StyleCollectionReversedIterator < StyleGroupType > extends StyleCollectionIteratorBase
 			,	implements IIterator < StyleGroupType >
-#if flash9	,	implements haxe.rtti.Generic #end
+//#if flash9	,	implements haxe.rtti.Generic #end
 {
 	public function new (elementStyle:IUIElementStyle, groupFlag:Int) { super(elementStyle, groupFlag); }	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 	override public function rewind () : Void	{ setCurrent( elementStyle.styles.last ); }
-	public function next () : StyleGroupType	{ Assert.abstract(); return null; }
-	public function value () : StyleGroupType	{ Assert.abstract(); return null; }
+	public function next () : StyleGroupType	{ Assert.abstractMethod(); return null; }
+	public function value () : StyleGroupType	{ Assert.abstractMethod(); return null; }
 	
 	
 	override private function setNext ()
@@ -386,11 +385,11 @@ class StyleCollectionReversedIterator < StyleGroupType > extends StyleCollection
 	
 	public function test ()
 	{
-		var cur = elementStyle.styles.last, prev:CellType = null;
+		var cur = elementStyle.styles.last, prev:FastDoubleCell<StyleBlock> = null;
 		while (cur != null)
 		{
 			if (prev == null)	Assert.isNull( cur.next, "last incorrect" );
-			else				Assert.equal( cur.next, prev, "next incorrect" );
+			else				Assert.isEqual( cur.next, prev, "next incorrect" );
 
 			prev	= cur;
 			cur		= cur.prev;

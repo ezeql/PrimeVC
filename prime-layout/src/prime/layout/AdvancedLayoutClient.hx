@@ -65,7 +65,7 @@ class AdvancedLayoutClient extends LayoutClient, implements IAdvancedLayoutClien
 	}
 	
 	
-	public inline function isVisible ()
+	public #if !noinline inline #end function isVisible ()
 	{
 		return (explicitWidth.notSet() || explicitWidth > 0) && (explicitHeight.notSet() || explicitHeight > 0);
 	}

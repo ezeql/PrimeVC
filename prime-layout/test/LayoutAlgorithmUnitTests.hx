@@ -47,13 +47,13 @@ class HorizontalLayoutAlgorithmTest extends LayoutAlgorithmTest
 		trace("get depth ltr for fixed width");
 		setup( algorithm, false, 8 );
 		group.padding.left	= 10;
-		Assert.equal( 1, algorithm.getDepthForPosition( new Point( 17, 0 ) ) );
-		Assert.equal( 2, algorithm.getDepthForPosition( new Point( 19, 0 ) ) );
-		Assert.equal( 1, algorithm.getDepthForPosition( new Point( 17, 0 ) ) );
-		Assert.equal( 0, algorithm.getDepthForPosition( new Point(  8, 0 ) ) );
-		Assert.equal( 6, algorithm.getDepthForPosition( new Point( 38, 0 ) ) );
-		Assert.equal( 2, algorithm.getDepthForPosition( new Point( 21, 0 ) ) );
-		Assert.equal( 5, algorithm.getDepthForPosition( new Point( 34, 0 ) ) );
+		Assert.isEqual( 1, algorithm.getDepthForPosition( new Point( 17, 0 ) ) );
+		Assert.isEqual( 2, algorithm.getDepthForPosition( new Point( 19, 0 ) ) );
+		Assert.isEqual( 1, algorithm.getDepthForPosition( new Point( 17, 0 ) ) );
+		Assert.isEqual( 0, algorithm.getDepthForPosition( new Point(  8, 0 ) ) );
+		Assert.isEqual( 6, algorithm.getDepthForPosition( new Point( 38, 0 ) ) );
+		Assert.isEqual( 2, algorithm.getDepthForPosition( new Point( 21, 0 ) ) );
+		Assert.isEqual( 5, algorithm.getDepthForPosition( new Point( 34, 0 ) ) );
 		
 		
 		//
@@ -69,17 +69,17 @@ class HorizontalLayoutAlgorithmTest extends LayoutAlgorithmTest
 		trace("get depth ltr for dynamic width");
 		setup( algorithm, true, 8 );
 		group.padding.left	= 0;
-		Assert.equal( 0, algorithm.getDepthForPosition( new Point(   1, 0 ) ) );
-		Assert.equal( 1, algorithm.getDepthForPosition( new Point(   3, 0 ) ) );
-		Assert.equal( 1, algorithm.getDepthForPosition( new Point(   9, 0 ) ) );
-		Assert.equal( 2, algorithm.getDepthForPosition( new Point(  12, 0 ) ) );
-		Assert.equal( 2, algorithm.getDepthForPosition( new Point(  22, 0 ) ) );
-		Assert.equal( 3, algorithm.getDepthForPosition( new Point(  23, 0 ) ) );
-		Assert.equal( 3, algorithm.getDepthForPosition( new Point(  39, 0 ) ) );
-		Assert.equal( 5, algorithm.getDepthForPosition( new Point(  72, 0 ) ) );
-		Assert.equal( 5, algorithm.getDepthForPosition( new Point(  89, 0 ) ) );
-		Assert.equal( 7, algorithm.getDepthForPosition( new Point( 123, 0 ) ) );
-		Assert.equal( 7, algorithm.getDepthForPosition( new Point( 159, 0 ) ) );
+		Assert.isEqual( 0, algorithm.getDepthForPosition( new Point(   1, 0 ) ) );
+		Assert.isEqual( 1, algorithm.getDepthForPosition( new Point(   3, 0 ) ) );
+		Assert.isEqual( 1, algorithm.getDepthForPosition( new Point(   9, 0 ) ) );
+		Assert.isEqual( 2, algorithm.getDepthForPosition( new Point(  12, 0 ) ) );
+		Assert.isEqual( 2, algorithm.getDepthForPosition( new Point(  22, 0 ) ) );
+		Assert.isEqual( 3, algorithm.getDepthForPosition( new Point(  23, 0 ) ) );
+		Assert.isEqual( 3, algorithm.getDepthForPosition( new Point(  39, 0 ) ) );
+		Assert.isEqual( 5, algorithm.getDepthForPosition( new Point(  72, 0 ) ) );
+		Assert.isEqual( 5, algorithm.getDepthForPosition( new Point(  89, 0 ) ) );
+		Assert.isEqual( 7, algorithm.getDepthForPosition( new Point( 123, 0 ) ) );
+		Assert.isEqual( 7, algorithm.getDepthForPosition( new Point( 159, 0 ) ) );
 	}
 }
 

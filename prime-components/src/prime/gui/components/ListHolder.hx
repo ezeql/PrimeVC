@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -65,10 +65,12 @@ class ListHolder <DataType, ListDataType> extends UIDataContainer <DataType>, im
 	public var createItemRenderer				(default, setCreateItemRenderer) : ListDataType -> Int -> IUIDataElement<ListDataType>;
 	
 	
-	public function new (id:String, data:DataType = null, listData:IReadOnlyList<ListDataType> = null)
+	public function new (id:String, data:DataType = null, listData:IReadOnlyList<ListDataType> = null, list:ListView<ListDataType> = null)
 	{
 		super(id, data);
+		styleClasses.add("listHolder");
 		this.listData	= listData;
+		this.list		= list;
 	}
 	
 	
@@ -90,13 +92,14 @@ class ListHolder <DataType, ListDataType> extends UIDataContainer <DataType>, im
 	
 	override private function createChildren ()
 	{
-		super.createChildren();
+		//check if listview isn't created by a skin or super-class
+		if (list == null)
+			list = new ListView(id.value+"Content", listData);
+		else {
+			list.id.value   = id.value+"Content";
+			list.data 		= listData;
+		}
 		
-		//check to see if list is not created yet by a skin
-		if (list == null)	list = new ListView(id.value+"Content", listData);
-		else                list.data = listData;
-		
-
 		list.setFocus.on( userEvents.focus, this );
 		list.createItemRenderer = createItemRenderer;
 		list.attachTo(this);
@@ -109,12 +112,12 @@ class ListHolder <DataType, ListDataType> extends UIDataContainer <DataType>, im
 	}
 	
 	
-	override public  function removeChildren ()
+	override public  function disposeChildren ()
 	{
 		list.detach();
 		list.dispose();
 		list = null;
-		super.removeChildren();
+		super.disposeChildren();
 	}
 	
 
@@ -127,7 +130,7 @@ class ListHolder <DataType, ListDataType> extends UIDataContainer <DataType>, im
 		if (listData != v) {
 			listData = v;
 			if (list != null) {
-				Assert.notNull(createItemRenderer);
+				Assert.isNotNull(createItemRenderer);
 				list.data = v;
 			}
 		}

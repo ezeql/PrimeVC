@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -122,7 +122,7 @@ class ScrollBar extends SliderBase
 	private function createTargetBindings ()
 	{
 		removeTargetBindings();
-		Assert.notNull( direction );
+		Assert.isNotNull( direction );
 		
 		if (target != null)
 		{

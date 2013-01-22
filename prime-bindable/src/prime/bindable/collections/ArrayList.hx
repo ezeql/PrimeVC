@@ -46,12 +46,21 @@ class ArrayList<T> extends ReadOnlyArrayList<T>, implements IEditableList<T>, im
 	}
 	
 	
-	public function removeAll ()	if (length > 0)
+	public function removeAll ()
 	{
-		var msg = ListChange.reset;
-		beforeChange.send( msg );
-		list.removeAll();
-		change.send( msg );
+		if (length > 0)
+		{
+			var msg = ListChange.reset;
+			beforeChange.send( msg );
+			list.removeAll();
+			change.send( msg );
+		}
+	}
+	
+	
+	@:keep public #if !noinline inline #end function isEmpty()
+	{
+		return length == 0;
 	}
 	
 	
@@ -61,7 +70,7 @@ class ArrayList<T> extends ReadOnlyArrayList<T>, implements IEditableList<T>, im
 		var msg = ListChange.added( item, pos );
 		beforeChange.send( msg );
 		var p = list.insertAt(item, pos);
-#if debug Assert.equal( p, pos ); #end
+#if debug Assert.isEqual( p, pos ); #end
 		change.send( msg );
 		return item;
 	}
@@ -99,7 +108,6 @@ class ArrayList<T> extends ReadOnlyArrayList<T>, implements IEditableList<T>, im
 		return item;
 	}
 	
-	public inline function isEmpty()							return length == 0
 	override public function clone () : IReadOnlyList<T>		return new ArrayList<T>( list.clone() )
 	override public function duplicate () : IReadOnlyList<T>	return new ArrayList<T>( list.duplicate() )
 }

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -88,8 +88,8 @@ class ToolTipManager implements IDisposable
 		removeListeners();
 
 #if debug
-		Assert.notNull(obj, "Target object can't be null with label "+label);
-		Assert.notNull(label, "Tooltip-label can't be null for object "+obj);
+		Assert.isNotNull(obj, "Target object can't be null with label "+label);
+		Assert.isNotNull(label, "Tooltip-label can't be null for object "+obj);
 #end
 		
 		if (isLabelEmpty(label.value))
@@ -172,7 +172,7 @@ class ToolTipManager implements IDisposable
 	
 	
 	
-	public inline function isVisible ()
+	public #if !noinline inline #end function isVisible ()
 	{
 		return toolTip.window != null;
 	}

@@ -26,11 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.filters;
-#if (neko && prime_css)
- import primevc.tools.generator.ICSSFormattable;
- import primevc.tools.generator.ICodeFormattable;
-#end
+package prime.gui.filters;
 
 
 /**
@@ -40,9 +36,6 @@ package primevc.gui.filters;
  * @creation-date Sep 29, 2010
  */
 interface IBitmapFilter		
-#if (neko && prime_css)
-			implements ICSSFormattable
-		,	implements ICodeFormattable #end
-{
-	
-}
+#if CSSParser	implements prime.tools.generator.ICSSFormattable
+			,	implements prime.tools.generator.ICodeFormattable #end
+{}

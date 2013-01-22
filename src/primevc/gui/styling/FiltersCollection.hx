@@ -56,11 +56,10 @@ class FiltersCollection extends StyleCollectionBase < FiltersStyle >
 	}
 	
 	
-	override public function forwardIterator ()					{ return cast new FiltersCollectionForwardIterator( elementStyle, propertyTypeFlag, type); }
-	override public function reversedIterator ()				{ return cast new FiltersCollectionReversedIterator( elementStyle, propertyTypeFlag, type); }
-
+	override public function forwardIterator ()					return new FiltersCollectionForwardIterator( elementStyle, propertyTypeFlag, type)
+	override public function reversedIterator ()				return new FiltersCollectionReversedIterator( elementStyle, propertyTypeFlag, type)
 #if debug
-	override public function readProperties (props:Int = -1)	{ return Flags.readProperties( (props == -1) ? filledProperties : props ); }
+	override public function readProperties (props:Int = -1)	return Flags.readProperties( (props == -1) ? filledProperties : props )
 #end
 	
 	
@@ -131,7 +130,7 @@ class FiltersCollection extends StyleCollectionBase < FiltersStyle >
 	
 	private function setFilter ( filters:Array<Dynamic>, flag:Int, filter:BitmapFilter = null )
 	{
-		Assert.notNull(filter);
+		Assert.isNotNull(filter);
 		
 		var pos = filterPositions.indexOf(flag);
 		if (pos == -1)
@@ -143,7 +142,7 @@ class FiltersCollection extends StyleCollectionBase < FiltersStyle >
 		else
 			filters[ pos ] = filter;
 		
-		Assert.equal( filters.length, filterPositions.length );
+		Assert.isEqual( filters.length, filterPositions.length );
 	}
 	
 	
@@ -167,7 +166,7 @@ class FiltersCollection extends StyleCollectionBase < FiltersStyle >
 			}
 		}
 		
-		Assert.equal( filters.length, filterPositions.length );
+		Assert.isEqual( filters.length, filterPositions.length );
 	}
 	
 	

@@ -35,7 +35,8 @@ package prime.bindable.collections;
 
 private typedef Flags = prime.bindable.RevertableBindableFlags;
 
-extern class RevertableArrayListFlags {
+#if !noinline extern #end class RevertableArrayListFlags
+{
 	static public inline var REMEMBER_CHANGES = 32768;	// 0b_1000 0000 0000 0000
 }
 
@@ -63,17 +64,33 @@ class RevertableArrayList<T> extends ReadOnlyArrayList<T>, implements IRevertabl
 	}
 	
 	
-	override public function clone ()											return untyped new RevertableArrayList<T>( list.clone() )
-	override public function duplicate ()										return untyped new RevertableArrayList<T>( list.duplicate() )
-	public inline function rememberChanges (enabled:Bool = true)				flags = enabled ? flags.set(RevertableArrayListFlags.REMEMBER_CHANGES) : flags.unset(RevertableArrayListFlags.REMEMBER_CHANGES)
-	public inline function dispatchChangesBeforeCommit (enabled:Bool = true)	flags = enabled ? flags.set(Flags.DISPATCH_CHANGES_BEFORE_COMMIT) : flags.unset(Flags.DISPATCH_CHANGES_BEFORE_COMMIT)
+	override public function clone ()
+	{
+		return untyped new RevertableArrayList<T>( list.clone() );
+	}
+	
+	
+	override public function duplicate ()
+	{
+		return untyped new RevertableArrayList<T>( list.duplicate() );
+	}
+	
+	
+	public #if !noinline inline #end function rememberChanges (enabled:Bool = true)				{ flags = enabled ? flags.set(RevertableArrayListFlags.REMEMBER_CHANGES) : flags.unset(RevertableArrayListFlags.REMEMBER_CHANGES); }
+	public #if !noinline inline #end function dispatchChangesBeforeCommit (enabled:Bool = true)	{ flags = enabled ? flags.set(Flags.DISPATCH_CHANGES_BEFORE_COMMIT) : flags.unset(Flags.DISPATCH_CHANGES_BEFORE_COMMIT); }
 	
 	
 	//
 	// EDITABLE VALUE-OBJECT METHODS
 	//
 	
-	public /*inline*/ function beginEdit ()
+	public #if !noinline inline #end function isEmpty()
+	{
+		return this.length == 0;
+	}
+	
+	
+	public #if !noinline inline #end function beginEdit ()
 	{
 		if (flags.hasNone( Flags.IN_EDITMODE ))
 		{
@@ -98,7 +115,7 @@ class RevertableArrayList<T> extends ReadOnlyArrayList<T>, implements IRevertabl
 	}
 	
 	
-	public /*inline*/ function cancelEdit ()
+	public #if !noinline inline #end function cancelEdit ()
 	{
 		if (changes != null && flags.hasAll( Flags.IN_EDITMODE | RevertableArrayListFlags.REMEMBER_CHANGES))
 		{
@@ -124,8 +141,10 @@ class RevertableArrayList<T> extends ReadOnlyArrayList<T>, implements IRevertabl
 	}
 
 
-	public inline function isEditable ()	return flags.has( Flags.IN_EDITMODE )
-	public inline function isEmpty()		return this.length == 0
+	public #if !noinline inline #end function isEditable ()
+	{
+		return flags.has( Flags.IN_EDITMODE );
+	}
 	
 	
 	
@@ -192,7 +211,7 @@ class RevertableArrayList<T> extends ReadOnlyArrayList<T>, implements IRevertabl
 
 
 #if debug
-	public inline function readFlags ()
-		return Flags.read(flags)
+	public #if !noinline inline #end function readFlags ()
+		return Flags.readProperties(flags)
 #end
 }

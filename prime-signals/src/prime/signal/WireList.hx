@@ -34,5 +34,4 @@ package prime.signal;
  * @author Ruben Weijers
  * @creation-date Nov 02, 2010
  */
-#if (haxe_207 || haxe_208) @:keep #end
 class WireList < FunctionSignature > extends ListNode<Wire<FunctionSignature>> {}

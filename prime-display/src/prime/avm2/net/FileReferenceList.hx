@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -65,7 +65,7 @@ class FileReferenceList extends SelectEvents, implements IFileReference
 	}
 	
 	
-	public inline function browse (?types:Array<FileFilter>)
+	public #if !noinline inline #end function browse (?types:Array<FileFilter>)
 	{
 		return target.browse(types);
 	}

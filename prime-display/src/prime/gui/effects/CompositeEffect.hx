@@ -28,7 +28,7 @@
  */
 package primevc.gui.effects;
  import primevc.core.collections.ArrayList;
-#if neko
+#if CSSParser
  import primevc.tools.generator.ICodeGenerator;
   using primevc.types.Reference;
 #end
@@ -54,11 +54,11 @@ class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 	public var compositeDuration	(getCompositeDuration, never)	: Int;
 	
 	
-	public function new (duration:Int = 0, delay:Int = 0, easing:Easing = null)
+	public function new (duration:Int = 0, delay:Int = 0, easing:Easing = null, isReverted:Bool = false)
 	{
 		effects		= new ArrayList < ChildEffectType > ();
 		duration	= duration <= 0	? Number.INT_NOT_SET : duration;
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		init();
 	}
 	
@@ -111,7 +111,7 @@ class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 	}
 
 
-#if neko
+#if CSSParser
 	override public function toCSS (prefix:String = "") : String
 	{
 		var props = [];
@@ -119,6 +119,7 @@ class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 		if (duration.isSet())		props.push( duration + "ms" );
 		if (delay.isSet())			props.push( delay + "ms" );
 		if (easing != null)			props.push( easing.toCSS() );
+		if (isReverted)				props.push( "reverted" );
 		
 		if (effects.length > 0) {
 			var cssEff = [];
@@ -141,7 +142,7 @@ class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 	override public function toCode (code:ICodeGenerator) : Void
 	{
 		if (!isEmpty()) {
-			code.construct( this, [ duration, delay, easing ] );
+			code.construct( this, [ duration, delay, easing, isReverted ] );
 			for (effect in effects)
 				code.setAction( this, "add", [ effect ] );
 		}

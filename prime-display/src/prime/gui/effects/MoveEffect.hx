@@ -26,17 +26,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.MoveEffectInstance;
+package prime.gui.effects;
+ import prime.gui.traits.IPositionable;
+#if CSSParser
+  using prime.types.Reference;
 #end
- import primevc.gui.traits.IPositionable;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
-#end
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 
 
 /**
@@ -71,27 +67,26 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 	public var endY		: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
-		
+		super(duration, delay, easing, isReverted);
 		this.startX	= startX == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startX;
 		this.startY	= startY == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startY;
-		this.endX	= endX == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endX;
-		this.endY	= endY == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endY;
+		this.endX	= endX	 == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endX;
+		this.endY	= endY	 == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endY;
 	}
 	
 	
 	override public function clone ()
 	{
-		return cast new MoveEffect( duration, duration, easing, startX, startY, endX, endY );
+		return new MoveEffect( duration, duration, easing, isReverted, startX, startY, endX, endY );
 	}
 	
 	
-#if (flash8 || flash9 || js)
+#if !CSSParser
 	override public function createEffectInstance (target:IPositionable)
 	{
-		return cast new MoveEffectInstance(target, this);
+		return new prime.gui.effects.effectInstances.MoveEffectInstance(target, this);
 	}
 #end
 
@@ -110,7 +105,7 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (prefix:String = "") : String
 	{
 		var props = [];
@@ -122,16 +117,17 @@ class MoveEffect extends Effect < IPositionable, MoveEffect >
 		if (startY.isSet())			props.push( startY + "px" );
 		if (endX.isSet())			props.push( endX + "px" );
 		if (endY.isSet())			props.push( endY + "px" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "move " + props.join(" ");
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startX, startY, endX, endY ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startX, startY, endX, endY ] );
 	}
 #end
 }

@@ -37,19 +37,27 @@ package primevc.gui.utils;
  * @creation-date   Oct 04, 2011
  * @author          Ruben Weijers
  */
-extern class DisplayUtil
+ #if !noinline extern #end class DisplayUtil
 {
     /**
-     * Rotates an DisplayObject object around the given anchor
-     *
-     * @param   target      object to rotate
-     * @param   rotation    rotation in degrees
+     * Rotates an DisplayObject with it's origin in the center
      */
-    public static inline function rotateAroundCenter (target:IDisplayObject, rotation:Float) : Void
+    public static #if !noinline inline #end function rotateAroundCenter (target:IDisplayObject, rotation:Float) : Void
     {
         var m = target.transform.matrix;
         var r = target.rotation >= 0 ? target.rotation : 360 + target.rotation;
         m.rotateAroundCenter(rotation - r, target.getBounds(target.parent));
+        target.transform.matrix = m;
+    }
+
+
+    /**
+     * Scales an DisplayObject with it's origin in the center
+     */
+    public static #if !noinline inline #end function scaleAroundCenter (target:IDisplayObject, scaleX:Float, scaleY:Float) : Void
+    {
+        var m = target.transform.matrix;
+        m.scaleAroundCenter(scaleX, scaleY, target.getBounds(target.parent));
         target.transform.matrix = m;
     }
 }

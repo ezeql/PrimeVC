@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -35,7 +35,8 @@ package prime.net;
  */
 typedef URLVariables = 
 	#if		flash9	flash.net.URLVariables;
-	#elseif	flash8	prime.avm1.net.URLVariables;
+	#elseif	flash	prime.avm1.net.URLVariables;
+	#elseif nodejs 	#error;
 	#elseif	js		prime.js  .net.URLVariables;
 	#elseif	neko	prime.neko.net.URLVariables;
-	#else			error; #end
+	#else			#error; #end

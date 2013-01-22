@@ -27,10 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.effects.effectInstances;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.ScaleEffect;
- import primevc.gui.traits.IScaleable;
- import primevc.types.Number;
+  using primevc.gui.utils.DisplayUtil;
   using primevc.utils.NumberUtil;
 
 
@@ -39,7 +36,7 @@ package primevc.gui.effects.effectInstances;
  * @author Ruben Weijers
  * @creation-date Oct 04, 2010
  */
-class ScaleEffectInstance extends EffectInstance < IScaleable, ScaleEffect >
+class ScaleEffectInstance extends EffectInstance < primevc.gui.display.IDisplayObject, primevc.gui.effects.ScaleEffect >
 {
 	/**
 	 * ScaleX start value.
@@ -67,11 +64,11 @@ class ScaleEffectInstance extends EffectInstance < IScaleable, ScaleEffect >
 	public function new (target, effect)
 	{
 		super(target, effect);
-		startX = startY = endX = endY = Number.FLOAT_NOT_SET;
+		startX = startY = endX = endY = primevc.types.Number.FLOAT_NOT_SET;
 	}
 	
 	
-	override public function setValues ( v:EffectProperties ) 
+	override public function setValues ( v:primevc.gui.effects.EffectProperties ) 
 	{
 		switch (v) {
 			case scale(fromSx, fromSy, toSx, toSy):
@@ -96,17 +93,20 @@ class ScaleEffectInstance extends EffectInstance < IScaleable, ScaleEffect >
 		if (effect.endX.isSet())	endX = effect.endX;
 		if (effect.endY.isSet())	endY = effect.endY;
 		
-		target.scaleX	= startX;
-		target.scaleY	= startY;
+		target.scaleAroundCenter(startX, startY);
 		(untyped target).visible = true;
 	}
 	
 	
-	override private function tweenUpdater ( tweenPos:Float )
+	override private function tweenUpdater (tweenPos:Float)
 	{
 #if flash9
-		if (isXChanged())	target.scaleX = ( endX * tweenPos ) + ( startX * (1 - tweenPos) );
-		if (isYChanged())	target.scaleY = ( endY * tweenPos ) + ( startY * (1 - tweenPos) );
+		target.scaleAroundCenter(
+			(endX * tweenPos) + (startX * (1 - tweenPos)),
+			(endY * tweenPos) + (startY * (1 - tweenPos))
+		);
+	//	if (isXChanged())	target.scaleX = ( endX * tweenPos ) + ( startX * (1 - tweenPos) );
+	//	if (isYChanged())	target.scaleY = ( endY * tweenPos ) + ( startY * (1 - tweenPos) );
 #end
 	}
 
@@ -127,11 +127,12 @@ class ScaleEffectInstance extends EffectInstance < IScaleable, ScaleEffect >
 	}
 	
 	
-	override private function onTweenReady ( ?tweenPos:Float )
+	override private function onTweenReady ()
 	{
 		if (target.scaleX == 0 || target.scaleY == 0) {
-			(untyped target).visible	= false;
-			target.scaleX	= target.scaleY	= 1;
+			(untyped target).visible = false;
+		//	target.scaleX	= target.scaleY	= 1;
+			target.scaleAroundCenter(1, 1);
 		}
 		super.onTweenReady();
 	}

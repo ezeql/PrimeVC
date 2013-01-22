@@ -42,11 +42,11 @@ class BehaviourBase < TargetType > implements IBehaviour < TargetType >
 	
 	public function new( newTarget:TargetType )			{ initialized = false; target = newTarget; }
 	public function dispose ()							{ target = null; }	// setting the target to null will trigger the reset method
-	private function init()								{ Assert.abstract(this+""); }
-	private function reset()							{ Assert.abstract(this+""); }
+	private function init()								{ Assert.abstractMethod(this+""); }
+	private function reset()							{ Assert.abstractMethod(this+""); }
 	
 	
-	public inline function initialize ()
+	public #if !noinline inline #end function initialize ()
 	{
 		if (!initialized)
 		{

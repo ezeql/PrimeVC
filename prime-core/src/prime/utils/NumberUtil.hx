@@ -27,11 +27,11 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.utils;
-// import apparat.math.FastMath;
  import prime.types.Number;
   using prime.utils.NumberUtil;
   using Std;
- 
+
+
 
 /**
  * Quick convenience utilities for integers.
@@ -88,78 +88,6 @@ extern class IntUtil
 }
 
 
-
-
-/**
- * Quick convenience utilities for floating point numbers.
- *
- * @creation-date	Jun 17, 2010
- * @author			Ruben Weijers
- */
-extern class FloatUtil
-{
-	/**
-	 * Helper function which will return the float-value of the first parameter 
-	 * as long as it is between the min and max values.
-	 * 
-	 * @param	value
-	 * @param	min
-	 * @param	max
-	 */
-	public static inline function within (value:Float, min:Float, max:Float) : Float {
-		
-		return if (value.notSet())	min;
-		  else if (value < min)		min;
-		  else if (value > max)		max;
-		  else value;
-	}
-	
-	
-	/**
-	 * Helper function to check of the given value is between the min and max 
-	 * value.
-	 * 
-	 * @param	value
-	 * @param	min
-	 * @param	max
-	 * @return	true or false
-	 */
-	public static inline function isWithin (value:Float, min:Float, max:Float) : Bool {
-		return value >= min && value <= max;
-	}
-	
-	
-	public static inline function round (value:Float, precision:Int = 0) : Float {
-		#if flash9 var Math = Math; /* cache the class reference */ #end
-		return (Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision));
-	}
-	
-	
-	public static inline function isEqualTo (value1:Float, value2:Float) : Bool
-	{
-		return value1 == value2 || (value1.notSet() && value2.notSet());
-	}
-
-
-	public static inline function notEqualTo (value1:Float, value2:Float) : Bool
-	{
-		return value1 != value2 && (value1.isSet() || value2.isSet());
-	}
-
-
-	public static inline function notSet (value:Float) : Bool	{ return !isSet(value); }
-	@:keep
-	public static inline function isSet  (value:Float) : Bool	{ return #if !(flash9 || cpp) value != null && #end /*!Math.isNaN(value)*/ (value == value) /* false if NaN )*/; }
-	public static inline function notEmpty (value:Float) : Bool	{ return value != Number.EMPTY; }
-	public static inline function isEmpty (value:Float) : Bool	{ return value == Number.EMPTY; }
-	public static inline function unset () : Float				{ return Number.FLOAT_NOT_SET; }
-	
-	
-	public static inline function getValue (v:Float) : Float	{ return v.isEmpty() ? Number.FLOAT_NOT_SET : v; }
-	
-	public static inline function getBiggest (var1:Float, var2:Float) : Float	{ return FloatMath.max(var1, var2); }
-	public static inline function getSmallest (var1:Float, var2:Float) : Float	{ return FloatMath.min(var1, var2); }
-}
 
 
 
@@ -279,7 +207,77 @@ extern class IntMath
 }
 
 
+/**
+ * Quick convenience utilities for floating point numbers.
+ *
+ * @creation-date	Jun 17, 2010
+ * @author			Ruben Weijers
+ */
+extern class FloatUtil
+{
+	/**
+	 * Helper function which will return the float-value of the first parameter 
+	 * as long as it is between the min and max values.
+	 * 
+	 * @param	value
+	 * @param	min
+	 * @param	max
+	 */
+	public static inline function within (value:Float, min:Float, max:Float) : Float {
+		
+		return if (value.notSet())	min;
+		  else if (value < min)		min;
+		  else if (value > max)		max;
+		  else value;
+	}
+	
+	
+	/**
+	 * Helper function to check of the given value is between the min and max 
+	 * value.
+	 * 
+	 * @param	value
+	 * @param	min
+	 * @param	max
+	 * @return	true or false
+	 */
+	public static inline function isWithin (value:Float, min:Float, max:Float) : Bool {
+		return value >= min && value <= max;
+	}
+	
+	
+	public static inline function round (value:Float, precision:Int = 0) : Float {
+		#if flash9 var Math = Math; /* cache the class reference */ #end
+		return (Math.round(value * Math.pow(10, precision)) / Math.pow(10, precision));
+	}
+	
+	
+	public static inline function isEqualTo (value1:Float, value2:Float) : Bool
+	{
+		return value1 == value2 || (value1.notSet() && value2.notSet());
+	}
 
+
+	public static inline function notEqualTo (value1:Float, value2:Float) : Bool
+	{
+		return value1 != value2 && (value1.isSet() || value2.isSet());
+	}
+
+
+	public static inline function notSet (value:Float) : Bool	{ return !isSet(value); }
+	public static inline function isSet  (value:Float) : Bool	{ return #if !(flash9 || cpp) value != null && #end /*!Math.isNaN(value)*/ (value == value) /* false if NaN )*/; }
+	public static inline function notEmpty (value:Float) : Bool	{ return value != Number.EMPTY; }
+	public static inline function isEmpty (value:Float) : Bool	{ return value == Number.EMPTY; }
+	public static inline function unset () : Float				{ return Number.FLOAT_NOT_SET; }
+	
+	
+	public static inline function getValue (v:Float) : Float	{ return v.isEmpty() ? Number.FLOAT_NOT_SET : v; }
+	
+	public static inline function getBiggest (var1:Float, var2:Float) : Float	{ return FloatMath.max(var1, var2); }
+	public static inline function getSmallest (var1:Float, var2:Float) : Float	{ return FloatMath.min(var1, var2); }
+}
+
+ 
 
 
 extern class FloatMath

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -105,7 +105,7 @@ class FollowObjectBehaviour extends BehaviourBase<IUIElement>
 
 	private inline function createFollowBindings ()
 	{
-		Assert.notNull(followedElement, "followed-element can't be null for "+target);
+		Assert.isNotNull(followedElement, "followed-element can't be null for "+target);
 		followedLayoutBinding = checkChanges.on( followedElement.layout.changed, this );
 	}
 	
@@ -152,7 +152,7 @@ class FollowObjectBehaviour extends BehaviourBase<IUIElement>
 	
 	private function updatePosition ()
 	{
-		Assert.notNull(target.window, target+"");
+		Assert.isNotNull(target.window, target+"");
 		
 		var layout		= target.layout;
 		var bounds		= layout.outerBounds;

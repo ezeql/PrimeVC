@@ -33,9 +33,10 @@ package prime.gui.events;
  import prime.gui.events.KeyModState;
 
 
-typedef MouseEvents = 
+typedef MouseEvents =
 	#if     flash9  prime.avm2.events.MouseEvents;
 	#elseif flash   prime.avm1.events.MouseEvents;
+	#elseif nodejs  #error;
 	#elseif js      prime.js  .events.MouseEvents;
 	#elseif neko    prime.neko.events.MouseEvents;
 	#else   #error; #end
@@ -90,16 +91,16 @@ class MouseSignals extends Signals
 	private inline function getScroll ()		{ if (scroll == null)		{ createScroll(); }			return scroll; }
 	
 	
-	private function createDown ()			{ Assert.abstract(); }
-	private function createUp ()			{ Assert.abstract(); }
-	private function createMove ()			{ Assert.abstract(); }
-	private function createClick () 		{ Assert.abstract(); }
-	private function createDoubleClick ()	{ Assert.abstract(); }
-	private function createOverChild ()		{ Assert.abstract(); }
-	private function createOutOfChild ()	{ Assert.abstract(); }
-	private function createRollOver ()		{ Assert.abstract(); }
-	private function createRollOut ()		{ Assert.abstract(); }
-	private function createScroll ()		{ Assert.abstract(); }
+	private function createDown ()			{ Assert.abstractMethod(); }
+	private function createUp ()			{ Assert.abstractMethod(); }
+	private function createMove ()			{ Assert.abstractMethod(); }
+	private function createClick () 		{ Assert.abstractMethod(); }
+	private function createDoubleClick ()	{ Assert.abstractMethod(); }
+	private function createOverChild ()		{ Assert.abstractMethod(); }
+	private function createOutOfChild ()	{ Assert.abstractMethod(); }
+	private function createRollOver ()		{ Assert.abstractMethod(); }
+	private function createRollOut ()		{ Assert.abstractMethod(); }
+	private function createScroll ()		{ Assert.abstractMethod(); }
 	
 	
 	/*override public function dispose ()
@@ -127,7 +128,7 @@ class MouseSignals extends Signals
  */
 class MouseState extends KeyModState, implements IClonable<MouseState>
 {
-	public static inline var fake = new MouseState( 0, null, null, null, null );
+	public static var fake = new MouseState( 0, null, null, null, null );
 	
 	/*  var flags: Range 0 to 0xFFFFFF
 		
@@ -166,7 +167,7 @@ class MouseState extends KeyModState, implements IClonable<MouseState>
 	inline function middleButton()	: Bool	{ return (flags & 0xF00 == 0x300); }
 	
 	inline function clickCount()	: Int	{ return (flags >> 4) & 0xF; }
-	@:keep inline function scrollDelta()	: Int	{ return (flags >> 16); }
+	inline function scrollDelta()	: Int	{ return (flags >> 16); }
 	
 	
 	inline function mouseButton()	: MouseButton
@@ -183,14 +184,14 @@ class MouseState extends KeyModState, implements IClonable<MouseState>
 	
 	
 #if flash9
-	public inline function isDispatchedBy (obj:UserEventTarget) : Bool
+	public #if !noinline inline #end function isDispatchedBy (obj:UserEventTarget) : Bool
 	{
 		return obj != null && obj == related;
 	}
 #end
 	
 	
-	public inline function clone () : MouseState
+	public #if !noinline inline #end function clone () : MouseState
 	{
 		return new MouseState( flags, target, local, stage, related);
 	}

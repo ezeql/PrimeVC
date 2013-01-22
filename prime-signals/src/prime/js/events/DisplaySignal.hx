@@ -29,6 +29,6 @@ class DisplaySignal extends DOMSignal1<DisplayEvent>
 {
 	override private function dispatch(event:Event) 
 	{
-		send(cast event);
+		send(cast(event,DisplayEvent));
 	}
 }

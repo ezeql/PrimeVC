@@ -26,9 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
- import primevc.core.traits.Invalidatable;
- 
+package prime.gui.graphics;
+ import prime.core.traits.Invalidatable;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
+#end
+#if (CSSParser || debug)
+ import prime.utils.ID;
+#end
+
 
 /**
  * Base class for all graphic elements.
@@ -38,14 +44,14 @@ package primevc.gui.graphics;
  */
 class GraphicElement extends Invalidatable, implements IGraphicElement 
 {
-#if (debug || (neko && prime_css))
+#if (CSSParser || debug)
 	public var _oid (default, null)	: Int;
 	
 	
 	public function new ()
 	{
 		super();
-		_oid = primevc.utils.ID.getNext();
+		_oid = prime.utils.ID.getNext();
 	}
 	
 	
@@ -54,15 +60,21 @@ class GraphicElement extends Invalidatable, implements IGraphicElement
 		_oid = 0;
 		super.dispose();
 	}
+#end
+
+#if CSSParser	
+	public function toCode (code:ICodeGenerator) { Assert.abstractMethod(); }
+#end
 
 
+#if (CSSParser || debug)
 	public function toString () : String				{ return toCSS(); }
-	@:keep public function toCSS (prefix:String = "") : String	{ /*Assert.abstract();*/ return "GraphicElement"; }
+	public function toCSS (prefix:String = "") : String	{ /*Assert.abstractMethod();*/ return "GraphicElement"; }
 	public function isEmpty () : Bool					{ return false; }
 	public function cleanUp () : Void					{}
 #end
 
 #if (neko && prime_css)
-	public function toCode (code:primevc.tools.generator.ICodeGenerator) { Assert.abstract(); }
+	public function toCode (code:prime.tools.generator.ICodeGenerator) { Assert.abstractMethod(); }
 #end
 }

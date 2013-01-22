@@ -69,7 +69,7 @@ class IntRectangle extends QueueingInvalidatable, implements IRectangle
 	
 	public function clone () : IBox
 	{
-		return cast new IntRectangle( left, top, width, height );
+		return new IntRectangle( left, top, width, height );
 	}
 	
 	

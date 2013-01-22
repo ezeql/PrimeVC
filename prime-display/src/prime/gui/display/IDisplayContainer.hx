@@ -38,7 +38,7 @@ package prime.gui.display;
  */
 interface IDisplayContainer implements IInteractive, implements IDisplayable
 {
-#if !neko
+#if !CSSParser
 	var children	(default, null)			: DisplayList;
 #end
 	

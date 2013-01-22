@@ -59,19 +59,23 @@ package prime.signal;
 #end
 class Signals implements IUnbindable<Dynamic>, implements IDisposable, implements IDisablable, implements haxe.Public
 {
-	private var _enabled : Bool;
-	
-	public function new    () _enabled = true
-	public function dispose() {}
+    private var _enabled : Bool;
 
-	public inline function isEnabled() return _enabled
-	public inline function   enable () _enabled = true
-	public inline function  disable () _enabled = false
-	
-	/**
-	 * @param	listener
-	 * @param	handler
-	 */
-	public function unbind( listener:Dynamic, ?handler:Null<Dynamic> ) {}
-	public function unbindAll() {}
+    public function new     () { _enabled = true; }
+    public function disable () { _enabled = false; }
+    public function enable  () { _enabled = true; }
+    public function dispose () {}
+
+    /**
+     * Calls unbind with the given arguments on all IUbindable properties of this class (and subclasses).
+     * @see        Signal.unbind
+     */
+    public function unbind( listener : Dynamic, ?handler : Dynamic ) : Void {}
+    /**
+     * Calls unbindAll on all IUbindable properties of this class (and subclasses).
+     * @see        Signal.unbind
+     */
+    public function unbindAll () {}
+   
+    public #if !noinline inline #end function isEnabled ()    { return _enabled; }
 }

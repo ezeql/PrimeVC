@@ -51,12 +51,11 @@ private typedef PValidator	= PercentIntRangeValidator;
  */
 class LayoutCollection extends StyleCollectionBase < LayoutStyle >
 {
-	public function new (elementStyle:IUIElementStyle)			{ super( elementStyle, StyleFlags.LAYOUT ); }
-	override public function forwardIterator ()					{ return cast new LayoutCollectionForwardIterator( elementStyle, propertyTypeFlag); }
-	override public function reversedIterator ()				{ return cast new LayoutCollectionReversedIterator( elementStyle, propertyTypeFlag); }
-
+	public function new (elementStyle:IUIElementStyle)			super( elementStyle, StyleFlags.LAYOUT )
+	override public function forwardIterator ()					return new LayoutCollectionForwardIterator( elementStyle, propertyTypeFlag)
+	override public function reversedIterator ()				return new LayoutCollectionReversedIterator( elementStyle, propertyTypeFlag)
 #if debug
-	override public function readProperties (props:Int = -1)	{ return Flags.readProperties( (props == -1) ? filledProperties : props ); }
+	override public function readProperties (props:Int = -1)	return Flags.read( (props == -1) ? filledProperties : props )
 #end
 
 	
@@ -118,8 +117,8 @@ class LayoutCollection extends StyleCollectionBase < LayoutStyle >
 		}
 		
 		
-		var maintainAspect = layout.maintainAspectRatio;
-		layout.maintainAspectRatio = false;
+	//	var maintainAspect = layout.maintainAspectRatio;
+	//	layout.maintainAspectRatio = false;
 	//	trace(target + ".applyLayoutStyling1 "+readProperties( changes )+"; changes "+changes);
 		
 		for (styleObj in this)
@@ -163,7 +162,7 @@ class LayoutCollection extends StyleCollectionBase < LayoutStyle >
 		if (heightRange != null && layout.heightValidator == null)
 			layout.heightValidator = heightRange;
 		
-		layout.maintainAspectRatio  = maintainAspect;
+	//	layout.maintainAspectRatio  = maintainAspect;
 		layout.invalidatable 		= wasInvalidatable;
 	}
 	
@@ -190,10 +189,10 @@ class LayoutCollection extends StyleCollectionBase < LayoutStyle >
 	//		}
 		}*/
 		
-		if		(propsToSet.has( Flags.WIDTH ))				layout.width		 	= notEmpty ? styleObj.width.getValue()				: Number.INT_NOT_SET;
-		else if (propsToSet.has( Flags.PERCENT_WIDTH ))		layout.percentWidth  	= notEmpty ? styleObj.percentWidth.getValue()		: Number.FLOAT_NOT_SET;
-		if		(propsToSet.has( Flags.HEIGHT ))			layout.height		 	= notEmpty ? styleObj.height.getValue()				: Number.INT_NOT_SET;
-		else if (propsToSet.has( Flags.PERCENT_HEIGHT ))	layout.percentHeight 	= notEmpty ? styleObj.percentHeight.getValue()		: Number.FLOAT_NOT_SET;
+		if (propsToSet.has( Flags.PERCENT_WIDTH ))		layout.percentWidth  	= notEmpty ? styleObj.percentWidth.getValue()		: Number.FLOAT_NOT_SET;
+		if (propsToSet.has( Flags.WIDTH ))				layout.width		 	= notEmpty ? styleObj.width.getValue()				: Number.INT_NOT_SET;
+		if (propsToSet.has( Flags.PERCENT_HEIGHT ))		layout.percentHeight 	= notEmpty ? styleObj.percentHeight.getValue()		: Number.FLOAT_NOT_SET;
+		if (propsToSet.has( Flags.HEIGHT ))				layout.height		 	= notEmpty ? styleObj.height.getValue()				: Number.INT_NOT_SET;
 		
 		var pWidthRange		= propsToSet.has( Flags.PERCENT_WIDTH_CONSTRAINTS )  ? widthRange .as(PValidator) : null;
 		var pHeightRange	= propsToSet.has( Flags.PERCENT_HEIGHT_CONSTRAINTS ) ? heightRange.as(PValidator) : null;
@@ -204,7 +203,7 @@ class LayoutCollection extends StyleCollectionBase < LayoutStyle >
 		if (propsToSet.has( Flags.PADDING ))			layout.padding				= notEmpty ? styleObj.padding						: null;
 		if (propsToSet.has( Flags.MARGIN ))				layout.margin				= notEmpty ? styleObj.margin						: null;
 		
-		if (propsToSet.has( Flags.PERCENT_MIN_WIDTH ))	pWidthRange.percentMin		= notEmpty ? styleObj.percentMinWidth.getValue()	: Number.FLOAT_NOT_SET;
+		if 	(propsToSet.has( Flags.PERCENT_MIN_WIDTH ))	pWidthRange.percentMin		= notEmpty ? styleObj.percentMinWidth.getValue()	: Number.FLOAT_NOT_SET;
 		else if (propsToSet.has( Flags.MIN_WIDTH ))		widthRange.min				= notEmpty ? styleObj.minWidth.getValue()			: Number.INT_NOT_SET;
 		if (propsToSet.has( Flags.PERCENT_MAX_WIDTH ))	pWidthRange.percentMax		= notEmpty ? styleObj.percentMaxWidth.getValue()	: Number.FLOAT_NOT_SET;
 		else if (propsToSet.has( Flags.MAX_WIDTH ))		widthRange.max				= notEmpty ? styleObj.maxWidth.getValue()			: Number.INT_NOT_SET;

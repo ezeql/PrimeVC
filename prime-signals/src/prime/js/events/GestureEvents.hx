@@ -9,7 +9,7 @@ package prime.js.events;
  */
 class GestureEvents extends Signals
 {
-	private var eventDispatcher : UserEventTarget;
+	private var eventDispatcher : primevc.gui.events.UserEventTarget;
 	
 	public var start	(getStart,	null) : GestureSignal;
 	public var change	(getChange,	null) : GestureSignal;

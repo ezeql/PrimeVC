@@ -29,9 +29,10 @@
 package prime.gui.events;
  import prime.signal.Signals;
 
-typedef KeyboardEvents = 
+typedef KeyboardEvents =
 	#if     flash9     prime.avm2.events.KeyboardEvents;
-	#elseif flash8     prime.avm1.events.KeyboardEvents;
+	#elseif flash      prime.avm1.events.KeyboardEvents;
+	#elseif nodejs     #error;
 	#elseif js         prime.js  .events.KeyboardEvents;
 	#else   #error;    #end
 

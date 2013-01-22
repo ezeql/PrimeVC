@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -89,7 +89,7 @@ class ASync<T> implements IDisposable, implements IUnbindable<T->Dynamic>
 	}
 	
 	
-	public inline function unbindAll ()
+	public #if !noinline inline #end function unbindAll ()
 	{
 		response.unbindAll();
 		error.unbindAll();
@@ -125,7 +125,7 @@ class ASync<T> implements IDisposable, implements IUnbindable<T->Dynamic>
 	}
 	
 	
-	public inline function cancel () : Void
+	public #if !noinline inline #end function cancel () : Void
 	{
 		if (state != REQUESTED)
 			return;
@@ -139,7 +139,7 @@ class ASync<T> implements IDisposable, implements IUnbindable<T->Dynamic>
 	}
 	
 	
-	public inline function reply (data:T) : ASync<T>
+	public #if !noinline inline #end function reply (data:T) : ASync<T>
 	{
 		Assert.that( state.hasNone(DISPOSED) );
 		if (response.hasListeners()) {
@@ -152,7 +152,7 @@ class ASync<T> implements IDisposable, implements IUnbindable<T->Dynamic>
 	}
 	
 	
-	public inline function sendError (message:String) : Void
+	public #if !noinline inline #end function sendError (message:String) : Void
 	{
 		Assert.that( state.hasNone(DISPOSED) );
 		error.send(message);

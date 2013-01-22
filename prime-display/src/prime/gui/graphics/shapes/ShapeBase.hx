@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.shapes;
- import primevc.gui.graphics.GraphicElement;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics.shapes;
+ import prime.gui.graphics.GraphicElement;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
 
 
@@ -41,7 +41,7 @@ package primevc.gui.graphics.shapes;
  */
 class ShapeBase extends GraphicElement 
 {
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)
 	{
 		code.construct( this );

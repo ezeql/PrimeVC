@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeFormattable;
- import primevc.tools.generator.ICSSFormattable;
+package prime.gui.effects;
+#if CSSParser
+ import prime.tools.generator.ICodeFormattable;
+ import prime.tools.generator.ICSSFormattable;
 #end
- import primevc.core.traits.IClonable;
- import primevc.core.traits.IInvalidatable;
- import primevc.core.traits.IDisposable;
+ import prime.core.traits.IClonable;
+ import prime.core.traits.IInvalidatable;
+ import prime.core.traits.IDisposable;
 
 
 /**
@@ -43,8 +43,7 @@ package primevc.gui.effects;
 interface IEffect
 				implements IDisposable
 			,	implements IInvalidatable	
-#if (neko && prime_css)
-			,	implements ICSSFormattable
+#if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable		#end
 			,	implements IClonable < IEffect >
 {
@@ -74,6 +73,11 @@ interface IEffect
 	 */
 	public var autoHideFilters	(default, setAutoHideFilters)	: Bool;
 	
+	/**
+	 * Flag indicating if the effect is supposed to be playing backwards
+	 * @default false
+	 */
+	public var isReverted		(default, setIsReverted)		: Bool;
 	
 	/**
 	 * Method to set the explicit start and end values of the effect

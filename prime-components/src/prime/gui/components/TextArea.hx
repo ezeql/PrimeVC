@@ -71,7 +71,7 @@ class TextArea<VOType> extends InputField<VOType>
 	}
 
 
-	override public  function removeChildren ()
+	override public  function disposeChildren ()
 	{
 		field.dispose();
 		field = null;

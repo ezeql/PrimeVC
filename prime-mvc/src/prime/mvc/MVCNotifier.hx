@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -64,6 +64,6 @@ class MVCNotifier implements IMVCNotifier
 	
 	public function enable ()				{ state = state.set( MVCFlags.ENABLED ); }
 	public function disable ()				{ state = state.unset( MVCFlags.ENABLED ); }
-	public inline function isDisposed ()	{ return state.has( MVCFlags.DISPOSED ); }
-	public inline function isEnabled ()		{ return state.has( MVCFlags.ENABLED ); }
+	public #if !noinline inline #end function isDisposed ()	{ return state.has( MVCFlags.DISPOSED ); }
+	public #if !noinline inline #end function isEnabled ()		{ return state.has( MVCFlags.ENABLED ); }
 }

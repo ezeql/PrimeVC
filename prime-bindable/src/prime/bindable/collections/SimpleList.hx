@@ -43,7 +43,7 @@ package prime.bindable.collections;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
-class SimpleList<T> implements IEditableList<T>
+class SimpleList<T> implements IEditableList<T> 
 	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var change		(default, null)		: ListChangeSignal<T>;
@@ -122,12 +122,15 @@ class SimpleList<T> implements IEditableList<T>
 	}
 	
 	
-	public  inline function isEmpty()   : Bool          return length == 0
-	private inline function getLength() : Int           return _length
-	public function iterator()          : Iterator<T>   return forwardIterator()
-	public function forwardIterator()   : IIterator<T>  return new FastDoubleCellForwardIterator<T>(first)
-	public function reversedIterator()  : IIterator<T>  return new FastDoubleCellReversedIterator<T>(last)
-
+	@:keep public #if !noinline inline #end function isEmpty()	//FIXME: @:keep shouldn't be needed. Without it, DCE will cause runtime error: Illegal override of SimpleList_String with....
+	{
+		return length == 0;
+	}
+	
+	private inline function getLength () : Int          { return _length; }
+	public function iterator          () : Iterator <T> { return forwardIterator(); }
+	public function forwardIterator   () : IIterator<T> { return new FastDoubleCellForwardIterator <T> (first); }
+	public function reversedIterator  () : IIterator<T> { return new FastDoubleCellReversedIterator <T> (last); }
 	
 	
 	/**
@@ -219,9 +222,10 @@ class SimpleList<T> implements IEditableList<T>
 	 * @param	pos
 	 * @return	position where the cell is inserted
 	 */
-	public inline function insertAt (item:T, ?pos:Int = -1) : Int
-		return insertCellAt( new FastDoubleCell<T>( item, null ), pos )
-
+	public #if !noinline inline #end function insertAt (item:T, ?pos:Int = -1) : Int
+	{
+		return insertCellAt( new FastDoubleCell<T>( item, null ), pos );
+	}
 
 	private function insertCellAt( cell:FastDoubleCell<T>, ?pos:Int = -1) : Int
 	{

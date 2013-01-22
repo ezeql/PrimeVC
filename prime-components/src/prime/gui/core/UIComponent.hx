@@ -72,7 +72,7 @@ package primevc.gui.core;
  *  - createSkin
  *  - removeStates
  *  - removeSkin
- *  - removeChildren
+ *  - disposeChildren
  * 
  * Non of these methods need to call their super methods because they
  * are empty.
@@ -91,7 +91,7 @@ class UIComponent extends Sprite, implements IUIComponent
     public var behaviours		(default, null)			        : BehaviourList;
 	public var state			(default, null)					: UIElementStates;
 	public var effects			(default, default)				: UIElementEffects;
-	public var id				(default, null)					: Bindable < String >;
+	public var id				(default, null)					: Bindable<String>;
 	
 	public var skin				(default, setSkin)				: ISkin;
 	public var layout			(default, null)					: LayoutClient;
@@ -100,11 +100,11 @@ class UIComponent extends Sprite, implements IUIComponent
 #if flash9	
 	public var graphicData		(default, null)					: GraphicProperties;
 	public var style			(default, null)					: UIElementStyle;
-	public var styleClasses		(default, null)					: SimpleList < String >;
+	public var styleClasses		(default, null)					: SimpleList<String>;
 	public var stylingEnabled	(default, setStylingEnabled)	: Bool;
 #end
 	
-	public var enabled			(default, null)					: Bindable < Bool >;
+	public var enabled			(default, null)					: Bindable<Bool>;
 	
 	
 	public function new (?id:String)
@@ -154,9 +154,9 @@ class UIComponent extends Sprite, implements IUIComponent
 #if flash9
 		if (stylingEnabled)
 			behaviours.add( new InteractiveStyleChangeBehaviour(this) );
-		Assert.notNull(parent);
+		Assert.isNotNull(parent);
 #end
-	//	Assert.notNull(container, "Container can't be null for "+this);
+	//	Assert.isNotNull(container, "Container can't be null for "+this);
     //  if (_behaviours != null)
     //      _behaviours.init();
 		
@@ -183,7 +183,7 @@ class UIComponent extends Sprite, implements IUIComponent
 	}
 	
 	
-/*	public inline function forceInitialization ()
+/*	public #if !noinline inline #end function forceInitialization ()
 	{
 		init();
 	}*/
@@ -210,7 +210,7 @@ class UIComponent extends Sprite, implements IUIComponent
 		}
 
 		if (isInitialized())
-			removeChildren();
+			disposeChildren();
 		
 		removeStates();
 		
@@ -258,8 +258,8 @@ class UIComponent extends Sprite, implements IUIComponent
 	}
 	
 	
-	public inline function isDisposed ()	{ return state == null || state.is(state.disposed); }
-	public inline function isInitialized ()	{ return state != null && state.is(state.initialized); }
+	public #if !noinline inline #end function isDisposed ()	{ return state == null || state.is(state.disposed); }
+	public #if !noinline inline #end function isInitialized ()	{ return state != null && state.is(state.initialized); }
 	public function isResizable ()			{ return true; }
 	
 	
@@ -276,7 +276,7 @@ class UIComponent extends Sprite, implements IUIComponent
 	private inline function applyDetach			()									: IUIElement	{ detachDisplay();							detachLayout();					return this; }
 	
 
-	public  inline function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
+	public  /*inline*/ function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
 	{
 	//	if (container != t)
 	//	{
@@ -287,7 +287,7 @@ class UIComponent extends Sprite, implements IUIComponent
 			}
 			
 			attachDisplayTo(t, pos);
-			var hasEffect = visible && effects != null && effects.show != null;
+			var hasEffect = effects != null && effects.show != null;
 			var isPlaying = hasEffect && effects.show.isPlaying();
 			
 			if (!hasEffect && !visible)
@@ -330,24 +330,24 @@ class UIComponent extends Sprite, implements IUIComponent
 	}
 
 
-	public inline function isDetaching () 				{ return effects != null && effects.isPlayingHide(); }
-	public inline function isAttached () 				{ return window  != null; }
+	public #if !noinline inline #end function isDetaching () 				{ return effects != null && effects.isPlayingHide(); }
+	public #if !noinline inline #end function isAttached () 				{ return window  != null; }
 	
 	
 	//
 	// ACTIONS (actual methods performed by UIElementActions util)
 	//
 	
-	public inline function show ()						{ this.doShow(); }
-	public inline function hide ()						{ this.doHide(); }
-	public inline function move (x:Int, y:Int)			{ this.doMove(x, y); }
-	public inline function resize (w:Int, h:Int)		{ this.doResize(w, h); }
-	public inline function rotate (v:Float)				{ this.doRotate(v); }
+	public #if !noinline inline #end function show ()						{ this.doShow(); }
+	public #if !noinline inline #end function hide ()						{ this.doHide(); }
+	public #if !noinline inline #end function move (x:Int, y:Int)			{ this.doMove(x, y); }
+	public #if !noinline inline #end function resize (w:Int, h:Int)		{ this.doResize(w, h); }
+	public #if !noinline inline #end function rotate (v:Float)				{ this.doRotate(v); }
 	public function scale (sx:Float, sy:Float)			{ this.doScale(sx, sy); }
 	
-	public inline function enable ()					{ /*Assert.that(!isDisposed(), this);*/ enabled.value = true; }
-	public inline function disable ()					{ /*Assert.that(!isDisposed(), this);*/ enabled.value = false; }
-	public inline function isEnabled ()					{ return enabled.value; }
+	public #if !noinline inline #end function enable ()					{ /*Assert.that(!isDisposed(), this);*/ enabled.value = true; }
+	public #if !noinline inline #end function disable ()					{ /*Assert.that(!isDisposed(), this);*/ enabled.value = false; }
+	public #if !noinline inline #end function isEnabled ()					{ return enabled.value; }
 	
 	
 	//
@@ -368,11 +368,11 @@ class UIComponent extends Sprite, implements IUIComponent
 	
 	private inline function getSystem () : ISystem		{ return window.as(ISystem); }
 #if flash9
-	public inline function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
 #else
-	public inline function isOnStage () : Bool			{ return window != null; }
+	public #if !noinline inline #end function isOnStage () : Bool			{ return window != null; }
 #end
-	public inline function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
+	public #if !noinline inline #end function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
 	
 
 	private inline function setSkin (newSkin)
@@ -420,9 +420,10 @@ class UIComponent extends Sprite, implements IUIComponent
 	}
 	
 	
-	#if flash11 override #end public function removeChildren () : Void
+	public function disposeChildren ()
 	{
 		children.disposeAll();
+#if flash11	removeChildren(); #end
 	}
 	
 	
@@ -480,10 +481,10 @@ class UIComponent extends Sprite, implements IUIComponent
 	// ABSTRACT METHODS
 	//
 	
-	private function createStates ()		: Void {} //	{ Assert.abstract(); }
-	private function createBehaviours ()	: Void {} //	{ Assert.abstract(); }
-	private function createChildren ()		: Void {} //	{ Assert.abstract(); }
-	private function removeStates ()		: Void {} //	{ Assert.abstract(); }
+	private function createStates ()		: Void {} //	{ Assert.abstractMethod(); }
+	private function createBehaviours ()	: Void {} //	{ Assert.abstractMethod(); }
+	private function createChildren ()		: Void {} //	{ Assert.abstractMethod(); }
+	private function removeStates ()		: Void {} //	{ Assert.abstractMethod(); }
 
     
 	

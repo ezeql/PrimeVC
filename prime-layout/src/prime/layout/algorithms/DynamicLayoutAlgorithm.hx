@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms;
-#if neko
+#if CSSParser
  import prime.tools.generator.ICodeGenerator;
 #end
  import prime.core.geom.space.Direction;
@@ -72,7 +72,7 @@ class DynamicLayoutAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgo
 	public function new (?horAlgorithmInfo:AlgorithmClass, ?verAlgorithmInfo:AlgorithmClass) 
 	{
 		super();
-#if !neko
+#if !CSSParser
 		if (horAlgorithmInfo != null)	horAlgorithm	= horAlgorithmInfo().as(IHorizontalAlgorithm); //horAlgorithmInfo.create();
 		if (verAlgorithmInfo != null)	verAlgorithm	= verAlgorithmInfo().as(IVerticalAlgorithm); //verAlgorithmInfo.create();
 #end
@@ -241,18 +241,18 @@ class DynamicLayoutAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgo
 	}
 	
 
-#if (neko || debug)
+#if (CSSParser || debug)
 	override public function toCSS (prefix:String = "") : String
 	{
 		return "dynamic ( " + horAlgorithm + ", " + verAlgorithm + " )";
 	}
 #end
 
-#if neko
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)
 	{
-		var hor = horAlgorithm == null ? null : new Factory( cast horAlgorithm.getClass(), [ horizontalDirection ] );
-		var ver = verAlgorithm == null ? null : new Factory( cast verAlgorithm.getClass(), [ verticalDirection ] );
+		var hor = horAlgorithm == null ? null : new Factory( /*cast */horAlgorithm.getClass(), [ horizontalDirection ] );
+		var ver = verAlgorithm == null ? null : new Factory( /*cast */verAlgorithm.getClass(), [ verticalDirection ] );
 		code.construct( this, [ hor, ver ] );
 	}
 #end

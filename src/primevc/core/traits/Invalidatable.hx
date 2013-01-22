@@ -60,7 +60,7 @@ class Invalidatable implements IInvalidatable
 	
 	public function invalidate (change:Int) : Void
 	{
-	//	Assert.notNull(listeners, this+" is already disposed.");
+	//	Assert.isNotNull(listeners, this+" is already disposed.");
 		var current = listeners.head;
 		while (current != null)
 		{

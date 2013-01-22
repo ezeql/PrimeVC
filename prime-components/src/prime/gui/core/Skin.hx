@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
- import primevc.gui.behaviours.BehaviourList;
- import primevc.gui.events.UserEventTarget;
-// import primevc.gui.states.SkinStates;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.core;
+ import prime.gui.behaviours.BehaviourList;
+ import prime.gui.events.UserEventTarget;
+ import prime.gui.states.UIElementStates;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -49,8 +49,8 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	
 	public function new()
 	{
-		behaviours		= new BehaviourList();
-	//	skinState		= new SkinStates();
+		behaviours        = new BehaviourList();
+	//	skinState         = new SkinStates();
 	//	skinState.current = skinState.constructed;
 	}
 	
@@ -87,7 +87,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	}
 	
 	
-	public inline function isDisposed ()
+	public #if !noinline inline #end function isDisposed ()
 	{
 		return behaviours == null;
 	}
@@ -107,7 +107,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 				owner.state.initialized.entering.unbind(this);
 			
 			if (owner.isInitialized())
-				removeChildren();
+				disposeChildren();
 			
 			removeBehaviours();
 	//		removeStates();
@@ -119,7 +119,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 		{
 	//		createStates();
 			createBehaviours();
-			drawGraphics();
+	//		drawGraphics();
 			
 			if (newOwner.isInitialized()) {
 				createChildren();
@@ -141,16 +141,16 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	// METHODS
 	//
 	
-	//TODO RUBEN - enable Assert.abstract
-//	private function createStates ()			: Void {} //	{ Assert.abstract(); }
-	private function createBehaviours ()		: Void {} //	{ Assert.abstract(); }
-	public function drawGraphics ()				: Void {} //	{ Assert.abstract(); }
-	public function createChildren ()			: Void {} //	{ Assert.abstract(); }
-	public function childrenCreated ()			: Void {}
+	//TODO RUBEN - enable Assert.abstractMethod
+//	private function createStates     ()    : Void {} //	{ Assert.abstractMethod(); }
+	private function createBehaviours ()    : Void {} //	{ Assert.abstractMethod(); }
+//	public  function drawGraphics     ()    : Void {} //	{ Assert.abstractMethod(); }
+	public  function createChildren   ()    : Void {} //	{ Assert.abstractMethod(); }
+	public  function childrenCreated  ()    : Void {}
 	
-//	private function removeStates ()			: Void {} //	{ Assert.abstract(); }
-	public  function removeChildren ()			: Void {} //	{ Assert.abstract(); }
-	public function validate (changes:Int)		: Void {}
+//	private function removeStates     ()    : Void {} //	{ Assert.abstractMethod(); }
+	public  function disposeChildren  ()    : Void {} //	{ Assert.abstractMethod(); }
+	public  function validate (changes:Int) : Void {}
 	
 	private function removeBehaviours ()
 	{

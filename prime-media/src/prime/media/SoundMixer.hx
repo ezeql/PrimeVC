@@ -20,11 +20,11 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
- *  Ruben Weijers   <ruben @ prime.vc>
+ *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
 package prime.media;
 #if flash9
@@ -42,19 +42,72 @@ private typedef Sound = flash.media.SoundMixer;
 #end
 
 
-
 /**
- * @creation-date   Oct 3, 2011
- * @author          Ruben Weijers
+ * Singleton which collects all playing sound-objects and adds an API to apply 
+ * actions on them.
+ *
+ * @since   Oct 3, 2011
+ * @author  Ruben Weijers
  */
 class SoundMixer
+{
+    private function new () {}
+    
+    private static var instance (getInstance, null) : SoundMixerInstance;
+    
+    private static inline function getInstance ()
+    {
+        if (instance.isNull())
+            instance = new SoundMixerInstance();
+        
+        return instance;
+    }
+
+
+    public static #if !noinline inline #end function stopAll ()                        { instance.stopAll(); }
+    public static #if !noinline inline #end function stopAllExcept (s:BaseMediaStream) { instance.stopAllExcept(s); }
+    public static #if !noinline inline #end function freezeAll ()                      { instance.freezeAll(); }
+    public static #if !noinline inline #end function defrostAll ()                     { instance.defrostAll(); }
+
+
+    public static #if !noinline inline #end function add (s:BaseMediaStream)           { instance.add(s); }
+    public static #if !noinline inline #end function remove (s:BaseMediaStream)        { instance.remove(s); }
+
+
+    public static #if !noinline inline #end function mute ()                           { instance.mute(); }
+    public static #if !noinline inline #end function unmute ()                         { instance.unmute(); }
+    public static #if !noinline inline #end function toggleMute ()                     { instance.toggleMute(); }
+
+
+
+
+    public static var volume    (getVolume, never)                  : Bindable<Float>;
+        private static inline function getVolume ()                 { return instance.volume; }
+    
+    public static var isMuted   (getIsMuted, never)                 : Bindable<Bool>;
+        private inline static function getIsMuted()                 { return instance.isMuted; }
+    
+    public static var isFrozen  (getIsFrozen, never)                : Bool;
+        private inline static function getIsFrozen()                { return instance.isFrozen; }
+}
+
+
+
+
+
+
+
+/**
+ * Singleton implemention
+ */
+private class SoundMixerInstance
 {
     private var next        : BaseMediaStream;
 
     /**
      * Overall volume setting
      */
-    public var volume       (default, null)        : Bindable<Float>;
+    public var volume       (default, null)         : Bindable<Float>;
     /**
      * Flag indicating if the sound is muted
      */
@@ -76,6 +129,7 @@ class SoundMixer
         volume              = new Bindable<Float>(1.0);
         isMuted             = new Bindable<Bool>(false);
         numberOfFreezes     = 0;
+        applyVolume.on(isMuted.change, this);
     }
 
 
@@ -124,7 +178,7 @@ class SoundMixer
     }
 
 
-    public function add (stream:BaseMediaStream)
+    public #if !noinline inline #end function add (stream:BaseMediaStream)
     {
         Assert.isNotNull(stream);
         if (isFrozen)
@@ -161,33 +215,26 @@ class SoundMixer
     }
 
 
-    public inline function mute ()
-        if (!isMuted.value) {
-            isMuted.value = true;
-            applyVolume();
-        }
-
-
-    public inline function unmute ()
-        if (isMuted.value) {
-            isMuted.value = false;
-            applyVolume();
-        }
+    public #if !noinline inline #end function mute ()     isMuted.value = true
+    public #if !noinline inline #end function unmute ()   isMuted.value = false
 
     
     /**
      * Mutes or unmutes all soundClients. If a client is muted, the sound will
      * be paused instead of turning the volume to zero.
      */
-    public inline function toggleMute ()
-        isMuted.value ? unmute() : mute()
+    public #if !noinline inline #end function toggleMute ()
+    {
+        if (isMuted.value)  unmute();
+        else                mute();
+    }
 
 
     private function applyVolume ()
     {
 #if flash9
         var s    = Sound.soundTransform;
-        s.volume = isMuted.value.boolCalc() * volume.value;
+        s.volume = (!isMuted.value).boolCalc() * volume.value;
         Sound.soundTransform = s;
 #end
     }

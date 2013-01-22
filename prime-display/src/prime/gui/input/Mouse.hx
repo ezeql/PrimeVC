@@ -54,13 +54,19 @@ class Mouse //implements IInputDevice
 	}
 	
 	
-	public inline function show () {
-#if flash9	flash.ui.Mouse.show(); #end
+	public #if !noinline inline #end function show ()
+	{
+#if (flash9 || air)
+		flash.ui.Mouse.show();
+#end
 	}
 	
 	
-	public inline function hide () {
-#if flash9	flash.ui.Mouse.hide(); #end
+	public #if !noinline inline #end function hide ()
+	{
+#if (flash9 || air)
+		flash.ui.Mouse.hide();
+#end
 	}
 	
 	

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -63,7 +63,7 @@ class DataButton <DataType> extends Button, implements IItemRenderer <DataType>
 	public function new (id:String = null, defaultLabel:String = null, icon:Asset = null, vo:DataType = null)
 	{
 		super(id, defaultLabel, icon);
-		Assert.notNull(this.data);
+		Assert.isNotNull(this.data);
 		this.defaultLabel	= defaultLabel;
 		this.vo				= new Bindable<DataType>(vo);
 	}

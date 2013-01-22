@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -37,7 +37,7 @@ package prime.avm2.net;
  * @author Ruben Weijers
  * @creation-date Jan 07, 2011
  */
-class NetStream extends flash.net.NetStream, implements IDisposable
+class NetStream extends flash.net.NetStream //, implements primevc.core.traits.IDisposable
 {
 	public var events (default, null)	: NetStreamEvents;
 	
@@ -49,10 +49,11 @@ class NetStream extends flash.net.NetStream, implements IDisposable
 	}
 	
 	
-	public function dispose ()
+	public function dispose2 ()	//can't name it dispose since flash11 Netstream also contains a dispose-method which causes an "illegal override" error
 	{
 		close();
 		events.dispose();
 		events = null;
+#if flash_11_2 dispose(); #end 
 	}
 }

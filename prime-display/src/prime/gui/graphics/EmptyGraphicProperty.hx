@@ -20,18 +20,18 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.geom.IRectangle;
- import primevc.gui.traits.IGraphicsOwner;
+ import prime.core.geom.IRectangle;
+ import prime.gui.traits.IGraphicsOwner;
 
 
 /**
@@ -42,19 +42,19 @@ package primevc.gui.graphics;
  */
 class EmptyGraphicProperty extends GraphicElement, implements IGraphicProperty
 {
-	public inline function begin (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
-		Assert.abstract('this class is supposed to be ignored');
+		Assert.abstractMethod('this class is supposed to be ignored');
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
-		Assert.abstract('this class is supposed to be ignored');
+		Assert.abstractMethod('this class is supposed to be ignored');
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (prefix:String = "")		{ return "none"; }
 	override public function toCode (code:ICodeGenerator)	{ code.construct( this, [] ); }
 #end

@@ -27,8 +27,8 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package prime.avm2.events;
- import primevc .gui.events.KeyboardEvents;
- import primevc .gui.events.KeyModState;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.events.KeyModState;
  import prime.signal.Wire;
  import prime.signal.Signal1;
  import prime.signal.IWireWatcher;

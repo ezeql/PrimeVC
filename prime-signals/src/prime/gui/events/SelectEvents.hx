@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -31,9 +31,10 @@ package prime.gui.events;
  import prime.signal.Signals;
 
 
-typedef SelectEvents = 
+typedef SelectEvents =
 	#if     flash9   prime.avm2.events.SelectEvents;
-	#elseif flash8   prime.avm1.events.SelectEvents;
+	#elseif flash    prime.avm1.events.SelectEvents;
+	#elseif nodejs   #error;
 	#elseif js       prime.js  .events.SelectEvents;
 	#else            SelectSignals;	#end
 

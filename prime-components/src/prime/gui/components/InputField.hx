@@ -81,7 +81,7 @@ class InputField <VOType> extends DataButton <VOType>
 		var d = new RevertableBindable<String>("");
 		d.dispatchAfterCommit();
 		d.updateAfterCommit();
-		data 		= d;
+		data = d;
 
 		super(id, defaultLabel, icon, vo);
 		updateVO 	= doNothing;
@@ -103,6 +103,8 @@ class InputField <VOType> extends DataButton <VOType>
 	
 	override public function dispose ()
 	{
+		(untyped this).updateVO = null;
+		
 		if (fieldBinding != null) {
 			fieldBinding.dispose();
 			fieldBinding = null;
@@ -151,7 +153,7 @@ class InputField <VOType> extends DataButton <VOType>
 	}
 
 
-	/*public inline function pair (data:Bindable<VOType>)
+	/*public #if !noinline inline #end function pair (data:Bindable<VOType>)
 	{
 		var d = getRevertableData();
 		d.beginEdit();
@@ -180,6 +182,7 @@ class InputField <VOType> extends DataButton <VOType>
 		updateLabel();
 		if (data.value == defaultLabel) {
 			data.set("");
+			data.change.send("", null);
 			styleClasses.remove("empty");
 		}
 		
@@ -193,7 +196,7 @@ class InputField <VOType> extends DataButton <VOType>
 		if (!hasFocus)
 			return;
 		
-	//	Assert.notNull( vo.value );
+	//	Assert.isNotNull( vo.value );
 		fieldBinding.disable();
 		var d = getRevertableData();
 		if (d.isEditable())	// <-- not the case when cancelInput is called.

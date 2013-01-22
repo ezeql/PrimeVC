@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -47,13 +47,13 @@ package primevc.gui.components;
  */
 class Form
 {
-    public static inline function addHorLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Horizontal = null, percentWidth:Float = 1.0)
+    public static #if !noinline inline #end function addHorLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Horizontal = null, percentWidth:Float = 1.0)
     {
         return createLabelRow( form, labelStr, input, createHorizontalRow(direction, percentWidth), "horLabel" );
     }
 
 
-    public static inline function addVerLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Vertical = null, percentWidth:Float = 1.0)
+    public static #if !noinline inline #end function addVerLabelRow (form:IUIContainer, labelStr:String, input:UIComponent, direction:Vertical = null, percentWidth:Float = 1.0)
     {
         return createLabelRow( form, labelStr, input, createVerticalRow(direction, percentWidth), "verLabel" );
     }
@@ -82,8 +82,8 @@ class Form
             input.detach();
             row .attach(label.layout).attach(input.layout);
             row .attachTo(form.layoutContainer, layDepth);
-            input.attachDisplayTo( form, disDepth );
-            label.attachDisplayTo( form, disDepth );
+            input.attachToDisplayList( form, disDepth );
+            label.attachToDisplayList( form, disDepth );
 
             removed.enable();
             added  .enable();
@@ -104,7 +104,7 @@ class Form
     }
 
 
-    public static inline function rowIndexOf (input:UIComponent) : Int
+    public static #if !noinline inline #end function rowIndexOf (input:UIComponent) : Int
     {
         var form = input.container.as(IUIContainer);
         return form.layoutContainer.children.indexOf( cast input.layout.parent ) + 1;
@@ -135,9 +135,8 @@ class Form
     public static /*inline*/ function createHorizontalRow (direction:Horizontal = null, percentWidth:Float = 1.0) : LayoutContainer
     {
         var row          = new VirtualLayoutContainer();
-        if (percentWidth > 0)
-            row.percentWidth = percentWidth;
         row.algorithm    = new HorizontalFloatAlgorithm( direction == null ? Horizontal.left : direction, Vertical.center );
+        if (percentWidth > 0)   row.percentWidth = percentWidth;
         return row;
     }
 
@@ -145,9 +144,8 @@ class Form
     public static /*inline*/ function createVerticalRow (direction:Vertical = null, percentWidth:Float = 1.0) : LayoutContainer
     {
         var row          = new VirtualLayoutContainer();
-        if (percentWidth > 0)
-            row.percentWidth = percentWidth;
         row.algorithm    = new VerticalFloatAlgorithm( direction == null ? Vertical.center : direction, Horizontal.left );
+        if (percentWidth > 0)   row.percentWidth = percentWidth;
         return row;
     }
 }

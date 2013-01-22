@@ -27,21 +27,13 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.effects;
-#if neko
- import primevc.tools.generator.ICodeGenerator;
+#if CSSParser
+  using primevc.types.Reference;
 #end
  import primevc.core.geom.space.Position;
  import primevc.core.geom.IntPoint;
- import primevc.gui.display.IDisplayObject;	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.AnchorScaleEffectInstance;
-#end
  import primevc.gui.states.EffectStates;
  import primevc.types.Number;
-#if neko
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
-#end
   using primevc.utils.NumberUtil;
 
 
@@ -51,7 +43,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class AnchorScaleEffect extends Effect < IDisplayObject, AnchorScaleEffect >
+class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObject, AnchorScaleEffect> #else Effect<Dynamic, Dynamic> #end
 {
 	/**
 	 * Explicit ScaleX and ScaleY start-value
@@ -69,7 +61,7 @@ class AnchorScaleEffect extends Effect < IDisplayObject, AnchorScaleEffect >
 	public var zoomPosition			: Position;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, position:Position = null, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, position:Position = null, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
 	{
 		super(duration, delay, easing);
 		zoomPosition	= position != null				? position				: Position.TopLeft;
@@ -80,14 +72,14 @@ class AnchorScaleEffect extends Effect < IDisplayObject, AnchorScaleEffect >
 	
 	override public function clone ()
 	{
-		return cast new AnchorScaleEffect(duration, delay, easing, zoomPosition, startValue, endValue);
+		return new AnchorScaleEffect(duration, delay, easing, isReverted, zoomPosition, startValue, endValue);
 	}
 	
 	
-#if (flash8 || flash9 || js)
+#if !CSSParser
 	override public function createEffectInstance (target)
 	{
-		return cast new AnchorScaleEffectInstance(target, this);
+		return new primevc.gui.effects.effectInstances.AnchorScaleEffectInstance(target, this);
 	}
 #end
 	
@@ -102,7 +94,7 @@ class AnchorScaleEffect extends Effect < IDisplayObject, AnchorScaleEffect >
 	override public function setValues (v:EffectProperties) {}
 	
 	
-#if neko
+#if CSSParser
 	private function posToCSS () : String
 	{
 		return switch (zoomPosition) {
@@ -130,16 +122,17 @@ class AnchorScaleEffect extends Effect < IDisplayObject, AnchorScaleEffect >
 		if (zoomPosition != null)	props.push( posToCSS() );
 		if (startValue.isSet())		props.push( (startValue * 100) + "%" );
 		if (endValue.isSet())		props.push( (endValue * 100) + "%" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "anchor-scale " + props.join(" ");
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator) : Void
+	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, zoomPosition, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, zoomPosition, startValue, endValue ] );
 	}
 #end
 }

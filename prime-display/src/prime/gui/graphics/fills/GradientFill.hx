@@ -26,26 +26,24 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.fills;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics.fills;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.geom.IRectangle;
- import primevc.core.geom.Matrix2D;
- import primevc.gui.graphics.GraphicElement;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.graphics.IGraphicProperty;
- import primevc.gui.traits.IGraphicsOwner;
- import primevc.utils.FastArray;
-  using primevc.utils.Color;
-  using primevc.utils.FastArray;
-  using primevc.utils.RectangleUtil;
-  using primevc.utils.Formulas;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.IRectangle;
+ import prime.core.geom.Matrix2D;
+ import prime.gui.graphics.GraphicElement;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.graphics.IGraphicProperty;
+ import prime.gui.traits.IGraphicsOwner;
+ import prime.utils.FastArray;
+  using prime.utils.Color;
+  using prime.utils.FastArray;
+  using prime.utils.RectangleUtil;
+  using prime.utils.Formulas;
+  using prime.utils.TypeUtil;
 
 #if flash9
- import flash.display.InterpolationMethod;
-
 typedef FlashGradientType = flash.display.GradientType;
 #end
 
@@ -150,7 +148,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	// FILL METHODS
 	//
 	
-	public inline function begin (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
 		Assert.that( gradientStops.length >= 2, "There should be at least be two fills in an gradient.");
 			
@@ -169,13 +167,13 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 			ratios.push( fill.position );
 		}
 		
-		target.graphics.beginGradientFill( getFlashType(), colors, alphas, ratios, lastMatrix, getSpreadMethod(), InterpolationMethod.RGB, focalPointRatio  );
+		target.graphics.beginGradientFill( getFlashType(), colors, alphas, ratios, lastMatrix, getSpreadMethod(), flash.display.InterpolationMethod.RGB, focalPointRatio  );
 #end
 		isFinished = true;
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
 #if flash9
 		target.graphics.endFill();
@@ -185,7 +183,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	
 	
 #if flash9
-	public inline function createMatrix (bounds:IRectangle) : Matrix2D
+	public #if !noinline inline #end function createMatrix (bounds:IRectangle) : Matrix2D
 	{
 		var m = new Matrix2D();
 		m.createGradientBox( bounds.width, bounds.height, rotation.degreesToRadians() );
@@ -196,7 +194,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	
 
 #if flash9
-	public inline function getFlashType () : FlashGradientType
+	public #if !noinline inline #end function getFlashType () : FlashGradientType
 	{
 		return (type == GradientType.linear) ? FlashGradientType.LINEAR : FlashGradientType.RADIAL;
 	}
@@ -233,7 +231,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (prefix:String = "")
 	{
 		var colorStr = gradientStops.join(", ");

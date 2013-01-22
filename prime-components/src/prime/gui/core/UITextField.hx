@@ -66,7 +66,7 @@ package primevc.gui.core;
  */
 class UITextField extends TextField, implements IUIElement
 {
-	public static inline function createLabelField (id:String = null, data:Bindable<String> = null, owner:ITextStylable = null, injectedLayout:AdvancedLayoutClient = null) : UITextField
+	public static #if !noinline inline #end function createLabelField (id:String = null, data:Bindable<String> = null, owner:ITextStylable = null, injectedLayout:AdvancedLayoutClient = null) : UITextField
 	{
 		var f = new UITextField( #if debug id #else null #end, injectedLayout == null, data, injectedLayout );	//FIXME: stylingEnabled doesn't always have to be true..
 #if flash9
@@ -192,8 +192,8 @@ class UITextField extends TextField, implements IUIElement
 	}
 	
 	
-	public inline function isDisposed ()	{ return state == null || state.is(state.disposed); }
-	public inline function isInitialized ()	{ return state != null && state.is(state.initialized); }
+	public #if !noinline inline #end function isDisposed ()	{ return state == null || state.is(state.disposed); }
+	public #if !noinline inline #end function isInitialized ()	{ return state != null && state.is(state.initialized); }
 	public function isResizable ()			{ return true; }
 	
 	
@@ -209,27 +209,32 @@ class UITextField extends TextField, implements IUIElement
 	public  inline function changeDepth			(pos:Int)							: IUIElement	{ changeLayoutDepth(pos);					changeDisplayDepth(pos);		return this; }
 	
 
-	public  inline function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
+	public  /*inline*/ function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
 	{
-		if (container != t)
-		{
-			if (effects != null && effects.isPlayingHide())
+		//	if (container != t)
+	//	{
+			var wasDetaching = isDetaching();
+			if (wasDetaching) {
+				effects.hide.ended.unbind(this);
 				effects.hide.stop();
+			}
 			
 			attachDisplayTo(t, pos);
-
-			var hasEffect = visible && effects != null && effects.show != null;
+			var hasEffect = effects != null && effects.show != null;
 			var isPlaying = hasEffect && effects.show.isPlaying();
 			
-			if (!isPlaying)
+			if (!hasEffect && !visible)
+				visible = true;
+			
+			else if (hasEffect && !isPlaying)
 			{
-				if (hasEffect) {
+				if (!wasDetaching)
 					visible = false;
-					if (!isInitialized()) 	haxe.Timer.delay( show, 100 ); //.onceOn( displayEvents.enterFrame, this );
-					else 					effects.playShow();
-				}
+				
+				if (!isInitialized()) 	haxe.Timer.delay( show, 100 ); //.onceOn( displayEvents.enterFrame, this );
+				else 					effects.playShow();
 			}
-		}
+	//	}
 		
 		return this;
 	}
@@ -259,6 +264,10 @@ class UITextField extends TextField, implements IUIElement
 	}
 
 
+	public #if !noinline inline #end function isDetaching () 				{ return effects != null && effects.isPlayingHide(); }
+	public #if !noinline inline #end function isAttached () 				{ return window  != null; }
+
+
 
 	//
 	// METHODS
@@ -280,7 +289,7 @@ class UITextField extends TextField, implements IUIElement
 	}
 	
 	
-	public inline function setHtmlText (v:String) : Void
+	public #if !noinline inline #end function setHtmlText (v:String) : Void
 	{
 		if (v == null)
 			v = "";
@@ -295,7 +304,7 @@ class UITextField extends TextField, implements IUIElement
 #if flash9
 	override private function setTextStyle (v)
 	{
-	//	Assert.notNull(v);
+	//	Assert.isNotNull(v);
 		
 		invalidate( UIElementFlags.TEXTSTYLE );
 		textStyle = v;
@@ -343,11 +352,11 @@ class UITextField extends TextField, implements IUIElement
 	
 	private inline function getSystem () : ISystem		{ return window.as(ISystem); }
 #if flash9
-	public inline function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
 #else
-	public inline function isOnStage () : Bool			{ return window != null; }
+	public #if !noinline inline #end function isOnStage () : Bool			{ return window != null; }
 #end
-	public inline function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
+	public #if !noinline inline #end function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
 	
 	//
 	// IPROPERTY-VALIDATOR METHODS
@@ -401,12 +410,12 @@ class UITextField extends TextField, implements IUIElement
 	// ACTIONS (actual methods performed by UIElementActions util)
 	//
 
-	public inline function show ()						{ this.doShow(); }
-	public inline function hide ()						{ this.doHide(); }
-	public inline function move (x:Int, y:Int)			{ this.doMove(x, y); }
-	public inline function resize (w:Int, h:Int)		{ this.doResize(w, h); }
-	public inline function rotate (v:Float)				{ this.doRotate(v); }
-	public inline function scale (sx:Float, sy:Float)	{ this.doScale(sx, sy); }
+	public #if !noinline inline #end function show ()						{ this.doShow(); }
+	public #if !noinline inline #end function hide ()						{ this.doHide(); }
+	public #if !noinline inline #end function move (x:Int, y:Int)			{ this.doMove(x, y); }
+	public #if !noinline inline #end function resize (w:Int, h:Int)		{ this.doResize(w, h); }
+	public #if !noinline inline #end function rotate (v:Float)				{ this.doRotate(v); }
+	public #if !noinline inline #end function scale (sx:Float, sy:Float)	{ this.doScale(sx, sy); }
 	
 	
 	private function createBehaviours ()	: Void		{}

@@ -26,22 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
-#if (debug || (neko && prime_css))
- import primevc.utils.ID;
+package prime.gui.effects;
+#if !CSSParser
+ import prime.gui.effects.effectInstances.IEffectInstance;
+  using prime.types.Reference;
 #end
-#if neko
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
-#end
- import primevc.core.traits.Invalidatable;
-	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.IEffectInstance;
-#end
-
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+  using prime.utils.NumberUtil;
 
 
 /**
@@ -50,9 +40,9 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class Effect < TargetType, EffectClass:IEffect > extends Invalidatable, implements IEffect
+class Effect <TargetType, EffectClass:IEffect> extends prime.core.traits.Invalidatable, implements IEffect
 {
-#if (debug || neko)
+#if (debug || CSSParser)
 	public var _oid				(default, null)	: Int;
 #end
 	
@@ -60,16 +50,18 @@ class Effect < TargetType, EffectClass:IEffect > extends Invalidatable, implemen
 	public var delay			(default, setDelay)				: Int;
 	public var duration			(default, setDuration)			: Int;
 	public var autoHideFilters	(default, setAutoHideFilters)	: Bool;
+	public var isReverted		(default, setIsReverted)		: Bool;
 	
 	
-	public function new( newDuration:Int = 350, newDelay:Int = 0, newEasing:Easing = null ) 
+	public function new (newDuration:Int = 350, newDelay:Int = 0, newEasing:Easing = null, isReverted:Bool = false) 
 	{
 		super();
-#if (debug || neko)
-		_oid			= ID.getNext();
+#if (debug || CSSParser)
+		_oid			= prime.utils.ID.getNext();
 #end
 		duration		= newDuration.notSet()	? 350 : newDuration;
-		delay			= newDelay <= 0			? Number.INT_NOT_SET : newDelay;
+		delay			= newDelay <= 0			? prime.types.Number.INT_NOT_SET : newDelay;
+		this.isReverted = isReverted;
 #if flash9
 		easing			= newEasing == null 	? feffects.easing.Linear.easeNone : newEasing;
 #end
@@ -87,17 +79,17 @@ class Effect < TargetType, EffectClass:IEffect > extends Invalidatable, implemen
 	
 	public function clone () : IEffect
 	{
-		Assert.abstract(); return null;
+		Assert.abstractMethod(); return null;
 	}
 	
 	
 	public function setValues( v:EffectProperties ) : Void
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 	
 	
-#if (flash8 || flash9 || js)
+#if !CSSParser
 	/**
 	 * Method will start a new effect on the given target and return the 
 	 * playing effect instance.
@@ -113,7 +105,7 @@ class Effect < TargetType, EffectClass:IEffect > extends Invalidatable, implemen
 	
 	public function createEffectInstance (target:TargetType) : IEffectInstance < TargetType, EffectClass >
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 		return null;
 	}
 #end
@@ -157,6 +149,16 @@ class Effect < TargetType, EffectClass:IEffect > extends Invalidatable, implemen
 	}
 	
 	
+	private inline function setIsReverted (v:Bool)
+	{
+		if (isReverted != v) {
+			isReverted = v;
+			invalidate( EffectFlags.IS_REVERTED );
+		}
+		return v;
+	}
+	
+	
 	private inline function setAutoHideFilters (v:Bool) : Bool
 	{
 		if (autoHideFilters != v) {
@@ -167,11 +169,12 @@ class Effect < TargetType, EffectClass:IEffect > extends Invalidatable, implemen
 	}
 	
 	
-#if neko
+#if CSSParser
 	public function toString ()						{ return toCSS(); }
-	public function toCSS (prefix:String = "")		{ Assert.abstract(); return null; }
+	public function toCSS (prefix:String = "")		{ Assert.abstractMethod(); return null; }
 	public function isEmpty () : Bool				{ return duration <= 0; }
 	public function cleanUp ()						{}
-	public function toCode (code:ICodeGenerator)	{ Assert.abstract(); }
+	public function toCode (code:prime.tools.generator.ICodeGenerator)
+		Assert.abstractMethod()
 #end
 }

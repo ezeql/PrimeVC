@@ -105,7 +105,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	public function iterator () { return children.iterator(); }
 
 
-	@:keep public inline function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
+	public #if !noinline inline #end function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
 	{
 		children.add( target, depth );
 		return this;
@@ -120,7 +120,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 		}
 		
 		Assert.that(algorithm != null);
-		algorithm.group = cast this;
+		algorithm.group = this;
 		
 		var child = sender.as(LayoutClient);
 		if (!isValidating() && (childChanges.has(Flags.LIST | Flags.WIDTH * childWidth.notSet().boolCalc() | Flags.HEIGHT * childHeight.notSet().boolCalc()) || algorithm.isInvalid(childChanges)))
@@ -144,7 +144,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 		
 		if (changes > 0)
 		{
-			algorithm.group = cast this;
+			algorithm.group = this;
 			algorithm.validateHorizontal();
 		}
 		super.validateHorizontal();
@@ -167,7 +167,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 
 		if (changes > 0)
 		{
-			algorithm.group = cast this;
+			algorithm.group = this;
 			algorithm.validateVertical();
 		}
 		super.validateVertical();
@@ -181,7 +181,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 		
 		if (algorithm != null)
 		{
-			algorithm.group = cast this;
+			algorithm.group = this;
 			algorithm.apply();
 		}
 		
@@ -239,7 +239,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 			
 			if (algorithm != null) {
 				algorithmChangedHandler.on( algorithm.algorithmChanged, this );
-				algorithm.group = cast this;
+				algorithm.group = this;
 			}
 		}
 		return v;
@@ -336,7 +336,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	}
 	
 	
-	public inline function setFixedChildLength (length:Int)
+	public #if !noinline inline #end function setFixedChildLength (length:Int)
 	{
 		fixedLength = true;
 		if (childrenLength != length) {
@@ -346,7 +346,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	}
 	
 	
-	public inline function unsetFixedChildLength ()
+	public #if !noinline inline #end function unsetFixedChildLength ()
 	{
 		fixedLength = false;
 		if (childrenLength != children.length) {

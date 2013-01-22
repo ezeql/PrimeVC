@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms;
-#if neko
+#if CSSParser
  import prime.tools.generator.ICodeGenerator;
 #end
  import prime.core.geom.space.Horizontal;
@@ -108,7 +108,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	/**
 	 * Method indicating if the size is invalidated or not.
 	 */
-	public inline function isInvalid (changes:Int)	: Bool
+	public #if !noinline inline #end function isInvalid (changes:Int)	: Bool
 	{
 		return (changes.has( LayoutFlags.HEIGHT ) && group.childHeight.notSet()) || ( horizontal != null && changes.has( LayoutFlags.WIDTH ) );
 	}
@@ -222,10 +222,10 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 
 	
 	
-#if (neko || debug)
-	override public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+#if (CSSParser || debug)
+	override public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 #end
-#if neko
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)
 	{
 		code.construct( this, [ direction, horizontal ] );

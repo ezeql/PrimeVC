@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -224,10 +224,10 @@ class ProgressBar extends UIDataContainer<PercentageHelper>
 	// STATE SETTERS
 	//
 	
-	public inline function start ()		{ progressState = ProgressState.started; }
-	public inline function finish ()	{ progressState = ProgressState.completed; }
-	public inline function progress ()	{ progressState = ProgressState.progress; }
-	public inline function error ()		{ progressState = ProgressState.error; }
+	public #if !noinline inline #end function start ()		{ progressState = ProgressState.started; }
+	public #if !noinline inline #end function finish ()	{ progressState = ProgressState.completed; }
+	public #if !noinline inline #end function progress ()	{ progressState = ProgressState.progress; }
+	public #if !noinline inline #end function error ()		{ progressState = ProgressState.error; }
 	
 	
 	

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -138,7 +138,7 @@ class SlidingToggleButtonSkin extends Skin<DataButton<Null<Bool>>>
 	}
 	
 	
-	override public  function removeChildren ()
+	override public  function disposeChildren ()
 	{
 		onBg	.detach();
 		offLabel.detach();
@@ -180,8 +180,8 @@ class SlidingToggleButtonSkin extends Skin<DataButton<Null<Bool>>>
 		if (changes.hasNone( LayoutFlags.SIZE ))
 			return;
 		
-		Assert.notNull( owner );
-		Assert.notNull( owner.layout );
+		Assert.isNotNull( owner );
+		Assert.isNotNull( owner.layout );
 		var bounds = owner.layout.innerBounds;
 	//	onIcon.layout.innerBounds	.centerX = (bounds.width * .30).roundFloat();
 	//	offIcon.layout.innerBounds	.centerX = (bounds.width * .75).roundFloat();

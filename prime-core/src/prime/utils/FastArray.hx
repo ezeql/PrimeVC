@@ -191,7 +191,7 @@ typedef FastArray<T> =
 #if (php || cpp)
 		list.splice(0, list.length);
 #else
-	#if flash10	Assert.notThat(list.fixed); #end
+	#if flash10	Assert.not(list.fixed); #end
 		(untyped list).length = 0;
 #end
 		/*var l = list.length;

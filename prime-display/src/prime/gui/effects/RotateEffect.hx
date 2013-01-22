@@ -26,18 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.IEffectInstance;
- import primevc.gui.effects.effectInstances.RotateEffectInstance;
+package prime.gui.effects;
+#if CSSParser
+  using prime.types.Reference;
 #end
- import primevc.gui.display.IDisplayObject;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
-#end
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 
 
 
@@ -47,7 +41,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class RotateEffect extends Effect < IDisplayObject, RotateEffect >
+class RotateEffect extends #if !CSSParser Effect<prime.gui.display.IDisplayObject,RotateEffect> #else Effect<Dynamic,Dynamic> #end
 {
 	/**
 	 * Explicit start rotation value. If this value is not set, the effect will 
@@ -62,9 +56,9 @@ class RotateEffect extends Effect < IDisplayObject, RotateEffect >
 	public var endValue				: Float;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startV:Float = Number.INT_NOT_SET, endV:Float = Number.INT_NOT_SET)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		startValue	= startV == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startV;
 		endValue	= endV == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : endV;
 	}
@@ -72,16 +66,8 @@ class RotateEffect extends Effect < IDisplayObject, RotateEffect >
 	
 	override public function clone ()
 	{
-		return cast new RotateEffect(duration, delay, easing, startValue, endValue);
+		return new RotateEffect(duration, delay, easing, isReverted, startValue, endValue);
 	}
-
-	
-#if (flash8 || flash9 || js)
-	override public function createEffectInstance (target:IDisplayObject) : IEffectInstance<IDisplayObject, RotateEffect>
-	{
-		return cast new RotateEffectInstance( target, this );
-	}
-#end
 	
 	
 	override public function setValues ( v:EffectProperties ) 
@@ -96,7 +82,11 @@ class RotateEffect extends Effect < IDisplayObject, RotateEffect >
 	}
 	
 	
-#if (neko && prime_css)
+#if !CSSParser
+	override public function createEffectInstance (target)
+		return new prime.gui.effects.effectInstances.RotateEffectInstance(target, this)
+#else
+
 	override public function toCSS (prefix:String = "") : String
 	{
 		var props = [];
@@ -106,16 +96,17 @@ class RotateEffect extends Effect < IDisplayObject, RotateEffect >
 		if (easing != null)			props.push( easing.toCSS() );
 		if (startValue.isSet())		props.push( startValue + "deg" );
 		if (endValue.isSet())		props.push( endValue + "deg" );
+		if (isReverted)				props.push( "reverted" );
 		
 		
 		return "rotate " + props.join(" ");
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, startValue, endValue ] );
+			code.construct( this, [ duration, delay, easing, isReverted, startValue, endValue ] );
 	}
 #end
 }

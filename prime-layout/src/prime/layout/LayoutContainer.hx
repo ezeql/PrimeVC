@@ -97,7 +97,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	}
 	
 	
-	@:keep public inline function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
+	public #if !noinline inline #end function attach (target:LayoutClient, depth:Int = -1) : ILayoutContainer
 	{
 		children.add( target, depth );
 		return this;
@@ -335,7 +335,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 			else
 				fillingChildren.removeAll();
 			
-			Assert.equal(fillingChildren.length, 0);
+			Assert.isEqual(fillingChildren.length, 0);
 		}
 	}
 
@@ -402,7 +402,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 			else
 				fillingChildren.removeAll();
 			
-			Assert.equal(fillingChildren.length, 0);
+			Assert.isEqual(fillingChildren.length, 0);
 		}
 	}
 
@@ -414,7 +414,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	//
 	
 	
-	private inline function setAlgorithm (v:ILayoutAlgorithm)
+	private /*inline*/ function setAlgorithm (v:ILayoutAlgorithm)
 	{
 		if (v != algorithm)
 		{
@@ -473,7 +473,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	private inline function setMinScrollXPos (v:Int)				{ return minScrollXPos = v <= 0 ? v : 0; }
 	private inline function setMinScrollYPos (v:Int)				{ return minScrollYPos = v <= 0 ? v : 0; }
 	
-	public inline function validateScrollPosition (pos:IntPoint)
+	public #if !noinline inline #end function validateScrollPosition (pos:IntPoint)
 	{
 		pos.x = horScrollable() ? pos.x.within( 0, scrollableWidth ) : 0;
 		pos.y = verScrollable() ? pos.y.within( 0, scrollableHeight ) : 0;
@@ -483,31 +483,14 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	
 	public function scrollTo (child:ILayoutClient)
 	{
-	 // trace(child.outerBounds);
-		var c = child.outerBounds;
-		if (horScrollable())
-		{
-			var left	= scrollPos.x;
-			var right	= left + width;
-			
-			if		(c.left < left)			scrollPos.x = c.left;
-			else if (c.right > right)		scrollPos.x = c.right - width;
-		}
-		if (verScrollable())
-		{
-			var top		= scrollPos.y;
-			var bottom	= top + height;
-			
-			if		(c.top < top)			scrollPos.y = c.top;
-			else if (c.bottom > bottom)		scrollPos.y = c.bottom - height;
-			
-		}
+		if (horScrollable())	scrollPos.x = (child.outerBounds.centerX - (width >> 1)) .within(0, scrollableWidth);
+		if (verScrollable())	scrollPos.y = (child.outerBounds.centerY - (height >> 1)).within(0, scrollableHeight);
 	}
 	
 	
-	public inline function scrollToDepth( index:Int )
+	public /*inline*/ function scrollToDepth( index:Int )
 	{
-	//  trace("depth: "+index+"; fixedStart: "+fixedChildStart+"; length: "+children.length);
+	//	trace("depth: "+index+"; fixedStart: "+fixedChildStart+"; length: "+children.length);
 	    if (index >= fixedChildStart && index < (fixedChildStart + children.length))
 	        scrollTo( children.getItemAt( index - fixedChildStart ) );
 	    else if (algorithm != null)
@@ -603,7 +586,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	}
 
 	
-	public inline function setFixedChildLength (length:Int)
+	public #if !noinline inline #end function setFixedChildLength (length:Int)
 	{
 		fixedLength = true;
 		if (childrenLength != length) {
@@ -613,7 +596,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	}
 	
 	
-	public inline function unsetFixedChildLength ()
+	public #if !noinline inline #end function unsetFixedChildLength ()
 	{
 		fixedLength = false;
 		if (childrenLength != children.length) {

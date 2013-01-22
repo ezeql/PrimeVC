@@ -26,14 +26,8 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;    
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.IEffectInstance;
- import primevc.gui.effects.effectInstances.ScrollEffectInstance;
-#end
- import primevc.gui.traits.IScrollable;
-#if neko
- import primevc.tools.generator.ICodeGenerator;
+package primevc.gui.effects;
+#if CSSParser
   using primevc.types.Reference;
 #end
  import primevc.types.Number;
@@ -46,7 +40,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Jul 15, 2011
  */
-class ScrollEffect extends Effect < IScrollable, ScrollEffect >
+class ScrollEffect extends Effect<primevc.gui.traits.IScrollable, ScrollEffect>
 {
     /**
      * Explicit start x value. If this value is not set, the effect will 
@@ -72,9 +66,9 @@ class ScrollEffect extends Effect < IScrollable, ScrollEffect >
     public var endY     : Float;
     
     
-    public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
+    public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, startX:Float = Number.INT_NOT_SET, startY:Float = Number.INT_NOT_SET, endX:Float = Number.INT_NOT_SET, endY:Float = Number.INT_NOT_SET)
     {
-        super(duration, delay, easing);
+        super(duration, delay, easing, isReverted);
         
         this.startX = startX == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startX;
         this.startY = startY == Number.INT_NOT_SET ? Number.FLOAT_NOT_SET : startY;
@@ -85,16 +79,8 @@ class ScrollEffect extends Effect < IScrollable, ScrollEffect >
     
     override public function clone ()
     {
-        return cast new ScrollEffect( duration, duration, easing, startX, startY, endX, endY );
+        return new ScrollEffect( duration, duration, easing, isReverted, startX, startY, endX, endY );
     }
-    
-    
-#if (flash8 || flash9 || js)
-    override public function createEffectInstance (target) : IEffectInstance<IScrollable, ScrollEffect>
-    {
-        return cast new ScrollEffectInstance(target, this);
-    }
-#end
 
 
     override public function setValues ( v:EffectProperties ) 
@@ -111,7 +97,11 @@ class ScrollEffect extends Effect < IScrollable, ScrollEffect >
     }
     
     
-#if neko
+#if !CSSParser
+    override public function createEffectInstance (target) : primevc.gui.effects.effectInstances.IEffectInstance<primevc.gui.traits.IScrollable,ScrollEffect>
+        return new primevc.gui.effects.effectInstances.ScrollEffectInstance(target, this)
+#else
+
     override public function toCSS (prefix:String = "") : String
     {
         var props = [];
@@ -123,16 +113,17 @@ class ScrollEffect extends Effect < IScrollable, ScrollEffect >
         if (startY.isSet())         props.push( startY + "px" );
         if (endX.isSet())           props.push( endX + "px" );
         if (endY.isSet())           props.push( endY + "px" );
+        if (isReverted)             props.push( "reverted" );
         
         
         return "scroll " + props.join(" ");
     }
     
     
-    override public function toCode (code:ICodeGenerator) : Void
+    override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
     {
         if (!isEmpty())
-            code.construct( this, [ duration, delay, easing, startX, startY, endX, endY ] );
+            code.construct( this, [ duration, delay, easing, isReverted, startX, startY, endX, endY ] );
     }
 #end
 }

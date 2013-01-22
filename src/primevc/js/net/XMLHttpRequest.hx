@@ -1,13 +1,15 @@
-package prime.js.net;
- import js.Dom;
- import js.Lib;
+package primevc.js.net;
+
+import js.Dom;
+import js.Lib;
 
 
 /**
  * @author	Stanislav Sopov
  * @since	Arpil 5, 2011
  */
-extern class XMLHttpRequest {
+
+ #if !noinline extern #end class XMLHttpRequest {
 
 	var onreadystatechange : Void -> Void;
 	
@@ -36,7 +38,7 @@ extern class XMLHttpRequest {
 	#if !jsfl
 	private static function __init__() : Void {
 		untyped
-		prime.js.net["XMLHttpRequest"] =
+		primevc.js.net["XMLHttpRequest"] =
 			if( window.XMLHttpRequest )
 				__js__("XMLHttpRequest");
 			else if( window.ActiveXObject )

@@ -35,6 +35,7 @@ package prime.net;
  */
 typedef FileReference = 
 	#if		flash9	prime.avm2.net.FileReference;
-	#elseif	flash8	prime.avm1.net.FileReference;
+	#elseif	flash 	prime.avm1.net.FileReference;
+	#elseif	nodejs 	#error
 	#elseif	js		prime.js  .net.FileReference;
 	#else			error; #end

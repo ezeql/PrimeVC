@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -90,13 +90,6 @@ class UploadPanel extends ConfirmPanel
         openFileList.on( acceptBtn.userEvents.mouse.click, this );
     }
 
-    
-    /*override public function removeChildren ()
-    {
-        
-        super.removeChildren();
-    }*/
-
 
     private function openFileList ()
     {
@@ -111,7 +104,7 @@ class UploadPanel extends ConfirmPanel
     
     private inline function unsetBrowser ()
     {
-        fileBrowser.dispose();
+        fileBrowser.is(FileReference) ? fileBrowser.as(FileReference).dispose2() : fileBrowser.dispose();
         fileBrowser = null;
     }
 

@@ -40,5 +40,4 @@ package prime.signal;
  * @author Danny Wilson
  * @creation-date Jun 09, 2010
  */
-#if (haxe_207 || haxe_208) @:keep #end
 interface ISender {}

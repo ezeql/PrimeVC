@@ -3,6 +3,7 @@ package;
  import haxe.macro.Context;
  import haxe.macro.Expr;
 
+//UNUSED!
 class Undead
 {
 	@:macro public static function keepAlive() {

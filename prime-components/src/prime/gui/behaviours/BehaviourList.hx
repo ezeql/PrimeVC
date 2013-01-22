@@ -51,7 +51,7 @@ class BehaviourList implements IDisposable
 	}
 	
 	
-	public inline function removeAll ()
+	public #if !noinline inline #end function removeAll ()
 	{
 		while (!list.isEmpty()) {
 			var b:BehaviourType = list.pop();
@@ -72,7 +72,7 @@ class BehaviourList implements IDisposable
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		removeAll();
 		list = null;
@@ -80,18 +80,18 @@ class BehaviourList implements IDisposable
 	}
 	
 	
-	public inline function add (v:BehaviourType)
+	public #if !noinline inline #end function add (v:BehaviourType)
 	{
 		list.add(v);
 		if (isInitialized)
 			v.initialize();
 		
-		Assert.equal( isInitialized, v.initialized );
+		Assert.isEqual( isInitialized, v.initialized );
 		return v;
 	}
 	
 	
-	public inline function remove (v:BehaviourType)
+	public #if !noinline inline #end function remove (v:BehaviourType)
 	{
 		if (isInitialized)
 			v.dispose();

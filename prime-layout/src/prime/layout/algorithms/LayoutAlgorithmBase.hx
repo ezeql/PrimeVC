@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms;
-#if (neko && prime_css)
+#if CSSParser
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.ICodeGenerator;
  import prime.utils.ID;
@@ -51,16 +51,14 @@ package prime.layout.algorithms;
  */
 class LayoutAlgorithmBase 
 				implements IDisposable
-#if (neko && prime_css)
-			,	implements ICodeFormattable
-#end
+#if CSSParser,	implements ICodeFormattable		#end
 {
 #if debug public static var created		: Int = 0; #end
 #if debug public static var disposed	: Int = 0; #end
 	public var algorithmChanged 		(default, null)				: Signal0;
 	public var group					(default, setGroup)			: ILayoutContainer;
 	
-#if (neko && prime_css)
+#if CSSParser
 	public var _oid						(default, null)				: Int;
 #end
 
@@ -69,10 +67,8 @@ class LayoutAlgorithmBase
 	
 	public function new()
 	{
-#if debug	created++;							#end
-#if (neko && prime_css)
-		_oid				= ID.getNext();
-#end
+#if debug		created++;						#end
+#if CSSParser	_oid		= ID.getNext();		#end
 		algorithmChanged	= new Signal0();
 		validatePrepared	= false;
 	}
@@ -125,7 +121,7 @@ class LayoutAlgorithmBase
 	// START VALUES
 	//
 
-	@:keep private inline function getTopStartValue ()		: Int
+	private inline function getTopStartValue ()		: Int
 	{
 		var top:Int = 0;
 	//	if (group.margin != null)	top += group.margin.top;
@@ -134,7 +130,7 @@ class LayoutAlgorithmBase
 	}
 	
 	
-	@:keep private inline function getVerCenterStartValue ()	: Int
+	private inline function getVerCenterStartValue ()	: Int
 	{
 		var start:Int = 0;
 		
@@ -149,7 +145,7 @@ class LayoutAlgorithmBase
 	}
 
 
-	@:keep private inline function getBottomStartValue ()	: Int
+	private inline function getBottomStartValue ()	: Int
 	{
 		var start = group.height;
 		
@@ -160,7 +156,7 @@ class LayoutAlgorithmBase
 	}
 	
 	
-	@:keep private inline function getLeftStartValue ()	: Int
+	private inline function getLeftStartValue ()	: Int
 	{
 		var start:Int = 0;
 	//	if (group.margin != null)	start += group.margin.left;
@@ -169,7 +165,7 @@ class LayoutAlgorithmBase
 	}
 	
 	
-	@:keep private inline function getHorCenterStartValue ()	: Int
+	private inline function getHorCenterStartValue ()	: Int
 	{
 		var start:Int = 0;
 		
@@ -184,7 +180,7 @@ class LayoutAlgorithmBase
 	}
 
 
-	@:keep private inline function getRightStartValue ()	: Int
+	private inline function getRightStartValue ()	: Int
 	{
 		var start = group.width;
 		
@@ -206,17 +202,17 @@ class LayoutAlgorithmBase
 	}
 	
 	
-	public function scrollToDepth (depth:Int) { Assert.abstract(); }
+	public function scrollToDepth (depth:Int) { Assert.abstractMethod(); }
 	
 	
 	
-#if ((neko && prime_css) || debug)
+#if (CSSParser || debug)
 	public function toString () : String				{ return toCSS(); }
-	public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+	public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 	public function isEmpty () : Bool					{ return false; }
 #end
 	
-#if (neko && prime_css)
+#if CSSParser
 	public function cleanUp () : Void					{  }
 	public function toCode (code:ICodeGenerator)		{ code.construct( this ); }
 #end

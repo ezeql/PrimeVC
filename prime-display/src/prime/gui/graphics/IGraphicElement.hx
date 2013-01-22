@@ -26,19 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
-
+package prime.gui.graphics;
 
 /**
  * @author Ruben Weijers
  * @creation-date Jul 30, 2010
  */
-@:keep interface IGraphicElement 	//FIXME - no @:keep
-				implements primevc.core.traits.IInvalidatable
-			,	implements primevc.core.traits.IDisposable
-#if (neko && prime_css)
-			,	implements primevc.tools.generator.ICSSFormattable
-			,	implements primevc.tools.generator.ICodeFormattable
-#end
-{
-}
+interface IGraphicElement 
+				implements prime.core.traits.IInvalidatable
+			,	implements prime.core.traits.IDisposable
+#if CSSParser,	implements prime.tools.generator.ICodeFormattable
+			,	implements prime.tools.generator.ICSSFormattable #end
+{}

@@ -31,9 +31,10 @@ package prime.gui.events;
  import prime.signal.Signals;
 
 
-typedef TextEvents = 
+typedef TextEvents =
 	#if     flash9 prime.avm2.events.TextEvents;
 	#elseif flash8 prime.avm1.events.TextEvents;
+	#elseif nodejs 	#error;
 	#elseif js     prime.js  .events.TextEvents;
 	#else   #error #end
 

@@ -50,8 +50,8 @@ class StatesCollection extends StyleCollectionBase < StatesStyle >
 	}
 	
 	
-	override public function forwardIterator ()					{ return cast new StatesCollectionForwardIterator( elementStyle, propertyTypeFlag); }
-	override public function reversedIterator ()				{ return cast new StatesCollectionReversedIterator( elementStyle, propertyTypeFlag); }
+	override public function forwardIterator ()					{ return new StatesCollectionForwardIterator( elementStyle, propertyTypeFlag); }
+	override public function reversedIterator ()				{ return new StatesCollectionReversedIterator( elementStyle, propertyTypeFlag); }
 
 #if debug
 	override public function readProperties (props:Int = -1)	{ return Flags.readProperties( (props == -1) ? filledProperties : props ); }

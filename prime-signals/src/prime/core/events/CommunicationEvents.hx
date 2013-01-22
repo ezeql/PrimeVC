@@ -31,11 +31,12 @@ package prime.core.events;
  import prime.signal.Signals;
 
 
-typedef CommunicationEvents = 
+typedef CommunicationEvents =
 	#if		flash9	prime.avm2.events.CommunicationEvents;
-	#elseif	flash8	prime.avm1.events.CommunicationEvents;
+	#elseif	flash 	prime.avm1.events.CommunicationEvents;
+	#elseif	nodejs 	Dynamic;
 	#elseif	js		prime.js  .events.CommunicationEvents;
-	#else	Dynamic	#end 	// #error prevents CSSParser from begin compiled
+	#else	Dynamic	#end 	// #error prevents CSSParser from being compiled
 
 
 

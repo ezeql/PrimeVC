@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -42,7 +42,7 @@ package prime.tools.valueobjects;
  class GroupChangeSet extends ChangeSet
 {
     // Could come from freelist if profiling tells us to
-    public static inline function make ()   { return new GroupChangeSet(); }
+    public static #if !noinline inline #end function make ()   { return new GroupChangeSet(); }
     public var length   (getLength, never)  : Int;
 
 

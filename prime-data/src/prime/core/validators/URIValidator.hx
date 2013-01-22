@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -48,7 +48,7 @@ class URIValidator implements IValueValidator <String>
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		change.dispose();
 		change = null;
@@ -77,7 +77,7 @@ class URIValidator implements IValueValidator <String>
 	 * Method will use a regexp to examine if the given string is a valid
 	 * URI
 	 */
-	public static inline function isValid (v:String) : Bool
+	public static #if !noinline inline #end function isValid (v:String) : Bool
 	{
 		return validator.match( v );
 	}

@@ -254,7 +254,7 @@ class SpreadView extends UIComponent
 	
 	override public function scale (sx:Float, sy:Float)
 	{
-		Assert.notNull( content );
+		Assert.isNotNull( content );
 		resetLayoutScale();
 		content.scaleX = sx;
 		content.scaleY = sy;

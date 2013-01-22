@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -28,7 +28,7 @@
  */
 package primevc.neko.traits;
 
-#if (prime_css && neko)
+#if CSSParser
 /**
  * Empty interface to indicate in neko that a class has TypeParameters. This is
  * needed when generating code and a class with type-parameters is not Generic.

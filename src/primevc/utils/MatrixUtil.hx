@@ -62,4 +62,18 @@ extern class MatrixUtil
     {
         rotateAroundPoint(m, rotation, bounds.width * .5, bounds.height * .5, bounds.left, bounds.top);
     }
+
+
+    public static inline function scaleAroundPoint (m:Matrix2D, scaleX:Float, scaleY:Float, anchorX:Float, anchorY:Float, leftPos:Float, topPos:Float) : Void
+    {
+        m.translate( -(anchorX + leftPos), -(anchorY + topPos) );
+        m.scale( scaleX / m.a, scaleY / m.d );
+        m.translate( anchorX + leftPos, anchorY + topPos );
+    }
+
+
+    public static inline function scaleAroundCenter (m:Matrix2D, scaleX:Float, scaleY:Float, bounds:Rectangle) : Void
+    {
+        scaleAroundPoint(m, scaleX, scaleY, bounds.width * .5, bounds.height * .5, bounds.left, bounds.top);
+    }
 }

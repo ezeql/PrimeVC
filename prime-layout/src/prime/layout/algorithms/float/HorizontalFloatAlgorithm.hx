@@ -46,7 +46,7 @@ package prime.layout.algorithms.float;
  */
 class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHorizontalAlgorithm
 {
-	public inline function validate ()
+	public #if !noinline inline #end function validate ()
 	{
 		if (group.children.length == 0)
 			return;
@@ -182,7 +182,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 	}
 
 	
-	public inline function getDepthForBounds (bounds:IRectangle) : Int
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle) : Int
 	{
 		return switch (direction) {
 			case Horizontal.left:		getDepthForBoundsLtR(bounds);
@@ -246,7 +246,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 	
 	private inline function getDepthForBoundsC (bounds:IRectangle) : Int
 	{
-		Assert.abstract( "Wrong implementation since the way centered layouts behave is changed");
+		Assert.abstractMethod( "Wrong implementation since the way centered layouts behave is changed");
 		return 0;
 	/*	var depth:Int	= 0;
 		var posX:Int	= bounds.left - getHorCenterStartValue();
@@ -392,7 +392,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 			    
 			
 			case Horizontal.center:
-			    Assert.abstract();
+			    Assert.abstractMethod();
 			
 			
 			case Horizontal.right:
@@ -411,7 +411,7 @@ class HorizontalFloatAlgorithm extends HorizontalBaseAlgorithm, implements IHori
 	}
 	
 	
-#if (neko || debug)
+#if (CSSParser || debug)
 	override public function toCSS (prefix:String = "") : String
 	{
 		return "float-hor (" + direction + ", " + vertical + ")";

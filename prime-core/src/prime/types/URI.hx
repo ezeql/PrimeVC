@@ -27,10 +27,8 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package prime.types;
-#if (neko && prime_css)
- import prime.tools.generator.ICodeFormattable;
- import prime.tools.generator.ICodeGenerator;
- import prime.utils.ID;
+#if !CSSParser
+ import prime.core.net.RequestMethod;	//also imports enums
 #end
   using prime.utils.FileUtil;
   using prime.utils.IfUtil;
@@ -53,7 +51,7 @@ package prime.types;
  *
  * @author Danny Wilson
  */
-class URI #if (neko && prime_css) implements ICodeFormattable #end
+class URI #if CSSParser implements prime.tools.generator.ICodeFormattable #end
 {
 #if debug
 	static function __init__()
@@ -92,10 +90,10 @@ class URI #if (neko && prime_css) implements ICodeFormattable #end
 		
 		u.parse("asset://aap");
 		
-		Assert.equal(u.string, "asset://aap");
+		Assert.isEqual(u.string, "asset://aap");
 		Assert.that(u.hasScheme( URIScheme.Scheme('asset') ));
 	//	Assert.that(u.scheme == URIScheme.Scheme('asset'), Std.string(u.scheme));
-		Assert.equal(u.host, "aap");
+		Assert.isEqual(u.host, "aap");
 	}
 #end
 	
@@ -152,15 +150,15 @@ class URI #if (neko && prime_css) implements ICodeFormattable #end
 		 	(  path.notNull() &&   path.length.not0())
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	public var _oid (default, null)		: Int;
 #end
 	
 	
 	public function new(str:String = null)
 	{
-#if (neko && prime_css)
-		_oid	= ID.getNext();
+#if CSSParser
+		_oid	= prime.utils.ID.getNext();
 #end
 		port = -1;
 		parse(str);
@@ -361,9 +359,9 @@ class URI #if (neko && prime_css) implements ICodeFormattable #end
 	}
 
 
-#if (neko && prime_css)
-	public function cleanUp () : Void				{}
-	public function toCode (code:ICodeGenerator)	{ code.construct( this, [ getString() ] ); }
+#if CSSParser
+	public function cleanUp () : Void {}
+	public function toCode (code:prime.tools.generator.ICodeGenerator)	code.construct( this, [ getString() ] )
 #end
 }
 

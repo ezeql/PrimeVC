@@ -30,9 +30,11 @@ package primevc.gui.effects;
  import primevc.core.traits.IDisposable;
  import primevc.gui.core.IUIElement;
  import primevc.gui.effects.effectInstances.IEffectInstance;
+// import primevc.types.Number;
   using primevc.utils.Bind;
   using primevc.utils.BitUtil;
   using primevc.utils.IfUtil;
+  using primevc.core.states.SimpleStateMachine;
 
 
 private typedef EffectInstanceType 	= IEffectInstance < Dynamic, Dynamic >;
@@ -141,16 +143,17 @@ class UIElementEffects implements IDisposable
 	
 	public function playMove ()
 	{
-#if (flash8 || flash9 || js)
-		var newX = target.layout.getHorPosition();
-		var newY = target.layout.getVerPosition();
+#if !CSSParser
+		
 		if (enabled && move.notNull())
 		{
-			move.setValues( EffectProperties.position( target.x, target.y, newX, newY ) );
+		//	move.setValues( EffectProperties.position( Number.INT_NOT_SET, Number.INT_NOT_SET, newX, newY ) );
 			move.play();
 		}
 		else
 		{
+			var newX = target.layout.getHorPosition();
+			var newY = target.layout.getVerPosition();
 			target.x = newX;
 			target.y = newY;
 			target.rect.move( newX, newY );
@@ -161,7 +164,7 @@ class UIElementEffects implements IDisposable
 	
 	public function playResize ()
 	{
-#if (flash8 || flash9 || js)
+#if !CSSParser
 		var bounds = target.layout.innerBounds;
 		
 		if (enabled && resize.notNull())
@@ -175,9 +178,9 @@ class UIElementEffects implements IDisposable
 	}
 	
 	
-	public inline function playRotate ( endV:Float )
+	public #if !noinline inline #end function playRotate ( endV:Float )
 	{
-#if (flash8 || flash9 || js)
+#if !CSSParser
 		if (enabled && rotate.notNull())
 		{
 			rotate.setValues( EffectProperties.rotation( target.rotation, endV ) );
@@ -191,9 +194,9 @@ class UIElementEffects implements IDisposable
 	}
 	
 	
-	public inline function playScale ( endSx:Float, endSy:Float )
+	public #if !noinline inline #end function playScale ( endSx:Float, endSy:Float )
 	{
-#if (flash8 || flash9 || js)
+#if !CSSParser
 		if (enabled && scale.notNull())
 		{
 			scale.setValues( EffectProperties.scale( target.scaleX, target.scaleY, endSx, endSy ) );
@@ -210,22 +213,23 @@ class UIElementEffects implements IDisposable
 	
 	public function playShow ()
 	{
-#if (flash8 || flash9 || js)
+#if !CSSParser
 		if (enabled && show.notNull())
 		{
 			if (hide.notNull()) {
 				hide.ended.unbind(target);
-				if (hide.isWaiting())	{ hide.stop(); }
-				if (hide.isPlaying())	{ hide.stop(); }
-				else					target.visible = false;
+				if 		(hide.isWaiting())	hide.stop();
+				else if (hide.isPlaying())	hide.stop();
+				else						target.visible = false;
+				
+				if (show == hide)			show.isReverted = show.effect.isReverted;
 			}
+			else							target.visible = false;
+			
+			if (target.layout.isInvalidated())
+				callback(show.play).onceOnEntering( target.layout.state, validated, this );
 			else
-				target.visible = false;
-			
-			if (show == hide)
-				show.isReverted = false;
-			
-			show.play();
+				show.play();
 		}
 #end
 	}
@@ -233,25 +237,24 @@ class UIElementEffects implements IDisposable
 	
 	public function playHide ()
 	{
-#if (flash8 || flash9 || js)
+#if !CSSParser
 		if (enabled && hide.notNull())
 		{
 			if (show.notNull()) {
-				if (show.isWaiting())	{ show.stop(); }
-				if (show.isPlaying())	{ show.stop(); }
+				if 		(show.isWaiting())	show.stop();
+				else if (show.isPlaying())	show.stop();
+				else						target.layout.state.change.unbind(this);
+
+				if (show == hide)			hide.isReverted = !hide.effect.isReverted;
 			}
-			
-			if (show == hide)
-				hide.isReverted = true;
-			
 			hide.play();
 		}
 #end
 	}
 	
-
-	public inline function isPlayingHide ()	{ return hide.notNull() && (hide.isPlaying() || hide.isWaiting()) && (show != hide ||  hide.isReverted); }
-	public inline function isPlayingShow ()	{ return show.notNull() && (show.isPlaying() || show.isWaiting()) && (show != hide || !show.isReverted); }
+	
+	public #if !noinline inline #end function isPlayingHide ()	{ return hide.notNull() && (hide.isPlaying() || hide.isWaiting()) && (show != hide || hide.isReverted != hide.effect.isReverted); }
+	public #if !noinline inline #end function isPlayingShow ()	{ return show.notNull() && (show.isPlaying() || show.isWaiting()) && (show != hide || show.isReverted == show.effect.isReverted); }
 	
 	
 	

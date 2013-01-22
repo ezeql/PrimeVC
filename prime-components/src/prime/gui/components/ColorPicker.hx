@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -95,7 +95,7 @@ class ColorPicker extends UIDataComponent<RevertableBindable<RGBA>>
 	{
 		super.init();
 #if debug
-		Assert.notNull( graphicData.fill, "Make sure you set a bitmapfill with a colorspectrum as background" );
+		Assert.isNotNull( graphicData.fill, "Make sure you set a bitmapfill with a colorspectrum as background" );
 		Assert.that( graphicData.fill.is(BitmapFill), "Make sure you set a bitmapfill with a colorspectrum as background" );
 #end
 	}*/
@@ -115,7 +115,7 @@ class ColorPicker extends UIDataComponent<RevertableBindable<RGBA>>
 		selection = new UIGraphic("selection");
 		children.add(selection);
 
-		Assert.notNull(data);
+		Assert.isNotNull(data);
 		moveToColorWire = moveToColor.on( data.change, this );
 	//	moveToColor.onceOn( displayEvents.enterFrame, this );
 	}
@@ -166,7 +166,7 @@ class ColorPicker extends UIDataComponent<RevertableBindable<RGBA>>
 		var h = b.height;
 		var newX = 0, newY = 0;
 
-		var color = data.value.rgb();
+		var color:UInt = data.value.rgb();
 		var found = false;
 		
 		for (newY in 0...h) {
@@ -228,6 +228,6 @@ class ColorPicker extends UIDataComponent<RevertableBindable<RGBA>>
 	}
 
 
-	public inline function isPicking ()
+	public #if !noinline inline #end function isPicking ()
 		return updateBinding != null && updateBinding.isEnabled()
 }

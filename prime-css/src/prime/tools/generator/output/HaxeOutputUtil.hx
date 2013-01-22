@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -59,7 +59,6 @@ class HaxeOutputUtil
 	public static function writeImports (list:Hash<String>) : StringBuf
 	{
 		var output	= new StringBuf();
-		var a		= output.add;
 		
 	//	var s		= function (a:String, b:String):Int { return a > b ? 1 : (a < b ? -1 : 0); }	//from http://haxe.org/forum/thread/1841
 		var arr		= new Array<String>();
@@ -69,7 +68,7 @@ class HaxeOutputUtil
 		arr.sort(function(a,b) { return Reflect.compare(a.toLowerCase(),b.toLowerCase()); });
 		
 		for (file in arr)
-			a( " import " + file + ";\n" );
+			output.add( " import " + file + ";\n" );
 		
 		return output;
 	}
@@ -95,7 +94,7 @@ class HaxeOutputUtil
 			case tBool(v):					return v == true ? 'true' : 'false';
 			case tObject(v):				return doc.writeObj(v);
 			case tColor(rgb, a):			return "0x" + rgb.hex(6) + "" + a.hex(2);
-			case tUInt(v):					return "0x" + v.hex(6);
+			case tUInt(v):					return "0x" + Std.int(v).hex(6);
 			case tFunction(v):				return v;
 			case tEnum(v, p):				return v + (p == null ? "" : "(" + p.format(doc) + ")");
 			case tClass(v):					return v;
@@ -132,7 +131,7 @@ class HaxeOutputUtil
 			return v.instName;
 		
 		var value		= new StringBuf();
-		var a			= value.add;
+		var a			= function(s) value.add(s);
 		v.instantiated	= true;
 		
 		switch (v.type)
@@ -181,10 +180,9 @@ class HaxeOutputUtil
 	
 	private static inline function writeVar (doc:StringBuf, v:Instance, value:StringBuf) : String
 	{
-		var a			= doc.add;
 		v.instName		= v.className.toVarName();
 		
-		doc.addLine( "var " + v.instName + " = " + value );
+		doc.addLine( "var " + v.instName + " = " + value.toString() );
 		return v.instName;
 	}
 	
@@ -218,12 +216,11 @@ class HaxeOutputUtil
 	
 	private static inline function writeInstantiateObj (line:StringBuf, doc:StringBuf, v:Instance, extraParams:String = null) : Void
 	{
-		var a = line.add;
-		a("new ");
-		a(v.className);
-		a("(");
-		a(v.params.format(doc, extraParams));
-		a(")");
+		line.add("new ");
+		line.add(v.className);
+		line.add("(");
+		line.add(v.params.format(doc, extraParams));
+		line.add(")");
 	}
 	
 	
@@ -234,10 +231,9 @@ class HaxeOutputUtil
 		if (p != "" && extraParams != null)		p += ", "+extraParams;
 		else if (extraParams != null)			p  = extraParams;
 		
-		var a = line.add;
-		a("[");
-		a(v.params.format(doc, extraParams));
-		a("]");
+		line.add("[");
+		line.add(v.params.format(doc, extraParams));
+		line.add("]");
 	}
 	
 	

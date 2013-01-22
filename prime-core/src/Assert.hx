@@ -223,11 +223,11 @@ import haxe.macro.Context;
 #end
 	}
 
-	static inline public function abstract	(msg:String = "", ?pos:haxe.PosInfos) : Void {
+	static inline public function abstractMethod(msg:String = "", ?pos:haxe.PosInfos) : Void {
 		#if debug sendError("Abstract method", msg, pos); #end
 	}
 
-	static inline private function sendError (error:String, msg:Dynamic, pos:haxe.PosInfos) : Void
+	static inline private function sendError(error:String, msg:Dynamic, pos:haxe.PosInfos) : Void
 	{
 #if debug
 		var className = pos.className.split(".").pop();

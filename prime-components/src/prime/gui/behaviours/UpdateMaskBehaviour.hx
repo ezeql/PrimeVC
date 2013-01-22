@@ -60,8 +60,8 @@ class UpdateMaskBehaviour extends RenderGraphicsBehaviour
 	
 	override public function validateGraphics ()
 	{
-		Assert.notNull(mask, target);
-		Assert.notNull(mask.graphics, target);
+		Assert.isNotNull(mask, target);
+		Assert.isNotNull(mask.graphics, target);
 		mask.graphics.clear();
 		target.graphicData.draw( mask, false );
 	}

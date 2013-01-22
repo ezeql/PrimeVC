@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -116,7 +116,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	//  deselect.on( vo.change, this );			// hides combobox-popup when a new data-item has been selected
 	    deselect.on( list.itemSelected, this );	// hides combobox-popup when the user has tried to change the selected item
 	    list.selected.pair( vo ); 				// make sure the vo.value and selected list-item are always the same
-		Assert.notNull( getLabelForVO );
+		Assert.isNotNull( getLabelForVO );
 		
 		//leave the opening and closing of the list to the behaviouruserEvents.
 		behaviours.add( new ButtonSelectedOpenPopup( this, popup ) );
@@ -158,7 +158,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 		if (v != listData)
 		{
 			if (popup != null)
-				popup.listData = cast v;
+				popup.listData = v;
 			
 			listData	= v;
 			vo.value	= null;
@@ -209,7 +209,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	}
 	
 	
-	public inline function shouldDeselectByMouse (m:MouseState) : Bool
+	public #if !noinline inline #end function shouldDeselectByMouse (m:MouseState) : Bool
 	{
 	    var deselect = false;
 	    if (!m.related.is(IUIElement)) {

@@ -84,7 +84,7 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 	
 	
 #if flash9
-	override public function play ( ?withEffect:Bool = true, ?directly:Bool = false ) : Void
+	override public function play ( withEffect:Bool = true, directly:Bool = false ) : Void
 	{
 		var p = anchorPoint;
 		var t = target;
@@ -96,15 +96,15 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 		{
 			case TopLeft:		p.x = 0;				p.y = 0;
 			case TopRight:		p.x = t.width;			p.y = 0;
-			case TopCenter:		p.x = t.width >> 1;		p.y = 0;
+			case TopCenter:		p.x = t.width *.5;		p.y = 0;
 			
-			case MiddleLeft:	p.x = 0;				p.y = t.height >> 1; // * .5;
-			case MiddleCenter:	p.x = t.width >> 1;		p.y = t.height >> 1; // * .5;
-			case MiddleRight:	p.x = t.width;			p.y = t.height >> 1; // * .5;
+			case MiddleLeft:	p.x = 0;				p.y = t.height *.5; // * .5;
+			case MiddleCenter:	p.x = t.width *.5;		p.y = t.height *.5; // * .5;
+			case MiddleRight:	p.x = t.width;			p.y = t.height *.5; // * .5;
 			
 			case BottomLeft:	p.x = 0;				p.y = t.height;
 			case BottomRight:	p.x = t.width;			p.y = t.height;
-			case BottomCenter:	p.x = t.width >> 1;		p.y = t.height;
+			case BottomCenter:	p.x = t.width *.5;		p.y = t.height;
 			
 			case Custom( cp ):	p.x = cp.x;				p.y = cp.y;
 			default:			p.x = 0;				p.y = 0;
@@ -122,6 +122,7 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 			posBeforeTween = new Point( target.x, target.y );
 		
 		startValue = effect.startValue.isSet() ? effect.startValue : target.scaleX;
+		endValue =   effect.endValue.isSet() ? effect.endValue : target.scaleX * 2;
 		target.visible = true;
 	}
 	

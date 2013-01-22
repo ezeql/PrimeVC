@@ -54,7 +54,7 @@ class RenderGraphicsBehaviour extends ValidatingBehaviour < IDrawable >, impleme
 	override private function init ()
 	{
 #if debug
-		Assert.notNull( target.layout );
+		Assert.isNotNull( target.layout );
 		cachedId = untyped target.id.value;
 #end
 		if (target.graphicData != null)
@@ -76,7 +76,7 @@ class RenderGraphicsBehaviour extends ValidatingBehaviour < IDrawable >, impleme
 	}
 	
 	
-	public inline function invalidateGraphics ()
+	public #if !noinline inline #end function invalidateGraphics ()
 	{
 	//	trace(target+" => "+target.graphicData.isEmpty()+"; "+target.graphicData.shape+"; "+target.graphicData.layout+"; queued? "+isQueued());
 		if (target.graphicData.isEmpty())
@@ -105,13 +105,13 @@ class RenderGraphicsBehaviour extends ValidatingBehaviour < IDrawable >, impleme
 			Assert.that( t.height < 10000 );
 		}
 #end*/
-		if (target.is(IUIComponent) && target.as(IUIComponent).skin != null)
-			target.as(IUIComponent).skin.drawGraphics(); //.onceOn( target.displayEvents.enterFrame, this );
+//		if (target.is(IUIComponent) && target.as(IUIComponent).skin != null)
+//			target.as(IUIComponent).skin.drawGraphics(); //.onceOn( target.displayEvents.enterFrame, this );
 	}
 	
 	
 	override private function getValidationManager ()
 	{
-		return (isOnStage()) ? cast target.window.as(UIWindow).rendering : null;
+		return (isOnStage()) ? target.window.as(UIWindow).rendering : null;
 	}
 }

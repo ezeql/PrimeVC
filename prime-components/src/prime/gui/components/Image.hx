@@ -98,7 +98,7 @@ class Image extends UIDataComponent<Asset>	//FIXME (Ruben @ Mar 16, '11): used t
 	private function applyAsset ()
 	{
 #if flash9
-		Assert.notNull(data.type);
+		Assert.isNotNull(data.type);
 		
 		switch (data.type)
 		{
@@ -140,7 +140,7 @@ class Image extends UIDataComponent<Asset>	//FIXME (Ruben @ Mar 16, '11): used t
 			return;
 		
 		displayEvents.removedFromStage.unbind( data );
-		Assert.notNull(data.type, "asset: "+data);
+		Assert.isNotNull(data.type, "asset: "+data);
 		switch (data.type)
 		{
 			case AssetType.displayObject:
@@ -183,7 +183,7 @@ class Image extends UIDataComponent<Asset>	//FIXME (Ruben @ Mar 16, '11): used t
 			return;
 		
 	//	trace(this+".newsize: "+layout.innerBounds.width+", "+layout.innerBounds.height+"; oldSize: "+assetChild.width+", "+assetChild.height+"; dataWidth "+data.width+", "+data.height+"; state: "+assetChild.scrollRect);
-		Assert.notNull( assetChild );
+		Assert.isNotNull( assetChild );
 		// setting the width will go wrong the first time when the asset is an swf
 	//	assetChild.width	= layout.innerBounds.width;
 	//	assetChild.height	= layout.innerBounds.height;

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -35,6 +35,7 @@ package prime.gui.events;
 typedef UserEventTarget = 
 	#if		flash9	flash.display.InteractiveObject;
 	#elseif	flash8	MovieClip;
+	#elseif nodejs 	#error;
 	#elseif	js		js.Dom.HtmlDom;
-	#else	Dynamic; #end
+	#else			Dynamic; #end
 

@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms.tile;
-#if neko
+#if CSSParser
  import prime.tools.generator.ICodeGenerator;
 #end
  import prime.bindable.collections.BalancingListCollection;
@@ -196,8 +196,8 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 		var childLen:Int	= children.length;
 		var childNum:Int	= 0;
 		
-		horizontalMap		= cast new ChainedListCollection <LayoutClient>(maxTilesInDirection);
-		verticalMap			= cast new BalancingListCollection <LayoutClient>(maxTilesInDirection);
+		horizontalMap		= new ChainedListCollection<LayoutClient>(maxTilesInDirection);
+		verticalMap			= new BalancingListCollection<LayoutClient>(maxTilesInDirection);
 		
 		rows				= new TileContainer();
 		rows.algorithm		= verAlgorithm;
@@ -278,14 +278,11 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 			columns.algorithm	= rows.algorithm;
 			rows.algorithm		= columnsAlg;
 			
-			var columnAlg		= (startDirection == horizontal) ? cast childHorAlgorithm : cast childVerAlgorithm;
-			var rowAlg			= (startDirection == horizontal) ? cast childVerAlgorithm : cast childHorAlgorithm;
+			var columnAlg:ILayoutAlgorithm	= startDirection == horizontal ? childHorAlgorithm : childVerAlgorithm;
+			var rowAlg:ILayoutAlgorithm		= startDirection == horizontal ? childVerAlgorithm : childHorAlgorithm;
 			
-			for (group in columns)
-				group.as(TileContainer).algorithm = rowAlg;
-			
-			for (group in rows)
-				group.as(TileContainer).algorithm = columnAlg;
+			for (group in columns)	group.as(TileContainer).algorithm = rowAlg;
+			for (group in rows)		group.as(TileContainer).algorithm = columnAlg;
 		}
 	}
 	
@@ -339,7 +336,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 		var horLen = horizontalMap.length;
 		var verLen = verticalMap.length;
 		
-		Assert.equal( horLen, verLen );
+		Assert.isEqual( horLen, verLen );
 		
 		for (i in 0...horLen)
 		{
@@ -350,7 +347,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 				trace("i: "+i+"; hor: "+hChild+"; ver: "+vChild);
 				trace(horizontalMap);
 				trace(verticalMap);
-				Assert.equal(hChild, vChild, "children at "+i+" should be equal");
+				Assert.isEqual(hChild, vChild, "children at "+i+" should be equal");
 			}
 		}
 	}	
@@ -518,7 +515,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 	}
 	
 	
-#if neko
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)
 	{
 		code.construct( this, [ startDirection, maxTilesInDirection, horizontalDirection, verticalDirection ] );

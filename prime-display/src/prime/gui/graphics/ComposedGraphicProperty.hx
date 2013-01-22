@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.collections.FastCell;
- import primevc.core.geom.IRectangle;
- import primevc.gui.traits.IGraphicsOwner;
-  using primevc.utils.TypeUtil;
+ import prime.core.collections.FastCell;
+ import prime.core.geom.IRectangle;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.utils.TypeUtil;
 
 
 
@@ -109,10 +109,10 @@ class ComposedGraphicProperty extends GraphicElement, implements IComposedGraphi
 	// IITERATOR METHODS
 	//
 	
-	public inline function rewind ()		{ nextCell = firstCell; }
-	public inline function hasNext ()		{ return nextCell != null; }
-	public inline function setCurrent (v)	{}
-	public inline function value ()			{ return nextCell.data; }
+	public #if !noinline inline #end function rewind ()		{ nextCell = firstCell; }
+	public #if !noinline inline #end function hasNext ()		{ return nextCell != null; }
+	public #if !noinline inline #end function setCurrent (v)	{}
+	public #if !noinline inline #end function value ()			{ return nextCell.data; }
 	
 	
 	public function next () : IGraphicProperty
@@ -130,14 +130,11 @@ class ComposedGraphicProperty extends GraphicElement, implements IComposedGraphi
 	public function add (property:IGraphicProperty) : Bool
 	{
 		Assert.that(property != this);
-		
 		if (property == null)
 			return false;
 		
 		if (property.is(IComposedGraphicProperty))
-		{
-			merge(cast property);
-		}
+			merge(property.as(IComposedGraphicProperty));
 		else
 		{
 			var cell = new FastCell<IGraphicProperty>(property, lastCell);
@@ -196,7 +193,7 @@ class ComposedGraphicProperty extends GraphicElement, implements IComposedGraphi
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	
 	//
 	// CSS / ICODEFORMATTABLE METHODS
@@ -208,7 +205,7 @@ class ComposedGraphicProperty extends GraphicElement, implements IComposedGraphi
 		var cur = firstCell;
 		while (cur != null)
 		{
-			Assert.notThat( cur.data.is(IComposedGraphicProperty) );
+			Assert.not( cur.data.is(IComposedGraphicProperty) );
 			Assert.notEqual( cur, cur.next );
 			
 			str += cur.data.toCSS(prefix);

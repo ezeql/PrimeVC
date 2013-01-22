@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -35,11 +35,12 @@ package prime.gui.events;
  * @author	Ruben Weijers
  * @since	Jan 24, 2011
  */
-typedef BrowserEvents = 
+typedef BrowserEvents =
 	#if     flash9    prime.avm2.events.BrowserEvents;
-	#elseif flash8    prime.avm1.events.BrowserEvents;
+	#elseif flash     prime.avm1.events.BrowserEvents;
+	#elseif nodejs    #error;
 	#elseif js        prime.js  .events.BrowserEvents;
-	#else   #error    #end
+	#else             #error	#end
 
 
 /**

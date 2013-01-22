@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -55,10 +55,13 @@ package primevc.gui.core;
  
   using primevc.gui.utils.UIElementActions;
   using primevc.utils.Bind;
+  using primevc.core.states.SimpleStateMachine;
   using primevc.utils.BitUtil;
   using primevc.utils.NumberUtil;
   using primevc.utils.TypeUtil;
 
+
+private typedef Flags = primevc.gui.core.UIElementFlags;
 
 /**
  * Videoclass with support for styling and other primevc features
@@ -68,21 +71,6 @@ package primevc.gui.core;
  */
 class UIVideo extends Video, implements IUIElement
 {
-	/**
-	 * bit-flag indicating that the video-width has changed
-	 **/
-	private static inline var VIDEO_WIDTH	= 1 << 8;
-	/**
-	 * bit-flag indicating that the video-height has changed
-	 **/
-	private static inline var VIDEO_HEIGHT	= 1 << 9;
-	
-	
-	
-	//
-	// PROPERTIES
-	//
-	
 	public var prevValidatable	: IValidatable;
 	public var nextValidatable	: IValidatable;
 	private var changes			: Int;
@@ -171,8 +159,8 @@ class UIVideo extends Video, implements IUIElement
 	}
 	
 	
-	public inline function isDisposed ()	{ return state == null || state.is(state.disposed); }
-	public inline function isInitialized ()	{ return state != null && state.is(state.initialized); }
+	public #if !noinline inline #end function isDisposed ()	{ return state == null || state.is(state.disposed); }
+	public #if !noinline inline #end function isInitialized ()	{ return state != null && state.is(state.initialized); }
 	public function isResizable ()			{ return true; }
 	
 
@@ -188,10 +176,10 @@ class UIVideo extends Video, implements IUIElement
 		stream = new VideoStream();
 #if flash9
 		attachNetStream( stream.source );
+		clear.onEntering( stream.state, MediaStates.stopped, this );
 #end
-		handleStreamChange		.on( stream.state.change, this );
-		invalidateVideoWidth	.on( stream.width.change, this );
-		invalidateVideoHeight	.on( stream.height.change, this );
+		callback(invalidate, Flags.VIDEO_WIDTH)	.on( stream.width.change, this );
+		callback(invalidate, Flags.VIDEO_HEIGHT).on( stream.height.change, this );
 		
 		validate();
 		removeValidation.on( displayEvents.removedFromStage, this );
@@ -231,27 +219,32 @@ class UIVideo extends Video, implements IUIElement
 	public  inline function changeDepth			(pos:Int)							: IUIElement	{ changeLayoutDepth(pos);					changeDisplayDepth(pos);		return this; }
 	
 
-	public  inline function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
+	public  /*inline*/ function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
 	{
-		if (container != t)
-		{
-			if (effects != null && effects.isPlayingHide())
+	//	if (container != t)
+	//	{
+			var wasDetaching = isDetaching();
+			if (wasDetaching) {
+				effects.hide.ended.unbind(this);
 				effects.hide.stop();
+			}
 			
 			attachDisplayTo(t, pos);
-
-			var hasEffect = visible && effects != null && effects.show != null;
+			var hasEffect = effects != null && effects.show != null;
 			var isPlaying = hasEffect && effects.show.isPlaying();
 			
-			if (!isPlaying)
+			if (!hasEffect && !visible)
+				visible = true;
+			
+			else if (hasEffect && !isPlaying)
 			{
-				if (hasEffect) {
+				if (!wasDetaching)
 					visible = false;
-					if (!isInitialized()) 	haxe.Timer.delay( show, 100 ); //.onceOn( displayEvents.enterFrame, this );
-					else 					effects.playShow();
-				}
+				
+				if (!isInitialized()) 	haxe.Timer.delay( show, 100 ); //.onceOn( displayEvents.enterFrame, this );
+				else 					effects.playShow();
 			}
-		}
+	//	}
 		
 		return this;
 	}
@@ -280,6 +273,10 @@ class UIVideo extends Video, implements IUIElement
 		return this;
 	}
 
+
+	public #if !noinline inline #end function isDetaching () 				{ return effects != null && effects.isPlayingHide(); }
+	public #if !noinline inline #end function isAttached () 				{ return window  != null; }
+
 	
 	//
 	// IPROPERTY-VALIDATOR METHODS
@@ -288,11 +285,11 @@ class UIVideo extends Video, implements IUIElement
 	
 	private inline function getSystem () : ISystem		{ return window.as(ISystem); }
 #if flash9
-	public inline function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
 #else
-	public inline function isOnStage () : Bool			{ return window != null; }
+	public #if !noinline inline #end function isOnStage () : Bool			{ return window != null; }
 #end
-	public inline function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
+	public #if !noinline inline #end function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
 	
 	
 	private var validateWire : Wire<Dynamic>;
@@ -317,13 +314,13 @@ class UIVideo extends Video, implements IUIElement
         
 		if (changes > 0)
 		{
-			if (changes.has( VIDEO_WIDTH | VIDEO_HEIGHT ))
+			if (changes.has( Flags.VIDEO_WIDTH | Flags.VIDEO_HEIGHT ))
 			{
 				var l = layout.as(AdvancedLayoutClient);
 				l.maintainAspectRatio = stream.width.value != 0;
-			
 				l.measuredResize( stream.width.value, stream.height.value );
-			//	trace(stream.width.value+", "+stream.height.value);
+				trace(stream.width.value+", "+stream.height.value);
+				trace("measured: "+l.measuredWidth+", "+l.measuredHeight+"; explicit: "+l.explicitWidth+", "+l.explicitHeight+"; size: "+l.width+", "+l.height);
 			}
 		
 			changes = 0;
@@ -351,36 +348,13 @@ class UIVideo extends Video, implements IUIElement
 	// ACTIONS (actual methods performed by UIElementActions util)
 	//
 
-	public inline function show ()						{ this.doShow(); }
-	public inline function hide ()						{ this.doHide(); }
-	public inline function move (x:Int, y:Int)			{ this.doMove(x, y); }
-	public inline function resize (w:Int, h:Int)		{ this.doResize(w, h); }
-	public inline function rotate (v:Float)				{ this.doRotate(v); }
-	public inline function scale (sx:Float, sy:Float)	{ this.doScale(sx, sy); }
-	
+	public #if !noinline inline #end function show ()						{ this.doShow(); }
+	public #if !noinline inline #end function hide ()						{ this.doHide(); }
+	public #if !noinline inline #end function move (x:Int, y:Int)			{ this.doMove(x, y); }
+	public #if !noinline inline #end function resize (w:Int, h:Int)		{ this.doResize(w, h); }
+	public #if !noinline inline #end function rotate (v:Float)				{ this.doRotate(v); }
+	public #if !noinline inline #end function scale (sx:Float, sy:Float)	{ this.doScale(sx, sy); }
 	
 	private function createBehaviours ()	: Void		{}
-	
-	
-	//
-	// EVENTHANDLERS
-	//
-	
-	private function handleStreamChange (newState:MediaStates, oldState:MediaStates)
-	{
-#if flash9
-		if (newState == MediaStates.stopped)
-			clear();
-#end
-	}
-	
-	
-	private function invalidateVideoWidth ()	{ invalidate(VIDEO_WIDTH); }
-	private function invalidateVideoHeight ()	{ invalidate(VIDEO_HEIGHT); }
-	
-	
-	
-#if debug
-	override public function toString() { return id.value; }
-#end
+#if debug override public function toString () return id.value #end
 }

@@ -29,15 +29,14 @@
 package prime.core;
 
 
-#if (haxe_207 || haxe_208) @:keep #end
 class ListNode <T> implements haxe.rtti.Generic
 {
 	/** Pointer to the next ListNode object **/
 	private var n : T;
 }
 
-extern class ListUtil
+ #if !noinline extern #end class ListUtil
 {
 	/** Access helper for friend classes */
-	static public inline function next<T>(node:ListNode<T>) : T { untyped return node.n; }
+	static public #if !noinline inline #end function next<T>(node:ListNode<T>) : T { untyped return node.n; }
 }

@@ -24,7 +24,7 @@
  *
  *
  * Authors:
- *  Ruben Weijers	<ruben @ prime.vc>
+ *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.bindable.collections;
  import haxe.FastList;
@@ -36,7 +36,6 @@ package prime.bindable.collections;
   using prime.utils.FastArray;
   using prime.utils.IfUtil;
   using prime.utils.Bind;
-
 
 
 /**
@@ -52,10 +51,10 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 	public var list			(default, null)		: FastArray<T>;
 	public var length		(getLength, never)	: Int;
 	
-	
 	public var array		(getArray,null)		: FastArray<T>;
-		inline function getArray() : FastArray<T> return #if flash10 flash.Vector.convert(list) #else list #end
+ 		inline function getArray() : FastArray<T> return #if flash10 flash.Vector.convert(list) #else list #end
 	
+
 	public function new( wrapAroundList:FastArray<T> = null )
 	{
 		change 		 = new ListChangeSignal();
@@ -77,37 +76,54 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 	}
 	
 	
-	public  function clone () : IReadOnlyList<T>				{ return new ReadOnlyArrayList<T>( list.clone() ); }
-	public  function duplicate () : IReadOnlyList<T>			{ return new ReadOnlyArrayList<T>( list.duplicate() ); }
-	private inline function getLength ()						{ return list.length; }
-	public  inline function iterator () : Iterator <T>			{ return cast forwardIterator(); }
-	public  inline function forwardIterator () : IIterator <T>	{ return cast new FastArrayForwardIterator<T>(list); }
-	public  inline function reversedIterator () : IIterator <T>	{ return cast new FastArrayReversedIterator<T>(list); }
-
-	public  inline function disableEvents ()					{ beforeChange.disable(); change.disable(); }
-	public  inline function enableEvents ()						{ beforeChange.enable();  change.enable(); }
+	public function clone () : IReadOnlyList<T>
+	{
+		return new ReadOnlyArrayList<T>( list.clone() );
+	}
 	
-	public inline function asIterableOf<B> ( type:Class<B> ) : Iterator<B>
+	
+	public function duplicate () : IReadOnlyList<T>
+	{
+		return new ReadOnlyArrayList<T>( list.duplicate() );
+	}
+	
+	
+	@:keep private inline function getLength ()								return list.length
+	@:keep public  inline function iterator () : Iterator<T>			return forwardIterator()
+	@:keep public  inline function forwardIterator () : IIterator<T>	return new FastArrayForwardIterator<T>(list)
+	@:keep public  inline function reversedIterator () : IIterator<T>	return new FastArrayReversedIterator<T>(list)
+
+	public #if !noinline inline #end function disableEvents ()								{ beforeChange.disable(); change.disable(); }
+	public #if !noinline inline #end function enableEvents ()								{ beforeChange.enable();  change.enable(); }
+	
+	public #if !noinline inline #end function asIterableOf<B> ( type:Class<B> ) : Iterator<B>
 	{
 		#if debug for (i in 0 ... list.length) Assert.isType(list[i], type); #end
 		return cast forwardIterator();
 	}
 	
-
-	public inline function getItemAt (pos:Int) : T
+	/**
+	 * Returns the item at the given position. It is allowed to give negative values.
+	 * The returned item will then be on position -> length - askedPosition
+	 * 
+	 * @param	pos
+	 * @return
+	 */
+	@:keep public #if !noinline inline #end function getItemAt (pos:Int) : T
 	{
 		Assert.that(pos >= 0, pos+"");
+	//	var i:Int = pos < 0 ? length + pos : pos;
 		return list[pos];
 	}
 	
 	
-	public inline function indexOf (item:T) : Int
+	@:keep public #if !noinline inline #end function indexOf (item:T) : Int
 	{
 		return list.indexOf(item);
 	}
 	
 	
-	public inline function has (item:T) : Bool
+	@:keep public #if !noinline inline #end function has (item:T) : Bool
 	{
 		return list.indexOf(item) >= 0;
 	}
@@ -148,7 +164,7 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 	 *	
 	 * In other words, update this when otherList changes.
 	 */
-	public inline function bind (other:ReadOnlyArrayList<T>)
+	@:keep public #if !noinline inline #end function bind (other:ReadOnlyArrayList<T>)
 	{
 		other.keepUpdated(this);
 	}
@@ -164,7 +180,7 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 		
 		var removed = false;
 		if (writeTo.notNull()) 	{ 
-			removed = this.writeTo.remove(cast other);
+			removed = this.writeTo.remove(other);
 			if (removed) {
 				beforeChange.unbind( other );
 				change.unbind( other );
@@ -189,7 +205,7 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 
 
 	
-	private inline function registerBoundTo(other:ReadOnlyArrayList<T>)
+	@:keep private inline function registerBoundTo(other:ReadOnlyArrayList<T>)
 	{
 		Assert.isNotNull(other);
 		
@@ -201,7 +217,7 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 	}
 	
 	
-	private inline function addToBoundList<T>(list:FastList<T>, other:T)
+	@:keep private inline function addToBoundList<T>(list:FastList<T>, other:T)
 	{
 		Assert.isNotNull(list);
 		
@@ -237,7 +253,7 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 	}
 
 
-	private function applyChanges (c:ListChange<T>)
+	private function applyChanges (c:ListChange<T>) : Void
 	{
 		switch (c) {
 			case added(   item, newPos ):			list.insertAt(item, newPos);

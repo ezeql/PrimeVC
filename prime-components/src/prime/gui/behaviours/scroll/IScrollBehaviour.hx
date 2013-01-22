@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -33,7 +33,7 @@ package primevc.gui.behaviours.scroll;
  * @author Ruben Weijers
  * @creation-date May 26, 2011
  */
-@:keep interface IScrollBehaviour implements IBehaviour<primevc.gui.traits.IScrollable>
+interface IScrollBehaviour implements IBehaviour<primevc.gui.traits.IScrollable>
 {
 	
 }

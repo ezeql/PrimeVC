@@ -35,6 +35,7 @@ package prime.gui.display;
  */
 typedef TextField = 
 	#if		flash9	prime.avm2.display.TextField;
-	#elseif	flash8	prime.avm1.display.TextField;
+	#elseif	flash	prime.avm1.display.TextField;
+	#elseif nodejs 	#error;
 	#elseif	js		prime.js  .display.TextField;
 	#else	#error	#end

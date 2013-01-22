@@ -95,7 +95,7 @@ class DynamicTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorith
 	 * 			-> tile1
 	 * 			-> ...
 	 */
-	private var tileCollection				: ChainedListCollection < LayoutClient > ;
+	private var tileCollection				: ChainedListCollection<LayoutClient>;
 	
 	private var childSizeValidator			: IntRangeValidator;
 	private var childAlgorithm				: ILayoutAlgorithm;
@@ -108,7 +108,7 @@ class DynamicTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorith
 		
 		var group						= this.group.as(LayoutContainer);
 		childSizeValidator				= new IntRangeValidator();
-		tileCollection					= cast new ChainedListCollection < LayoutClient >();
+		tileCollection					= new ChainedListCollection<LayoutClient>();
 		tileGroups						= new TileContainer();
 	//	tileGroups.parent				= group;
 		tileGroups.padding				= group.padding;
@@ -277,7 +277,7 @@ class DynamicTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorith
 			var children:ChainedList<LayoutClient> = cast tileGroup.as(TileContainer).children;
 			
 			if (children.length == 0) {
-				removeTileContainer( cast tileGroup );
+				removeTileContainer(tileGroup.as(TileContainer));
 				continue;
 			}
 			

@@ -26,17 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
+package prime.gui.effects.effectInstances;
  import haxe.Timer;
  import prime.signal.Signal0;
- import primevc.core.traits.IDisposable;
- import primevc.core.ListNode;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.IEffect;
- import primevc.gui.states.EffectStates;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.states.EffectStates;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -46,8 +43,8 @@ package primevc.gui.effects.effectInstances;
  * @author Ruben Weijers
  * @creation-date Oct 01, 2010
  */
-class EffectInstance < TargetType, PropertiesType:IEffect > 
-				extends ListNode < EffectInstance < TargetType, PropertiesType > >
+class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect> 
+				extends prime.core.ListNode < EffectInstance < TargetType, PropertiesType > >
 			,	implements IEffectInstance < TargetType, PropertiesType > 
 {
 	public var started		(default, null)				: Signal0;
@@ -76,7 +73,7 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 		ended		= new Signal0();
 		
 		state		= EffectStates.initialized;
-		isReverted	= false;
+		isReverted	= newEffect.isReverted;
 	}
 	
 	
@@ -98,15 +95,15 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 	}
 	
 	
-	public inline function isDisposed ()			: Bool		{ return state == null; }
-	public function setValues( v:EffectProperties ) : Void		{ Assert.abstract(); }
-	private function initStartValues()				: Void		{ Assert.abstract(); }
-	private function tweenUpdater( tweenPos:Float )	: Void		{ Assert.abstract(); }
-	private function calculateTweenStartPos ()		: Float		{ Assert.abstract(); return 0; }
+	public #if !noinline inline #end function isDisposed ()			: Bool		{ return state == null; }
+	public function setValues( v:EffectProperties ) : Void		{ Assert.abstractMethod(); }
+	private function initStartValues()				: Void		{ Assert.abstractMethod(); }
+	private function tweenUpdater( tweenPos:Float )	: Void		{ Assert.abstractMethod(); }
+	private function calculateTweenStartPos ()		: Float		{ Assert.abstractMethod(); return 0; }
 
 	
 	
-	public inline function revert ( withEffect:Bool = true, directly:Bool = false ) : Void
+	public #if !noinline inline #end function revert ( withEffect:Bool = true, directly:Bool = false ) : Void
 	{
 		isReverted = !isReverted;
 		play( withEffect, directly );
@@ -115,8 +112,8 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 	
 	public function play ( withEffect:Bool = true, directly:Bool = false ) : Void
 	{
-		Assert.that(!isDisposed());
-		if (state == EffectStates.waiting && !directly)
+	//	Assert.that(!isDisposed());
+		if (isDisposed() || state == EffectStates.waiting && !directly)
 			return;
 		
 		stopDelay();
@@ -182,7 +179,7 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 		
 		state = EffectStates.playing;
 		
-		if (startPos == endPos)
+		if (startPos == endPos || calcStartPos == -1)
 		{
 			onTweenReady();
 		}
@@ -191,11 +188,12 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 			//calculate tween duration
 			var valDiff:Float			= startPos > endPos ? startPos - endPos : endPos - startPos;
 			var calcDuration:Int		= ( effect.duration * valDiff ).roundFloat();
-#if debug
+#if (debug && flash9)
 			if (slowMotion)			calcDuration *= 10;
 #end
-			prevTween = new feffects.Tween( startPos, endPos, calcDuration, null, null, effect.easing );
-			prevTween.setTweenHandlers( tweenUpdater, onTweenReady );
+			prevTween = new feffects.Tween( startPos, endPos, calcDuration, effect.easing );
+		//	prevTween.setTweenHandlers( tweenUpdater, onTweenReady );	<-- feffects 1.2.0
+			prevTween.onUpdate(tweenUpdater).onFinish(onTweenReady);
 			prevTween.start();
 		}
 	}
@@ -213,7 +211,7 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 	}
 	
 	
-	private function onTweenReady ( ?tweenPos:Float )
+	private function onTweenReady ()
 	{
 		state = EffectStates.finished;
 		applyFilters();
@@ -264,7 +262,8 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 		if (prevTween != null)
 		{
 			prevTween.stop();
-			prevTween.setTweenHandlers(null, null);
+		//	prevTween.setTweenHandlers(null, null);
+			prevTween.onUpdate(null).onFinish(null);
 			prevTween = null;
 		}
 	}
@@ -276,8 +275,8 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 	//
 	
 	
-	public inline function isPlaying () : Bool	{ return state == EffectStates.playing || state == waiting; }
-	public inline function isWaiting () : Bool	{ return delayTimer != null; }
+	public #if !noinline inline #end function isPlaying () : Bool	{ return state == EffectStates.playing || state == waiting; }
+	public #if !noinline inline #end function isWaiting () : Bool	{ return delayTimer != null; }
 
 	
 	private function setIsReverted (v:Bool)
@@ -287,15 +286,14 @@ class EffectInstance < TargetType, PropertiesType:IEffect >
 	
 	
 #if (debug && flash9)
-	static public var slowMotion = function() {
+	@:keep static public function __init__ () {
 		flash.Lib.current.addEventListener(flash.events.KeyboardEvent.KEY_DOWN, 
-			function(e:flash.events.KeyboardEvent) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = true; trace("shiftDown"); } }
+			function(e) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = true; trace("shiftDown"); } }
 		);
 		flash.Lib.current.addEventListener(flash.events.KeyboardEvent.KEY_UP, 
-			function(e:flash.events.KeyboardEvent) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = false; trace("shiftUp"); } }
+			function(e) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = false; trace("shiftUp"); } }
 		);
-		
-		return false;
-	}();
+	}
+	static public var slowMotion = false;
 #end
 }

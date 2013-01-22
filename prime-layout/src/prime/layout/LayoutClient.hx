@@ -26,22 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
-package prime.layout;
+package prime.gui.layout;
+ import prime.signal.Signal1;
  import prime.core.geom.Box;
  import prime.core.geom.IntRectangle;
  import prime.core.geom.RectangleFlags;
- import prime.core.traits.IInvalidatable;
- import prime.core.traits.Invalidatable;
+ import prime.core.states.SimpleStateMachine;
  import prime.core.validators.IntRangeValidator;
- import prime.fsm.states.ValidateStates;
- import prime.fsm.SimpleStateMachine;
- import prime.signal.Signal1;
-#if debug
- import prime.core.traits.IUIdentifiable;
- import prime.utils.ID;
-#end
  import prime.types.Number;
- import prime.layout.ILayoutClient;
+ import prime.gui.states.ValidateStates;
   using prime.utils.Bind;
   using prime.utils.BitUtil;
   using prime.utils.IfUtil;
@@ -58,11 +51,11 @@ private typedef Flags = LayoutFlags;
  * @creation-date	Jun 17, 2010
  * @author			Ruben Weijers
  */
-class LayoutClient extends Invalidatable
-			,	implements ILayoutClient
-#if debug	,	implements IUIdentifiable #end
+class LayoutClient extends prime.core.traits.Invalidatable
+			,	implements prime.gui.layout.ILayoutClient
+#if debug	,	implements prime.core.traits.IUIdentifiable #end
 {
-	private static var EMPTY_BOX 	: Box = new Box(0,0,0,0);
+	private static var EMPTY_BOX 	 = new Box(0,0,0,0);
 
 
 	/**
@@ -158,13 +151,13 @@ class LayoutClient extends Invalidatable
 		super();
 #if debug
 		name = "LayoutClient" + counter++;
-		_oid = ID.getNext();
+		_oid = prime.utils.ID.getNext();
 #end
 		maintainAspectRatio = false;
 		invalidatable		= true;
 		
 		changed		= new Signal1<Int>();
-		innerBounds	= new IntRectangle( x, y, newWidth.getBiggest(0), newHeight.getBiggest(0) );
+		innerBounds	= new IntRectangle( x.roundFloat() , y.roundFloat(), newWidth.getBiggest(0).roundFloat(), newHeight.getBiggest(0).roundFloat() );
 		outerBounds	= innerBounds.clone().as(IntRectangle);
 		
 		_width		= newWidth;
@@ -227,7 +220,7 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	public inline function resetValidation ()
+	public #if !noinline inline #end function resetValidation ()
 	{
 		state.current	= ValidateStates.validated;
 		changes			= 0;
@@ -235,9 +228,9 @@ class LayoutClient extends Invalidatable
 	}
 
 
-	public inline function attachTo 	(c:ILayoutContainer, d:Int = -1)	{ c.children.add(this, d);		 								return this; }
-	public inline function detach 		()									{ if (parent != null) { parent.children.remove( this ); } 		return this; }
-	public inline function changeDepth	(newPos:Int)						{ if (parent != null) { parent.children.move(this, newPos); } 	return this; }
+	public #if !noinline inline #end function attachTo 	(c:ILayoutContainer, d:Int = -1)	{ c.children.add(this, d);		 								return this; }
+	public #if !noinline inline #end function detach 		()									{ if (parent != null) { parent.children.remove( this ); } 		return this; }
+	public #if !noinline inline #end function changeDepth	(newPos:Int)						{ if (parent != null) { parent.children.move(this, newPos); } 	return this; }
 	
 	
 	
@@ -348,14 +341,14 @@ class LayoutClient extends Invalidatable
 	}
 	
 
-	public inline function isChanged ()			{ return changes > 0; }
-	public inline function isValidated ()		{ return state.is(ValidateStates.validated); }
-	public inline function isValidating ()		{ return state == null ? false : state.is(ValidateStates.validating) || (parent != null && parent.isValidating()); }
-	public inline function isInvalidated ()		{ return state == null ? false : state.is(ValidateStates.invalidated) || state.is(ValidateStates.parent_invalidated); }
+	public #if !noinline inline #end function isChanged ()			{ return changes > 0; }
+	public #if !noinline inline #end function isValidated ()		{ return state.is(ValidateStates.validated); }
+	public #if !noinline inline #end function isValidating ()		{ return state == null ? false : state.is(ValidateStates.validating) || (parent != null && parent.isValidating()); }
+	public #if !noinline inline #end function isInvalidated ()		{ return state == null ? false : state.is(ValidateStates.invalidated) || state.is(ValidateStates.parent_invalidated); }
 	
 
-	public inline function hasEmptyPadding ()	{ return padding == EMPTY_BOX; }
-	public inline function hasEmptyMargin ()	{ return margin == EMPTY_BOX; }
+	public #if !noinline inline #end function hasEmptyPadding ()	{ return padding == EMPTY_BOX; }
+	public #if !noinline inline #end function hasEmptyMargin ()	{ return margin == EMPTY_BOX; }
 
 	
 	
@@ -439,7 +432,7 @@ class LayoutClient extends Invalidatable
 				if (aspectRatio.notSet())
 					calculateAspectRatio( width, height );
 				
-				if (aspectRatio.isSet())
+				if (aspectRatio.isSet())	//don't change to else statement, 'calculateAspectRatio' can change the value of aspectRatio
 					updateAllWidths( calcWidthForHeight(v) );	//calling this method won't trigger the setWidth method (to prevend infinite loops)
 			}
 		}
@@ -489,7 +482,7 @@ class LayoutClient extends Invalidatable
 				// 3. if h1 is different then h2, we need to recalculate the width
 				var w1 = calcWidthForHeight( h2 );
 #if debug		var w2 = validateWidth( w1, Flags.VALIDATE_RANGE );
-				Assert.equal( w1, w2, "It seems as if the width/height combination is impossible with the min-max restrictions.. WidthValidator: "+widthValidator+"; heightValidator: "+heightValidator+"; "+this);
+				Assert.isEqual( w1, w2, "It seems as if the width/height combination is impossible with the min-max restrictions.. WidthValidator: "+widthValidator+"; heightValidator: "+heightValidator+"; "+this);
 #end			
 				v = w1;
 			}
@@ -529,7 +522,7 @@ class LayoutClient extends Invalidatable
 				// 3. if w1 is different then w2, we need to recalculate the height
 				var h1 = calcHeightForWidth( w2 );
 #if debug		var h2 = validateHeight( h1, Flags.VALIDATE_RANGE );
-				Assert.equal( h1, h2, "It seems as if the width/height combination is impossible with the min-max restrictions.. WidthValidator: "+widthValidator+"; heightValidator: "+heightValidator+"; "+this);
+				Assert.isEqual( h1, h2, "It seems as if the width/height combination is impossible with the min-max restrictions.. WidthValidator: "+widthValidator+"; heightValidator: "+heightValidator+"; "+this);
 #end			
 				v = h1;
 			}
@@ -623,7 +616,7 @@ class LayoutClient extends Invalidatable
 	/**
 	 * @return _width if the value is set, otherwise '0' or the minWidth
 	 */
-	private inline function getUsableWidth ()
+	private  function getUsableWidth ()
 	{
 		var v = _width;
 		if (v.notSet())		v = widthValidator != null ? widthValidator.min : 0;
@@ -635,7 +628,7 @@ class LayoutClient extends Invalidatable
 	/**
 	 * @return _height if the value is set, otherwise '0'
 	 */
-	private inline function getUsableHeight ()
+	private  function getUsableHeight ()
 	{
 		var v = _height;
 		if (v.notSet())		v = heightValidator != null ? heightValidator.min : 0;
@@ -691,7 +684,7 @@ class LayoutClient extends Invalidatable
 	private inline function calcHeightForWidth (w:Int) : Int	{ Assert.notEqual(aspectRatio, 0); Assert.that(aspectRatio.isSet()); return (w / aspectRatio).roundFloat(); }
 	
 	
-	private inline function calculateAspectRatio (w:Int, h:Int)
+	private function calculateAspectRatio (w:Int, h:Int)
 	{
 		aspectRatio = Number.FLOAT_NOT_SET;
 		if (w.isSet() && h.isSet() && w > 0 && h > 0)
@@ -767,7 +760,7 @@ class LayoutClient extends Invalidatable
 	
 	
 	
-	override public function invalidateCall (propChanges:Int, sender:IInvalidatable)
+	override public function invalidateCall (propChanges:Int, sender:prime.core.traits.IInvalidatable)
 	{
 		if (propChanges == 0)
 			return;
@@ -811,7 +804,7 @@ class LayoutClient extends Invalidatable
 	 * 
 	 * FIXME
 	 */
-	@:keep public function invalidateHorPaddingMargin () //changes:Int)
+	public function invalidateHorPaddingMargin () //changes:Int)
 	{
 	//	invalidate( changes );	// <-- will destroy the applicition... things start freezing.. weird stuff :-S
 	    if (width.isSet()) {
@@ -825,7 +818,7 @@ class LayoutClient extends Invalidatable
 	/**
 	 * @see invalidateHorPaddingMargin
 	 */
-	@:keep public function invalidateVerPaddingMargin ()
+	public function invalidateVerPaddingMargin ()
 	{
 	    if (height.isSet()) {
 	    	invalidate(LayoutFlags.PADDING | LayoutFlags.MARGIN);
@@ -840,7 +833,7 @@ class LayoutClient extends Invalidatable
 	// GETTERS / SETTERS
 	//
 	
-	public inline function getHorPosition ()
+	public #if !noinline inline #end function getHorPosition ()
 	{
 		var pos = innerBounds.left;
 		if (parent.is(VirtualLayoutContainer))
@@ -850,7 +843,7 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	public inline function getVerPosition ()
+	public #if !noinline inline #end function getVerPosition ()
 	{
 		var pos = innerBounds.top;
 		if (parent.is(VirtualLayoutContainer))
@@ -860,13 +853,13 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	public inline function getHorPadding () : Int	{ return /*padding == null ? 0 : */padding.left	+ padding.right; }
-	public inline function getVerPadding() : Int	{ return /*padding == null ? 0 : */padding.top	+ padding.bottom; }
-	public inline function getHorMargin () : Int	{ return /*margin  == null ? 0 : */margin.left	+ margin.right; }
-	public inline function getVerMargin() : Int		{ return /*margin  == null ? 0 : */margin.top	+ margin.bottom; }
+	public #if !noinline inline #end function getHorPadding () : Int	{ return /*padding == null ? 0 : */padding.left	+ padding.right; }
+	public #if !noinline inline #end function getVerPadding() : Int	{ return /*padding == null ? 0 : */padding.top	+ padding.bottom; }
+	public #if !noinline inline #end function getHorMargin () : Int	{ return /*margin  == null ? 0 : */margin.left	+ margin.right; }
+	public #if !noinline inline #end function getVerMargin() : Int		{ return /*margin  == null ? 0 : */margin.top	+ margin.bottom; }
 	
-	public inline function hasMaxWidth () : Bool	{ return widthValidator  != null && widthValidator.max.isSet(); }
-	public inline function hasMaxHeight () : Bool	{ return heightValidator != null && heightValidator.max.isSet(); }
+	public #if !noinline inline #end function hasMaxWidth () : Bool	{ return widthValidator  != null && widthValidator.max.isSet(); }
+	public #if !noinline inline #end function hasMaxHeight () : Bool	{ return heightValidator != null && heightValidator.max.isSet(); }
 	
 	
 	
@@ -964,7 +957,7 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	private inline function setIncludeInLayout (v:Bool)
+	private  function setIncludeInLayout (v:Bool)
 	{
 		if (includeInLayout != v)
 		{
@@ -988,7 +981,7 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	private inline function setRelative (v:RelativeLayout)
+	private  function setRelative (v:RelativeLayout)
 	{
 		if (relative != v)
 		{
@@ -1002,7 +995,7 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	private inline function setWidthValidator (v:IntRangeValidator)
+	private  function setWidthValidator (v:IntRangeValidator)
 	{
 		if (widthValidator != v)
 		{
@@ -1016,7 +1009,7 @@ class LayoutClient extends Invalidatable
 	}
 	
 	
-	private inline function setHeightValidator (v:IntRangeValidator)
+	private  function setHeightValidator (v:IntRangeValidator)
 	{
 		if (heightValidator != v)
 		{
@@ -1036,7 +1029,7 @@ class LayoutClient extends Invalidatable
 	private var oldChanges : Int;
 
 
-	private /*inline*/ function setInvalidatable (v:Bool)
+	private  function setInvalidatable (v:Bool)
 	{
 		if (v != invalidatable)
 		{
@@ -1066,7 +1059,7 @@ class LayoutClient extends Invalidatable
 	
 	
 #if debug
-	public inline function readChanges (changes:Int = -1) : String
+	public #if !noinline inline #end function readChanges (changes:Int = -1) : String
 	{
 		if (changes == -1)
 			changes = this.changes;
@@ -1077,6 +1070,6 @@ class LayoutClient extends Invalidatable
 	
 	public static var counter:Int = 0;
 	public var name:String;
-	@:keep public function toString() { return name; }//+"_"+state; } //state.current+"_"+name; } // + " - " + _oid; }
+	public function toString() { return name; }//+"_"+state; } //state.current+"_"+name; } // + " - " + _oid; }
 #end
 }

@@ -26,19 +26,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.shapes;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics.shapes;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.geom.space.Position;
- import primevc.core.geom.Corners;
- import primevc.core.geom.IntPoint;
- import primevc.core.geom.IRectangle;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.traits.IGraphicsOwner;
-  using primevc.utils.FastArray;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.space.Position;
+ import prime.core.geom.Corners;
+ import prime.core.geom.IntPoint;
+ import prime.core.geom.IRectangle;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.utils.FastArray;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -189,14 +189,14 @@ class Triangle extends ShapeBase, implements IGraphicShape
 		return v;
 	}
 
-#if ((neko && prime_css) || debug)
+#if (CSSParser || debug)
 	override public function toCSS (prefix:String = "") : String
 	{
 		return "triangle";
 	}
 #end
 
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)
 	{
 		code.construct( this, [ direction ] );

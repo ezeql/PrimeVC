@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -64,14 +64,14 @@ class ShowProgressBarBehaviour extends BehaviourBase<IUIContainer>
 	public function new (target:IUIContainer, loader:ICommunicator) //, autoDispose:Bool = false)
 	{
 		super(target);
-		Assert.notNull(loader);
+		Assert.isNotNull(loader);
 		this.loader = loader;
 	}
 	
 	
 	override private function init ()
 	{
-		Assert.notNull(loader);
+		Assert.isNotNull(loader);
 	//	if (loader.isCompleted())
 	//		return;
 		createBar.on( loader.events.load.started, this );

@@ -91,14 +91,14 @@ class WipeEffectInstance extends EffectInstance < IDisplayObject, WipeEffect >
 		
 		if (startValue.notSet() || startValue == effect.endValue)
 			switch (effect.direction) {
-				case TopToBottom:	rect.y = startValue =  rect.height;
-				case BottomToTop:	rect.y = startValue = -rect.height;
-				case LeftToRight:	rect.x = startValue =  rect.width;
-				case RightToLeft:	rect.x = startValue = -rect.width;
+				case TopToBottom:	startValue =  rect.height;	rect.y = isReverted ? endValue : startValue;
+				case BottomToTop:	startValue = -rect.height;	rect.y = isReverted ? endValue : startValue;
+				case LeftToRight:	startValue =  rect.width;	rect.x = isReverted ? endValue : startValue;
+				case RightToLeft:	startValue = -rect.width;	rect.x = isReverted ? endValue : startValue;
 			}
 		else switch (effect.direction) {
-				case TopToBottom, BottomToTop:	rect.y = startValue;
-				case LeftToRight, RightToLeft:	rect.x = startValue;
+				case TopToBottom, BottomToTop:	rect.y = isReverted ? endValue : startValue;
+				case LeftToRight, RightToLeft:	rect.x = isReverted ? endValue : startValue;
 			}
 		
 		t.scrollRect = rect;
@@ -109,6 +109,7 @@ class WipeEffectInstance extends EffectInstance < IDisplayObject, WipeEffect >
 	{
 		var rect			= target.scrollRect;
 		var newVal:Float	= ( endValue * tweenPos ) + ( startValue * (1 - tweenPos) );
+//#if debug Assert.isNotNull(rect, target+" must have a scrollRect"); #end
 		
 		switch (effect.direction) {
 			case TopToBottom, BottomToTop:	rect.y = newVal;
@@ -121,7 +122,7 @@ class WipeEffectInstance extends EffectInstance < IDisplayObject, WipeEffect >
 	override private function calculateTweenStartPos () : Float
 	{
 		if (target.scrollRect == null)
-			return isReverted ? 0.0 : 1.0;
+			return -1;
 		
 		var curValue:Float = 0;
 		switch (effect.direction) {
@@ -133,15 +134,16 @@ class WipeEffectInstance extends EffectInstance < IDisplayObject, WipeEffect >
 	}
 	
 	
-	override private function onTweenReady ( ?tweenPos:Float )
+	override private function onTweenReady ()
 	{
 		var rect = target.scrollRect;
+		var v = target.visible;
 		if (rect != null) {
 			switch (effect.direction) {
-				case TopToBottom:	if (rect.y >=  rect.height)	{ target.visible = false; rect.y = 0; }
-				case BottomToTop:	if (rect.y <= -rect.height)	{ target.visible = false; rect.y = 0; }
-				case LeftToRight:	if (rect.x >=  rect.width)	{ target.visible = false; rect.x = 0; }
-				case RightToLeft:	if (rect.x <= -rect.width)	{ target.visible = false; rect.x = 0; }
+				case TopToBottom:	if (rect.y >=  rect.height)	{ target.visible = false; rect.y = isReverted ? endValue : startValue; } else target.visible = true;
+				case BottomToTop:	if (rect.y <= -rect.height)	{ target.visible = false; rect.y = isReverted ? endValue : startValue; } else target.visible = true;
+				case LeftToRight:	if (rect.x >=  rect.width)	{ target.visible = false; rect.x = isReverted ? endValue : startValue; } else target.visible = true;
+				case RightToLeft:	if (rect.x <= -rect.width)	{ target.visible = false; rect.x = isReverted ? endValue : startValue; } else target.visible = true;
 			}
 			
 			target.scrollRect = rect;

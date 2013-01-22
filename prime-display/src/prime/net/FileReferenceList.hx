@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -36,5 +36,6 @@ package prime.net;
 typedef FileReferenceList = 
 	#if		flash9	prime.avm2.net.FileReferenceList;
 	#elseif	flash8	prime.avm1.net.FileReferenceList;
+	#elseif	nodejs	#error;
 	#elseif	js		prime.js  .net.FileReferenceList;
 	#else			error; #end

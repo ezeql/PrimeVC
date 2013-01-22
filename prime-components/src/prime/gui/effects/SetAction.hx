@@ -27,15 +27,10 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.effects;
- import primevc.gui.core.IUIElement;	
-#if (flash8 || flash9 || js)
- import primevc.gui.effects.effectInstances.SetActionInstance;
-#end
-#if neko
- import primevc.tools.generator.ICodeGenerator;
+  using primevc.utils.NumberUtil;
+#if CSSParser
   using primevc.types.Reference;
 #end
-  using primevc.utils.NumberUtil;
 
 
 /**
@@ -46,26 +41,24 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Sep 01, 2010
  */
-class SetAction extends Effect < IUIElement, SetAction >
+class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<primevc.gui.core.IUIElement, SetAction> #end
 {
 	public var prop : EffectProperties;
 	
 	
-	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, prop:EffectProperties = null)
+	public function new (duration:Int = 350, delay:Int = 0, easing:Easing = null, isReverted:Bool = false, prop:EffectProperties = null)
 	{
-		super(duration, delay, easing);
+		super(duration, delay, easing, isReverted);
 		this.prop = prop;
 	}
 	
 	
 	override public function setValues (v:EffectProperties)	{ prop = v; }
-	override public function clone ()						{ return cast new SetAction( duration, delay, easing, prop ); }
-#if (flash8 || flash9 || js)
-	override public function createEffectInstance (target)	{ return cast new SetActionInstance(target, this); }
-#end
-	
-	
-#if neko
+	override public function clone ()						{ return new SetAction( duration, delay, easing, isReverted, prop ); }
+#if !CSSParser
+	override public function createEffectInstance (target)	{ return new primevc.gui.effects.effectInstances.SetActionInstance(target, this); }
+#else
+
 	override public function toCSS (prefix:String = "") : String
 	{
 		var props = [];
@@ -74,6 +67,7 @@ class SetAction extends Effect < IUIElement, SetAction >
 		if (delay.isSet())			props.push( delay + "ms" );
 		if (easing != null)			props.push( easing.toCSS() );
 		if (prop != null)			props.push( propToCSS() );
+		if (isReverted)				props.push( "reverted" );
 		
 		return "set-action " + props.join(" ");
 	}
@@ -114,10 +108,10 @@ class SetAction extends Effect < IUIElement, SetAction >
 	}
 
 
-	override public function toCode (code:ICodeGenerator) : Void
+	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
-			code.construct( this, [ duration, delay, easing, prop ] );
+			code.construct( this, [ duration, delay, isReverted, easing, prop ] );
 	}
 #end
 }

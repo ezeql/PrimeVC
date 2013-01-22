@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -94,7 +94,7 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 	}
 	
 	
-	override public function dispose ()
+	public function dispose2 ()	// FIXME can't override dispose -> runtime error:  "VerifyError: Error #1053: Illegal override of dispose in primevc.avm2.net.FileReference."
 	{
 		close();
 		events.dispose();
@@ -105,8 +105,8 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 	}
 	
 	
-	public inline function close ()				if (isStarted)	{ isStarted = false; loader.cancel(); events.uploadCanceled.send(); }
-	public inline function browse (?types:Array<FileFilter>)	{ return loader.browse(types); }
+	public #if !noinline inline #end function close ()				if (isStarted)	{ isStarted = false; loader.cancel(); events.uploadCanceled.send(); }
+	public #if !noinline inline #end function browse (?types:Array<FileFilter>)	{ return loader.browse(types); }
 	
 	
 	public function load () : Void
@@ -144,7 +144,7 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 	 * 
 	 * @param	filename	suggested filename for the file
 	 */
-	public inline function save (filename:String, data:BytesData = null)
+	public #if !noinline inline #end function save (filename:String, data:BytesData = null)
 	{
 		if (isStarted)
 			close();
@@ -153,14 +153,14 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 			data = bytes;
 		
 #if flash10			loader.save( data, filename );
-#elseif flash9		Assert.abstract('not possible in flash-9');		#end
+#elseif flash9		Assert.abstractMethod('not possible in flash-9');		#end
 	}
 	
 	
 	/**
 	 * Method offers the option to download a file from the given URI
 	 */
-	public inline function download (uri:URI, filename:String)
+	public #if !noinline inline #end function download (uri:URI, filename:String)
 	{
 		if (isStarted)
 			close();
@@ -193,8 +193,8 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 	 * the extension of the file
 	 */
 	private inline function getFileType ()			{ return loader.type == null ? name.getExtension() : loader.type; }
-	public inline function isCompleted ()			{ return bytesTotal > 0 && bytesProgress >= bytesTotal; }
-	public inline function isInProgress ()			{ return isStarted && !isCompleted(); }
+	public #if !noinline inline #end function isCompleted ()			{ return bytesTotal > 0 && bytesProgress >= bytesTotal; }
+	public #if !noinline inline #end function isInProgress ()			{ return isStarted && !isCompleted(); }
 	
 	
 	//

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -44,7 +44,7 @@ class AudioPlayer extends UIDataContainer <Bindable<URI>>
 
     public function new (id = null, uri:URI = null) { super(id, new Bindable<URI>(uri)); }
     override private function createChildren ()     { stream = new AudioStream(data.value); }
-    override public  function removeChildren ()     { stream.dispose(); stream = null; super.removeChildren(); }
+    override public  function disposeChildren ()     { stream.dispose(); stream = null; super.disposeChildren(); }
 
     override private function initData ()           { stream.url.pair(data); }
     override private function removeData ()         { stream.url.unbind(data); }

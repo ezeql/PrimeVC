@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
-#if (neko && prime_css)
+#if CSSParser
  import primevc.tools.generator.ICodeGenerator;
  import primevc.types.SimpleDictionary;
 #end
@@ -39,7 +39,7 @@ package primevc.gui.styling;
   using primevc.utils.HashUtil;
   using Type;
 
-#if ((neko && prime_css) || debug)
+#if (CSSParser || debug)
   using StringTools;
 #end
 
@@ -47,7 +47,7 @@ package primevc.gui.styling;
 private typedef Flags	= StyleFlags;
 private typedef SType	= StyleBlockType;
 
-typedef ChildrenList = #if (neko && prime_css) SimpleDictionary<String, StyleBlock> #else Hash<StyleBlock> #end;
+typedef ChildrenList = #if CSSParser SimpleDictionary<String, StyleBlock> #else Hash<StyleBlock> #end;
 
 
 /**
@@ -272,18 +272,18 @@ class StyleBlock extends StyleBlockBase
 	//
 	
 	
-	public inline function getPriority ()		: Int	{ return type.enumIndex(); }
-	public inline function isState ()			: Bool	{ return type == SType.elementState || type == SType.styleNameState || type == SType.idState; }
-	public inline function isElementState ()	: Bool	{ return type == SType.elementState; }
-	public inline function isStyleNameState ()	: Bool	{ return type == SType.styleNameState; }
-	public inline function isIdState ()			: Bool	{ return type == SType.idState; }
-	public inline function isElement ()			: Bool	{ return type == SType.element; }
-	public inline function isStyleName ()		: Bool	{ return type == SType.styleName; }
-	public inline function isId ()				: Bool	{ return type == SType.id; }
+	public #if !noinline inline #end function getPriority ()		: Int	{ return type.enumIndex(); }
+	public #if !noinline inline #end function isState ()			: Bool	{ return type == SType.elementState || type == SType.styleNameState || type == SType.idState; }
+	public #if !noinline inline #end function isElementState ()	: Bool	{ return type == SType.elementState; }
+	public #if !noinline inline #end function isStyleNameState ()	: Bool	{ return type == SType.styleNameState; }
+	public #if !noinline inline #end function isIdState ()			: Bool	{ return type == SType.idState; }
+	public #if !noinline inline #end function isElement ()			: Bool	{ return type == SType.element; }
+	public #if !noinline inline #end function isStyleName ()		: Bool	{ return type == SType.styleName; }
+	public #if !noinline inline #end function isId ()				: Bool	{ return type == SType.id; }
 	
 	
 #if debug
-	public inline function getPriorityName () : String
+	public #if !noinline inline #end function getPriorityName () : String
 	{
 		return type.enumConstructor();
 	}
@@ -291,13 +291,13 @@ class StyleBlock extends StyleBlockBase
 	
 	
 	/*
-	public inline function hasChildren () : Bool
+	public #if !noinline inline #end function hasChildren () : Bool
 	{
 		return filledProperties.has( Flags.CHILDREN ); // _children != null && !_children.isEmpty();
 	}
 	
 	
-	public inline function hasStates () : Bool
+	public #if !noinline inline #end function hasStates () : Bool
 	{
 		return filledProperties.has( Flags.STATES ); // _states != null && !_states.isEmpty();
 	}
@@ -336,7 +336,7 @@ class StyleBlock extends StyleBlockBase
 	}*/
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	/**
 	 * Method will search for the requested state + type in it's children or
 	 * the children of his extended / superStyle.
@@ -373,7 +373,7 @@ class StyleBlock extends StyleBlockBase
 #end
 	
 	
-	public inline function findChild (name:String, childType:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock
+	public #if !noinline inline #end function findChild (name:String, childType:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock
 	{
 		return switch (childType) {
 			case id:		findIdStyle(name, exclude);
@@ -639,7 +639,7 @@ class StyleBlock extends StyleBlockBase
 		Assert.notEqual(v, this);
 		if (v != nestingInherited)
 		{
-#if (debug && !neko)
+#if (debug && !CSSParser)
 			if (v != null && nestingInherited != null)
 				throw "Changing the nestingInherited style after it's set is not yet supported!";
 #end
@@ -656,7 +656,7 @@ class StyleBlock extends StyleBlockBase
 		Assert.notEqual(v, this);
 		if (v != superStyle)
 		{			
-#if (debug && !neko)
+#if (debug && !CSSParser)
 			if (v != null && superStyle != null)
 				throw "Changing the superStyle style after it's set is not yet supported!";
 #end
@@ -681,7 +681,7 @@ class StyleBlock extends StyleBlockBase
 		Assert.notEqual(v, this);
 		if (v != extendedStyle)
 		{
-#if (debug && !neko)
+#if (debug && !CSSParser)
 			if (v != null && extendedStyle != null)
 				throw "Changing the extendedStyle style after it's set is not yet supported!";
 #end
@@ -705,7 +705,7 @@ class StyleBlock extends StyleBlockBase
 		Assert.notEqual(v, this);
 		if (v != parentStyle)
 		{
-#if (debug && !neko)
+#if (debug && !CSSParser)
 			if (v != null && parentStyle != null)
 				throw "Changing the parentStyle style after it's set is not yet supported!";
 #end
@@ -879,7 +879,7 @@ class StyleBlock extends StyleBlockBase
 	}
 	
 	
-	public inline function setInheritedStyles( nestedStyle:StyleBlock = null, superStyle:StyleBlock = null, extendedStyle:StyleBlock = null, parentStyle:StyleBlock = null )
+	public  function setInheritedStyles( nestedStyle:StyleBlock = null, superStyle:StyleBlock = null, extendedStyle:StyleBlock = null, parentStyle:StyleBlock = null )
 	{
 		if (nestingInherited != null)	this.nestingInherited	= nestedStyle;
 		if (superStyle != null)			this.superStyle			= superStyle;
@@ -888,7 +888,7 @@ class StyleBlock extends StyleBlockBase
 	}
 	
 	
-	public inline function setChildren (idChildren:ChildrenList = null, styleNameChildren:ChildrenList = null, elementChildren:ChildrenList = null)
+	public  function setChildren (idChildren:ChildrenList = null, styleNameChildren:ChildrenList = null, elementChildren:ChildrenList = null)
 	{
 		if (idChildren != null)			this.idChildren			= idChildren;
 		if (styleNameChildren != null)	this.styleNameChildren	= styleNameChildren;
@@ -896,7 +896,7 @@ class StyleBlock extends StyleBlockBase
 	}
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCSS (namePrefix:String = "")
 	{
 		var css = "";
@@ -1059,7 +1059,7 @@ class StyleBlock extends StyleBlockBase
 	
 	public function getChildrenOfType (type:StyleBlockType) : ChildrenList
 	{
-		Assert.notNull(type);
+		Assert.isNotNull(type);
 		return switch (type) {
 				case id:		_idChildren			== null ? idChildren		= new ChildrenList() : _idChildren;
 				case styleName:	_styleNameChildren	== null ? styleNameChildren	= new ChildrenList() : _styleNameChildren;
@@ -1099,7 +1099,7 @@ class StyleBlock extends StyleBlockBase
 	}
 #end
 	
-#if (debug && !(neko && prime_css))
+#if (debug && !CSSParser)
 	override public function toString ()
 	{
 		return type + "("+getPriority()+")" + " - " + super.toString()
@@ -1108,7 +1108,7 @@ class StyleBlock extends StyleBlockBase
 			+ (extendedStyle 	!= null ? " - extended: "+	extendedStyle._oid 		: "")
 			+ (nestingInherited != null ? " - nested: "+	nestingInherited._oid 	: "");
 	}
-#elseif (debug && neko && prime_css)
+#elseif (debug && CSSParser)
 	override public function toString ()
 	{
 		return parentStyle != null ? parentStyle + " " + cssName : cssName;

@@ -58,9 +58,9 @@ class Signal0 extends Signal<Void->Void>, implements ISender0, implements INotif
 			if (w.flags.has(Wire.SEND_ONCE))
 				w.disable();
 			
-#if (flash9 && debug) try { #end
+//#if (flash9 && debug) try { #end
 			w.handler();
-#if (flash9 && debug) } catch (e : flash.errors.TypeError) { throw "Wrong argument type ("+ e +") for " + w+";\n\tstacktrace: "+e.getStackTrace()+"\n"; } #end
+//#if (flash9 && debug) } catch (e : flash.errors.TypeError) { throw "Wrong argument type ("+ e +") for " + w+";\n\tstacktrace: "+e.getStackTrace()+"\n"; } #end
 			
 			if (w.flags.has(Wire.SEND_ONCE))
 				w.dispose();
@@ -71,10 +71,10 @@ class Signal0 extends Signal<Void->Void>, implements ISender0, implements INotif
 		nextSendable = null;
 	}
 	
-	public inline function bind           ( owner:Dynamic, handler:Void->Void )	return Wire.make(this, owner, handler, Wire.ENABLED)
-	public inline function bindOnce       ( owner:Dynamic, handler:Void->Void )	return Wire.make(this, owner, handler, Wire.ENABLED | Wire.SEND_ONCE)
-	public inline function bindDisabled   ( owner:Dynamic, handler:Void->Void )	return Wire.make(this, owner, cast handler, 0)
-	public inline function observe        ( owner:Dynamic, handler:Void->Void )	return bind(owner, handler)
-	public inline function observeOnce    ( owner:Dynamic, handler:Void->Void )	return bindOnce(owner, handler)
-	public inline function observeDisabled( owner:Dynamic, handler:Void->Void )	return bindDisabled(owner, handler)
+	public #if !noinline inline #end function bind				(owner:Dynamic, handler:Void->Void)		return Wire.make( this, owner, handler, Wire.ENABLED)
+	public #if !noinline inline #end function bindOnce			(owner:Dynamic, handler:Void->Void)		return Wire.make( this, owner, handler, Wire.ENABLED | Wire.SEND_ONCE)
+	public #if !noinline inline #end function bindDisabled		(owner:Dynamic, handler:Void->Void)		return Wire.make( this, owner, handler, 0)
+	public #if !noinline inline #end function observe			(owner:Dynamic, handler:Void->Void)		return bind(owner, handler)
+	public #if !noinline inline #end function observeOnce		(owner:Dynamic, handler:Void->Void)		return bindOnce(owner, handler)
+	public #if !noinline inline #end function observeDisabled	(owner:Dynamic, handler:Void->Void)		return bindDisabled(owner, handler)
 }

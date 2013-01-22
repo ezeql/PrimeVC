@@ -28,7 +28,7 @@
  */
 package primevc.gui.core;
  import primevc.core.collections.DataCursor;
- import primevc.core.collections.IReadOnlyList;
+ import primevc.core.collections.IEditableList;
  import primevc.core.traits.IValueObject;
   using primevc.utils.BitUtil;
   using primevc.utils.TypeUtil;
@@ -99,19 +99,15 @@ class UIDataComponent <DataType> extends UIComponent, implements IUIDataElement 
 	
 	public function getDataCursor ()
 	{
-		var cursor = new DataCursor < DataType > ( data );
+		var cursor = new DataCursor<DataType>(data);
 		
 		var parent = null;
 		if (container != null && container.is(IUIDataElement))
 			parent = container.as(IUIDataElement);
 		
-		if (parent == null)
-			return cursor;
+		if (parent != null && parent.data.is(IEditableList))
+			cursor.list = cast parent.data;
 		
-		if (!parent.data.is(IReadOnlyList))
-			return cursor;
-		
-		cursor.list = cast parent.data.as( IReadOnlyList );
 		return cursor;
 	}
 	
@@ -142,7 +138,7 @@ class UIDataComponent <DataType> extends UIComponent, implements IUIDataElement 
 	}
 
 
-	public inline function unsetData ()
+	public #if !noinline inline #end function unsetData ()
 	{
 		data = null;
 	}

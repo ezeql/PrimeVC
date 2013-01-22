@@ -38,6 +38,7 @@ package prime.tools.generator;
 
 
 private typedef HaxeType = Type.ValueType;
+private typedef ValueType = primevc.tools.generator.ValueType;
 
 /**
  * @author Ruben Weijers
@@ -78,12 +79,12 @@ class CodeGenerator implements ICodeGenerator
 	
 	public function new ()
 	{
-#if !neko Assert.abstract(); #end
+#if !CSSParser Assert.abstractMethod(); #end
 		instanceIgnoreList	= new IntHash();
 	}
 	
 	
-	public inline function start () : Void
+	public #if !noinline inline #end function start () : Void
 	{
 		if (!isStarted)
 		{
@@ -118,7 +119,7 @@ class CodeGenerator implements ICodeGenerator
 	
 	
 	
-	public inline function setSelfAction (name:String, ?params:Array<Dynamic>) : Void
+	public #if !noinline inline #end function setSelfAction (name:String, ?params:Array<Dynamic>) : Void
 	{
 		values.push( tCallMethod(null, name, formatParams(params)) );
 	}
@@ -235,29 +236,30 @@ class CodeGenerator implements ICodeGenerator
 	
 	private function formatValue (v:Dynamic) : ValueType
 	{
-		var type:ValueType = null;
-		if		(isColor(v))					type = tColor(v.color, v.a);
-		else if (v.is( ICodeFormattable ))		type = getObject(v);
-		else if (v.is( Reference))				type = cast(v, Reference).toCode(this);
-		
-		else if (isUndefinedFloat(v))			type = tEmpty( eFloat );
-		else if (isUndefinedInt(v))				type = tEmpty( eInt );
-		else if (v == null)						type = tEmpty( eNull );
-		
-		else if (v.is( String ))				type = tString( v );
-		else if (v.is( Array ))					type = getArray(v);
-		else if (v.is( Int ))					type = v > 255 ? tUInt(v) : tInt(v);
-		else if (v.is( Float ))					type = tFloat(v);
-		else if (v.is( Bool ))					type = tBool(v);
-	//	else if (Std.is( v, Hash ))				type = formatHash(v);
-		else if (null != Type.getEnum(v))		type = convertEnum(v);
-		else if (null != Type.getClassName(v))	type = tClass( addImportFor( Type.getClassName(cast v) ) );
-		else if (null != Type.getClass(v))		type = createClassNameConstructor( v.getClass().getClassName(), null );
-		
+		var type:ValueType = 
+			if		(v != null && isColor(v))		tColor(v.color, v.a);
+			else if (v.is( ICodeFormattable ))		getObject(v);
+			else if (v.is( Reference))				cast(v, Reference).toCode(this);
+			
+			else if (isUndefinedFloat(v))			tEmpty( eFloat );
+			else if (isUndefinedInt(v))				tEmpty( eInt );
+			else if (v == null)						tEmpty( eNull );
+			
+			else if (v.is( String ))				tString( v );
+			else if (v.is( Array ))					getArray(v);
+			else if (v.is( Int ))					v > 255 ? tUInt(v) : tInt(v);
+			else if (v.is( Float ))					tFloat(v);
+			else if (v.is( Bool ))					tBool(v);
+	//		else if (Std.is( v, Hash ))				formatHash(v);
+			else if (null != Type.getEnum(v))		convertEnum(v);
+#if js		else if (v.__name__ != null)			tClass( addImportFor( Type.getClassName(v) ) );
+#else		else if (null != Type.getClassName(v))	tClass( addImportFor( Type.getClassName(v) ) ); #end
+			else if (null != Type.getClass(v))		createClassNameConstructor( v.getClass().getClassName(), null );
+			else									null;
+
 		if (type == null)
 			type = convertType( Type.typeof(v), v );
-	//		throw "unknown value type: " + v+"; "+Type.typeof(v);
-		
+				
 		return type;
 	}
 	

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -88,7 +88,7 @@ class SimpleTileAlgorithm extends LayoutAlgorithmBase, implements ITileAlgorithm
 	 * Method indicating if the changes of a layoutcontainer-child should make
 	 * the layoutcontainer revalidate
 	 */
-	public inline function isInvalid (changes:Int)
+	public #if !noinline inline #end function isInvalid (changes:Int)
 	{
 		return	changes.has( LayoutFlags.WIDTH  * group.childWidth.notSet().boolCalc() )
 			||	changes.has( LayoutFlags.HEIGHT * group.childHeight.notSet().boolCalc() );
@@ -315,7 +315,7 @@ class SimpleTileAlgorithm extends LayoutAlgorithmBase, implements ITileAlgorithm
 	}
 	
 	
-	public inline function validate () {}
+	public #if !noinline inline #end function validate () {}
 	public function validateHorizontal () {}
 	public function validateVertical () {}
 	
@@ -618,7 +618,7 @@ class SimpleTileAlgorithm extends LayoutAlgorithmBase, implements ITileAlgorithm
 
 
 	
-#if (neko || debug)
+#if (CSSParser || debug)
 	override public function toCSS (prefix:String = "") : String
 	{
 		return "tile (" + direction + ")";

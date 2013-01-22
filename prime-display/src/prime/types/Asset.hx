@@ -46,7 +46,7 @@ package prime.types;
  import prime.core.net.URLLoader;
  import prime.gui.display.Loader;
 
-#elseif (neko && prime_css)
+#elseif CSSParser
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.ICodeGenerator;
  import prime.types.Reference;
@@ -69,8 +69,7 @@ private typedef BytesData		= haxe.io.BytesData;
  */
 class Asset		implements IDisposable
 			,	implements IValueObject
-#if (neko && prime_css)
-			,	implements ICodeFormattable		#end
+#if CSSParser,	implements ICodeFormattable		#end
 {
 	//
 	// FACTORY METHODS
@@ -130,10 +129,10 @@ class Asset		implements IDisposable
 	 */
 	public var bitmapData	(default, null)				: BitmapData;
 
-#if (neko && prime_css)
+#if CSSParser
 	private var source		: Dynamic;
 #end
-#if (debug || (neko && prime_css))
+#if (CSSParser || debug)
 	public var _oid			(default, null)				: Int;
 #end
 	public var state		(default, null)				: SimpleStateMachine<AssetStates>;
@@ -143,15 +142,13 @@ class Asset		implements IDisposable
 	
 	
 	
-	public function new ( #if (neko && prime_css) data:Dynamic #end )
+	public function new ( #if CSSParser data:Dynamic #end )
 	{
 		state	= new SimpleStateMachine<AssetStates>(empty);
 		width	= height = Number.INT_NOT_SET;
+#if CSSParser				source	= data; #end
+#if (CSSParser || debug)	_oid	= prime.utils.ID.getNext(); #end
 #if flash9					Assert.isNotNull(type); #end
-#if (neko && prime_css)		source	= data; #end
-#if (debug || (neko && prime_css))
-		_oid	= prime.utils.ID.getNext();
-#end
 	}
 	
 	
@@ -159,11 +156,9 @@ class Asset		implements IDisposable
 	{
 		unsetData();
 		state.dispose();
-		state = null;
-#if (neko && prime_css)		source	= null; #end
-#if (debug || (neko && prime_css))
-		_oid = 0;
-#end
+		state	= null;
+#if CSSParser				source	= null; #end
+#if (CSSParser || debug)	_oid	= 0; #end
 	}
 	
 	
@@ -241,21 +236,21 @@ class Asset		implements IDisposable
 	// ABSTRACT METHODS
 	//
 	
-//	private function setData (v:SourceType)	: SourceType		{ Assert.abstract(); return v; }
-	public  function toDisplayObject ()		: DisplayObject		{ Assert.abstract(); return null; }
+//	private function setData (v:SourceType)	: SourceType		{ Assert.abstractMethod(); return v; }
+	public  function toDisplayObject ()		: DisplayObject		{ Assert.abstractMethod(); return null; }
 #if flash9
-	public  function toDrawable ()			: IBitmapDrawable	{ Assert.abstract(); return null; }
+	public  function toDrawable ()			: IBitmapDrawable	{ Assert.abstractMethod(); return null; }
 #end
-	public  function load ()				: Void				{ Assert.abstract(); }
-	public  function close ()				: Void				{ Assert.abstract(); }
-#if (neko && prime_css)
+	public  function load ()				: Void				{ Assert.abstractMethod(); }
+	public  function close ()				: Void				{ Assert.abstractMethod(); }
+#if CSSParser
 	public  function isEmpty ()				: Bool				{ return source == null; }
 #else
-	public  function isEmpty ()				: Bool				{ Assert.abstract(); return false; }
+	public  function isEmpty ()				: Bool				{ Assert.abstractMethod(); return false; }
 #end
 	
 
-#if (neko && prime_css)
+#if CSSParser
 	public  function cleanUp () : Void				{}
 	public  function toCode (code:ICodeGenerator)
 	{
@@ -270,7 +265,7 @@ class Asset		implements IDisposable
 	}
 #end
 
-#if debug
+#if (CSSParser || debug)
 	public  function toString ()
 	{
 		return "."+(state != null ? ""+state.current : "disposed") + " - " + _oid+"; type: "+type;
@@ -282,7 +277,7 @@ class Asset		implements IDisposable
 
 
 
-#if !neko
+#if !CSSParser
 /**
  * @author Ruben Weijers
  * @creation-date Jun 1, 2011
@@ -623,7 +618,6 @@ class ExternalAsset extends BytesAssetBase
 				else
 					setLoadable();
 			}
-			
 		}
 		return v;
 	}

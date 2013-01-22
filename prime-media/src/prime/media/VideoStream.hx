@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -87,17 +87,9 @@ class VideoStream extends BaseMediaStream
 		width	  = new Bindable<Int>(0);
 		height	  = new Bindable<Int>(0);
 		super(streamUrl);
-	}
-	
-	
-	
-	private function init ()
-	{
-		Assert.that(!isInitialized());
 #if flash9
-		connection		= new NetConnection();
-		source			= new NetStream( connection );
-		
+		connection	= new NetConnection();
+		source		= new NetStream(connection);
 		//dirty client to catch flash player exeptions..
 		//@see http://www.actionscript.org/forums/archive/index.php3/t-142040.html
 		source.client	= this;
@@ -114,10 +106,10 @@ class VideoStream extends BaseMediaStream
 
 		handleASyncError	.on( source.events.asyncError, 			this );
 		handleIOError		.on( source.events.ioError, 			this );
-		handleNetStatus		.on( source.events.netStatus, 			this );
-		
-	//	connection.connect( null );
+		handleNetStatus		.on( source.events.netStatus, 			this );		
 #end
+        SoundMixer.add(this);
+        applyVolume.on(volume.change, this);
 	}
 	
 	
@@ -127,16 +119,15 @@ class VideoStream extends BaseMediaStream
 			return;					// <-- is already disposed
 		
 		stop();
+        SoundMixer.remove(this);
 		
 #if flash9
 	//	source.client = null;		//gives error "Invalid parameter flash.net::NetStream/set client()"
-		if (isInitialized())
-		{
-			source.dispose();
-			connection.dispose();
-			connection	= null;
-			source		= null;
-		}
+		(untyped state).current = MediaStates.empty;
+		source.dispose2();
+		connection.dispose();
+		connection	= null;
+		source		= null;
 #end
 		
 		super.dispose();
@@ -145,14 +136,8 @@ class VideoStream extends BaseMediaStream
 		height	 .dispose();
 		width = height = framerate = null;
 	}
-	
-	
-	private inline function isInitialized () {
-		return #if flash9 source != null #else false #end;
-	}
 
-	
-	
+
 	//
 	// VIDEO METHODS
 	//
@@ -160,7 +145,6 @@ class VideoStream extends BaseMediaStream
 	
 	override public function play ( ?newUrl:URI )
 	{
-		if (!isInitialized()) 	init();
 		if (!isStopped())		stop();
 		if (newUrl != null)		url.value = newUrl;
 		
@@ -251,7 +235,7 @@ class VideoStream extends BaseMediaStream
 		if (!isPlaying())	return currentTime;
 		
 		if (updateTimer == null) {
-			updateTimer			= new Timer(200);
+			updateTimer			= new Timer(250);
 			updateTimer.run		= updateTime;
 			updateTime();
 		}
@@ -275,22 +259,14 @@ class VideoStream extends BaseMediaStream
 	 * make sure the value is 0 => value >= 1.
 	 * The method will also apply the new volume-level on the video-stream.
 	 */
-	private function changeVolume (newValue:Float, oldValue:Float)
+	private function applyVolume ()
 	{
-		newValue = newValue.within( 0, 1 );
-        if (newValue != volume.value || oldValue == newValue) {
-            volume.value = newValue;
-            return;
-        }
-
-#if flash9
+		Assert.that(volume.value.isWithin(0,1));
 		Assert.isNotNull(source);
-		if (source.soundTransform != null && source.soundTransform.volume != newValue)
-		{
-			var sound				= source.soundTransform;
-			sound.volume			= newValue;
-			source.soundTransform	= sound;
-		}
+		Assert.isNotNull(source.soundTransform);
+		var sound				= source.soundTransform;
+		sound.volume			= volume.value; // * flash.media.SoundMixer.soundTransform.volume;
+		source.soundTransform	= sound;
 #end
 	}
 	
@@ -305,7 +281,7 @@ class VideoStream extends BaseMediaStream
 				trace("invalid video-url "+url.value);
 			
 			
-			case NetStreamInfoCode.notifySeek:
+			case NetStreamInfoCode.notifySeekEnd, NetStreamInfoCode.notifySeekComplete:
 				if (isPlaying())
 					source.resume();
 			

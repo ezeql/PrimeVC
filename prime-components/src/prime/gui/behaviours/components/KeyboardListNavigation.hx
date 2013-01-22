@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -101,7 +101,7 @@ class KeyboardListNavigation<T> extends BehaviourBase < SelectableListView<T> >
             
             // TODO: check if a-z is pressed to select items that start with that letter
             if (t.focusIndex != index && index.isWithin(0, max))
-                t.focusRendererAt( index );
+                t.focusRendererOf( t.data.getItemAt(index) );
         }
     }
 

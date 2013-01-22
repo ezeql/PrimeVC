@@ -74,7 +74,7 @@ class QueueManager implements IDisposable, implements IValidatable
 		while (last != null)
 		{
 			var obj = last;
-			last = cast last.prevValidatable;
+			last = last.prevValidatable;
 			obj.nextValidatable = obj.prevValidatable = null;
 		}
 		
@@ -90,7 +90,7 @@ class QueueManager implements IDisposable, implements IValidatable
 	
 	private function enableBinding ()			{ updateQueueBinding.enable(); }
 	private inline function disableBinding ()	{ updateQueueBinding.disable(); }
-	private function validateQueue ()			{ Assert.abstract(); }
+	private function validateQueue ()			{ Assert.abstractMethod(); }
 	
 	
 	
@@ -119,8 +119,8 @@ class QueueManager implements IDisposable, implements IValidatable
 		else if (obj.isQueued())
 			return;
 			
-//#if debug	if (obj.prevValidatable == null)	Assert.equal( obj, first, obj + "" );
-//			if (obj.nextValidatable == null)	Assert.equal( obj, last, obj + "" ); #end
+//#if debug	if (obj.prevValidatable == null)	Assert.isEqual( obj, first, obj + "" );
+//			if (obj.nextValidatable == null)	Assert.isEqual( obj, last, obj + "" ); #end
 //			return;
 		
 		if (first == null)
@@ -168,8 +168,8 @@ class QueueManager implements IDisposable, implements IValidatable
 	//properties are only here to make the manager also an IValidatable
 	public var prevValidatable		: IValidatable;
 	public var nextValidatable		: IValidatable;
-	public inline function isOnStage ()		{ return true; }
-	public inline function isQueued ()		{ return true; }
+	public #if !noinline inline #end function isOnStage ()		{ return true; }
+	public #if !noinline inline #end function isQueued ()		{ return true; }
 	
 	
 #if debug

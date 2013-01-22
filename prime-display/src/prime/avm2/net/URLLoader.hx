@@ -136,10 +136,10 @@ class URLLoader implements ICommunicator
 		bytesProgress	= bytesTotal = Number.INT_NOT_SET;
 		events			= new LoaderEvents(this.loader);
 		
-		setStarted		.on( events.load.started, 	 this );
-		setFinished		.on( events.load.completed,  this );
-		unsetStarted	.on( events.load.error, 	 this );
-		unsetStarted	.on( events.unloaded,		 this );
+		setStarted	.on( events.load.started, 	 this );
+		setFinished	.on( events.load.completed,  this );
+		unsetStarted.on( events.load.error, 	 this );
+		unsetStarted.on( events.unloaded,		 this );
 		
 //#if debug	trackError.on( events.load.error, this ); #end
 //#if debug	trackHttpStatus.on( events.httpStatus, this ); #end		
@@ -199,7 +199,7 @@ class URLLoader implements ICommunicator
 	}
 	
 	
-	public inline function request (v:URI, method:RequestMethod = null)
+	public #if !noinline inline #end function request (v:URI, method:RequestMethod = null)
 	{
 #if debug
 		var total:Int = (untyped this).bytesTotal;
@@ -256,12 +256,12 @@ class URLLoader implements ICommunicator
 	}
 	
 	
-	public inline function isCompleted ()			{ return isFinished; } //bytesTotal > 0 && bytesProgress >= bytesTotal; } <-- unreliabable since loaded bytes can be correct before the completed event is fired
-	public inline function isInProgress ()			{ return isStarted && !isCompleted(); }
+	public #if !noinline inline #end function isCompleted ()			{ return isFinished; } //bytesTotal > 0 && bytesProgress >= bytesTotal; } <-- unreliabable since loaded bytes can be correct before the completed event is fired
+	public #if !noinline inline #end function isInProgress ()			{ return isStarted && !isCompleted(); }
 	
-	public inline function isBinary ()		: Bool	{ return loader.dataFormat == URLLoaderDataFormat.BINARY; }
-	public inline function isText ()		: Bool	{ return loader.dataFormat == URLLoaderDataFormat.TEXT; }
-	public inline function isVariables ()	: Bool	{ return loader.dataFormat == URLLoaderDataFormat.VARIABLES; }
+	public #if !noinline inline #end function isBinary ()		: Bool	{ return loader.dataFormat == URLLoaderDataFormat.BINARY; }
+	public #if !noinline inline #end function isText ()		: Bool	{ return loader.dataFormat == URLLoaderDataFormat.TEXT; }
+	public #if !noinline inline #end function isVariables ()	: Bool	{ return loader.dataFormat == URLLoaderDataFormat.VARIABLES; }
 	
 	
 	
@@ -311,9 +311,9 @@ class URLLoader implements ICommunicator
 	}
 	
 	
-	public inline function setBinary ()		: Void		{ loader.dataFormat = URLLoaderDataFormat.BINARY; }
-	public inline function setText ()		: Void		{ loader.dataFormat = URLLoaderDataFormat.TEXT; }
-	public inline function setVariables ()	: Void		{ loader.dataFormat = URLLoaderDataFormat.VARIABLES; }
+	public #if !noinline inline #end function setBinary ()		: Void		{ loader.dataFormat = URLLoaderDataFormat.BINARY; }
+	public #if !noinline inline #end function setText ()		: Void		{ loader.dataFormat = URLLoaderDataFormat.TEXT; }
+	public #if !noinline inline #end function setVariables ()	: Void		{ loader.dataFormat = URLLoaderDataFormat.VARIABLES; }
 	
 	
 	//

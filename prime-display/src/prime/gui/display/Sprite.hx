@@ -36,9 +36,10 @@ package prime.gui.display;
 typedef Sprite = 
 	#if		flash9	prime.avm2.display.Sprite;
 	#elseif	flash8	prime.avm1.display.Sprite;
+	#elseif nodejs 	#error;
 	#elseif	js		prime.js  .display.Sprite;
 	#else			#error;
-
+/*
 
  import prime.gui.events.DisplayEvents;
  import prime.gui.events.UserEvents;
@@ -52,7 +53,7 @@ typedef Sprite =
  * @author			Ruben Weijers
  * @creation-date	unknown
  */
-class SpriteImpl implements ISprite
+/*class SpriteImpl implements ISprite
 {
 //	public var displayList		(default, null)					: DisplayList;
 	public var children			(default, null)					: DisplayList;
@@ -92,7 +93,7 @@ class SpriteImpl implements ISprite
 	public function render () {}
 	
 	
-	public inline function dispose() : Void
+	public #if !noinline inline #end function dispose() : Void
 	{
 		displayEvents.dispose();
 		userEvents.dispose();
@@ -141,5 +142,5 @@ class SpriteImpl implements ISprite
 		}
 		return v;
 	}
-}
+}*/
 #end

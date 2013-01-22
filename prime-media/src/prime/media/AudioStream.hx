@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -134,11 +134,12 @@ class AudioStream extends BaseMediaStream
     
     override public function play ( ?newUrl:URI )
     {
-        if (!isLoaded())                            load();
-        if (!isStopped() || channel.notNull())      stop();
         if (newUrl.notNull())                       url.value = newUrl;
         
         Assert.isNotNull( url.value, "There is no sound-url to play" );
+        
+        if (!isStopped() || channel.notNull())      stop();
+        if (!isLoaded())                            load();
         
         state.current = MediaStates.playing;
         applyResume();

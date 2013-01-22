@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -65,5 +65,5 @@ class MVCActor <FacadeDef> extends MVCNotifier, implements IMVCActor
 	
 	public function startListening () : Void		{ state = state.set( 	MVCFlags.LISTENING ); }
 	public function stopListening () : Void			{ state = state.unset( 	MVCFlags.LISTENING ); if (isEnabled()) { disable(); } }
-	public inline function isListening () : Bool	{ return state.has( 	MVCFlags.LISTENING ); }
+	public #if !noinline inline #end function isListening () : Bool	{ return state.has( 	MVCFlags.LISTENING ); }
 }

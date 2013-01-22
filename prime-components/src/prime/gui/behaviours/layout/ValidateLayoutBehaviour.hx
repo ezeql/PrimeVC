@@ -64,7 +64,7 @@ class ValidateLayoutBehaviour extends ValidatingBehaviour < IUIElement >, implem
 		isNotPositionedYet	= true;
 		isNotSizedYet		= true;
 #if debug
-		Assert.notNull(layout, "Layout of "+target+" can't be null for "+this);
+		Assert.isNotNull(layout, "Layout of "+target+" can't be null for "+this);
 		layout.name = target.id.value+"Layout";
 #end
 		stateChangeWire		= layoutStateChangeHandler	.on( layout.state.change, this );
@@ -148,17 +148,17 @@ class ValidateLayoutBehaviour extends ValidatingBehaviour < IUIElement >, implem
 	}
 	
 	
-	public inline function invalidate ()				getValidationManager().add( this )
-	public inline function validate ()					if (target.notNull()) { target.layout.validate(); }
-	override private function getValidationManager ()	return isOnStage() ? cast target.system.invalidation : null
+	public #if !noinline inline #end function invalidate ()				getValidationManager().add( this )
+	public #if !noinline inline #end function validate ()					if (target.notNull()) { target.layout.validate(); }
+	override private function getValidationManager ()	return isOnStage() ? target.system.invalidation : null
 	
 	
 	public function applyChanges (changes:Int)
 	{
 		var l = target.layout;
 		
-	//	if (changes.has( LayoutFlags.SIZE | LayoutFlags.POSITION ))
-	//	trace(target+"; oldPos: "+target.x+", "+target.y+"; newPos: "+l.getHorPosition()+", "+l.getVerPosition()+"; "+changes.has( LayoutFlags.POSITION )+"; margin: "+l.margin+"; padding: "+l.padding);
+	//	if (changes.has( LayoutFlags.SIZE | LayoutFlags.POSITION ) && Std.string(target) == "publicationIndexPanel")
+	//		trace(target+"; oldPos: "+target.x+", "+target.y+"; newPos: "+l.getHorPosition()+", "+l.getVerPosition()+"; "+changes.has( LayoutFlags.POSITION )+"; margin: "+l.margin+"; padding: "+l.padding);
 	//	trace(target+"; oldSize: "+target.rect.width+", "+target.rect.height+"; newSize: "+l.innerBounds.width+", "+l.innerBounds.height+"; "+changes.has( LayoutFlags.SIZE )+"; measured: "+(untyped l).measuredWidth+", "+(untyped l).measuredHeight+"; explicit: "+(untyped l).explicitWidth+", "+(untyped l).explicitHeight);
 		
 		if (changes.has( LayoutFlags.POSITION ))

@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -39,7 +39,7 @@ package prime.tools.valueobjects;
  */
 class ListChangeVO extends PropertyChangeVO
 {
-    public static inline function make(propertyID, changes : FastArray<ListChange<Dynamic>>)
+    public static #if !noinline inline #end function make(propertyID, changes : FastArray<ListChange<Dynamic>>)
     {
         var l = new ListChangeVO(); // Could come from freelist if profiling tells us to
         l.propertyID = propertyID;

@@ -26,28 +26,28 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
+package prime.gui.graphics;
  import haxe.FastList;
  import prime.signal.Signal1;
- import primevc.core.geom.Corners;
- import primevc.core.geom.IntRectangle;
- import primevc.core.geom.RectangleFlags;
- import primevc.core.traits.IInvalidatable;
- import primevc.core.traits.IInvalidateListener;
- import primevc.gui.graphics.borders.IBorder;
- import primevc.gui.graphics.shapes.IGraphicShape;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.traits.IGraphicsOwner;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.Corners;
+ import prime.core.geom.IntRectangle;
+ import prime.core.geom.RectangleFlags;
+ import prime.core.traits.IInvalidatable;
+ import prime.core.traits.IInvalidateListener;
+ import prime.gui.graphics.borders.IBorder;
+ import prime.gui.graphics.shapes.IGraphicShape;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
-#if (debug || (neko && prime_css))
- import primevc.utils.ID;
+#if (debug || CSSParser)
+ import prime.utils.ID;
 #end
 
 
@@ -83,7 +83,7 @@ class GraphicProperties implements IGraphicElement
 	
 	public function new (layout:IntRectangle = null, shape:IGraphicShape = null, fill:IGraphicProperty = null, border:IBorder = null, borderRadius:Corners = null)
 	{
-#if (debug || neko)
+#if (debug || CSSParser)
 		_oid = ID.getNext();
 #end
 		listeners			= new FastList< IInvalidateListener >();
@@ -110,7 +110,7 @@ class GraphicProperties implements IGraphicElement
 		border		= null;
 		fill		= null;
 		layout		= null;
-#if (debug || neko)
+#if (debug || CSSParser)
 		_oid		= 0;
 #end
 	}
@@ -132,7 +132,7 @@ class GraphicProperties implements IGraphicElement
 	
 	public function invalidateCall (changeFromOther:Int, sender:IInvalidatable) : Void
 	{
-		var change = switch (sender) {
+		invalidate(switch (sender) {
 			case cast border:	GraphicFlags.BORDER;
 			case cast shape:	GraphicFlags.SHAPE;
 			case cast fill:		GraphicFlags.FILL;
@@ -142,9 +142,7 @@ class GraphicProperties implements IGraphicElement
 				else
 					0;
 			default: 0;
-		}
-		
-		invalidate( change );
+		});
 	}
 	
 	
@@ -172,8 +170,8 @@ class GraphicProperties implements IGraphicElement
 	public function draw (target:IGraphicsOwner, ?useCoordinates:Bool = false) : Bool
 	{
 #if debug
-		Assert.notNull(layout, "layout is null for "+target);
-		Assert.notNull(shape, "shape is null for "+target);
+		Assert.isNotNull(layout, "layout is null for "+target);
+		Assert.isNotNull(shape, "shape is null for "+target);
 	//	Assert.notThat(border == null && fill == null, "Graphic property must have a border or a fill when drawing to "+target);
 #end
 		if (layout == null || shape == null || (border == null && fill == null))
@@ -365,12 +363,12 @@ class GraphicProperties implements IGraphicElement
 	}
 	
 	
-	public inline function isEmpty () : Bool		{ return (layout == null || layout.isEmpty()) || shape == null; }
+	public #if !noinline inline #end function isEmpty () : Bool		{ return (layout == null || layout.isEmpty()) || shape == null; }
 	
 	
-#if (neko && prime_css)
+#if CSSParser
 	public function toString ()						{ return "GraphicProperties: l: "+layout+"; s: "+shape+"; f: "+fill+"; b: "+border; }
-	public function toCSS (prefix:String = "")		{ Assert.abstract(); return ""; }
+	public function toCSS (prefix:String = "")		{ Assert.abstractMethod(); return ""; }
 	public function toCode (code:ICodeGenerator)	{ code.construct(this, [ layout, shape, fill, border, borderRadius ]); }
 #end
 }

@@ -26,17 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.borders;
- import primevc.core.geom.IRectangle;
- import primevc.gui.graphics.GraphicElement;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.graphics.IGraphicProperty;
- import primevc.gui.traits.IGraphicsOwner;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
-#end
-  using primevc.utils.IfUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.graphics.borders;
+ import prime.core.geom.IRectangle;
+ import prime.gui.graphics.GraphicElement;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.graphics.IGraphicProperty;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.utils.IfUtil;
+  using prime.utils.NumberUtil;
 
 
 /**
@@ -70,7 +67,7 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 	{
 		super();
 #if flash9
-		Assert.notNull(fill);
+		Assert.isNotNull(fill);
 #end
 		this.fill			= fill;
 		this.weight			= weight;
@@ -192,20 +189,20 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 	}
 	
 
-#if ((neko && prime_css) || debug)
+#if (CSSParser || debug)
 	override public function toCSS (prefix:String = "")
 	{
 		return fill + " " + weight + "px " + (innerBorder ? "inside" : "outside");
 	}
 #end
-#if (neko && prime_css)
+#if CSSParser
 	override public function isEmpty () : Bool
 	{
 		return fill == null;
 	}
 	
 	
-	override public function toCode (code:ICodeGenerator)
+	override public function toCode (code:prime.tools.generator.ICodeGenerator)
 	{
 		code.construct( this, [ fill, weight, innerBorder, caps, joint, pixelHinting ] );
 	}

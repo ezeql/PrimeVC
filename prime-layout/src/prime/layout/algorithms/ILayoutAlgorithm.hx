@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms;
-#if (neko && prime_css)
+#if CSSParser
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.ICSSFormattable;
 #end
@@ -43,10 +43,8 @@ package prime.layout.algorithms;
  */
 interface ILayoutAlgorithm
 				implements IDisposable	
-#if (neko && prime_css)
-			,	implements ICSSFormattable	
-			,	implements ICodeFormattable
-#end
+#if CSSParser,	implements ICSSFormattable	
+			,	implements ICodeFormattable		#end
 {
 	/**
 	 * Signal that will be dispatched when properties of the algorithm have 

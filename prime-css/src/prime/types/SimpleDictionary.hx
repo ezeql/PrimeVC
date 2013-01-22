@@ -30,13 +30,15 @@ package prime.types;
  import prime.core.collections.iterators.FastArrayForwardIterator;
  import prime.core.traits.IClonable;
  import prime.core.traits.IDisposable;
-#if (neko && prime_css)
+#if CSSParser
  import prime.tools.generator.ICodeFormattable;
+#end
+ import prime.utils.FastArray;
+#if (CSSParser || debug)
  import prime.tools.generator.ICodeGenerator;
  import prime.utils.ID;
  import prime.utils.TypeUtil;
 #end
- import prime.utils.FastArray;
   using prime.utils.FastArray;
   using Std;
 
@@ -50,22 +52,21 @@ package prime.types;
 class SimpleDictionary < KType, VType > 
 				implements IDisposable
 			,	implements IClonable<SimpleDictionary<KType, VType>>
-#if (!prime_css && !neko)	
-			,	implements haxe.rtti.Generic
+#if !CSSParser,	implements haxe.rtti.Generic
 #else		,	implements ICodeFormattable		#end
 {
 	private var _keys	: FastArray < KType >;
 	private var _values	: FastArray < VType >;
 	public var length	(getLength, never)	: Int;
 	
-#if (prime_css && neko)
+#if (CSSParser || debug)
 	public var _oid		(default, null)		: Int;
 #end
 	
 	
 	public function new (size:Int = 0, fixed:Bool = false)
 	{
-#if (neko && prime_css)
+#if (CSSParser || debug)
 		_oid	= ID.getNext();
 #end
 		_keys	= FastArrayUtil.create(size, fixed);
@@ -100,8 +101,8 @@ class SimpleDictionary < KType, VType >
 	
 	public function set (key:KType, val:VType) : VType
 	{
-		Assert.notNull( key );
-		Assert.notNull( val );
+		Assert.isNotNull( key );
+		Assert.isNotNull( val );
 		var index = _keys.indexOf(key);
 		if (index == -1)
 		{
@@ -125,6 +126,7 @@ class SimpleDictionary < KType, VType >
 	
 	public function unset (key:KType) : Void
 	{
+#if debug Assert.isNotNull(key); #end
 		var index = _keys.indexOf(key);
 		
 		if (index > -1)
@@ -141,7 +143,7 @@ class SimpleDictionary < KType, VType >
 	
 	
 	public inline function iterator ()				: Iterator < VType >	{ return new FastArrayForwardIterator < VType > ( _values ); }
-	public inline function isEmpty ()				: Bool					{ return _values.length == 0; }
+	public        function isEmpty ()				: Bool					{ return _values.length == 0; }
 	private inline function getLength ()			: Int					{ return _values.length; }
 	public inline function exists (key:KType)		: Bool					{ return _keys.indexOf( key ) > -1; }
 	public inline function hasValue (value:VType)	: Bool					{ return _values.indexOf( value ) > -1; }
@@ -151,19 +153,19 @@ class SimpleDictionary < KType, VType >
 
 #if debug
 	public function keysToString () : String	{ return "keys: [ " +_keys.join(", ") + " ]"; }
-	#if !neko
+	#if !CSSParser
 	public function toString ()		: String
 	{
 		var str = [];
 		for (i in 0...length)
-			str.push( "[ " + _keys[i] + " ] => " + _values[i] );
+			str.push( "["+i+": " + Std.string(_keys[i]) + "] => " + Std.string(_values[i]) );
 		
-		return "dic: "+(length > 0 ? str.join(", ") : "empty");
+		return "dic: \n\t"+(length > 0 ? str.join(",\n\t") : "empty");
 	}
 	#end
 #end
 
-#if (neko && prime_css)
+#if CSSParser
 	public function toHash () : Hash<VType>
 	{
 		var hash = new Hash<VType>();

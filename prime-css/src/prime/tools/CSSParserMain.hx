@@ -44,23 +44,31 @@ package prime.tools;
  */
 class CSSParserMain
 {
-	
+	public static #if !noinline inline #end function print(v:String)
+		#if js 	untyped console.log(v)
+		#else	neko.Lib.print(v+"\n") #end
+
 	/**
 	 * This script needs one parameter to run: the location of the skin folder
 	 */
 	public static function main ()
 	{
-		if (neko.Sys.args().length == 0)
-			throw "Skin folder location is needed to run this script.";
+		var args:Array<String> = 
+			#if js 	js.Node.process.argv;
+			#else 	Sys.args(); #end
+#if js 	args.shift(); args.shift(); #end
+		if (args.length == 0)	throw "Skin folder location is needed to run this script.";
 		
+		var timer = new StopWatch().start();
 		var primevcDir = "src/primevc";
-		if (neko.Sys.args().length == 2)
-			primevcDir = neko.Sys.args()[1] + "/" + primevcDir;
+		if (args.length == 2)
+			primevcDir = args[1] + "/" + primevcDir;
 		
-		var css = new CSSParserMain( neko.Sys.args()[0], primevcDir );
+		var css = new CSSParserMain( args[0], primevcDir );
 		css.parse();
 		css.generateCode();
 		css.flush();
+		print("\t" + Date.now() + " - " + timer.stop() + " ms - Done!");
 	}
 	
 	
@@ -85,10 +93,10 @@ class CSSParserMain
 		generator.instanceIgnoreList.set( styles._oid, styles );
 		
 		var tplName = primevcDir + "/tools/StyleSheet.tpl.hx";
-		if (!neko.FileSystem.exists( tplName ))
+		if (#if nodejs !js.Node.fs.existsSync(tplName) #else !sys.FileSystem.exists( tplName ) #end)
 			throw "Template does not exist! "+tplName;
 		
-		template = neko.io.File.getContent( tplName );
+		template = #if nodejs Std.string(js.Node.fs.readFileSync(tplName)); #else sys.io.File.getContent(tplName); #end
 	}
 	
 	
@@ -102,12 +110,12 @@ class CSSParserMain
 	
 	public function generateCode ()
 	{
-	//	neko.Lib.println(Date.now() + " Generating code");
+	//	print(Date.now() + " Generating code");
 		
 		generator.start();
-		if (styles.has( StyleFlags.ELEMENT_CHILDREN ))			generateSelectorCode( cast styles.elementChildren, "elementChildren" );
-		if (styles.has( StyleFlags.STYLE_NAME_CHILDREN ))		generateSelectorCode( cast styles.styleNameChildren, "styleNameChildren" );
-		if (styles.has( StyleFlags.ID_CHILDREN ))				generateSelectorCode( cast styles.idChildren, "idChildren" );
+		if (styles.has( StyleFlags.ELEMENT_CHILDREN ))			generateSelectorCode( styles.elementChildren, "elementChildren" );
+		if (styles.has( StyleFlags.STYLE_NAME_CHILDREN ))		generateSelectorCode( styles.styleNameChildren, "styleNameChildren" );
+		if (styles.has( StyleFlags.ID_CHILDREN ))				generateSelectorCode( styles.idChildren, "idChildren" );
 		
 		//write to template
 		setTemplateVar( "imports",   generator.imports.writeImports() );
@@ -138,41 +146,39 @@ class CSSParserMain
 	{
 		beginTimer();
 		//write haxe code
-		var output = neko.io.File.write( skinFolder + "/StyleSheet.hx", false );
+#if nodejs
+		js.Node.fs.writeFileSync(skinFolder + "/StyleSheet.hx", template);
+#else 	var output = sys.io.File.write( skinFolder + "/StyleSheet.hx", false );
 		output.writeString( template );
 		output.close();
-		
+#end
 		stopTimer(" Writing code to " + skinFolder + "/StyleSheet.hx");
 	}
 	
 	
 	
-	private function generateSelectorCode (selectorHash:Hash<ICodeFormattable>, name:String) : Void
+	private function generateSelectorCode (selectorHash : {function get(str:String):ICodeFormattable; function keys(): Iterator<String>;}, name:String) : Void
 	{
+		Assert.isNotNull(selectorHash);
 		beginTimer();
-		
-		//create selector code
-		var keys = selectorHash.keys();
-		var i	 = 0;
-		for (key in keys)
-		{
+		var i = 0;
+		for (key in selectorHash.keys()) {
 			var val = selectorHash.get(key);
 			if (!val.isEmpty()) {
 				generator.setSelfAction( name + ".set", [ key, val ] );
 				i++;
 			}
 		}
-		
 		stopTimer("generate "+name+" ("+i+")");
 	}
 	
 	
-	private inline function beginTimer ()	{ timer.start(); }
+	private inline function beginTimer ()	timer.start()
 	private inline function stopTimer (name:String)
 	{
 		timer.stop();
-		neko.Lib.println("\t" + Date.now() + " - " + timer.currentTime + " ms - " + name);
+		print("\t" + Date.now() + " - " + timer.currentTime + " ms - " + name);
 		timer.reset();
-	//	neko.Lib.println(Date.now() +" - "+name);
+	//	print(Date.now() +" - "+name);
 	}
 }

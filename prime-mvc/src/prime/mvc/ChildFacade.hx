@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -67,7 +67,7 @@ class ChildFacade <
 	/**
 	 * Method for connecting a facade with channels of another facade
 	 */
-	public inline function connect (external:ChannelsType) : Void
+	public #if !noinline inline #end function connect (external:ChannelsType) : Void
 	{
 		Assert.that(!isConnected());
 		Assert.isNotNull(external);
@@ -79,7 +79,7 @@ class ChildFacade <
 	/**
 	 * Method for disconnecting a facade with channels of another facade
 	 */
-	public inline function disconnect () : Void
+	public #if !noinline inline #end function disconnect () : Void
 	{
 		if (isConnected())
 			stop();
@@ -88,7 +88,7 @@ class ChildFacade <
 	}
 
 
-	public inline function isConnected () : Bool
+	public #if !noinline inline #end function isConnected () : Bool
 	{
 		return channels != null;
 	}

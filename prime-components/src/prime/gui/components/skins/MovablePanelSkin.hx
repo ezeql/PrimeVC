@@ -20,45 +20,27 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
- *  Ruben Weijers	<ruben @ onlinetouch.nl>
+ *  Ruben Weijers	<ruben @ prime.vc>
  */
 package primevc.gui.components.skins;
- import primevc.gui.behaviours.drag.DragMoveBehaviour;
- import primevc.gui.components.Button;
-  using primevc.utils.Bind;
 
 
 /**
  * Skin to create a movable panel with a close-btn (#closeBtn).
+ * DELETE THIS CLASS??
  * 
  * @author Ruben Weijers
  * @creation-date Feb 14, 2011
  */
-class MovablePanelSkin extends BasicPanelSkin
+class MovablePanelSkin extends ClosablePanelSkin
 {
-	private var closeBtn : Button;
-	
-	
 	override public function createChildren ()
 	{
 		super.createChildren();
-		closeBtn	= new Button("closeBtn");
-		closeBtn.attachTo( chrome );
-		
-		owner.close.on( closeBtn.userEvents.mouse.click, this );
-		behaviours.add( new DragMoveBehaviour(owner, null, chrome) );
-	}
-	
-	
-	override public  function removeChildren ()
-	{
-		closeBtn.dispose();
-		closeBtn = null;
-		
-		super.removeChildren();
+		behaviours.add( new primevc.gui.behaviours.drag.DragMoveBehaviour(owner, null, chrome) );
 	}
 }

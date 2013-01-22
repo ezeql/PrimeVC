@@ -72,7 +72,7 @@ class DragHelper implements IDisposable, implements IDisablable
 	
 	public function new (target:ISprite, startHandler:MouseState -> Void, stopHandler:MouseState -> Void, cancelHandler:MouseState -> Void)
 	{
-		Assert.notNull(target);
+		Assert.isNotNull(target);
 		this.target			= target;
 		this.startHandler	= startHandler;
 		this.stopHandler	= stopHandler;
@@ -84,7 +84,7 @@ class DragHelper implements IDisposable, implements IDisablable
 	}
 	
 	
-	public inline function init ()
+	public #if !noinline inline #end function init ()
 	{
 		mouseUpBinding		= stopDrag		.on( target.window.userEvents.mouse.up, this );
 		mouseMoveBinding	= preStartDrag	.on( target.window.userEvents.mouse.move, this );
@@ -128,7 +128,7 @@ class DragHelper implements IDisposable, implements IDisablable
 	//		return;
 		
 		lastMouseObj	= mouseObj;
-		Assert.notNull(lastMouseObj);
+		Assert.isNotNull(lastMouseObj);
 		
 		preStartDragClickLocalLength = mouseObj.local.length;
 		mouseUpBinding	.enable();
@@ -189,7 +189,7 @@ class DragHelper implements IDisposable, implements IDisablable
 	}
 	
 	
-	public inline function enable ()
+	public #if !noinline inline #end function enable ()
 	{
 		if (target.isDragging) {
 			mouseUpBinding	.enable();
@@ -199,7 +199,7 @@ class DragHelper implements IDisposable, implements IDisablable
 	}
 	
 	
-	public inline function disable ()
+	public #if !noinline inline #end function disable ()
 	{
 		if (target.isDragging)
 			stopDrag(null);
@@ -210,7 +210,7 @@ class DragHelper implements IDisposable, implements IDisablable
 	}
 	
 	
-	public inline function isEnabled ()
+	public #if !noinline inline #end function isEnabled ()
 	{
 		return mouseUpBinding.isEnabled();
 	}

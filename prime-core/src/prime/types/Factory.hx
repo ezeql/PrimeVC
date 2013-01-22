@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.types;
-#if (neko && prime_css)
+#if CSSParser
  import prime.core.traits.IDisposable;
  import prime.neko.traits.IHasTypeParameters;
 
@@ -41,7 +41,7 @@ package prime.types;
   using Type;
 #end
 
-#if (!neko || !prime_css)
+#if !CSSParser
 typedef Factory<C> = Void -> C;
 typedef Factory1<A, C> = A -> C;
 #else
@@ -56,15 +56,14 @@ typedef Factory1<A,C> = Factory<C>;
  */
 class Factory <InstanceType >
 				implements IDisposable		
-#if (neko && prime_css)
-			,	implements ICSSFormattable
+#if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable
 			,	implements IHasTypeParameters
 #end
 {
-	public static inline var EMPTY_ARRAY = [];
+	public static var EMPTY_ARRAY = [];
 	
-#if (debug || neko)
+#if (debug || CSSParser)
 	public var _oid (default, null)	: Int;
 #end
 	public var classRef				: String; //Class < InstanceType >;
@@ -75,7 +74,7 @@ class Factory <InstanceType >
 	
 	public function new ( classRef:String = null, params:Array<Dynamic> = null, args:Array<String> = null, cssValue:String = null )
 	{
-#if (debug || neko)
+#if (debug || CSSParser)
 		_oid = ID.getNext();
 		if (params == null)
 			params = [];
@@ -89,7 +88,7 @@ class Factory <InstanceType >
 	
 	public function dispose ()
 	{
-#if (debug || neko)
+#if (debug || CSSParser)
 		_oid		= 0;
 #end
 		classRef	= null;
@@ -108,7 +107,7 @@ class Factory <InstanceType >
 	}*/
 	
 
-#if (neko && prime_css)
+#if CSSParser
 	public function toCSS (prefix:String = "")
 	{
 		return cssValue == null ? classRef : cssValue;

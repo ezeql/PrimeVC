@@ -29,10 +29,12 @@
 package primevc.gui.effects.effectInstances;
  import primevc.gui.effects.EffectProperties;
  import primevc.gui.effects.MoveEffect;
+ import primevc.gui.traits.ILayoutable;
  import primevc.gui.traits.IPositionable;
  import primevc.types.Number;
  import primevc.utils.NumberUtil;
   using primevc.utils.NumberUtil;
+  using primevc.utils.TypeUtil;
 
 
 
@@ -95,13 +97,15 @@ class MoveEffectInstance extends EffectInstance < IPositionable, MoveEffect >
 	
 	override private function initStartValues ()
 	{
+	//	trace(target.as(ILayoutable).layout.getHorPosition()+", "+target.as(ILayoutable).layout.getVerPosition()+"; "+target.x+", "+target.y);
+	/*	if (endX.notSet())	*/		endX	= effect.endX.isSet() ? effect.endX : target.is(ILayoutable) ? target.as(ILayoutable).layout.getHorPosition() : target.x;
+	/*	if (endY.notSet())	*/		endY	= effect.endY.isSet() ? effect.endY : target.is(ILayoutable) ? target.as(ILayoutable).layout.getVerPosition() : target.y;
+
 		if (effect.startX.isSet())	startX	= target.x = effect.startX;
 		else						startX	= target.x;
 		if (effect.startY.isSet())	startY	= target.y = effect.startY;
 		else						startY	= target.y;
-		
-		if (endX.notSet())			endX	= effect.endX;
-		if (endY.notSet())			endY	= effect.endY;
+	//	trace(startX+", "+startY+" ==> "+endX+", "+endY);
 		
 		changeX = isXChanged();
 		changeY = isYChanged();

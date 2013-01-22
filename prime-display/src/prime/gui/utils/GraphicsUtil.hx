@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -46,7 +46,7 @@ class GraphicsUtil
 	/**
 	 * @param rotation		Rotation of the polygon in radians
 	 */
-	public static inline function drawArc (target:IGraphicsOwner, x:Float = 0, y:Float = 0, radius:Float = 1, percentage:Float = 1, rotation:Float = 0)
+	public static #if !noinline inline #end function drawArc (target:IGraphicsOwner, x:Float = 0, y:Float = 0, radius:Float = 1, percentage:Float = 1, rotation:Float = 0)
 	{
 #if flash9
 		var g = target.graphics;
@@ -87,7 +87,7 @@ class GraphicsUtil
 	/**
 	 * @param rotation		Rotation of the polygon in radians
 	 */
-	public static inline function drawEllipseArc (target:IGraphicsOwner, x:Float = 0, y:Float = 0, radiusX:Float = 1, radiusY:Float = 1, percentage:Float = 1, rotation:Float = 0)
+	public static #if !noinline inline #end function drawEllipseArc (target:IGraphicsOwner, x:Float = 0, y:Float = 0, radiusX:Float = 1, radiusY:Float = 1, percentage:Float = 1, rotation:Float = 0)
 	{
 #if flash9
 		var g = target.graphics;
@@ -128,7 +128,7 @@ class GraphicsUtil
 	/**
 	 * @param rotation		Rotation of the polygon in radians
 	 */
-	public static inline function drawPolygon (target:IGraphicsOwner, sides:Int, x:Float = 0, y:Float = 0, radius:Float = 1, rotation:Float = 0)
+	public static #if !noinline inline #end function drawPolygon (target:IGraphicsOwner, sides:Int, x:Float = 0, y:Float = 0, radius:Float = 1, rotation:Float = 0)
 	{
 #if flash9
 		var g = target.graphics;
@@ -147,7 +147,7 @@ class GraphicsUtil
 	/**
 	 * Method draws a part of a polygon
 	 */
-	public static inline function drawPolygonFraction (target:IGraphicsOwner, sides:Int, x:Float = 0, y:Float = 0, radius:Float = 1, percentage:Float = 1, rotation:Float = 0)
+	public static #if !noinline inline #end function drawPolygonFraction (target:IGraphicsOwner, sides:Int, x:Float = 0, y:Float = 0, radius:Float = 1, percentage:Float = 1, rotation:Float = 0)
 	{
 #if flash9
 		var g = target.graphics;

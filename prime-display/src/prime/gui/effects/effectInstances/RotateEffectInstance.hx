@@ -27,10 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.effects.effectInstances;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.RotateEffect;
- import primevc.gui.display.IDisplayObject;
- import primevc.types.Number;
   using primevc.gui.utils.DisplayUtil;
   using primevc.utils.NumberUtil;
 
@@ -39,7 +35,7 @@ package primevc.gui.effects.effectInstances;
  * @author Ruben Weijers
  * @creation-date Oct 04, 2010
  */
-class RotateEffectInstance extends EffectInstance < IDisplayObject, RotateEffect >
+class RotateEffectInstance extends EffectInstance < primevc.gui.display.IDisplayObject, primevc.gui.effects.RotateEffectt >
 {
 	/**
 	 * start rotation value.
@@ -56,11 +52,11 @@ class RotateEffectInstance extends EffectInstance < IDisplayObject, RotateEffect
 	public function new (target, effect)
 	{
 		super(target, effect);
-		startValue = endValue = Number.FLOAT_NOT_SET;
+		startValue = endValue = primvec.types.Number.FLOAT_NOT_SET;
 	}
 
 
-	override public function setValues ( v:EffectProperties ) 
+	override public function setValues ( v:primevc.gui.effects.EffectProperties ) 
 	{
 		switch (v) {
 			case rotation(from, to):
@@ -80,7 +76,7 @@ class RotateEffectInstance extends EffectInstance < IDisplayObject, RotateEffect
 		if (effect.endValue.isSet())	endValue = effect.endValue;
 		else							endValue = 1;
 		
-		target.rotation	= startValue;
+		target.rotateAroundCenter(startValue);
 		target.visible	= true;
 	}
 

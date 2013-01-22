@@ -20,7 +20,7 @@
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
- * DAMAGE.s
+ * DAMAGE.
  *
  *
  * Authors:
@@ -152,16 +152,16 @@ class BaseMediaStream implements IMediaStream
      * stream is already playing, it will be stopped.
      * If the current url is already playing, the stream will start again.
      */
-    public function play ( ?newUrl:URI )        Assert.abstract()
+    public function play ( ?newUrl:URI )        { Assert.abstractMethod(); }
     
     
     /**
      * Method will pause the stream if it was playing
      */
-    public function pause ()                    Assert.abstract()
-    public function resume ()                   Assert.abstract()
-    public function stop ()                     Assert.abstract()
-    public function seek (newPosition:Float)    Assert.abstract()
+    public function pause ()                    { Assert.abstractMethod(); }
+    public function resume ()                   { Assert.abstractMethod(); }
+    public function stop ()                     { Assert.abstractMethod(); }
+    public function seek (newPosition:Float)    { Assert.abstractMethod(); }
 
 
     private inline function validatePosition (pos:Float) : Float
@@ -206,9 +206,9 @@ class BaseMediaStream implements IMediaStream
         }
 
 
-    public  function freeze ()          Assert.abstract()
-    public  function defrost ()         Assert.abstract()
-    private function getCurrentTime()   return currentTime
+    public  function freeze ()          { Assert.abstractMethod(); }
+    public  function defrost ()         { Assert.abstractMethod(); }
+    private function getCurrentTime()   { return currentTime; }
     
     
     
@@ -216,20 +216,21 @@ class BaseMediaStream implements IMediaStream
     // STATE METHODS
     //
     
-    public inline function isStopped () : Bool  return state.current == stopped
-    public inline function isPaused ()  : Bool  return state.current == paused
-    public inline function isPlaying () : Bool  return state.current == playing
-    public inline function isEmpty ()   : Bool  return state.current == empty
-    public inline function isDisposed (): Bool  return state == null
-    public inline function hasError ()  : Bool  return switch(state.current) { case MediaStates.error(s): true; default: false; }
-    public inline function isMuted ()   : Bool  return volume.value == 0
-    public inline function isFrozen ()  : Bool
+    public #if !noinline inline #end function isStopped () : Bool  { return state.current == MediaStates.stopped; }
+    public #if !noinline inline #end function isPaused ()  : Bool  { return state.current == MediaStates.paused; }
+    public #if !noinline inline #end function isPlaying () : Bool  { return state.current == MediaStates.playing; }
+    public #if !noinline inline #end function isEmpty ()   : Bool  { return state.current == MediaStates.empty; }
+    public #if !noinline inline #end function isDisposed (): Bool  { return state == null; }
+    public #if !noinline inline #end function hasError ()  : Bool    return switch(state.current) { case MediaStates.error(s): true; default: false; }
+    public #if !noinline inline #end function isMuted ()   : Bool  { return volume.value == 0; }
+    public #if !noinline inline #end function isFrozen ()  : Bool
+    {
         return switch (state.current) {
             case frozen( prevState ):   true;
             default:                    false;
         }
-    
-    
+    }
+
     private function validateURL (newURL:URI, oldURL:URI)
     {
         if (oldURL != null)

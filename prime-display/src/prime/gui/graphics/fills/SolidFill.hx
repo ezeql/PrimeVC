@@ -26,17 +26,17 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.fills;
-#if (neko && prime_css)
- import primevc.tools.generator.ICodeGenerator;
+package prime.gui.graphics.fills;
+#if CSSParser
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.geom.IRectangle;
- import primevc.gui.graphics.GraphicElement;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.graphics.IGraphicProperty;
- import primevc.gui.traits.IGraphicsOwner;
- import primevc.types.RGBA;
-  using primevc.utils.Color;
+ import prime.core.geom.IRectangle;
+ import prime.gui.graphics.GraphicElement;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.graphics.IGraphicProperty;
+ import prime.gui.traits.IGraphicsOwner;
+ import prime.types.RGBA;
+  using prime.utils.Color;
 
 
 /**
@@ -59,7 +59,7 @@ class SolidFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function begin (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
 #if flash9
 		target.graphics.beginFill( color.rgb(), color.alpha().float() );
@@ -68,7 +68,7 @@ class SolidFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
 #if flash9
 		target.graphics.endFill();
@@ -87,10 +87,10 @@ class SolidFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-#if ((neko && prime_css) || debug)
+#if (CSSParser || debug)
 	override public function toCSS (prefix:String = "")		{ return color.string(); }
 #end
-#if (neko && prime_css)
+#if CSSParser
 	override public function toCode (code:ICodeGenerator)	{ code.construct( this, [ color ] ); }
 #end
 }

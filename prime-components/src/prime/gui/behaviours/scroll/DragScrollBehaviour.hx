@@ -26,21 +26,21 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.scroll;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.traits.IScrollable;
-#if !neko
+package prime.gui.behaviours.scroll;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.traits.IScrollable;
+#if !CSSParser
  import prime.signal.Wire;
- import primevc.core.geom.Point;
- import primevc.gui.behaviours.drag.DragHelper;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.input.Mouse;
- import primevc.gui.layout.IScrollableLayout;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.Point;
+ import prime.gui.behaviours.drag.DragHelper;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.layout.LayoutFlags;
+ import prime.gui.input.Mouse;
+ import prime.gui.layout.IScrollableLayout;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 #end
 
 
@@ -52,7 +52,7 @@ package primevc.gui.behaviours.scroll;
  */
 class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScrollBehaviour
 {
-#if !neko
+#if !CSSParser
 	private var layout			: IScrollableLayout;
 	private var lastMousePos	: Point;
 	private var dragHelper		: DragHelper;
@@ -61,7 +61,7 @@ class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScroll
 	
 	override private function init ()
 	{
-		Assert.notNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
+		Assert.isNotNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
 		target.enableClipping();
 		
 	//	trace(target+".init DragScrollBehaviour "+target.scrollRect);

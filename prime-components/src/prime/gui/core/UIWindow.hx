@@ -31,38 +31,18 @@ package primevc.gui.core;
  import net.hires.debug.Stats;
 #end
  import primevc.core.geom.Rectangle;
- import primevc.core.traits.IIdentifiable;
  import primevc.core.Bindable;
 
- import primevc.gui.behaviours.layout.WindowLayoutBehaviour;
  import primevc.gui.behaviours.BehaviourList;
- import primevc.gui.behaviours.RenderGraphicsBehaviour;
-
- import primevc.gui.display.Stage;
- import primevc.gui.display.Window;
  import primevc.gui.graphics.GraphicProperties;
-
- import primevc.gui.layout.algorithms.RelativeAlgorithm;
  import primevc.gui.layout.IScrollableLayout;
  import primevc.gui.layout.LayoutContainer;
  import primevc.gui.layout.LayoutClient;
  import primevc.gui.layout.VirtualLayoutContainer;
 
  import primevc.gui.managers.InvalidationManager;
- import primevc.gui.managers.IPopupManager;
- import primevc.gui.managers.ISystem;
- import primevc.gui.managers.PopupManager;
  import primevc.gui.managers.RenderManager;
  import primevc.gui.managers.ToolTipManager;
-
- import primevc.gui.styling.ApplicationStyle;
- import primevc.gui.styling.UIElementStyle;
-
- import primevc.gui.traits.IBehaving;
- import primevc.gui.traits.IDrawable;
- import primevc.gui.traits.ILayoutable;
- import primevc.gui.traits.IStylable;
- import primevc.gui.traits.IScrollable;
   using primevc.utils.Bind;
   using primevc.utils.BitUtil;
   using primevc.utils.TypeUtil;
@@ -80,14 +60,14 @@ package primevc.gui.core;
  * @author Ruben Weijers
  * @creation-date Aug 04, 2010
  */
-class UIWindow extends Window		
-	,	implements IBehaving
-	,	implements IDrawable
-	,	implements IIdentifiable
-	,	implements ILayoutable
-	,	implements IStylable
-	,	implements ISystem
-	, 	implements IScrollable
+class UIWindow extends primevc.gui.display.Window		
+	,	implements primevc.core.traits.IIdentifiable
+	,	implements primevc.gui.managers.ISystem
+	,	implements primevc.gui.traits.IBehaving
+	,	implements primevc.gui.traits.IDrawable
+	,	implements primevc.gui.traits.ILayoutable
+	,	implements primevc.gui.traits.IStylable
+	, 	implements primevc.gui.traits.IScrollable
 {
 	public var layout				(default, null)					: LayoutClient;
 	
@@ -111,7 +91,7 @@ class UIWindow extends Window
 	
 	
 	public var behaviours			(default, null)					: BehaviourList;
-	public var id					(default, null)					: Bindable < String >;
+	public var id					(default, null)					: Bindable<String>;
 	public var graphicData			(default, null)					: GraphicProperties;
 	
 #if flash9
@@ -129,26 +109,23 @@ class UIWindow extends Window
 	 */
 	public var graphics				(default, null)					: flash.display.Graphics;
 	
-	public var style				(default, null)					: UIElementStyle;
+	public var style				(default, null)					: primevc.gui.styling.UIElementStyle;
 	public var styleClasses			(default, null)					: SimpleList<String>;
 	public var stylingEnabled		(default, setStylingEnabled)	: Bool;
 #end
 	
 	public var invalidation			(default, null)					: InvalidationManager;
 	public var rendering			(default, null)					: RenderManager;
-	public var popups				(getPopupManager, null)			: IPopupManager;
+	public var popups				(getPopupManager, null)			: primevc.gui.managers.IPopupManager;
 	public var toolTip				(default, null)					: ToolTipManager;
 	
 	
-	public function new (target:Stage, id:String = null)
+	public function new (target:primevc.gui.display.Stage, id:String = null)
 	{
 		scaleX = scaleY = 1;
 		super(target);
 		
-#if debug
-		if (id == null)
-			id = this.getReadableId();
-#end
+#if debug if (id == null) id = this.getReadableId(); #end
 		this.id			= new Bindable<String>( id );
 		rendering		= new RenderManager(this);
 		invalidation	= new InvalidationManager(this);
@@ -161,8 +138,8 @@ class UIWindow extends Window
 		styleClasses	= new SimpleList<String>();
 #end
 		
-		behaviours.add( new WindowLayoutBehaviour(this) );
-		behaviours.add( new RenderGraphicsBehaviour(this) );
+		behaviours.add( new primevc.gui.behaviours.layout.WindowLayoutBehaviour(this) );
+		behaviours.add( new primevc.gui.behaviours.RenderGraphicsBehaviour(this) );
 		
 		createBehaviours();
 		createLayout();
@@ -235,7 +212,7 @@ class UIWindow extends Window
 		popupLayout	= new VirtualLayoutContainer( #if debug "popupLayout" #end );
 		layout.invalidatable 	= popupLayout.invalidatable = false;
 		
-		popupLayout.algorithm	= new RelativeAlgorithm();
+		popupLayout.algorithm	= new primevc.gui.layout.algorithms.RelativeAlgorithm();
 		layout.percentWidth		= layout.percentHeight = popupLayout.percentWidth = popupLayout.percentHeight = 1.0;
 		layout.invalidatable 	= popupLayout.invalidatable = true;
 
@@ -261,44 +238,29 @@ class UIWindow extends Window
 	
 	private function createChildren ()		: Void {}
 	
-	public inline function attach (child:IUIElement) : UIWindow
-	{
-		child.attachLayoutTo( layoutContainer ).attachToDisplayList( this );
-		return this;
-	}
-
-
-	public inline function attachDisplay (child:IUIElement) : UIWindow
-	{
-		child.attachToDisplayList( this );
-		return this;
-	}
-
-
-	public inline function attachLayout (layout:LayoutClient) : UIWindow
-	{
-		layoutContainer.attach( layout );
-		return this;
-	}
+	public #if !noinline inline #end function attach        (child:IUIElement)          : UIWindow { child.attachLayoutTo(layoutContainer).attachToDisplayList(this); return this; }
+	public #if !noinline inline #end function attachDisplay (child:IUIElement)          : UIWindow { child.attachToDisplayList(this);                                 return this; }
+	public #if !noinline inline #end function attachLayout  (layout:LayoutClient)       : UIWindow { layoutContainer.attach(layout);                                  return this; }
+	public #if !noinline inline #end function changeDepthOf (child:IUIElement, pos:Int)	: UIWindow { child.changeDepth(pos);                                          return this; }
 
 
 	//
 	// ISCROLLABLE
 	//
 
-	public inline function scrollToX     	(x:Float) : Void	{ var r = target.scrollRect; r.x = x; target.scrollRect = r; }
-	public inline function scrollToY     	(y:Float) : Void	{ var r = target.scrollRect; r.y = y; target.scrollRect = r; }
-    public inline function scrollTo         (x:Float, y:Float)  { var r = target.scrollRect; r.x = x; r.y = y; target.scrollRect = r; }
+	public #if !noinline inline #end function scrollToX     	(x:Float) : Void	{ var r = target.scrollRect; r.x = x; target.scrollRect = r; }
+	public #if !noinline inline #end function scrollToY     	(y:Float) : Void	{ var r = target.scrollRect; r.y = y; target.scrollRect = r; }
+    public #if !noinline inline #end function scrollTo         (x:Float, y:Float)  { var r = target.scrollRect; r.x = x; r.y = y; target.scrollRect = r; }
 
-	public inline function applyScrollX   	() : Void			{ scrollToX( layoutContainer.scrollPos.x ); }
-	public inline function applyScrollY   	() : Void			{ scrollToY( layoutContainer.scrollPos.y ); }
+	public #if !noinline inline #end function applyScrollX   	() : Void			{ scrollToX( layoutContainer.scrollPos.x ); }
+	public #if !noinline inline #end function applyScrollY   	() : Void			{ scrollToY( layoutContainer.scrollPos.y ); }
 
-    public inline function setClippingSize	(w:Float, h:Float) 	{ var r = target.scrollRect; r.width = w; r.height = h; target.scrollRect = r; }
-    public inline function createScrollRect (w:Float, h:Float)	{ isScrollable = true;  target.scrollRect	= new Rectangle(0,0, w, h); }
-    public inline function removeScrollRect () 					{ isScrollable = false; target.scrollRect	= null; }
+    public #if !noinline inline #end function setClippingSize	(w:Float, h:Float) 	{ var r = target.scrollRect; r.width = w; r.height = h; target.scrollRect = r; }
+    public #if !noinline inline #end function createScrollRect (w:Float, h:Float)	{ isScrollable = true;  target.scrollRect	= new Rectangle(0,0, w, h); }
+    public #if !noinline inline #end function removeScrollRect () 					{ isScrollable = false; target.scrollRect	= null; }
 
-    public inline function getScrollRect    ()                  { return target.scrollRect; }
-    public inline function setScrollRect    (v:Rectangle)       { return target.scrollRect = v; }
+    public #if !noinline inline #end function getScrollRect    ()                  { return target.scrollRect; }
+    public #if !noinline inline #end function setScrollRect    (v:Rectangle)       { return target.scrollRect = v; }
 
 
     public function enableClipping ()
@@ -349,10 +311,10 @@ class UIWindow extends Window
 	// GETTERS / SETTERS
 	//
 	
-	public inline function isDisposed ()			{ return displayEvents == null; }
+	public #if !noinline inline #end function isDisposed ()			{ return displayEvents == null; }
 	private inline function getLayoutContainer ()	{ return layout.as(LayoutContainer); }
 	private inline function getScrollableLayout () 	{ return layout.as(IScrollableLayout); }
-	private inline function getPopupManager ()		{ if (popups == null) { popups = new PopupManager(this); } return popups; }
+	private inline function getPopupManager ()		{ if (popups == null) { popups = new primevc.gui.managers.PopupManager(this); } return popups; }
 	
 	
 #if flash9
@@ -367,7 +329,7 @@ class UIWindow extends Window
 			
 			stylingEnabled = v;
 			if (v) {
-				style = new ApplicationStyle(this, this);
+				style = new primevc.gui.styling.ApplicationStyle(this, this);
 				style.updateStyles();
 			}
 		}

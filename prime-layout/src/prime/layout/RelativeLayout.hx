@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout;
-#if (neko && prime_css)
+#if CSSParser
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.ICodeGenerator;
  import prime.tools.generator.ICSSFormattable;
@@ -65,12 +65,11 @@ package prime.layout;
 class RelativeLayout 
 				implements IBox
 			,	implements IDisposable	
-#if (neko && prime_css)
-			,	implements ICSSFormattable
+#if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable		#end
 {
 	
-#if (neko && prime_css)
+#if CSSParser
 	public var _oid					(default, null)	: Int;
 #end
 	
@@ -159,7 +158,7 @@ class RelativeLayout
 	
 	public function new ( top:Int = Number.INT_NOT_SET, right:Int = Number.INT_NOT_SET, bottom:Int = Number.INT_NOT_SET, left:Int = Number.INT_NOT_SET, hCenter:Int = Number.INT_NOT_SET, vCenter:Int = Number.INT_NOT_SET )
 	{
-#if (neko && prime_css)
+#if CSSParser
 		this._oid		= ID.getNext();
 #end
 		this.enabled	= true;
@@ -177,19 +176,19 @@ class RelativeLayout
 	{
 			change.dispose();
 			change = null;
-#if (neko && prime_css)
+#if CSSParser
 			_oid = 0;
 #end
 	}
 	
 	
-	public inline function clone () : IBox
+	public #if !noinline inline #end function clone () : IBox
 	{
 		return new RelativeLayout( top, right, bottom, left, hCenter, vCenter );
 	}
 
 
-	public inline function center () : RelativeLayout
+	public #if !noinline inline #end function center () : RelativeLayout
 	{
 		hCenter = vCenter = 0;
 		return this;
@@ -293,7 +292,7 @@ class RelativeLayout
 #end
 	
 
-#if (neko || debug)
+#if (CSSParser || debug)
 	public function toCSS (prefix:String = "") : String
 	{
 		var css = [];
@@ -335,7 +334,7 @@ class RelativeLayout
 			&&	vCenter.notSet();
 	}
 
-	
+#if CSSParser
 	public function cleanUp () : Void {}
 	
 	public function toCode (code:ICodeGenerator)

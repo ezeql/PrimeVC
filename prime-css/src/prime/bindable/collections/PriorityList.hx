@@ -190,7 +190,7 @@ class PriorityList <T:IPrioritizable>
 	
 	
 	
-	public inline function addBefore (item:T, otherCell:FastDoubleCell<T>) : FastDoubleCell<T>
+	public #if !noinline inline #end function addBefore (item:T, otherCell:FastDoubleCell<T>) : FastDoubleCell<T>
 	{
 		var cell = new FastDoubleCell<T>(item);
 		length++;
@@ -202,7 +202,7 @@ class PriorityList <T:IPrioritizable>
 	}
 	
 	
-	public inline function addAfter (item:T, otherCell:FastDoubleCell<T>) : FastDoubleCell<T>
+	public #if !noinline inline #end function addAfter (item:T, otherCell:FastDoubleCell<T>) : FastDoubleCell<T>
 	{
 		var cell = new FastDoubleCell<T>(item);
 		length++;
@@ -285,7 +285,7 @@ class PriorityList <T:IPrioritizable>
 	}
 	
 	
-	public inline function hasPriority (priority:Int) : Bool
+	public #if !noinline inline #end function hasPriority (priority:Int) : Bool
 	{
 		var cur = first;
 		while (cur != null)
@@ -303,8 +303,8 @@ class PriorityList <T:IPrioritizable>
 	}
 	
 	
-	public inline function getHighestPriority () : Int	{ return first != null ? first.data.getPriority() : 0; }
-	public inline function getLowestPriority () : Int	{ return last != null ? last.data.getPriority() : 0; }
+	public #if !noinline inline #end function getHighestPriority () : Int	{ return first != null ? first.data.getPriority() : 0; }
+	public #if !noinline inline #end function getLowestPriority () : Int	{ return last != null ? last.data.getPriority() : 0; }
 	
 	
 #if debug

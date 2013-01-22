@@ -32,7 +32,7 @@ package primevc.gui.states;
  
 
 /**
- * Skin states.
+ * Skin states. UNUSED
  * 
  * @creation-date	Jun 17, 2010
  * @author			Ruben Weijers
@@ -56,13 +56,13 @@ class SkinStates extends FiniteStateMachine
 	public var disposed				(default, null) : IState;
 	
 	
-	@:keep public function new ()
+	public function new ()
 	{
 		super();
 		defaultState = empty;
 		
-		Assert.notNull( empty );
-		Assert.notNull( constructed );
-		Assert.notNull( disposed );
+		Assert.isNotNull( empty );
+		Assert.isNotNull( constructed );
+		Assert.isNotNull( disposed );
 	}
 }

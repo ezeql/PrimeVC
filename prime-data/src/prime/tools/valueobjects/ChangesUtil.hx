@@ -155,7 +155,7 @@ class ChangesUtil
 	 * @param propertyId 	id of property
 	 * @return property name
 	 */
-	public static inline function propertyIdToString (owner:ValueObjectBase, propertyId:Int) : String
+	public static #if !noinline inline #end function propertyIdToString (owner:ValueObjectBase, propertyId:Int) : String
 	{
 		var propFlags:Dynamic = owner.getClass();
 		return propFlags.hasField('propertyIdToString') ? propFlags.propertyIdToString(propertyId) : null;
@@ -163,7 +163,7 @@ class ChangesUtil
 	
 	
 	
-	public static inline function findChangedVOOfClass (change:ObjectChangeSet, classType:Class<Dynamic>) : IValueObject
+	public static #if !noinline inline #end function findChangedVOOfClass (change:ObjectChangeSet, classType:Class<Dynamic>) : IValueObject
 	{
 		var vo:IValueObject = null;
 		if (change.vo.is(classType))
