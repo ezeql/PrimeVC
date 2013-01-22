@@ -26,8 +26,8 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.geom;
-  using primevc.utils.BitUtil;
+package prime.core.geom;
+  using prime.utils.BitUtil;
 
 
 
