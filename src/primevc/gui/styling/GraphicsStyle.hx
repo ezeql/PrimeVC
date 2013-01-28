@@ -28,26 +28,26 @@
  */
 package primevc.gui.styling;
 #if CSSParser
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
+ import prime.tools.generator.ICodeGenerator;
+  using prime.types.Reference;
 #end
- import primevc.core.geom.Corners;
- import primevc.core.traits.IInvalidatable;
- import primevc.gui.graphics.borders.IBorder;
- import primevc.gui.graphics.shapes.IGraphicShape;
- import primevc.gui.graphics.IGraphicProperty;
- import primevc.types.Asset;
- import primevc.types.Factory;
- import primevc.types.Number;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+ import prime.core.geom.Corners;
+ import prime.core.traits.IInvalidatable;
+ import prime.gui.graphics.borders.IBorder;
+ import prime.gui.graphics.shapes.IGraphicShape;
+ import prime.gui.graphics.IGraphicProperty;
+ import prime.types.Asset;
+ import prime.types.Factory;
+ import prime.types.Number;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 
 private typedef Flags		= GraphicFlags;
-private typedef Shape		= #if CSSParser primevc.types.Reference; #else IGraphicShape; #end
-private typedef Skin		= #if CSSParser Factory<Dynamic> #else Factory<primevc.gui.core.ISkin> #end;
+private typedef Shape		= #if CSSParser prime.types.Reference; #else IGraphicShape; #end
+private typedef Skin		= #if CSSParser Factory<Dynamic> #else Factory<prime.gui.core.ISkin> #end;
 private typedef Icon		= Factory<Dynamic>;
-private typedef Overflow	= #if CSSParser Factory1<Dynamic, Dynamic> #else Factory1<primevc.gui.traits.IScrollable, primevc.gui.behaviours.scroll.IScrollBehaviour> #end;
+private typedef Overflow	= #if CSSParser Factory1<Dynamic, Dynamic> #else Factory1<prime.gui.traits.IScrollable, prime.gui.behaviours.scroll.IScrollBehaviour> #end;
 
 
 /**

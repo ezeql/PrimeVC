@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,36 +30,36 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
+package prime.gui.core;
 #if flash9
  import flash.text.TextFieldAutoSize;
- import primevc.core.collections.SimpleList;
+ import prime.bindable.collections.SimpleList;
  import primevc.gui.styling.UIElementStyle;
 #end
  import prime.signal.Wire;
- import primevc.core.Bindable;
+ import prime.bindable.Bindable;
  
- import primevc.gui.behaviours.layout.ValidateLayoutBehaviour;
- import primevc.gui.behaviours.BehaviourList;
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.display.IInteractiveObject;
- import primevc.gui.display.TextField;
- import primevc.gui.effects.UIElementEffects;
- import primevc.gui.layout.ILayoutContainer;
- import primevc.gui.layout.AdvancedLayoutClient;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.managers.ISystem;
+ import prime.gui.behaviours.layout.ValidateLayoutBehaviour;
+ import prime.gui.behaviours.BehaviourList;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.display.IInteractiveObject;
+ import prime.gui.display.TextField;
+ import prime.gui.effects.UIElementEffects;
+ import prime.layout.ILayoutContainer;
+ import prime.layout.AdvancedLayoutClient;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutFlags;
+ import prime.gui.managers.ISystem;
  import prime.fsm.states.ValidateStates;
- import primevc.gui.states.UIElementStates;
- import primevc.gui.traits.ITextStylable;
- import primevc.gui.traits.IValidatable;
- import primevc.types.Number;
-  using primevc.gui.utils.UIElementActions;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.states.UIElementStates;
+ import prime.gui.traits.ITextStylable;
+ import prime.gui.traits.IValidatable;
+ import prime.types.Number;
+  using prime.gui.utils.UIElementActions;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

@@ -37,9 +37,9 @@ typedef BevelFilter = flash.filters.BevelFilter;
 
 #else
 
- import primevc.tools.generator.ICodeGenerator;
- import primevc.utils.Color;
-  using primevc.utils.Color;
+ import prime.tools.generator.ICodeGenerator;
+ import prime.utils.Color;
+  using prime.utils.Color;
   using Std;
 
 

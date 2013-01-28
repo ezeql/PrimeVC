@@ -94,7 +94,7 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 	}
 	
 	
-	public function dispose2 ()	// FIXME can't override dispose -> runtime error:  "VerifyError: Error #1053: Illegal override of dispose in primevc.avm2.net.FileReference."
+	public function dispose2 ()	// FIXME can't override dispose -> runtime error:  "VerifyError: Error #1053: Illegal override of dispose in prime.avm2.net.FileReference."
 	{
 		close();
 		events.dispose();

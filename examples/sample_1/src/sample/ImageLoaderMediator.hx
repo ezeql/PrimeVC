@@ -2,8 +2,8 @@ package sample;
  import primevc.gui.events.MouseEvents;
  import prime.mvc.Mediator;
  import prime.signal.Signal1;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 /**
  * Defines what ui events should be listened to

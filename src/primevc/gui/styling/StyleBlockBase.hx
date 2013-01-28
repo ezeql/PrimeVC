@@ -27,9 +27,9 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.traits.IInvalidatable;
- import primevc.core.traits.Invalidatable;
-  using primevc.utils.BitUtil;
+ import prime.core.traits.IInvalidatable;
+ import prime.core.traits.Invalidatable;
+  using prime.utils.BitUtil;
   using Type;
 
 
@@ -64,7 +64,7 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 	{
 		super();
 #if (debug || CSSParser)
-		_oid = primevc.utils.ID.getNext();
+		_oid = prime.utils.ID.getNext();
 #end
 		filledProperties	= filled;
 		inheritedProperties	= 0;
@@ -137,6 +137,6 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 	
 	public function toCSS (prefix:String = "") 								{ Assert.abstractMethod(); return ""; }
 	public function cleanUp ()												{ Assert.abstractMethod(); }
-	public function toCode (code:primevc.tools.generator.ICodeGenerator)	{ Assert.abstractMethod(); }
+	public function toCode (code:prime.tools.generator.ICodeGenerator)	{ Assert.abstractMethod(); }
 #end
 }

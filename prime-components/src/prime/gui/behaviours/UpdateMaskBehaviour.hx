@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours;
- import primevc.gui.display.VectorShape;
- import primevc.gui.traits.IDrawable;
+package prime.gui.behaviours;
+ import prime.gui.display.VectorShape;
+ import prime.gui.traits.IDrawable;
 
 
 /**

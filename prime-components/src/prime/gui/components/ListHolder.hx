@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.collections.IReadOnlyList;
+package prime.gui.components;
+ import prime.core.collections.IReadOnlyList;
  import prime.signal.Signal1;
- import primevc.core.traits.IValueObject;
- import primevc.gui.core.IUIDataElement;
- import primevc.gui.core.UIDataContainer;
- import primevc.gui.events.MouseEvents;
-  using primevc.utils.Bind;
+ import prime.core.traits.IValueObject;
+ import prime.gui.core.IUIDataElement;
+ import prime.gui.core.UIDataContainer;
+ import prime.gui.events.MouseEvents;
+  using prime.utils.Bind;
 
 
 /**

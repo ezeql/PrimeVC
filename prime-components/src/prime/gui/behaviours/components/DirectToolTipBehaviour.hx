@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,13 +30,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.components;
+package prime.gui.behaviours.components;
  import prime.signal.Wire;
- import primevc.core.Bindable;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.core.UIComponent;
- import primevc.gui.events.MouseEvents;
-  using primevc.utils.Bind;
+ import prime.bindable.Bindable;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.core.UIComponent;
+ import prime.gui.events.MouseEvents;
+  using prime.utils.Bind;
 
 
 /**

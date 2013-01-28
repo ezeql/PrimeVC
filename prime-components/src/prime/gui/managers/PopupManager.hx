@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,13 +30,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.managers;
- import primevc.gui.core.IUIComponent;
- import primevc.gui.core.UIComponent;
- import primevc.gui.core.UIWindow;
- import primevc.utils.FastArray;
-  using primevc.utils.Bind;
-  using primevc.utils.FastArray;
+package prime.gui.managers;
+ import prime.gui.core.IUIComponent;
+ import prime.gui.core.UIComponent;
+ import prime.gui.core.UIWindow;
+ import prime.utils.FastArray;
+  using prime.utils.Bind;
+  using prime.utils.FastArray;
 
 
 

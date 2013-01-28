@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.geom.space.Horizontal;
- import primevc.core.geom.space.Vertical;
- import primevc.core.Bindable;
- import primevc.gui.core.IUIContainer;
- import primevc.gui.core.UIComponent;
- import primevc.gui.layout.algorithms.float.HorizontalFloatAlgorithm;
- import primevc.gui.layout.algorithms.float.VerticalFloatAlgorithm;
- import primevc.gui.layout.LayoutContainer;
- import primevc.gui.layout.VirtualLayoutContainer;
- import primevc.gui.traits.ISelectable;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.components;
+ import prime.core.geom.space.Horizontal;
+ import prime.core.geom.space.Vertical;
+ import prime.bindable.Bindable;
+ import prime.gui.core.IUIContainer;
+ import prime.gui.core.UIComponent;
+ import prime.layout.algorithms.float.HorizontalFloatAlgorithm;
+ import prime.layout.algorithms.float.VerticalFloatAlgorithm;
+ import prime.layout.LayoutContainer;
+ import prime.layout.VirtualLayoutContainer;
+ import prime.gui.traits.ISelectable;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

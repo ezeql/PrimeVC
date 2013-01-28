@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.traits;
- import primevc.core.geom.Rectangle;
- import primevc.gui.layout.IScrollableLayout;
+package prime.gui.traits;
+ import prime.core.geom.Rectangle;
+ import prime.layout.IScrollableLayout;
 
 
 /**
@@ -47,7 +51,7 @@ interface IScrollable implements IDisplayable, implements IInteractive
 	public var isScrollable		: Bool;
 
 //#if flash9
-//  public var scrollRect       : primevc.core.geom.Rectangle;
+//  public var scrollRect       : prime.core.geom.Rectangle;
 //#end
     /** set's the scrollRect.x position to the given x **/
     public function scrollToX        (x:Float) : Void;

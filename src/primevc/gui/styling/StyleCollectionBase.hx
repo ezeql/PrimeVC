@@ -27,14 +27,14 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.collections.iterators.IIterator;
- import primevc.core.collections.PriorityList;
- import primevc.core.collections.FastDoubleCell;
- import primevc.core.traits.IInvalidatable;
- import primevc.core.traits.IInvalidateListener;
- import primevc.core.traits.IDisposable;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.bindable.collections.iterators.IIterator;
+ import prime.bindable.collections.PriorityList;
+ import prime.bindable.collections.FastDoubleCell;
+ import prime.core.traits.IInvalidatable;
+ import prime.core.traits.IInvalidateListener;
+ import prime.core.traits.IDisposable;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 #if debug
   using Type;
 #end

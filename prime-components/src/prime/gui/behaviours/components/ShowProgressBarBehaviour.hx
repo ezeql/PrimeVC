@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,16 +30,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.components;
- import primevc.core.net.ICommunicator;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.components.ProgressBar;
- import primevc.gui.core.IUIContainer;
+package prime.gui.behaviours.components;
+ import prime.net.ICommunicator;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.components.ProgressBar;
+ import prime.gui.core.IUIContainer;
 
  import primevc.gui.styling.StyleState;
  import primevc.gui.styling.StyleStateFlags;
 
-  using primevc.utils.Bind;
+  using prime.utils.Bind;
 
 
 /**

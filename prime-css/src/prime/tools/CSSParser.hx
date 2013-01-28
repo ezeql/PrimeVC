@@ -28,7 +28,7 @@
  */
 package prime.tools;
 // import haxe.FastList;
- import prime.core.collections.SimpleList;
+ import prime.bindable.collections.SimpleList;
  import prime.core.geom.space.Direction;
  import prime.core.geom.space.Horizontal;
  import prime.core.geom.space.MoveDirection;
@@ -83,19 +83,19 @@ package prime.tools;
  import prime.gui.graphics.IGraphicProperty;
  import prime.gui.layout.LayoutFlags;
  import prime.gui.layout.RelativeLayout;
- import prime.gui.styling.EffectsStyle;
- import prime.gui.styling.FilterCollectionType;
- import prime.gui.styling.FiltersStyle;
- import prime.gui.styling.TextStyle;
- import prime.gui.styling.GraphicFlags;
- import prime.gui.styling.GraphicsStyle;
- import prime.gui.styling.LayoutStyle;
- import prime.gui.styling.StatesStyle;
- import prime.gui.styling.StyleBlock;
- import prime.gui.styling.StyleBlockType;
-// import prime.gui.styling.StyleChildren;
- import prime.gui.styling.StyleFlags;
- import prime.gui.styling.StyleStateFlags;
+ import primevc.gui.styling.EffectsStyle;
+ import primevc.gui.styling.FilterCollectionType;
+ import primevc.gui.styling.FiltersStyle;
+ import primevc.gui.styling.TextStyle;
+ import primevc.gui.styling.GraphicFlags;
+ import primevc.gui.styling.GraphicsStyle;
+ import primevc.gui.styling.LayoutStyle;
+ import primevc.gui.styling.StatesStyle;
+ import primevc.gui.styling.StyleBlock;
+ import primevc.gui.styling.StyleBlockType;
+// import primevc.gui.styling.StyleChildren;
+ import primevc.gui.styling.StyleFlags;
+ import primevc.gui.styling.StyleStateFlags;
  import prime.gui.text.FontStyle;
  import prime.gui.text.FontWeight;
  import prime.gui.text.TextAlign;
@@ -2863,7 +2863,7 @@ class CSSParser
 		}
 		if (setFlag) {
 			createLayoutBlock();
-			currentBlock.layout.markProperty( prime.gui.styling.LayoutStyleFlags.ALGORITHM, true );
+			currentBlock.layout.markProperty( primevc.gui.styling.LayoutStyleFlags.ALGORITHM, true );
 		}
 	}
 	

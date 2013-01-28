@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -28,17 +32,17 @@
  */
 package prime.gui.core;
  import prime.signal.Wire;
- import prime.core.Bindable;
+ import prime.bindable.Bindable;
  import prime.gui.behaviours.BehaviourList;
  import prime.gui.display.BitmapData;
  import prime.gui.display.IDisplayContainer;
- import prime.gui.layout.ILayoutContainer;
- import prime.gui.layout.AdvancedLayoutClient;
+ import prime.layout.ILayoutContainer;
+ import prime.layout.AdvancedLayoutClient;
  import prime.gui.managers.ISystem;
  import prime.gui.states.UIElementStates;
 #if flash9
- import prime.core.collections.SimpleList;
- import prime.gui.styling.UIElementStyle;
+ import prime.bindable.collections.SimpleList;
+ import primevc.gui.styling.UIElementStyle;
 #end
  import prime.gui.traits.IValidatable;
  import prime.types.Number;
@@ -66,7 +70,7 @@ class UIBitmap extends prime.gui.display.BitmapShape, implements IUIElement
     public var state            (default, null)                 : UIElementStates;
     public var effects          (default, default)              : prime.gui.effects.UIElementEffects;
     
-    public var layout           (default, null)                 : prime.gui.layout.LayoutClient;
+    public var layout           (default, null)                 : prime.layout.LayoutClient;
     public var system           (getSystem, never)              : ISystem;
     
 #if flash9
@@ -172,7 +176,7 @@ class UIBitmap extends prime.gui.display.BitmapShape, implements IUIElement
     private function updateScale (changes:Int)
     {
         // Adjust the scale of the Bitmap since it's not allowed to change the size of the bitmapdata.
-        if (changes.has(prime.gui.layout.LayoutFlags.SIZE))
+        if (changes.has(prime.layout.LayoutFlags.SIZE))
         {
             var l = advancedLayout();
             if (data == null) {
@@ -330,7 +334,7 @@ class UIBitmap extends prime.gui.display.BitmapShape, implements IUIElement
         {
 #if flash9  bitmapData  = v;
 #else       data        = v; #end
-            updateScale(prime.gui.layout.LayoutFlags.SIZE);
+            updateScale(prime.layout.LayoutFlags.SIZE);
         }
         return v;
     }

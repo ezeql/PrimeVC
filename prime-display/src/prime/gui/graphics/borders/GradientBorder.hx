@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.borders;
- import primevc.core.geom.IRectangle;
- import primevc.core.geom.Matrix2D;
- import primevc.gui.graphics.fills.GradientFill;
- import primevc.gui.traits.IGraphicsOwner;
-  using primevc.utils.Color;
-  using primevc.utils.RectangleUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.graphics.borders;
+ import prime.core.geom.IRectangle;
+ import prime.core.geom.Matrix2D;
+ import prime.gui.graphics.fills.GradientFill;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.utils.Color;
+  using prime.utils.RectangleUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

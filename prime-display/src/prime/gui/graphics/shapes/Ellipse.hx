@@ -26,11 +26,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.shapes;
- import primevc.core.geom.Corners;
- import primevc.core.geom.IRectangle;
- import primevc.gui.traits.IGraphicsOwner;
-  using primevc.gui.utils.GraphicsUtil;
+package prime.gui.graphics.shapes;
+ import prime.core.geom.Corners;
+ import prime.core.geom.IRectangle;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.gui.utils.GraphicsUtil;
 
 
 

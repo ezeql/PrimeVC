@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,12 +30,12 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
+package prime.gui.effects;
 #if CSSParser
-  using primevc.types.Reference;
+  using prime.types.Reference;
 #end
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 
 
 /**
@@ -40,7 +44,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Jul 15, 2011
  */
-class ScrollEffect extends Effect<primevc.gui.traits.IScrollable, ScrollEffect>
+class ScrollEffect extends Effect<prime.gui.traits.IScrollable, ScrollEffect>
 {
     /**
      * Explicit start x value. If this value is not set, the effect will 
@@ -98,8 +102,8 @@ class ScrollEffect extends Effect<primevc.gui.traits.IScrollable, ScrollEffect>
     
     
 #if !CSSParser
-    override public function createEffectInstance (target) : primevc.gui.effects.effectInstances.IEffectInstance<primevc.gui.traits.IScrollable,ScrollEffect>
-        return new primevc.gui.effects.effectInstances.ScrollEffectInstance(target, this)
+    override public function createEffectInstance (target) : prime.gui.effects.effectInstances.IEffectInstance<prime.gui.traits.IScrollable,ScrollEffect>
+        return new prime.gui.effects.effectInstances.ScrollEffectInstance(target, this)
 #else
 
     override public function toCSS (prefix:String = "") : String
@@ -120,7 +124,7 @@ class ScrollEffect extends Effect<primevc.gui.traits.IScrollable, ScrollEffect>
     }
     
     
-    override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
+    override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
     {
         if (!isEmpty())
             code.construct( this, [ duration, delay, easing, isReverted, startX, startY, endX, endY ] );

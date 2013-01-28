@@ -45,7 +45,7 @@ interface ILayoutContainer implements ILayoutClient
 	/**
 	 * List with all the children of the group
 	 */
-	public var children				(default, null)				: prime.bindable.collections.IEditableList;<LayoutClient>;
+	public var children				(default, null)				: prime.bindable.collections.IEditableList<LayoutClient>;
 
 	/**
 	 * Property with the actual length of the children list. Use this property

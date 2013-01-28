@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,15 +30,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
- import primevc.core.geom.Rectangle;
- import primevc.gui.layout.IScrollableLayout;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutContainer;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.core;
+ import prime.core.geom.Rectangle;
+ import prime.layout.IScrollableLayout;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutContainer;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -106,7 +110,7 @@ class UIContainer extends UIComponent, implements IUIContainer
 
     private function updateScrollRect (changes:Int)
     {
-        if (changes.hasNone( primevc.gui.layout.LayoutFlags.SIZE ))
+        if (changes.hasNone( prime.layout.LayoutFlags.SIZE ))
             return;
         
         var r = getScrollRect();

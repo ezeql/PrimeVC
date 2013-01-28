@@ -30,19 +30,19 @@ package primevc.gui.styling;
 #if flash9
  import flash.text.Font;
 #end
- import primevc.gui.components.ITextArea;
+ import prime.gui.components.ITextArea;
  import primevc.gui.styling.StyleCollectionBase;
- import primevc.gui.text.FontStyle;
- import primevc.gui.text.FontWeight;
- import primevc.gui.text.TextAlign;
- import primevc.gui.text.TextDecoration;
- import primevc.gui.text.TextFormat;
- import primevc.gui.text.TextTransform;
- import primevc.gui.traits.ITextStylable;
- import primevc.types.Number;
-  using primevc.utils.BitUtil;
-  using primevc.utils.Color;
-  using primevc.utils.TypeUtil;
+ import prime.gui.text.FontStyle;
+ import prime.gui.text.FontWeight;
+ import prime.gui.text.TextAlign;
+ import prime.gui.text.TextDecoration;
+ import prime.gui.text.TextFormat;
+ import prime.gui.text.TextTransform;
+ import prime.gui.traits.ITextStylable;
+ import prime.types.Number;
+  using prime.utils.BitUtil;
+  using prime.utils.Color;
+  using prime.utils.TypeUtil;
   using Type;
 
 

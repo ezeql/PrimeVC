@@ -28,7 +28,7 @@
  */
 package prime.types;
 #if !CSSParser
- import prime.core.net.RequestMethod;	//also imports enums
+ import prime.net.RequestMethod;	//also imports enums
 #end
   using prime.utils.FileUtil;
   using prime.utils.IfUtil;
@@ -236,7 +236,7 @@ class URI #if CSSParser implements prime.tools.generator.ICodeFormattable #end
 	}
 	
 #if (flash9 && prime_net)
-	public function toRequest(method : prime.core.net.RequestMethod = null)
+	public function toRequest(method : prime.net.RequestMethod = null)
 	{
 		var r = new flash.net.URLRequest(this.toString());
 		if (method != null && method != get)

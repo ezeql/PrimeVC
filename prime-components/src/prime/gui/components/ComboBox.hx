@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,23 +30,23 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.collections.IReadOnlyList;
+package prime.gui.components;
+ import prime.core.collections.IReadOnlyList;
  import prime.signal.Wire;
- import primevc.gui.behaviours.components.ButtonSelectedOpenPopup;
- import primevc.gui.behaviours.components.KeyboardListNavigation;
- import primevc.gui.behaviours.layout.FollowObjectBehaviour;
- import primevc.gui.components.DataButton;
- import primevc.gui.components.ListHolder;
- import primevc.gui.core.IUIDataElement;
- import primevc.gui.core.IUIElement;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.traits.ISelectable;
- import primevc.types.Asset;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.behaviours.components.ButtonSelectedOpenPopup;
+ import prime.gui.behaviours.components.KeyboardListNavigation;
+ import prime.gui.behaviours.layout.FollowObjectBehaviour;
+ import prime.gui.components.DataButton;
+ import prime.gui.components.ListHolder;
+ import prime.gui.core.IUIDataElement;
+ import prime.gui.core.IUIElement;
+ import prime.gui.events.MouseEvents;
+ import prime.layout.LayoutFlags;
+ import prime.gui.traits.ISelectable;
+ import prime.types.Asset;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 
 

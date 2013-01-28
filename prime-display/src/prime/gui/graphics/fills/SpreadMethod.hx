@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.fills;
+package prime.gui.graphics.fills;
 
 
 enum SpreadMethod {

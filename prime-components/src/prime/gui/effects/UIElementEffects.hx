@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
- import primevc.core.traits.IDisposable;
- import primevc.gui.core.IUIElement;
- import primevc.gui.effects.effectInstances.IEffectInstance;
-// import primevc.types.Number;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.IfUtil;
-  using primevc.core.states.SimpleStateMachine;
+package prime.gui.effects;
+ import prime.core.traits.IDisposable;
+ import prime.gui.core.IUIElement;
+ import prime.gui.effects.effectInstances.IEffectInstance;
+// import prime.types.Number;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.IfUtil;
+  using prime.fsm.SimpleStateMachine;
 
 
 private typedef EffectInstanceType 	= IEffectInstance < Dynamic, Dynamic >;
-private typedef Flags 				= primevc.gui.effects.EffectFlags;
+private typedef Flags 				= prime.gui.effects.EffectFlags;
 
 
 /**

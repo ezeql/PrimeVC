@@ -28,12 +28,12 @@
  */
 package primevc.gui.styling;
 #if CSSParser
- import primevc.tools.generator.ICodeGenerator;
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.traits.IInvalidatable;
- import primevc.gui.effects.Effect;
- import primevc.gui.effects.EffectFlags;
-  using primevc.utils.BitUtil;
+ import prime.core.traits.IInvalidatable;
+ import prime.gui.effects.Effect;
+ import prime.gui.effects.EffectFlags;
+  using prime.utils.BitUtil;
 
 
 typedef EffectType		= Effect < Dynamic, Dynamic >;

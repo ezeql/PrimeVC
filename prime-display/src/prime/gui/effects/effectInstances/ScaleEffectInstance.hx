@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
-  using primevc.gui.utils.DisplayUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+  using prime.gui.utils.DisplayUtil;
+  using prime.utils.NumberUtil;
 
 
 
@@ -36,7 +36,7 @@ package primevc.gui.effects.effectInstances;
  * @author Ruben Weijers
  * @creation-date Oct 04, 2010
  */
-class ScaleEffectInstance extends EffectInstance < primevc.gui.display.IDisplayObject, primevc.gui.effects.ScaleEffect >
+class ScaleEffectInstance extends EffectInstance < prime.gui.display.IDisplayObject, prime.gui.effects.ScaleEffect >
 {
 	/**
 	 * ScaleX start value.
@@ -64,11 +64,11 @@ class ScaleEffectInstance extends EffectInstance < primevc.gui.display.IDisplayO
 	public function new (target, effect)
 	{
 		super(target, effect);
-		startX = startY = endX = endY = primevc.types.Number.FLOAT_NOT_SET;
+		startX = startY = endX = endY = prime.types.Number.FLOAT_NOT_SET;
 	}
 	
 	
-	override public function setValues ( v:primevc.gui.effects.EffectProperties ) 
+	override public function setValues ( v:prime.gui.effects.EffectProperties ) 
 	{
 		switch (v) {
 			case scale(fromSx, fromSy, toSx, toSy):

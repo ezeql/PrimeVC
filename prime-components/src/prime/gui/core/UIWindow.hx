@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,30 +30,30 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
+package prime.gui.core;
 #if (flash9 && stats)
  import net.hires.debug.Stats;
 #end
- import primevc.core.geom.Rectangle;
- import primevc.core.Bindable;
+ import prime.core.geom.Rectangle;
+ import prime.bindable.Bindable;
 
- import primevc.gui.behaviours.BehaviourList;
- import primevc.gui.graphics.GraphicProperties;
- import primevc.gui.layout.IScrollableLayout;
- import primevc.gui.layout.LayoutContainer;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.VirtualLayoutContainer;
+ import prime.gui.behaviours.BehaviourList;
+ import prime.gui.graphics.GraphicProperties;
+ import prime.layout.IScrollableLayout;
+ import prime.layout.LayoutContainer;
+ import prime.layout.LayoutClient;
+ import prime.layout.VirtualLayoutContainer;
 
- import primevc.gui.managers.InvalidationManager;
- import primevc.gui.managers.RenderManager;
- import primevc.gui.managers.ToolTipManager;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.managers.InvalidationManager;
+ import prime.gui.managers.RenderManager;
+ import prime.gui.managers.ToolTipManager;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 #if flash9
- import primevc.core.collections.SimpleList;
- import primevc.gui.display.VectorShape;
+ import prime.bindable.collections.SimpleList;
+ import prime.gui.display.VectorShape;
 #end
 
 
@@ -60,14 +64,14 @@ package primevc.gui.core;
  * @author Ruben Weijers
  * @creation-date Aug 04, 2010
  */
-class UIWindow extends primevc.gui.display.Window		
-	,	implements primevc.core.traits.IIdentifiable
-	,	implements primevc.gui.managers.ISystem
-	,	implements primevc.gui.traits.IBehaving
-	,	implements primevc.gui.traits.IDrawable
-	,	implements primevc.gui.traits.ILayoutable
-	,	implements primevc.gui.traits.IStylable
-	, 	implements primevc.gui.traits.IScrollable
+class UIWindow extends prime.gui.display.Window		
+	,	implements prime.core.traits.IIdentifiable
+	,	implements prime.gui.managers.ISystem
+	,	implements prime.gui.traits.IBehaving
+	,	implements prime.gui.traits.IDrawable
+	,	implements prime.gui.traits.ILayoutable
+	,	implements prime.gui.traits.IStylable
+	, 	implements prime.gui.traits.IScrollable
 {
 	public var layout				(default, null)					: LayoutClient;
 	
@@ -116,11 +120,11 @@ class UIWindow extends primevc.gui.display.Window
 	
 	public var invalidation			(default, null)					: InvalidationManager;
 	public var rendering			(default, null)					: RenderManager;
-	public var popups				(getPopupManager, null)			: primevc.gui.managers.IPopupManager;
+	public var popups				(getPopupManager, null)			: prime.gui.managers.IPopupManager;
 	public var toolTip				(default, null)					: ToolTipManager;
 	
 	
-	public function new (target:primevc.gui.display.Stage, id:String = null)
+	public function new (target:prime.gui.display.Stage, id:String = null)
 	{
 		scaleX = scaleY = 1;
 		super(target);
@@ -138,8 +142,8 @@ class UIWindow extends primevc.gui.display.Window
 		styleClasses	= new SimpleList<String>();
 #end
 		
-		behaviours.add( new primevc.gui.behaviours.layout.WindowLayoutBehaviour(this) );
-		behaviours.add( new primevc.gui.behaviours.RenderGraphicsBehaviour(this) );
+		behaviours.add( new prime.gui.behaviours.layout.WindowLayoutBehaviour(this) );
+		behaviours.add( new prime.gui.behaviours.RenderGraphicsBehaviour(this) );
 		
 		createBehaviours();
 		createLayout();
@@ -205,14 +209,14 @@ class UIWindow extends primevc.gui.display.Window
 	
 	private inline function createLayout ()
 	{
-		topLayout	=	#if flash9	new primevc.avm2.layout.StageLayout( target );
+		topLayout	=	#if flash9	new prime.avm2.layout.StageLayout( target );
 						#else		new LayoutContainer();	#end
 		
 		layout		= new VirtualLayoutContainer( #if debug "contentLayout" #end );
 		popupLayout	= new VirtualLayoutContainer( #if debug "popupLayout" #end );
 		layout.invalidatable 	= popupLayout.invalidatable = false;
 		
-		popupLayout.algorithm	= new primevc.gui.layout.algorithms.RelativeAlgorithm();
+		popupLayout.algorithm	= new prime.layout.algorithms.RelativeAlgorithm();
 		layout.percentWidth		= layout.percentHeight = popupLayout.percentWidth = popupLayout.percentHeight = 1.0;
 		layout.invalidatable 	= popupLayout.invalidatable = true;
 
@@ -286,7 +290,7 @@ class UIWindow extends primevc.gui.display.Window
 
     private function updateScrollRect (changes:Int)
     {
-        if (changes.hasNone( primevc.gui.layout.LayoutFlags.SIZE ))
+        if (changes.hasNone( prime.layout.LayoutFlags.SIZE ))
             return;
         
         var r = getScrollRect();
@@ -314,7 +318,7 @@ class UIWindow extends primevc.gui.display.Window
 	public #if !noinline inline #end function isDisposed ()			{ return displayEvents == null; }
 	private inline function getLayoutContainer ()	{ return layout.as(LayoutContainer); }
 	private inline function getScrollableLayout () 	{ return layout.as(IScrollableLayout); }
-	private inline function getPopupManager ()		{ if (popups == null) { popups = new primevc.gui.managers.PopupManager(this); } return popups; }
+	private inline function getPopupManager ()		{ if (popups == null) { popups = new prime.gui.managers.PopupManager(this); } return popups; }
 	
 	
 #if flash9

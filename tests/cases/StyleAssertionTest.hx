@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package cases;
- import primevc.gui.core.UIComponent;
+ import prime.gui.core.UIComponent;
  import primevc.gui.styling.FontStyle;
  import primevc.gui.styling.GraphicStyleDeclarations;
  import primevc.gui.styling.LayoutStyle;
@@ -76,7 +76,7 @@ class TestStyles extends StyleChildren
 	override private function createElementSelectors ()
 	{
 		var c = elementSelectors;
-		c.set("primevc.gui.display.Sprite", new StyleBlock(
+		c.set("prime.gui.display.Sprite", new StyleBlock(
 			null,
 			new FontStyle(11, "Verdana")
 		));

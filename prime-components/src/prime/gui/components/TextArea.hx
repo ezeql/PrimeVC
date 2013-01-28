@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,24 +30,24 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Wire;
- import primevc.core.Bindable;
+ import prime.bindable.Bindable;
 
- import primevc.gui.core.UITextField;
- import primevc.gui.core.Skin;
- import primevc.gui.events.KeyboardEvents;
- import primevc.gui.events.UserEventTarget;
- import primevc.gui.input.Keyboard;
- import primevc.gui.input.KeyCodes;
+ import prime.gui.core.UITextField;
+ import prime.gui.core.Skin;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.events.UserEventTarget;
+ import prime.gui.input.Keyboard;
+ import prime.gui.input.KeyCodes;
 
-  using primevc.gui.input.KeyCodes;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+  using prime.gui.input.KeyCodes;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 
-private typedef Flags = primevc.gui.core.UIElementFlags;
+private typedef Flags = prime.gui.core.UIElementFlags;
 
 
 /**

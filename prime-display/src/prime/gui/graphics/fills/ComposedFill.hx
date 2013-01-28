@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.fills;
- import primevc.gui.graphics.ComposedGraphicProperty;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.graphics.IGraphicProperty;
+package prime.gui.graphics.fills;
+ import prime.gui.graphics.ComposedGraphicProperty;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.graphics.IGraphicProperty;
 
 
 /**

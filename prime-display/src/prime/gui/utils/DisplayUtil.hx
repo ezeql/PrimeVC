@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers   <ruben @ rubenw.nl>
  */
-package primevc.gui.utils;
- import primevc.gui.display.IDisplayObject;
-  using primevc.utils.MatrixUtil;
+package prime.gui.utils;
+ import prime.gui.display.IDisplayObject;
+  using prime.utils.MatrixUtil;
  
 
 /**

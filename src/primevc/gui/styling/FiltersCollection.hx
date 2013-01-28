@@ -27,12 +27,12 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.filters.BitmapFilter;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.filters.BitmapFilter;
  import primevc.gui.styling.StyleCollectionBase;
- import primevc.utils.FastArray;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.utils.FastArray;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 
 private typedef Flags = FilterFlags;

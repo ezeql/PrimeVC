@@ -27,18 +27,18 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.geom.Box;
- import primevc.core.traits.IInvalidatable;
- import primevc.gui.layout.RelativeLayout;
- import primevc.types.Factory;
- import primevc.types.Number;
- import primevc.utils.NumberUtil;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+ import prime.core.geom.Box;
+ import prime.core.traits.IInvalidatable;
+ import prime.layout.RelativeLayout;
+ import prime.types.Factory;
+ import prime.types.Number;
+ import prime.utils.NumberUtil;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 
 private typedef Flags		= LayoutStyleFlags;
-private typedef Algorithm	= #if CSSParser Factory<Dynamic> #else Factory<primevc.gui.layout.algorithms.ILayoutAlgorithm> #end;
+private typedef Algorithm	= #if CSSParser Factory<Dynamic> #else Factory<prime.layout.algorithms.ILayoutAlgorithm> #end;
 
 
 /**
@@ -806,7 +806,7 @@ class LayoutStyle extends StyleSubBlock
 	}
 	
 	
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator)
+	override public function toCode (code:prime.tools.generator.ICodeGenerator)
 	{
 		if (!isEmpty())
 		{

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.drag;
- import primevc.core.geom.IntRectangle;
- import primevc.core.geom.Rectangle;
- import primevc.core.traits.IDisposable;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.display.ISprite;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.input.Mouse;
- import primevc.gui.traits.ILayoutable;
-  using primevc.utils.Bind;
-  using primevc.utils.IfUtil;
-  using primevc.utils.RectangleUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours.drag;
+ import prime.core.geom.IntRectangle;
+ import prime.core.geom.Rectangle;
+ import prime.core.traits.IDisposable;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.display.ISprite;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.input.Mouse;
+ import prime.gui.traits.ILayoutable;
+  using prime.utils.Bind;
+  using prime.utils.IfUtil;
+  using prime.utils.RectangleUtil;
+  using prime.utils.TypeUtil;
 
 /**
  * Base class for dragging classes.

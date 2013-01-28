@@ -1,7 +1,7 @@
 package cases;
- import primevc.types.RGBA;
- import primevc.utils.Color;
-  using primevc.utils.Color;
+ import prime.types.RGBA;
+ import prime.utils.Color;
+  using prime.utils.Color;
 
 
 /**

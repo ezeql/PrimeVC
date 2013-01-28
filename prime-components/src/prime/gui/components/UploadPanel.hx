@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,16 +30,16 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Signal1;
- import primevc.core.net.FileReferenceList;
- import primevc.core.net.FileReference;
- import primevc.core.net.FileFilter;
- import primevc.core.net.IFileReference;
- import primevc.gui.core.IUIElement;
- import primevc.gui.managers.ISystem;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+ import prime.net.FileReferenceList;
+ import prime.net.FileReference;
+ import prime.net.FileFilter;
+ import prime.net.IFileReference;
+ import prime.gui.core.IUIElement;
+ import prime.gui.managers.ISystem;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

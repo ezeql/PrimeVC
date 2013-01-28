@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,22 +30,22 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.Bindable;
-// import primevc.gui.behaviours.components.LabelLayoutBehaviour;
- import primevc.gui.core.UIDataComponent;
- import primevc.gui.core.UITextField;
- import primevc.gui.events.FocusState;
- import primevc.gui.events.UserEventTarget;
- import primevc.gui.layout.AdvancedLayoutClient;
- import primevc.gui.text.TextFormat;
- import primevc.gui.traits.ITextStylable;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.components;
+ import prime.bindable.Bindable;
+// import prime.gui.behaviours.components.LabelLayoutBehaviour;
+ import prime.gui.core.UIDataComponent;
+ import prime.gui.core.UITextField;
+ import prime.gui.events.FocusState;
+ import prime.gui.events.UserEventTarget;
+ import prime.layout.AdvancedLayoutClient;
+ import prime.gui.text.TextFormat;
+ import prime.gui.traits.ITextStylable;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 
-private typedef Flags		= primevc.gui.core.UIElementFlags;
+private typedef Flags		= prime.gui.core.UIElementFlags;
 
 
 /**

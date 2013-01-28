@@ -2,7 +2,7 @@ package sample;
 
 
 import prime.mvc.Proxy;
-import primevc.core.Bindable;
+import prime.bindable.Bindable;
 
 /**
  * Provides access to data and handles data logic.

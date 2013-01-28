@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,16 +30,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.geom.space.Direction;
- import primevc.core.Bindable;
- import primevc.gui.behaviours.components.DirectToolTipBehaviour;
- import primevc.gui.behaviours.UpdateMaskBehaviour;
- import primevc.gui.core.UIElementFlags;
- import primevc.gui.core.UIGraphic;
- import primevc.gui.display.VectorShape;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.components;
+ import prime.core.geom.space.Direction;
+ import prime.bindable.Bindable;
+ import prime.gui.behaviours.components.DirectToolTipBehaviour;
+ import prime.gui.behaviours.UpdateMaskBehaviour;
+ import prime.gui.core.UIElementFlags;
+ import prime.gui.core.UIGraphic;
+ import prime.gui.display.VectorShape;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
   using Std;
 
 

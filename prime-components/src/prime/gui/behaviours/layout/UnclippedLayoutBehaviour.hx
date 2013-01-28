@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,10 +30,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.layout;
- import primevc.gui.behaviours.scroll.IScrollBehaviour;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.traits.IScrollable;
+package prime.gui.behaviours.layout;
+ import prime.gui.behaviours.scroll.IScrollBehaviour;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.traits.IScrollable;
 
 
 

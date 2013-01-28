@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.managers;
- import primevc.core.traits.IDisposable;
- import primevc.gui.core.IUIComponent;
- import primevc.gui.core.UIComponent;
- import primevc.gui.core.UIWindow;
+package prime.gui.managers;
+ import prime.core.traits.IDisposable;
+ import prime.gui.core.IUIComponent;
+ import prime.gui.core.UIComponent;
+ import prime.gui.core.UIWindow;
 
 
 /**

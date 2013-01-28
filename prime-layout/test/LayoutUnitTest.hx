@@ -1,10 +1,10 @@
 package cases;
- import primevc.core.geom.BindableBox;
- import primevc.core.geom.Box;
- import primevc.core.geom.constraints.SizeConstraint;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutFlags;
-  using primevc.utils.BitUtil;
+ import prime.core.geom.BindableBox;
+ import prime.core.geom.Box;
+ import prime.core.geom.constraints.SizeConstraint;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutFlags;
+  using prime.utils.BitUtil;
  
 
 /**

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.scroll;	
+package prime.gui.behaviours.scroll;	
 #if !CSSParser
- import primevc.core.geom.IntPoint;
- import primevc.gui.events.MouseEvents;
-  using primevc.utils.NumberUtil;
+ import prime.core.geom.IntPoint;
+ import prime.gui.events.MouseEvents;
+  using prime.utils.NumberUtil;
 
 
 /**

@@ -39,7 +39,7 @@ package primevc.neko.traits;
  * @author Ruben Weijers
  * @creation-date Feb 11, 2011
  */
-interface IHasTypeParameters implements primevc.tools.generator.ICodeFormattable
+interface IHasTypeParameters implements prime.tools.generator.ICodeFormattable
 {
 	
 }

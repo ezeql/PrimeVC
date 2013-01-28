@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.drag;
+package prime.gui.behaviours.drag;
  import haxe.Timer;
  import prime.signal.Wire;
- import primevc.core.traits.IDisablable;
- import primevc.core.traits.IDisposable;
- import primevc.gui.display.ISprite;
- import primevc.gui.events.KeyboardEvents;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.input.KeyCodes;
- import primevc.types.Number;
+ import prime.core.traits.IDisablable;
+ import prime.core.traits.IDisposable;
+ import prime.gui.display.ISprite;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.input.KeyCodes;
+ import prime.types.Number;
   using apparat.math.FastMath;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

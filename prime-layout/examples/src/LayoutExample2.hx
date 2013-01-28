@@ -27,19 +27,19 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package examples.layout;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.display.VectorShape;
- import primevc.gui.display.Sprite;
- import primevc.gui.display.Window;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.display.VectorShape;
+ import prime.gui.display.Sprite;
+ import prime.gui.display.Window;
 
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutContainer;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.traits.IGraphicsOwner;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutContainer;
+ import prime.layout.LayoutFlags;
+ import prime.gui.traits.IGraphicsOwner;
 
   using prime.fsm.SimpleStateMachine;
-  using primevc.utils.Bind;			// for writing easy-to-read signal-bindings
-  using primevc.utils.BitUtil;		// for writing easy-to-read bit-flag-operations
+  using prime.utils.Bind;			// for writing easy-to-read signal-bindings
+  using prime.utils.BitUtil;		// for writing easy-to-read bit-flag-operations
 
 
 
@@ -68,10 +68,10 @@ class LayoutExample2 extends Window
 		// ----
 		// Some example layout-algorithms - uncomment to try em out.
 		// ----
-	//	layout.algorithm = new primevc.gui.layout.algorithms.tile.SimpleTileAlgorithm(vertical);
-		layout.algorithm = new primevc.gui.layout.algorithms.tile.SimpleTileAlgorithm();
-	//	layout.algorithm = new primevc.gui.layout.algorithms.DynamicLayoutAlgorithm( function () { return new primevc.gui.layout.algorithms.circle.HorizontalCircleAlgorithm(); }, function () { return new primevc.gui.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
-	//	layout.algorithm = new primevc.gui.layout.algorithms.DynamicLayoutAlgorithm( function () { return new primevc.gui.layout.algorithms.float.HorizontalFloatAlgorithm(); }, function () { return new primevc.gui.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
+	//	layout.algorithm = new prime.layout.algorithms.tile.SimpleTileAlgorithm(vertical);
+		layout.algorithm = new prime.layout.algorithms.tile.SimpleTileAlgorithm();
+	//	layout.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.circle.HorizontalCircleAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
+	//	layout.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.float.HorizontalFloatAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
 		
 		// create children
 		for (i in 0...20)	new Box().attachTo(this);
@@ -117,7 +117,7 @@ private class Box
 		
 #if debug num	= counter++; #end
 		layout	= new LayoutClient(30, 50);
-		layout.margin = new primevc.core.geom.Box(20,5);
+		layout.margin = new prime.core.geom.Box(20,5);
 		
 		applyLayout.on( layout.changed, this );						//apply position and size changes
 		draw();

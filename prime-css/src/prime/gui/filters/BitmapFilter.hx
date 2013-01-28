@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.filters;
+package prime.gui.filters;
 
 
 #if	(flash9 || flash8)
@@ -34,8 +34,8 @@ typedef BitmapFilter = flash.filters.BitmapFilter;
 #else
 	
 
- import primevc.tools.generator.ICodeGenerator;
- import primevc.utils.ID;
+ import prime.tools.generator.ICodeGenerator;
+ import prime.utils.ID;
 
 
 /**

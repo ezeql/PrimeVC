@@ -28,7 +28,7 @@
  */
 package primevc.gui.styling;
 #if (CSSParser || debug)
-  using primevc.utils.BitUtil;
+  using prime.utils.BitUtil;
   using StringTools;
 #end
 

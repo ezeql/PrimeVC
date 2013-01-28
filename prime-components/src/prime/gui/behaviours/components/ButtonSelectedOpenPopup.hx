@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.components;
+package prime.gui.behaviours.components;
  import prime.signal.Wire;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.core.IUIContainer;
- //import primevc.gui.events.KeyboardEvents;
- //import primevc.gui.input.KeyCodes;
- import primevc.gui.traits.ISelectable;
-  using primevc.utils.Bind;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.core.IUIContainer;
+ //import prime.gui.events.KeyboardEvents;
+ //import prime.gui.input.KeyCodes;
+ import prime.gui.traits.ISelectable;
+  using prime.utils.Bind;
 
 
 /**

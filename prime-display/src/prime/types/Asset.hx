@@ -28,7 +28,7 @@
  */
 package prime.types;
  import prime.core.geom.Matrix2D;
- import prime.core.net.ICommunicator;
+ import prime.net.ICommunicator;
  import prime.fsm.SimpleStateMachine;
  import prime.core.traits.IDisposable;
  import prime.core.traits.IValueObject;
@@ -43,7 +43,7 @@ package prime.types;
 
 #if flash9
  import flash.display.IBitmapDrawable;
- import prime.core.net.URLLoader;
+ import prime.net.URLLoader;
  import prime.gui.display.Loader;
 
 #elseif CSSParser

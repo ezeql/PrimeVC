@@ -27,8 +27,8 @@
  *  Ruben Weijers <ruben {at} rubenw [dot] nl>
  */
 package primevc.utils;
- import primevc.utils.FastArray;
-  using primevc.utils.FastArray;
+ import prime.utils.FastArray;
+  using prime.utils.FastArray;
   using StringTools;
 
 

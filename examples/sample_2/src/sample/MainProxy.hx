@@ -2,7 +2,7 @@ package sample;
 
 
 import prime.mvc.Proxy;
-import primevc.core.Bindable;
+import prime.bindable.Bindable;
 
 /**
  * MainProxy corresponds to a proxy in the MVC model. 

@@ -27,12 +27,12 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.gui.core.IUIElement;
- import primevc.gui.effects.EffectFlags;
- import primevc.gui.effects.UIElementEffects;
+ import prime.gui.core.IUIElement;
+ import prime.gui.effects.EffectFlags;
+ import prime.gui.effects.UIElementEffects;
  import primevc.gui.styling.StyleCollectionBase;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 
 private typedef Flags = EffectFlags;

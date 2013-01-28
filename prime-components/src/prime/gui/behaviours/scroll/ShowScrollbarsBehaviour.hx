@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,20 +30,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.scroll;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.traits.IScrollable;
+package prime.gui.behaviours.scroll;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.traits.IScrollable;
 #if !CSSParser
- import primevc.core.geom.space.Direction;
- import primevc.core.geom.Box;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.components.ScrollBar;
-// import primevc.gui.core.IUIContainer;
- import primevc.gui.layout.IScrollableLayout;
- import primevc.gui.layout.LayoutFlags;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.space.Direction;
+ import prime.core.geom.Box;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.components.ScrollBar;
+// import prime.gui.core.IUIContainer;
+ import prime.layout.IScrollableLayout;
+ import prime.layout.LayoutFlags;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 #end
 
 

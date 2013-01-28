@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.drag;
- import primevc.core.collections.IDataCursor;
- import primevc.core.geom.IRectangle;
- import primevc.gui.display.ISprite;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.traits.IDropTarget;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours.drag;
+ import prime.bindable.collections.IDataCursor;
+ import prime.core.geom.IRectangle;
+ import prime.gui.display.ISprite;
+ import prime.layout.LayoutClient;
+ import prime.gui.traits.IDropTarget;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -43,7 +47,7 @@ package primevc.gui.behaviours.drag;
  * @author Ruben Weijers
  * @creation-date Jul 21, 2010
  */
-class DragInfo implements primevc.core.traits.IDisposable
+class DragInfo implements prime.core.traits.IDisposable
 {
 	public var target			(default, null)				: ISprite;
 	
@@ -56,7 +60,7 @@ class DragInfo implements primevc.core.traits.IDisposable
 	/**
 	 * Information about the displayList in which the target is placed.
 	 */
-	public var displayCursor	(default, null)				: primevc.gui.display.DisplayDataCursor;
+	public var displayCursor	(default, null)				: prime.gui.display.DisplayDataCursor;
 	
 	/**
 	 * Optional cursor pointer for the data

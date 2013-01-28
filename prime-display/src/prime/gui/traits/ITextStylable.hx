@@ -26,8 +26,8 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.traits;
- import primevc.gui.text.TextFormat;
+package prime.gui.traits;
+ import prime.gui.text.TextFormat;
 
 
 /**

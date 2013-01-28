@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.scroll;
+package prime.gui.behaviours.scroll;
 #if !CSSParser
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.events.KeyModState;		// <= needed for typedef TargetType
- import primevc.gui.events.MouseEvents;
- import primevc.gui.layout.IScrollableLayout;
- import primevc.gui.traits.IScrollable;
-  using primevc.utils.TypeUtil;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.events.KeyModState;		// <= needed for typedef TargetType
+ import prime.gui.events.MouseEvents;
+ import prime.layout.IScrollableLayout;
+ import prime.gui.traits.IScrollable;
+  using prime.utils.TypeUtil;
 #end
 
 

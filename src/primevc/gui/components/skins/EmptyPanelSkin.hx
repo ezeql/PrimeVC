@@ -1,6 +1,6 @@
-package primevc.gui.components.skins;
-import primevc.gui.components.Panel;
-import primevc.gui.core.Skin;
+package prime.gui.components.skins;
+import prime.gui.components.Panel;
+import prime.gui.core.Skin;
 
 
 class EmptyPanelSkin  extends Skin<Panel>

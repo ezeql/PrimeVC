@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.geom;
- import primevc.core.Bindable;
- import primevc.core.traits.IDisposable;
- import primevc.types.Number;
+package prime.core.geom;
+ import prime.bindable.Bindable;
+ import prime.core.traits.IDisposable;
+ import prime.types.Number;
 
 
 /**

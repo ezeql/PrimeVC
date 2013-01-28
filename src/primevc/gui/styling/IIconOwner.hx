@@ -27,9 +27,9 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.gui.core.IUIElement;
- import primevc.gui.graphics.IGraphicProperty;
- import primevc.types.Asset;
+ import prime.gui.core.IUIElement;
+ import prime.gui.graphics.IGraphicProperty;
+ import prime.types.Asset;
 
 
 /**

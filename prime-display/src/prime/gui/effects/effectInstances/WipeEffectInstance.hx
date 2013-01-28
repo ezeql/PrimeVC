@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.core.geom.Rectangle;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.WipeEffect;
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.effects.effectInstances;
+ import prime.core.geom.Rectangle;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.WipeEffect;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

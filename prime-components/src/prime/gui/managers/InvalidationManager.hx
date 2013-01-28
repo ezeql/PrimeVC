@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.managers;
- import primevc.gui.traits.IPropertyValidator;
- import primevc.gui.traits.IValidatable;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.managers;
+ import prime.gui.traits.IPropertyValidator;
+ import prime.gui.traits.IValidatable;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

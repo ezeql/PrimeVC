@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.types;
- import prime.core.collections.iterators.FastArrayForwardIterator;
+ import prime.bindable.collections.iterators.FastArrayForwardIterator;
  import prime.core.traits.IClonable;
  import prime.core.traits.IDisposable;
 #if CSSParser

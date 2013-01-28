@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.traits.IInvalidatable;
+ import prime.core.traits.IInvalidatable;
 
 
 /**

@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package examples.layout;
- import primevc.gui.core.UIComponent;
- import primevc.gui.core.UIGraphic;
+ import prime.gui.core.UIComponent;
+ import prime.gui.core.UIGraphic;
 
 /**
  * LayoutExample4 is identical to LayoutExample1-3, but uses css for styling.
@@ -37,10 +37,10 @@ package examples.layout;
  * @author			Ruben Weijers
  * @creation-date	Jan 25, 2012
  */
-class LayoutExample4 extends primevc.gui.core.UIWindow
+class LayoutExample4 extends prime.gui.core.UIWindow
 {
 	public static function main ()
-		primevc.gui.display.Window.startup(function (stage) { return new LayoutExample4(stage); })
+		prime.gui.display.Window.startup(function (stage) { return new LayoutExample4(stage); })
 
 
 	override private function createChildren () {

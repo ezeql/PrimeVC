@@ -36,8 +36,8 @@ typedef DropShadowFilter = flash.filters.DropShadowFilter;
 //throw "error";
 
 #else
- import primevc.utils.Color;
-  using primevc.utils.Color;
+ import prime.utils.Color;
+  using prime.utils.Color;
   using Std;
 
 
@@ -110,7 +110,7 @@ class DropShadowFilter extends BitmapFilter
 	
 	
 #if (CSSParser || debug)
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		code.construct( this, [ distance, angle, color, alpha, blurX, blurY, strength, quality, inner, knockout, hideObject ] );
 	}

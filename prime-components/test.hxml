@@ -1,0 +1,47 @@
+## Flash 9+
+-main TestMain
+libs.hxml
+
+-cp test
+-swf-version 9
+-swf build/as3_test.swf
+
+--next
+
+## Flash 8
+-main TestMain
+libs.hxml
+
+-cp test
+-swf-version 8
+-swf build/as2_test.swf
+
+--next
+
+## JavaScript
+-main TestMain
+libs.hxml
+
+-cp test
+-js build/js_test.js
+
+--next
+
+## Neko
+-main TestMain
+libs.hxml
+
+-cp test
+-neko build/neko_test.n
+
+--next
+
+## CPP
+-main TestMain
+libs.hxml
+
+-cp test
+#-D HXCPP_M64
+-cpp build/cpp_test
+
+

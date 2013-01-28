@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,10 +30,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutContainer;
- import primevc.gui.traits.IScrollable;
+package prime.gui.core;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutContainer;
+ import prime.gui.traits.IScrollable;
 
 
 /**

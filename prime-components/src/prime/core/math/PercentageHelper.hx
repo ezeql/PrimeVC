@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -29,7 +33,7 @@
 package prime.core.math;
  import prime.signal.Wire;
  import prime.core.traits.IDisposable;
- import prime.core.Bindable;
+ import prime.bindable.Bindable;
  import prime.core.validators.FloatRangeValidator;
   using prime.utils.Bind;
   using prime.utils.NumberUtil;

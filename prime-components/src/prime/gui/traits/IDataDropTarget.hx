@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.traits;
- import primevc.core.collections.DataCursor;
- import primevc.core.collections.IEditableList;
+package prime.gui.traits;
+ import prime.bindable.collections.DataCursor;
+ import prime.bindable.collections.IEditableList;
 
 
 /**

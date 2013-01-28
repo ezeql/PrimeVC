@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,20 +30,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.layout;
- import primevc.core.collections.FastDoubleCell;
+package prime.gui.behaviours.layout;
+ import prime.bindable.collections.FastDoubleCell;
  import prime.signal.Wire;
- import primevc.gui.behaviours.ValidatingBehaviour;
- import primevc.gui.core.IUIElement;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutFlags;
+ import prime.gui.behaviours.ValidatingBehaviour;
+ import prime.gui.core.IUIElement;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutFlags;
  import prime.fsm.states.ValidateStates;
- import primevc.gui.traits.IDrawable;
- import primevc.gui.traits.IPropertyValidator;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.IfUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.traits.IDrawable;
+ import prime.gui.traits.IPropertyValidator;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.IfUtil;
+  using prime.utils.TypeUtil;
  
 
 /**

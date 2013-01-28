@@ -26,16 +26,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
-  using primevc.gui.utils.DisplayUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+  using prime.gui.utils.DisplayUtil;
+  using prime.utils.NumberUtil;
 
 
 /**
  * @author Ruben Weijers
  * @creation-date Oct 04, 2010
  */
-class RotateEffectInstance extends EffectInstance < primevc.gui.display.IDisplayObject, primevc.gui.effects.RotateEffectt >
+class RotateEffectInstance extends EffectInstance < prime.gui.display.IDisplayObject, prime.gui.effects.RotateEffectt >
 {
 	/**
 	 * start rotation value.
@@ -56,7 +56,7 @@ class RotateEffectInstance extends EffectInstance < primevc.gui.display.IDisplay
 	}
 
 
-	override public function setValues ( v:primevc.gui.effects.EffectProperties ) 
+	override public function setValues ( v:prime.gui.effects.EffectProperties ) 
 	{
 		switch (v) {
 			case rotation(from, to):

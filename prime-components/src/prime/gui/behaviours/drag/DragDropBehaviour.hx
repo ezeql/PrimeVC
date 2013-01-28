@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.drag;
+package prime.gui.behaviours.drag;
  import prime.signal.Wire;
- import primevc.core.geom.Point;
- import primevc.gui.core.IUIElement;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.traits.IDataDropTarget;
- import primevc.gui.traits.IDropTarget;
-  using primevc.gui.utils.UIElementActions;
-  using primevc.utils.Bind;
-  using primevc.utils.IfUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.Point;
+ import prime.gui.core.IUIElement;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.traits.IDataDropTarget;
+ import prime.gui.traits.IDropTarget;
+  using prime.gui.utils.UIElementActions;
+  using prime.utils.Bind;
+  using prime.utils.IfUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
  
 
 /**

@@ -27,16 +27,16 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.traits.IDisposable;
+ import prime.core.traits.IDisposable;
  import Hash;
 #if (CSSParser || debug)
- import primevc.utils.ID;
+ import prime.utils.ID;
 #end
 #if CSSParser
- import primevc.types.SimpleDictionary;
- import primevc.tools.generator.ICodeFormattable;
- import primevc.tools.generator.ICodeGenerator;
- import primevc.tools.generator.ICSSFormattable;
+ import prime.types.SimpleDictionary;
+ import prime.tools.generator.ICodeFormattable;
+ import prime.tools.generator.ICodeGenerator;
+ import prime.tools.generator.ICSSFormattable;
   using StringTools;
 #end
 

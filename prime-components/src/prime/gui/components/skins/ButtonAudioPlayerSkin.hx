@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,17 +30,17 @@
  * Authors:
  *  Ruben Weijers   <ruben @ rubenw.nl>
  */
-package primevc.gui.components.skins;
+package prime.gui.components.skins;
  import prime.fsm.MediaStates;
- import primevc.gui.components.AudioPlayer;
- import primevc.gui.components.Button;
- import primevc.gui.core.UIGraphic;
- import primevc.gui.core.Skin;
-  using primevc.utils.Bind;
+ import prime.gui.components.AudioPlayer;
+ import prime.gui.components.Button;
+ import prime.gui.core.UIGraphic;
+ import prime.gui.core.Skin;
+  using prime.utils.Bind;
 
 
 
-private typedef Flags = primevc.gui.core.UIElementFlags;
+private typedef Flags = prime.gui.core.UIElementFlags;
 
 
 

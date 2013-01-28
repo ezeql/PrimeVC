@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,12 +30,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
- import primevc.core.collections.DataCursor;
- import primevc.core.collections.IEditableList;
- import primevc.core.traits.IValueObject;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.core;
+ import prime.bindable.collections.DataCursor;
+ import prime.bindable.collections.IEditableList;
+ import prime.core.traits.IValueObject;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
  
 
 /**
@@ -42,8 +46,8 @@ package primevc.gui.core;
  * It's possible to change or read the value of the bindable directly by calling
  *  v = component.data; and component.data = newValue;
  * 
- * @see				primevc.gui.core.UIComponent
- * @see				primevc.gui.core.IUIComponent
+ * @see				prime.gui.core.UIComponent
+ * @see				prime.gui.core.IUIComponent
  * 
  * @creation-date	Jun 17, 2010
  * @author			Ruben Weijers

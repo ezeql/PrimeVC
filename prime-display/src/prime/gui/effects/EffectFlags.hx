@@ -26,8 +26,8 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
-  using primevc.utils.BitUtil;
+package prime.gui.effects;
+  using prime.utils.BitUtil;
 
 
 

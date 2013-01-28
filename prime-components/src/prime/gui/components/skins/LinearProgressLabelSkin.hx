@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,17 +30,17 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components.skins;
- import primevc.core.net.CommunicationType;
- import primevc.core.Bindable;
+package prime.gui.components.skins;
+ import prime.net.CommunicationType;
+ import prime.bindable.Bindable;
 
- import primevc.gui.components.Label;
+ import prime.gui.components.Label;
 
- import primevc.gui.core.UIElementFlags;
- import primevc.gui.core.UIGraphic;
+ import prime.gui.core.UIElementFlags;
+ import prime.gui.core.UIGraphic;
 
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 
 /**

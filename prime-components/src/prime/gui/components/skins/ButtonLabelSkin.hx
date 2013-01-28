@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,12 +30,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components.skins;
- import primevc.gui.components.Button;
- import primevc.gui.core.UITextField;
- import primevc.gui.core.Skin;
- import primevc.gui.events.UserEventTarget;
-  using primevc.utils.BitUtil;
+package prime.gui.components.skins;
+ import prime.gui.components.Button;
+ import prime.gui.core.UITextField;
+ import prime.gui.core.Skin;
+ import prime.gui.events.UserEventTarget;
+  using prime.utils.BitUtil;
 
 
 
@@ -65,7 +69,7 @@ class ButtonLabelSkin extends Skin<Button>
 #if flash9
 	override public function validate (changes:Int)
 	{
-		if (changes.has( primevc.gui.core.UIElementFlags.TEXTSTYLE )) {
+		if (changes.has( prime.gui.core.UIElementFlags.TEXTSTYLE )) {
 			labelField.embedFonts	= owner.embedFonts;
 			labelField.wordWrap		= owner.wordWrap;
 			labelField.textStyle 	= owner.textStyle;

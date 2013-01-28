@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.drag;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.traits.IDataDropTarget;
- import primevc.gui.traits.IDropTarget;
- import primevc.gui.traits.ILayoutable;
- import primevc.utils.NumberUtil;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours.drag;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.traits.IDataDropTarget;
+ import prime.gui.traits.IDropTarget;
+ import prime.gui.traits.ILayoutable;
+ import prime.utils.NumberUtil;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

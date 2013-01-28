@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,17 +30,17 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.layout;
- import primevc.core.collections.ListChange;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.display.ISprite;
- import primevc.gui.layout.LayoutContainer;
- import primevc.gui.traits.IDisplayable;
- import primevc.gui.traits.ILayoutable;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours.layout;
+ import prime.core.collections.ListChange;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.display.ISprite;
+ import prime.layout.LayoutContainer;
+ import prime.gui.traits.IDisplayable;
+ import prime.gui.traits.ILayoutable;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

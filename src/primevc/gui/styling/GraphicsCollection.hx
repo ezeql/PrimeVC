@@ -27,18 +27,18 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.gui.core.IUIContainer;
- import primevc.gui.core.IUIElement;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.graphics.borders.EmptyBorder;
- import primevc.gui.graphics.EmptyGraphicProperty;
- import primevc.gui.graphics.GraphicProperties;
+ import prime.gui.core.IUIContainer;
+ import prime.gui.core.IUIElement;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.graphics.borders.EmptyBorder;
+ import prime.gui.graphics.EmptyGraphicProperty;
+ import prime.gui.graphics.GraphicProperties;
  import primevc.gui.styling.StyleCollectionBase;
- import primevc.gui.traits.IDrawable;
- import primevc.gui.traits.ISkinnable;
-  using primevc.utils.BitUtil;
-  using primevc.utils.Color;
-  using primevc.utils.TypeUtil;
+ import prime.gui.traits.IDrawable;
+ import prime.gui.traits.ISkinnable;
+  using prime.utils.BitUtil;
+  using prime.utils.Color;
+  using prime.utils.TypeUtil;
   using Type;
 
 

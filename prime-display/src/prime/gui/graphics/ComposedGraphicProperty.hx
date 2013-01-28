@@ -30,7 +30,7 @@ package prime.gui.graphics;
 #if CSSParser
  import prime.tools.generator.ICodeGenerator;
 #end
- import prime.core.collections.FastCell;
+ import prime.bindable.collections.FastCell;
  import prime.core.geom.IRectangle;
  import prime.gui.traits.IGraphicsOwner;
   using prime.utils.TypeUtil;

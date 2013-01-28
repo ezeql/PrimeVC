@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout;
- import prime.fsm.ValidateStates;
+ import prime.fsm.states.ValidateStates;
   using prime.utils.BitUtil;
 
 

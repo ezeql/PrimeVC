@@ -27,9 +27,9 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.neko.utils;
- import primevc.types.RGBA;
+ import prime.types.RGBA;
   using primevc.neko.utils.Color;
-  using primevc.utils.NumberUtil;
+  using prime.utils.NumberUtil;
   using Std;
   using StringTools;
 

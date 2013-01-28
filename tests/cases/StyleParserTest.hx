@@ -1,37 +1,37 @@
 package cases;
-// import primevc.core.net.URLLoader;
- import primevc.core.geom.space.Direction;
- import primevc.core.geom.space.Horizontal;
- import primevc.core.geom.space.MoveDirection;
- import primevc.core.geom.space.Position;
- import primevc.core.geom.space.Vertical;
- import primevc.gui.effects.AnchorScaleEffect;
- import primevc.gui.effects.CompositeEffect;
- import primevc.gui.effects.Easing;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.FadeEffect;
- import primevc.gui.effects.IEffect;
- import primevc.gui.effects.MoveEffect;
- import primevc.gui.effects.ParallelEffect;
- import primevc.gui.effects.ResizeEffect;
- import primevc.gui.effects.RotateEffect;
- import primevc.gui.effects.ScaleEffect;
- import primevc.gui.effects.SequenceEffect;
- import primevc.gui.effects.SetAction;
- import primevc.gui.effects.WipeEffect;
+// import prime.core.net.URLLoader;
+ import prime.core.geom.space.Direction;
+ import prime.core.geom.space.Horizontal;
+ import prime.core.geom.space.MoveDirection;
+ import prime.core.geom.space.Position;
+ import prime.core.geom.space.Vertical;
+ import prime.gui.effects.AnchorScaleEffect;
+ import prime.gui.effects.CompositeEffect;
+ import prime.gui.effects.Easing;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.FadeEffect;
+ import prime.gui.effects.IEffect;
+ import prime.gui.effects.MoveEffect;
+ import prime.gui.effects.ParallelEffect;
+ import prime.gui.effects.ResizeEffect;
+ import prime.gui.effects.RotateEffect;
+ import prime.gui.effects.ScaleEffect;
+ import prime.gui.effects.SequenceEffect;
+ import prime.gui.effects.SetAction;
+ import prime.gui.effects.WipeEffect;
  import primevc.gui.styling.StyleBlock;
  import primevc.gui.styling.CSSParser;
- import primevc.tools.generator.HaxeCodeGenerator;
- import primevc.tools.Manifest;
-  using primevc.utils.Color;
-  using primevc.utils.ERegUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.tools.generator.HaxeCodeGenerator;
+ import prime.tools.Manifest;
+  using prime.utils.Color;
+  using prime.utils.ERegUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
   using Std;
   using Type;
 
 
-typedef BType = primevc.gui.filters.BitmapFilterType;
+typedef BType = prime.gui.filters.BitmapFilterType;
 
 
 class StyleParserTest

@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.ResizeEffect;
- import primevc.gui.traits.ISizeable;
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.ResizeEffect;
+ import prime.gui.traits.ISizeable;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
   using Std;
 
 

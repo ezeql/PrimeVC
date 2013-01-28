@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,22 +30,22 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Wire;
- import primevc.core.events.ActionEvent;
- import primevc.core.geom.space.Direction;
- import primevc.core.geom.IntPoint;
- import primevc.core.geom.Point;
- import primevc.core.math.PercentageHelper;
- import primevc.core.Bindable;
- import primevc.gui.components.Button;
- import primevc.gui.core.UIElementFlags;
- import primevc.gui.core.UIDataContainer;
- import primevc.gui.events.MouseEvents;
-  using primevc.gui.utils.UIElementActions;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+ import prime.core.events.ActionEvent;
+ import prime.core.geom.space.Direction;
+ import prime.core.geom.IntPoint;
+ import prime.core.geom.Point;
+ import prime.core.math.PercentageHelper;
+ import prime.bindable.Bindable;
+ import prime.gui.components.Button;
+ import prime.gui.core.UIElementFlags;
+ import prime.gui.core.UIDataContainer;
+ import prime.gui.events.MouseEvents;
+  using prime.gui.utils.UIElementActions;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 
 

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.traits;
+package prime.gui.traits;
 #if flash9
- import primevc.gui.graphics.GraphicProperties;
+ import prime.gui.graphics.GraphicProperties;
 #end
 
 

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,16 +30,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Wire;
- import primevc.core.Bindable;
- import primevc.core.RevertableBindable;
- import primevc.gui.core.UITextField;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+ import prime.bindable.Bindable;
+ import prime.core.RevertableBindable;
+ import prime.gui.core.UITextField;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
-private typedef Flags = primevc.gui.core.UIElementFlags;
+private typedef Flags = prime.gui.core.UIElementFlags;
 
 
 /**

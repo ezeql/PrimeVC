@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,12 +30,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.drag;
- import primevc.core.geom.IntRectangle;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.traits.ILayoutable;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours.drag;
+ import prime.core.geom.IntRectangle;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.traits.ILayoutable;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

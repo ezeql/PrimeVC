@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.gui.effects.CompositeEffect;		//imports typedef ChildEffectType
- import primevc.gui.effects.ParallelEffect;
-  using primevc.utils.Bind;
+package prime.gui.effects.effectInstances;
+ import prime.gui.effects.CompositeEffect;		//imports typedef ChildEffectType
+ import prime.gui.effects.ParallelEffect;
+  using prime.utils.Bind;
 
 
 /**

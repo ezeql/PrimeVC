@@ -1,8 +1,8 @@
 package cases;
  import apparat.math.FastMath;
- import primevc.utils.NumberUtil;
+ import prime.utils.NumberUtil;
  import Benchmark;
-  using primevc.utils.NumberUtil;
+  using prime.utils.NumberUtil;
 
 
 

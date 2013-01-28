@@ -26,11 +26,11 @@
  * Authors:
  *  Ruben Weijers	<ruben@rubenw.nl>
  */
-package primevc.gui.utils;
+package prime.gui.utils;
  import apparat.math.FastMath;
 #if flash9
- import primevc.gui.display.BitmapData;
- import primevc.types.RGBA;
+ import prime.gui.display.BitmapData;
+ import prime.types.RGBA;
 #end
 
 

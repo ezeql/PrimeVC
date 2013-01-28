@@ -27,12 +27,12 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.traits.IInvalidatable;
- import primevc.gui.filters.BitmapFilter;
+ import prime.core.traits.IInvalidatable;
+ import prime.gui.filters.BitmapFilter;
 #if CSSParser
- import primevc.tools.generator.ICodeGenerator;
+ import prime.tools.generator.ICodeGenerator;
 #end
-  using primevc.utils.BitUtil;
+  using prime.utils.BitUtil;
 
 
 private typedef Flags = FilterFlags;

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,15 +30,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.utils;
- import primevc.core.traits.IDisposable;
- import primevc.gui.core.IUIElement;
- import primevc.types.Number;
-  using primevc.utils.IfUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.utils;
+ import prime.core.traits.IDisposable;
+ import prime.gui.core.IUIElement;
+ import prime.types.Number;
+  using prime.utils.IfUtil;
+  using prime.utils.NumberUtil;
 
 
-private typedef Flags = primevc.gui.effects.EffectFlags;
+private typedef Flags = prime.gui.effects.EffectFlags;
 
 
 /**

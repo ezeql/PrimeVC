@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,20 +30,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components.skins;
- import primevc.core.Bindable;
- import primevc.gui.behaviours.components.DirectToolTipBehaviour;
- import primevc.gui.components.DataButton;
- import primevc.gui.core.Skin;
- import primevc.gui.core.UIGraphic;
- import primevc.gui.core.UITextField;
- import primevc.gui.layout.algorithms.RelativeAlgorithm;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.layout.RelativeLayout;
- import primevc.types.Number;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.components.skins;
+ import prime.bindable.Bindable;
+ import prime.gui.behaviours.components.DirectToolTipBehaviour;
+ import prime.gui.components.DataButton;
+ import prime.gui.core.Skin;
+ import prime.gui.core.UIGraphic;
+ import prime.gui.core.UITextField;
+ import prime.layout.algorithms.RelativeAlgorithm;
+ import prime.layout.LayoutFlags;
+ import prime.layout.RelativeLayout;
+ import prime.types.Number;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 
 /**

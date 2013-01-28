@@ -27,18 +27,18 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package examples.layout;
- import primevc.gui.core.UIComponent;
- import primevc.gui.core.UIGraphic;
- import primevc.gui.core.UIWindow;
- import primevc.gui.display.Window;
- import primevc.gui.graphics.fills.SolidFill;
- import primevc.gui.graphics.shapes.RegularRectangle;
-  using primevc.utils.Bind;
+ import prime.gui.core.UIComponent;
+ import prime.gui.core.UIGraphic;
+ import prime.gui.core.UIWindow;
+ import prime.gui.display.Window;
+ import prime.gui.graphics.fills.SolidFill;
+ import prime.gui.graphics.shapes.RegularRectangle;
+  using prime.utils.Bind;
 
 
 /**
  * LayoutExample3 is identical to LayoutExample2 but uses the primevc.gui.core package instead
- * of primevc.gui.display.
+ * of prime.gui.display.
  *
  * @author			Ruben Weijers
  * @creation-date	Jan 25, 2012
@@ -55,10 +55,10 @@ class LayoutExample3 extends UIWindow
 		// ----
 		// Some example layout-algorithms - uncomment to try em out.
 		// ----
-	//	layoutContainer.algorithm = new primevc.gui.layout.algorithms.tile.SimpleTileAlgorithm(vertical);
-		layoutContainer.algorithm = new primevc.gui.layout.algorithms.tile.SimpleTileAlgorithm();
-	//	layoutContainer.algorithm = new primevc.gui.layout.algorithms.DynamicLayoutAlgorithm( function () { return new primevc.gui.layout.algorithms.circle.HorizontalCircleAlgorithm(); }, function () { return new primevc.gui.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
-	//	layoutContainer.algorithm = new primevc.gui.layout.algorithms.DynamicLayoutAlgorithm( function () { return new primevc.gui.layout.algorithms.float.HorizontalFloatAlgorithm(); }, function () { return new primevc.gui.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
+	//	layoutContainer.algorithm = new prime.layout.algorithms.tile.SimpleTileAlgorithm(vertical);
+		layoutContainer.algorithm = new prime.layout.algorithms.tile.SimpleTileAlgorithm();
+	//	layoutContainer.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.circle.HorizontalCircleAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
+	//	layoutContainer.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.float.HorizontalFloatAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
 
 		// create children
 		for (i in 0...20)	attach( new Box() );
@@ -83,7 +83,7 @@ private class Box extends UIGraphic
 		visible 			= true;
 		graphicData.fill	= new SolidFill(0xffaaaaff);
 		graphicData.shape	= new RegularRectangle();
-		layout.margin		= new primevc.core.geom.Box(20,5);
+		layout.margin		= new prime.core.geom.Box(20,5);
 		layout.resize( 30, 50 );
 	}
 }
@@ -109,7 +109,7 @@ private class InteractiveBox extends UIComponent
 		visible 			= true;
 		graphicData.fill 	= normalFill = new SolidFill(0xffaaaaff);
 		graphicData.shape 	= new RegularRectangle();
-		layout.margin 		= new primevc.core.geom.Box(20,5);
+		layout.margin 		= new prime.core.geom.Box(20,5);
 		layout.resize( 30, 50 );
 	}
 	

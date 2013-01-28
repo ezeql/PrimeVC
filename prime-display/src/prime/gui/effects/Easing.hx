@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
+package prime.gui.effects;
 
 
 typedef Easing = 
-	#if CSSParser	primevc.types.Reference;
+	#if CSSParser	prime.types.Reference;
 	#else			Float -> Float -> Float -> Float -> Float; #end

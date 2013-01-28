@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Wire;
- import primevc.core.Bindable;
- import primevc.types.Asset;
-  using primevc.utils.Bind;
+ import prime.bindable.Bindable;
+ import prime.types.Asset;
+  using prime.utils.Bind;
 
 
 /**

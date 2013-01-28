@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.gui.core.IUIElement;
- import primevc.gui.traits.ITextStylable;
+package prime.gui.components;
+ import prime.gui.core.IUIElement;
+ import prime.gui.traits.ITextStylable;
 
 /**
  * @author Ruben Weijers

@@ -1,13 +1,13 @@
 package cases;
  import Benchmark;
- import primevc.core.geom.BindableBox;
- import primevc.core.geom.constraints.SizeConstraint;
- import primevc.core.geom.RangedFloat;
- import primevc.types.Number;
+ import prime.core.geom.BindableBox;
+ import prime.core.geom.constraints.SizeConstraint;
+ import prime.core.geom.RangedFloat;
+ import prime.types.Number;
  import primevc.gui.events.LayoutEvents;
- import primevc.gui.layout.LayoutClient;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+ import prime.layout.LayoutClient;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
  
 
 /**

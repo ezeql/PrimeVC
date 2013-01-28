@@ -79,7 +79,7 @@ class BlurFilter extends BitmapFilter
 
 
 	#if (CSSParser || debug)
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		code.construct( this, [ blurX, blurY, quality ] );
 	}

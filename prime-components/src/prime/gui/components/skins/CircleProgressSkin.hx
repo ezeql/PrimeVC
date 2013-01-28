@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,23 +30,23 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components.skins;
- import primevc.core.net.CommunicationType;
- import primevc.gui.behaviours.UpdateMaskBehaviour;
- import primevc.core.Bindable;
+package prime.gui.components.skins;
+ import prime.net.CommunicationType;
+ import prime.gui.behaviours.UpdateMaskBehaviour;
+ import prime.bindable.Bindable;
 
- import primevc.gui.components.Label;
- import primevc.gui.components.ProgressBar;
+ import prime.gui.components.Label;
+ import prime.gui.components.ProgressBar;
 
- import primevc.gui.core.UIGraphic;
- import primevc.gui.core.Skin;
+ import prime.gui.core.UIGraphic;
+ import prime.gui.core.Skin;
 
- import primevc.gui.display.VectorShape;
- import primevc.gui.layout.RelativeLayout;
- import primevc.gui.graphics.shapes.Circle;
+ import prime.gui.display.VectorShape;
+ import prime.layout.RelativeLayout;
+ import prime.gui.graphics.shapes.Circle;
 
-  using primevc.utils.NumberUtil;
-  using primevc.utils.Bind;
+  using prime.utils.NumberUtil;
+  using prime.utils.Bind;
 
 
 /**

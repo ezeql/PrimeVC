@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,23 +30,23 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
 #if flash9
  import flash.geom.ColorTransform;
 #end
- import primevc.gui.core.UIDataComponent;
- import primevc.gui.graphics.fills.BitmapFill;
- import primevc.gui.graphics.fills.SolidFill;
- import primevc.gui.graphics.IGraphicElement;
- import primevc.gui.layout.AdvancedLayoutClient;
- import primevc.gui.layout.LayoutFlags;
- import primevc.types.Asset;
- import primevc.types.Number;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.Color;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.core.UIDataComponent;
+ import prime.gui.graphics.fills.BitmapFill;
+ import prime.gui.graphics.fills.SolidFill;
+ import prime.gui.graphics.IGraphicElement;
+ import prime.layout.AdvancedLayoutClient;
+ import prime.layout.LayoutFlags;
+ import prime.types.Asset;
+ import prime.types.Number;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.Color;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

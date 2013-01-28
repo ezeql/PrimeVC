@@ -37,6 +37,6 @@ package prime.core.traits;
  */
 interface IIdentifiable
 {
-	public var id	(default, null)		: prime.signal.Bindable<String>;
+	public var id	(default, null)		: prime.bindable.Bindable<String>;
 #if debug public function toString ()	: String; #end
 }

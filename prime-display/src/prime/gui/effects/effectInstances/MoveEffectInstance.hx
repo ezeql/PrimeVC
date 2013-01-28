@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.MoveEffect;
- import primevc.gui.traits.ILayoutable;
- import primevc.gui.traits.IPositionable;
- import primevc.types.Number;
- import primevc.utils.NumberUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.effects.effectInstances;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.MoveEffect;
+ import prime.gui.traits.ILayoutable;
+ import prime.gui.traits.IPositionable;
+ import prime.types.Number;
+ import prime.utils.NumberUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 

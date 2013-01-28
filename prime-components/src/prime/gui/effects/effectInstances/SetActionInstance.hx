@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.gui.core.IUIElement;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.SetAction;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+ import prime.gui.core.IUIElement;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.SetAction;
+  using prime.utils.NumberUtil;
 
 
 

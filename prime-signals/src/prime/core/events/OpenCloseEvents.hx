@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
-package primevc.core.events;
+package prime.core.events;
  import primevc.signal.Signals;
  import primevc.signal.Signal1;
 

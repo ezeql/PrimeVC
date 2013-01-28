@@ -8,8 +8,8 @@ PRIMEVC_ROOT="${BUILDSCRIPTDIR}/.."
 
 MINPARAMS=1
 StyleFolder="$1"
-MainClass="primevc.tools.CSSParserMain"
-ParserClass="primevc.tools.CSSParser"
+MainClass="prime.tools.CSSParserMain"
+ParserClass="prime.tools.CSSParser"
 SourceFolder="${PRIMEVC_ROOT}/src"
 MainFile="${SourceFolder}/${MainClass//.//}.hx"			#replace all dots with slashes
 ParserClass="${SourceFolder}/${ParserClass//.//}.hx"	#replace all dots with slashes

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import flash.errors.Error;
  import prime.signal.Wire;
- import primevc.gui.core.UIContainer;
- import primevc.gui.core.UIWindow;
- import primevc.gui.layout.algorithms.LayoutAlgorithmBase;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutContainer;
+ import prime.gui.core.UIContainer;
+ import prime.gui.core.UIWindow;
+ import prime.layout.algorithms.LayoutAlgorithmBase;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutContainer;
  import prime.fsm.states.ValidateStates;
- import primevc.gui.events.KeyboardEvents;
- import primevc.gui.input.KeyCodes;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.input.KeyCodes;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 

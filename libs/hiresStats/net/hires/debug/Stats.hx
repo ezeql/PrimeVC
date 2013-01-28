@@ -36,7 +36,7 @@ package net.hires.debug;
  import flash.text.StyleSheet;
  import flash.text.TextField;
  import haxe.xml.Fast;
- import primevc.gui.display.Sprite;
+ import prime.gui.display.Sprite;
   using Std;
 
 

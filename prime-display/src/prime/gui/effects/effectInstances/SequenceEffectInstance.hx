@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.gui.effects.SequenceEffect;
-  using primevc.utils.Bind;
+package prime.gui.effects.effectInstances;
+ import prime.gui.effects.SequenceEffect;
+  using prime.utils.Bind;
 
 
 /**

@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
- import primevc.core.collections.iterators.IIterator;
- import primevc.core.collections.FastCell;
+package prime.gui.graphics;
+ import prime.bindable.collections.iterators.IIterator;
+ import prime.bindable.collections.FastCell;
 
 
 /**

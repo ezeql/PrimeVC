@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,36 +30,36 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.collections.IReadOnlyList;
- import primevc.core.collections.ListChange;
+package prime.gui.components;
+ import prime.core.collections.IReadOnlyList;
+ import prime.core.collections.ListChange;
  import prime.signal.Signal1;
- import primevc.core.traits.IValueObject;
- import primevc.core.geom.IRectangle;
+ import prime.core.traits.IValueObject;
+ import prime.core.geom.IRectangle;
 
- import primevc.gui.components.IItemRenderer;
- import primevc.gui.core.IUIDataElement;
- import primevc.gui.core.UIDataContainer;
- import primevc.gui.display.DisplayDataCursor;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.display.ISprite;
+ import prime.gui.components.IItemRenderer;
+ import prime.gui.core.IUIDataElement;
+ import prime.gui.core.UIDataContainer;
+ import prime.gui.display.DisplayDataCursor;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.display.ISprite;
 
- import primevc.gui.events.DropTargetEvents;
- import primevc.gui.events.MouseEvents;
+ import prime.gui.events.DropTargetEvents;
+ import prime.gui.events.MouseEvents;
 
- import primevc.gui.layout.LayoutFlags;
+ import prime.layout.LayoutFlags;
  import prime.fsm.states.ValidateStates;
 
- import primevc.gui.traits.IDropTarget;
- import primevc.gui.traits.IInteractive;
+ import prime.gui.traits.IDropTarget;
+ import prime.gui.traits.IInteractive;
 
- import primevc.types.SimpleDictionary;
+ import prime.types.SimpleDictionary;
 
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.IfUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.IfUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
   using haxe.Timer;
 
 
@@ -97,7 +101,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	 * On default this method will always return null.
 	 * @param 	cursor:DisplayDataCursor
 	 * @return 	Boolean (default: false)
-	 * @see primevc.gui.traits.IDropTarget
+	 * @see prime.gui.traits.IDropTarget
 	 */
 	public var isDisplayDropAllowed												: DisplayDataCursor -> Bool;
 	private function defaultDisplayDropCheck (cursor:DisplayDataCursor) 		: Bool 	{ return children == cursor.list; }

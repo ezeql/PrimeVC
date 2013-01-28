@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.managers;
+package prime.gui.managers;
  import prime.signal.Wire;
- import primevc.core.traits.IDisposable;
- import primevc.core.Bindable;
- import primevc.gui.components.Label;
- import primevc.gui.core.UIComponent;
- import primevc.gui.core.UIWindow;
-  using primevc.utils.Bind;
+ import prime.core.traits.IDisposable;
+ import prime.bindable.Bindable;
+ import prime.gui.components.Label;
+ import prime.gui.core.UIComponent;
+ import prime.gui.core.UIWindow;
+  using prime.utils.Bind;
   using Std;
 
 

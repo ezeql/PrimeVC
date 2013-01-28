@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,18 +30,18 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.Bindable;
- import primevc.gui.core.UIDataContainer;
- import primevc.gui.graphics.IGraphicProperty;
+package prime.gui.components;
+ import prime.bindable.Bindable;
+ import prime.gui.core.UIDataContainer;
+ import prime.gui.graphics.IGraphicProperty;
  import primevc.gui.styling.IIconOwner;
- import primevc.gui.text.TextFormat;
- import primevc.gui.traits.ISelectable;
- import primevc.gui.traits.ITextStylable;
- import primevc.types.Asset;
+ import prime.gui.text.TextFormat;
+ import prime.gui.traits.ISelectable;
+ import prime.gui.traits.ITextStylable;
+ import prime.types.Asset;
 
 
-private typedef Flags = primevc.gui.core.UIElementFlags;
+private typedef Flags = prime.gui.core.UIElementFlags;
 
 
 /**

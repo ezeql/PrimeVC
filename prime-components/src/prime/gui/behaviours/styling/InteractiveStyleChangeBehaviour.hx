@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,20 +30,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.styling;
+package prime.gui.behaviours.styling;
  import prime.signal.Wire;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.core.IUIComponent;
- import primevc.gui.events.FocusState;
- import primevc.gui.events.MouseButton;
- import primevc.gui.events.MouseEvents;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.core.IUIComponent;
+ import prime.gui.events.FocusState;
+ import prime.gui.events.MouseButton;
+ import prime.gui.events.MouseEvents;
  import primevc.gui.styling.StyleState;
  import primevc.gui.styling.StyleStateFlags;
- import primevc.gui.traits.IDropTarget;
- import primevc.gui.traits.ISelectable;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.traits.IDropTarget;
+ import prime.gui.traits.ISelectable;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 
 private typedef Flags = StyleStateFlags;

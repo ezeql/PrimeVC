@@ -4,7 +4,7 @@ package primevc.js.display;
  import prime.signal.Signal1;
  import primevc.js.events.DisplayEvents;
  import primevc.js.events.DisplaySignal;
-  using primevc.utils.Bind;
+  using prime.utils.Bind;
 
 /**
  * @since	March 11, 2011

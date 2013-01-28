@@ -29,7 +29,7 @@
 package primevc.gui.styling;
  import prime.signal.Signal1;
  import primevc.gui.styling.StyleCollectionBase;
-  using primevc.utils.BitUtil;
+  using prime.utils.BitUtil;
 
 private typedef Flags = StyleStateFlags;
 

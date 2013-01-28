@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,45 +30,45 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
+package prime.gui.core;
 #if flash9
- import primevc.core.collections.SimpleList;
+ import prime.bindable.collections.SimpleList;
  import primevc.gui.styling.UIElementStyle;
 #end
  import prime.signal.Wire;
- import primevc.core.media.VideoStream;
+ import prime.core.media.VideoStream;
  import prime.media.states.MediaStates;
- import primevc.core.Bindable;
+ import prime.bindable.Bindable;
  
- import primevc.gui.behaviours.layout.ValidateLayoutBehaviour;
- import primevc.gui.behaviours.BehaviourList;
+ import prime.gui.behaviours.layout.ValidateLayoutBehaviour;
+ import prime.gui.behaviours.BehaviourList;
  
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.display.Video;
- import primevc.gui.effects.UIElementEffects;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.display.Video;
+ import prime.gui.effects.UIElementEffects;
  
- import primevc.gui.layout.AdvancedLayoutClient;
- import primevc.gui.layout.ILayoutContainer;
- import primevc.gui.layout.LayoutClient;
+ import prime.layout.AdvancedLayoutClient;
+ import prime.layout.ILayoutContainer;
+ import prime.layout.LayoutClient;
  
- import primevc.gui.managers.ISystem;
+ import prime.gui.managers.ISystem;
  import prime.fsm.states.ValidateStates;
- import primevc.gui.states.UIElementStates;
- import primevc.gui.traits.IValidatable;
- import primevc.types.Number;
+ import prime.gui.states.UIElementStates;
+ import prime.gui.traits.IValidatable;
+ import prime.types.Number;
  
-  using primevc.gui.utils.UIElementActions;
-  using primevc.utils.Bind;
-  using primevc.core.states.SimpleStateMachine;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+  using prime.gui.utils.UIElementActions;
+  using prime.utils.Bind;
+  using prime.fsm.SimpleStateMachine;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
-private typedef Flags = primevc.gui.core.UIElementFlags;
+private typedef Flags = prime.gui.core.UIElementFlags;
 
 /**
- * Videoclass with support for styling and other primevc features
+ * Videoclass with support for styling and other prime features
  * 
  * @author Ruben Weijers
  * @creation-date Jan 07, 2011

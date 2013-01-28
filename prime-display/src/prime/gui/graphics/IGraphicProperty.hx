@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
- import primevc.core.geom.IRectangle;
- import primevc.gui.traits.IGraphicsOwner;
+package prime.gui.graphics;
+ import prime.core.geom.IRectangle;
+ import prime.gui.traits.IGraphicsOwner;
 
 /**
  * Interface describing fills and borders

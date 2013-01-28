@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.traits;
- import primevc.core.traits.IIdentifiable;
+package prime.gui.traits;
+ import prime.core.traits.IIdentifiable;
 #if flash9
- import primevc.core.collections.SimpleList;
- import primevc.core.Bindable;
+ import prime.bindable.collections.SimpleList;
+ import prime.bindable.Bindable;
  import primevc.gui.styling.UIElementStyle;
 #end
 

@@ -27,10 +27,10 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package ;
- import prime.gui.styling.LayoutStyleFlags;
- import prime.gui.styling.StyleChildren;
- import prime.gui.styling.StyleBlockType;
- import prime.gui.styling.StyleBlock;
+ import primevc.gui.styling.LayoutStyleFlags;
+ import primevc.gui.styling.StyleChildren;
+ import primevc.gui.styling.StyleBlockType;
+ import primevc.gui.styling.StyleBlock;
  import prime.types.Number;
 //imports
 

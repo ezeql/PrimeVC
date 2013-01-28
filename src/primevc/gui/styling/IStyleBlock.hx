@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.traits.IFlagOwner;
- import primevc.core.traits.IInvalidatable;
+ import prime.core.traits.IFlagOwner;
+ import prime.core.traits.IInvalidatable;
 
 
 /**
@@ -38,8 +38,8 @@ package primevc.gui.styling;
 interface IStyleBlock
 				implements IInvalidatable
 			,	implements IFlagOwner
-#if CSSParser,	implements primevc.tools.generator.ICSSFormattable
-			,	implements primevc.tools.generator.ICodeFormattable		#end
+#if CSSParser,	implements prime.tools.generator.ICSSFormattable
+			,	implements prime.tools.generator.ICodeFormattable		#end
 {
 	/**
 	 * Variable defining which properties in the style-declaration have been

@@ -1,8 +1,8 @@
 package cases;
- import primevc.types.Number;
+ import prime.types.Number;
  import Benchmark;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
 
 /**
  * @creation-date	Jun 15, 2010

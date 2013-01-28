@@ -26,13 +26,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
+package prime.gui.effects.effectInstances;
  import haxe.Timer;
  import prime.signal.Signal0;
- import primevc.core.traits.IDisposable;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.IEffect;
- import primevc.gui.states.EffectStates;
+ import prime.core.traits.IDisposable;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.IEffect;
+ import prime.gui.states.EffectStates;
 
 
 /**

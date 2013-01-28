@@ -28,20 +28,20 @@
  */
 package primevc.gui.styling;
 #if CSSParser
- import primevc.tools.generator.ICodeGenerator;
+ import prime.tools.generator.ICodeGenerator;
 #end
- import primevc.core.traits.IInvalidatable;
- import primevc.gui.text.FontStyle;
- import primevc.gui.text.FontWeight;
- import primevc.gui.text.TextAlign;
- import primevc.gui.text.TextDecoration;
- import primevc.gui.text.TextTransform;
- import primevc.types.Number;
- import primevc.types.RGBA;
- import primevc.utils.NumberUtil;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.Color;
+ import prime.core.traits.IInvalidatable;
+ import prime.gui.text.FontStyle;
+ import prime.gui.text.FontWeight;
+ import prime.gui.text.TextAlign;
+ import prime.gui.text.TextDecoration;
+ import prime.gui.text.TextTransform;
+ import prime.types.Number;
+ import prime.types.RGBA;
+ import prime.utils.NumberUtil;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.Color;
 
 
 private typedef Flags = TextStyleFlags;

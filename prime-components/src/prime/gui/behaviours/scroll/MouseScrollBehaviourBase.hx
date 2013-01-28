@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -32,7 +36,7 @@ package prime.gui.behaviours.scroll;
 #if !CSSParser
  import prime.signal.Wire;
  import prime.gui.events.MouseEvents;
- import prime.gui.layout.IScrollableLayout;
+ import prime.layout.IScrollableLayout;
   using prime.utils.Bind;
   using prime.utils.TypeUtil;
 #end

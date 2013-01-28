@@ -333,7 +333,7 @@ class RelativeLayout
 			&&	hCenter.notSet()
 			&&	vCenter.notSet();
 	}
-
+#end
 #if CSSParser
 	public function cleanUp () : Void {}
 	

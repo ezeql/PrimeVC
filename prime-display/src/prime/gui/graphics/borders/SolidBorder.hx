@@ -26,11 +26,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.borders;
- import primevc.core.geom.IRectangle;
- import primevc.gui.graphics.fills.SolidFill;
- import primevc.gui.traits.IGraphicsOwner;
-  using primevc.utils.Color;
+package prime.gui.graphics.borders;
+ import prime.core.geom.IRectangle;
+ import prime.gui.graphics.fills.SolidFill;
+ import prime.gui.traits.IGraphicsOwner;
+  using prime.utils.Color;
 
 #if flash9
  import flash.display.LineScaleMode;

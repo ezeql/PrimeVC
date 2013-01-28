@@ -28,15 +28,15 @@
  */
 package primevc.gui.styling;
 #if CSSParser
- import primevc.tools.generator.ICodeGenerator;
- import primevc.types.SimpleDictionary;
+ import prime.tools.generator.ICodeGenerator;
+ import prime.types.SimpleDictionary;
 #end
- import primevc.core.traits.IInvalidatable;
- import primevc.core.traits.IPrioritizable;
+ import prime.core.traits.IInvalidatable;
+ import prime.core.traits.IPrioritizable;
  import primevc.gui.styling.StyleChildren;	//needed for SelectorMapType typedef
   using primevc.gui.styling.StyleFlags;
-  using primevc.utils.BitUtil;
-  using primevc.utils.HashUtil;
+  using prime.utils.BitUtil;
+  using prime.utils.HashUtil;
   using Type;
 
 #if (CSSParser || debug)

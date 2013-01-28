@@ -1,8 +1,8 @@
 package cases;
- import primevc.core.RevertableBindableFlags;
- import primevc.core.RevertableBindable;
- import primevc.core.RevertableBindableFlags;
-  using primevc.utils.BitUtil;
+ import prime.core.RevertableBindableFlags;
+ import prime.core.RevertableBindable;
+ import prime.core.RevertableBindableFlags;
+  using prime.utils.BitUtil;
 
 /**
  * Tests for complicated RevertableBindable functionality...

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,31 +30,31 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
+package prime.gui.core;
  import prime.signal.Wire;
- import primevc.core.Bindable;
+ import prime.bindable.Bindable;
  
- import primevc.gui.behaviours.layout.ValidateLayoutBehaviour;
- import primevc.gui.behaviours.BehaviourList;
- import primevc.gui.behaviours.RenderGraphicsBehaviour;
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.display.VectorShape;
- import primevc.gui.effects.UIElementEffects;
- import primevc.gui.graphics.GraphicProperties;
- import primevc.gui.layout.ILayoutContainer;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.managers.ISystem;
- import primevc.gui.states.UIElementStates;
+ import prime.gui.behaviours.layout.ValidateLayoutBehaviour;
+ import prime.gui.behaviours.BehaviourList;
+ import prime.gui.behaviours.RenderGraphicsBehaviour;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.display.VectorShape;
+ import prime.gui.effects.UIElementEffects;
+ import prime.gui.graphics.GraphicProperties;
+ import prime.layout.ILayoutContainer;
+ import prime.layout.LayoutClient;
+ import prime.gui.managers.ISystem;
+ import prime.gui.states.UIElementStates;
 #if flash9
- import primevc.core.collections.SimpleList;
+ import prime.bindable.collections.SimpleList;
  import primevc.gui.styling.UIElementStyle;
- import primevc.gui.traits.IDrawable;
+ import prime.gui.traits.IDrawable;
 #end
- import primevc.gui.traits.IValidatable;
-  using primevc.gui.utils.UIElementActions;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.traits.IValidatable;
+  using prime.gui.utils.UIElementActions;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

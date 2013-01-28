@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours;
+package prime.gui.behaviours;
  import haxe.FastList;
- import primevc.core.traits.IDisposable;
+ import prime.core.traits.IDisposable;
 
 
 private typedef BehaviourType = IBehaviour<Dynamic>;

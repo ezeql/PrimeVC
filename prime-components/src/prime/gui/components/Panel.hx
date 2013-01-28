@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,17 +30,17 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.geom.space.Horizontal;
+package prime.gui.components;
+ import prime.core.geom.space.Horizontal;
  import prime.signal.Signal0;
- import primevc.core.Bindable;
+ import prime.bindable.Bindable;
 
- import primevc.gui.components.Form;
- import primevc.gui.core.IUIContainer;
- import primevc.gui.core.IUIElement;
- import primevc.gui.core.UIContainer;
- import primevc.gui.layout.LayoutContainer;
- import primevc.gui.managers.ISystem;
+ import prime.gui.components.Form;
+ import prime.gui.core.IUIContainer;
+ import prime.gui.core.IUIElement;
+ import prime.gui.core.UIContainer;
+ import prime.layout.LayoutContainer;
+ import prime.gui.managers.ISystem;
 
 
 

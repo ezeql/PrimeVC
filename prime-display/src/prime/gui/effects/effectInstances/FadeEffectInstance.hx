@@ -26,13 +26,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.FadeEffect;
- import primevc.types.Number;
-  using primevc.utils.Bind;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.FadeEffect;
+ import prime.types.Number;
+  using prime.utils.Bind;
+  using prime.utils.NumberUtil;
 
 
 

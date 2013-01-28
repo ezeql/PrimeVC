@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.core.geom;
- import primevc.core.Bindable;
- import primevc.core.traits.IDisposable;
+package prime.core.geom;
+ import prime.bindable.Bindable;
+ import prime.core.traits.IDisposable;
 
 
 /**

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,23 +30,23 @@
  * Authors:
  *  Ruben Weijers   <ruben @ rubenw.nl>
  */
-package primevc.gui.components;
- import primevc.core.collections.ListChange;
+package prime.gui.components;
+ import prime.core.collections.ListChange;
  import prime.signal.Signal0;
- import primevc.core.Bindable;
+ import prime.bindable.Bindable;
  
- import primevc.gui.core.IUIDataElement;
- import primevc.gui.core.UIElementFlags;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.display.IInteractiveObject;
+ import prime.gui.core.IUIDataElement;
+ import prime.gui.core.UIElementFlags;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.display.IInteractiveObject;
  
- import primevc.gui.events.MouseEvents;
- import primevc.gui.traits.ISelectable;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.traits.ISelectable;
  
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.IfUtil;
-  using primevc.utils.TypeUtil;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.IfUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

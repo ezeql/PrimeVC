@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
-  using primevc.utils.BitUtil;
+  using prime.utils.BitUtil;
 
 
 /**

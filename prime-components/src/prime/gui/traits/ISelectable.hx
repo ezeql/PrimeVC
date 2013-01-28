@@ -1,6 +1,10 @@
-package primevc.gui.traits;
- import primevc.core.Bindable;
- import primevc.gui.core.IUIComponent;
+/****
+* 
+****/
+
+package prime.gui.traits;
+ import prime.bindable.Bindable;
+ import prime.gui.core.IUIComponent;
 
 
 /**

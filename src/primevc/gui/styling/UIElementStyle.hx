@@ -29,23 +29,23 @@
 package primevc.gui.styling;
 
 #if flash9
- import primevc.core.collections.FastDoubleCell;
- import primevc.core.collections.ListChange;
- import primevc.core.collections.PriorityList;
- import primevc.core.dispatcher.Signal0;
- import primevc.core.dispatcher.Wire;
- import primevc.gui.traits.IDisplayable;
- import primevc.gui.traits.IStylable;
- import primevc.utils.FastArray;
+ import prime.bindable.collections.FastDoubleCell;
+ import prime.bindable.collections.ListChange;
+ import prime.bindable.collections.PriorityList;
+ import prime.signal.Signal0;
+ import prime.signal.Wire;
+ import prime.gui.traits.IDisplayable;
+ import prime.gui.traits.IStylable;
+ import prime.utils.FastArray;
 #if debug
- import primevc.utils.ID;
+ import prime.utils.ID;
 #end
   using primevc.gui.styling.StyleFlags;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.FastArray;
-  using primevc.utils.IfUtil;
-  using primevc.utils.TypeUtil;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.FastArray;
+  using prime.utils.IfUtil;
+  using prime.utils.TypeUtil;
   using Std;
   using Type;
 
@@ -604,7 +604,7 @@ class UIElementStyle implements IUIElementStyle
 
 		//use the IDisplayObject style if there isn't a style defined for this element
 		if (newStyles.length == 0)
-			parentStyle.getChildStyles( this, "primevc.gui.display.IDisplayObject", StyleBlockType.element, newStyles );
+			parentStyle.getChildStyles( this, "prime.gui.display.IDisplayObject", StyleBlockType.element, newStyles );
 
 		return broadcastChanges( replaceStylesOfType(StyleBlockType.element, newStyles) );
 	}
@@ -781,7 +781,7 @@ class UIElementStyle implements IUIElementStyle
 	// IINVALIDATELIST METHODS
 	//
 	
-	public function invalidateCall (changes:Int, sender:primevc.core.traits.IInvalidatable)
+	public function invalidateCall (changes:Int, sender:prime.core.traits.IInvalidatable)
 	{
 		if (sender.is(StyleBlock))
 		{

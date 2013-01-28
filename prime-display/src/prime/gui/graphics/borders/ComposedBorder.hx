@@ -26,11 +26,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.borders;
- import primevc.gui.graphics.ComposedGraphicProperty;
- import primevc.gui.graphics.GraphicFlags;
- import primevc.gui.graphics.IGraphicProperty;
-  using primevc.utils.TypeUtil;
+package prime.gui.graphics.borders;
+ import prime.gui.graphics.ComposedGraphicProperty;
+ import prime.gui.graphics.GraphicFlags;
+ import prime.gui.graphics.IGraphicProperty;
+  using prime.utils.TypeUtil;
 
 
 

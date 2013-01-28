@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,12 +30,12 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.media.AudioStream;
- import primevc.core.Bindable;
- import primevc.gui.core.UIDataContainer;
- import primevc.types.URI;
-  using primevc.utils.Bind;
+package prime.gui.components;
+ import prime.core.media.AudioStream;
+ import prime.bindable.Bindable;
+ import prime.gui.core.UIDataContainer;
+ import prime.types.URI;
+  using prime.utils.Bind;
 
 
 /**

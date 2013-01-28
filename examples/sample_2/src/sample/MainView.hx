@@ -1,5 +1,5 @@
 package sample;
- import primevc.gui.display.Window;
+ import prime.gui.display.Window;
  import prime.mvc.MVCActor;
  import prime.mvc.IMVCCoreActor;
 

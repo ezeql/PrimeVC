@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -34,9 +38,9 @@ package prime.gui.behaviours.scroll;
  import prime.core.geom.Point;
  import prime.gui.behaviours.drag.DragHelper;
  import prime.gui.events.MouseEvents;
- import prime.gui.layout.LayoutFlags;
+ import prime.layout.LayoutFlags;
  import prime.gui.input.Mouse;
- import prime.gui.layout.IScrollableLayout;
+ import prime.layout.IScrollableLayout;
   using prime.utils.Bind;
   using prime.utils.BitUtil;
   using prime.utils.NumberUtil;

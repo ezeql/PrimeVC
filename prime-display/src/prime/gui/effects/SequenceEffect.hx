@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
+package prime.gui.effects;
 
 
 /**
@@ -55,7 +55,7 @@ class SequenceEffect extends CompositeEffect
 #if !CSSParser
 	override public function createEffectInstance (target)
 	{
-		return new primevc.gui.effects.effectInstances.SequenceEffectInstance(target, this);
+		return new prime.gui.effects.effectInstances.SequenceEffectInstance(target, this);
 	}
 
 #else

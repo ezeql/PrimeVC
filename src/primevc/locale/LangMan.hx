@@ -1,5 +1,5 @@
 package primevc.locale;
- import primevc.core.dispatcher.Signal0;
+ import prime.signal.Signal0;
 
 
 /**

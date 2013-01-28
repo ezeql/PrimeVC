@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,13 +30,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours;
- import primevc.gui.core.IUIComponent;
- import primevc.gui.core.UIWindow;
- import primevc.gui.traits.IDrawable;
- import primevc.gui.traits.IGraphicsValidator;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours;
+ import prime.gui.core.IUIComponent;
+ import prime.gui.core.UIWindow;
+ import prime.gui.traits.IDrawable;
+ import prime.gui.traits.IGraphicsValidator;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -99,8 +103,8 @@ class RenderGraphicsBehaviour extends ValidatingBehaviour < IDrawable >, impleme
 /*#if debug
 		Assert.that( target.rect.width < 10000 );
 		Assert.that( target.rect.height < 10000 );
-		if (target.is(primevc.gui.display.IDisplayObject)) {
-			var t = target.as(primevc.gui.display.IDisplayObject);
+		if (target.is(prime.gui.display.IDisplayObject)) {
+			var t = target.as(prime.gui.display.IDisplayObject);
 			Assert.that( t.width < 10000 );
 			Assert.that( t.height < 10000 );
 		}

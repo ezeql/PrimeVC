@@ -2,9 +2,9 @@ package sample;
  import primevc.gui.events.MouseEvents;
  import prime.mvc.Mediator;
  import prime.signal.Signal1;
- import primevc.gui.components.Button;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+ import prime.gui.components.Button;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

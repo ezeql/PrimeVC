@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.utils;
+package prime.gui.utils;
  import apparat.math.FastMath;
- import primevc.gui.traits.IGraphicsOwner;
+ import prime.gui.traits.IGraphicsOwner;
   using apparat.math.FastMath;
-  using primevc.utils.Formulas;
-  using primevc.utils.NumberUtil;
+  using prime.utils.Formulas;
+  using prime.utils.NumberUtil;
 
 
 

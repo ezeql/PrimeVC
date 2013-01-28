@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,16 +30,16 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components.skins;
- import primevc.gui.components.InputField;
- import primevc.gui.events.KeyboardEvents;
- import primevc.gui.input.KeyCodes;
-  using primevc.utils.BitUtil;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.components.skins;
+ import prime.gui.components.InputField;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.input.KeyCodes;
+  using prime.utils.BitUtil;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
-private typedef Flags = primevc.gui.core.UIElementFlags;
+private typedef Flags = prime.gui.core.UIElementFlags;
 
 
 /**

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,7 +30,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
+package prime.gui.core;
 #if !CSSParser
 
 
@@ -45,10 +49,10 @@ package primevc.gui.core;
  * @creation-date Aug 03, 2010
  */
 interface ISkin 
-		implements primevc.core.traits.IDisposable
-	,	implements primevc.gui.traits.IBehaving
+		implements prime.core.traits.IDisposable
+	,	implements prime.gui.traits.IBehaving
 {
-//	public var skinState		(default, null)		: primevc.gui.states.SkinStates;
+//	public var skinState		(default, null)		: prime.gui.states.SkinStates;
 //	public var owner			(default, setOwner) : OwnerClass;
 	public function changeOwner	(o:IUIComponent)	: Void;
 	
@@ -109,8 +113,8 @@ interface ISkin
 	 * focus. The skin can check if the target is one of it's children and then
 	 * return true or false.
 	 */
-	public function isFocusOwner (target:primevc.gui.events.UserEventTarget) : Bool;
+	public function isFocusOwner (target:prime.gui.events.UserEventTarget) : Bool;
 }
 #else
-interface ISkin implements primevc.gui.traits.IBehaving, implements primevc.core.traits.IDisposable {}
+interface ISkin implements prime.gui.traits.IBehaving, implements prime.core.traits.IDisposable {}
 #end

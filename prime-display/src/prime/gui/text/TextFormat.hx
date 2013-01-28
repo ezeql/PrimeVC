@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.text;
+package prime.gui.text;
  import primevc.gui.styling.TextStyleFlags;
-  using primevc.utils.Color;
+  using prime.utils.Color;
 
 
 //typedef TextFormat = flash.text.TextFormat;

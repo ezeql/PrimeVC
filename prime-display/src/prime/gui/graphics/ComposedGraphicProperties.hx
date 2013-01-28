@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics;
- import primevc.gui.traits.IDrawable;
- import primevc.utils.FastArray;
-  using primevc.utils.FastArray;
+package prime.gui.graphics;
+ import prime.gui.traits.IDrawable;
+ import prime.utils.FastArray;
+  using prime.utils.FastArray;
 
 
 /**

@@ -27,9 +27,9 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.traits.IInvalidatable;
- import primevc.types.SimpleDictionary;
-  using primevc.utils.BitUtil;
+ import prime.core.traits.IInvalidatable;
+ import prime.types.SimpleDictionary;
+  using prime.utils.BitUtil;
 
 
 typedef StatesListType	= #if CSSParser SimpleDictionary<Int, StyleBlock> #else IntHash<StyleBlock> #end;
@@ -253,7 +253,7 @@ class StatesStyle extends StyleSubBlock
 	}
 	
 
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator)
+	override public function toCode (code:prime.tools.generator.ICodeGenerator)
 	{
 		if (!isEmpty())
 			code.construct( this, [ filledProperties, states ] );

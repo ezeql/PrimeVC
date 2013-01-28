@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,9 +30,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours;
- import primevc.gui.managers.QueueManager;
- import primevc.gui.traits.IValidatable;
+package prime.gui.behaviours;
+ import prime.gui.managers.QueueManager;
+ import prime.gui.traits.IValidatable;
 
 
 
@@ -36,7 +40,7 @@ package primevc.gui.behaviours;
  * @author Ruben Weijers
  * @creation-date Nov 09, 2010
  */
-class ValidatingBehaviour < TargetType:primevc.gui.traits.IDisplayable > extends BehaviourBase < TargetType >, implements IValidatable
+class ValidatingBehaviour < TargetType:prime.gui.traits.IDisplayable > extends BehaviourBase < TargetType >, implements IValidatable
 {
 	public var prevValidatable		: IValidatable;
 	public var nextValidatable		: IValidatable;

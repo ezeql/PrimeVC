@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,18 +30,18 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Wire;
- import primevc.core.geom.space.Direction;
- import primevc.gui.core.UIElementFlags;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.layout.LayoutFlags;
+ import prime.core.geom.space.Direction;
+ import prime.gui.core.UIElementFlags;
+ import prime.gui.events.MouseEvents;
+ import prime.layout.LayoutFlags;
  import prime.fsm.states.ValidateStates;
- import primevc.gui.traits.IScrollable;
- import primevc.utils.NumberUtil;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
+ import prime.gui.traits.IScrollable;
+ import prime.utils.NumberUtil;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
   using Std;
 
 

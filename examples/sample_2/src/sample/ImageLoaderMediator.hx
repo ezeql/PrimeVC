@@ -2,10 +2,10 @@ package sample;
  import primevc.gui.events.MouseEvents;
  import prime.mvc.Mediator;
  import prime.signal.Signal1;
- import primevc.types.Asset;
- import primevc.gui.components.Image;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+ import prime.types.Asset;
+ import prime.gui.components.Image;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

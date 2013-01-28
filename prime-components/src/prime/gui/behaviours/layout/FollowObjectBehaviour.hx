@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,17 +30,17 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.layout;
+package prime.gui.behaviours.layout;
  import prime.signal.Wire;
- import primevc.core.geom.Point;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.core.IUIElement;
- import primevc.gui.layout.LayoutFlags;
- import primevc.gui.traits.ILayoutable;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.core.geom.Point;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.core.IUIElement;
+ import prime.layout.LayoutFlags;
+ import prime.gui.traits.ILayoutable;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 

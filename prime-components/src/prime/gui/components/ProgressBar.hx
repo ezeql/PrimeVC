@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,20 +30,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.math.PercentageHelper;
- import primevc.core.net.ICommunicator;
+package prime.gui.components;
+ import prime.core.math.PercentageHelper;
+ import prime.net.ICommunicator;
  import prime.fsm.SimpleStateMachine;
 
- import primevc.gui.core.IUIContainer;
- import primevc.gui.core.UIDataContainer;
- import primevc.gui.core.UIElementFlags;
+ import prime.gui.core.IUIContainer;
+ import prime.gui.core.UIDataContainer;
+ import prime.gui.core.UIElementFlags;
 
  import primevc.gui.styling.StyleState;
  import primevc.gui.styling.StyleStateFlags;
 
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
   using Type;
 
 

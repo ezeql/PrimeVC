@@ -27,16 +27,16 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.validators.IntRangeValidator;
- import primevc.core.validators.PercentIntRangeValidator;
-// import primevc.gui.layout.IAdvancedLayoutClient;
- import primevc.gui.layout.ILayoutContainer;
+ import prime.core.validators.IntRangeValidator;
+ import prime.core.validators.PercentIntRangeValidator;
+// import prime.layout.IAdvancedLayoutClient;
+ import prime.layout.ILayoutContainer;
  import primevc.gui.styling.StyleCollectionBase;
- import primevc.gui.traits.ILayoutable;
- import primevc.types.Number;
-  using primevc.utils.BitUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+ import prime.gui.traits.ILayoutable;
+ import prime.types.Number;
+  using prime.utils.BitUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 private typedef Flags		= LayoutStyleFlags;

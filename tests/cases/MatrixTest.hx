@@ -1,9 +1,9 @@
 package cases;
- import primevc.core.geom.Matrix2D;
- import primevc.core.geom.IntMatrix2D;
- import primevc.gui.display.Sprite;
+ import prime.core.geom.Matrix2D;
+ import prime.core.geom.IntMatrix2D;
+ import prime.gui.display.Sprite;
  import Benchmark;
-  using primevc.utils.Bind;
+  using prime.utils.Bind;
 
 
 class MatrixTest extends Sprite

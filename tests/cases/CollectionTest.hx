@@ -1,8 +1,8 @@
 package cases;
- import primevc.core.collections.ArrayList;
- import primevc.core.collections.BalancingListCollection;
- import primevc.core.collections.ChainedListCollection;
- import primevc.core.collections.SimpleList;
+ import prime.core.collections.ArrayList;
+ import prime.core.collections.BalancingListCollection;
+ import prime.core.collections.ChainedListCollection;
+ import prime.core.collections.SimpleList;
  
 
 /**

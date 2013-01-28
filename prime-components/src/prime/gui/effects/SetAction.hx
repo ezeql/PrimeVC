@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,10 +30,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects;
+  using prime.utils.NumberUtil;
 #if CSSParser
-  using primevc.types.Reference;
+  using prime.types.Reference;
 #end
 
 
@@ -41,7 +45,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Sep 01, 2010
  */
-class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<primevc.gui.core.IUIElement, SetAction> #end
+class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<prime.gui.core.IUIElement, SetAction> #end
 {
 	public var prop : EffectProperties;
 	
@@ -56,7 +60,7 @@ class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<prim
 	override public function setValues (v:EffectProperties)	{ prop = v; }
 	override public function clone ()						{ return new SetAction( duration, delay, easing, isReverted, prop ); }
 #if !CSSParser
-	override public function createEffectInstance (target)	{ return new primevc.gui.effects.effectInstances.SetActionInstance(target, this); }
+	override public function createEffectInstance (target)	{ return new prime.gui.effects.effectInstances.SetActionInstance(target, this); }
 #else
 
 	override public function toCSS (prefix:String = "") : String
@@ -108,7 +112,7 @@ class SetAction extends #if CSSParser Effect<Dynamic, Dynamic> #else Effect<prim
 	}
 
 
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
 			code.construct( this, [ duration, delay, isReverted, easing, prop ] );

@@ -1,9 +1,9 @@
 package cases;
- import primevc.core.geom.Point;
- import primevc.gui.layout.algorithms.ILayoutAlgorithm;
- import primevc.gui.layout.algorithms.float.HorizontalFloatAlgorithm;
- import primevc.gui.layout.LayoutClient;
- import primevc.gui.layout.LayoutContainer;
+ import prime.core.geom.Point;
+ import prime.layout.algorithms.ILayoutAlgorithm;
+ import prime.layout.algorithms.float.HorizontalFloatAlgorithm;
+ import prime.layout.LayoutClient;
+ import prime.layout.LayoutContainer;
 
 
 

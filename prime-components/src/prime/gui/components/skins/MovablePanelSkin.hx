@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,7 +30,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ prime.vc>
  */
-package primevc.gui.components.skins;
+package prime.gui.components.skins;
 
 
 /**
@@ -41,6 +45,6 @@ class MovablePanelSkin extends ClosablePanelSkin
 	override public function createChildren ()
 	{
 		super.createChildren();
-		behaviours.add( new primevc.gui.behaviours.drag.DragMoveBehaviour(owner, null, chrome) );
+		behaviours.add( new prime.gui.behaviours.drag.DragMoveBehaviour(owner, null, chrome) );
 	}
 }

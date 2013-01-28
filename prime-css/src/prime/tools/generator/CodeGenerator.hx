@@ -38,7 +38,7 @@ package prime.tools.generator;
 
 
 private typedef HaxeType = Type.ValueType;
-private typedef ValueType = primevc.tools.generator.ValueType;
+private typedef ValueType = prime.tools.generator.ValueType;
 
 /**
  * @author Ruben Weijers

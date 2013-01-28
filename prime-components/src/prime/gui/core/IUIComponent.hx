@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,13 +30,13 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
- import primevc.core.traits.IDisablable;
- import primevc.core.Bindable;
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.traits.ISkinnable;
+package prime.gui.core;
+ import prime.core.traits.IDisablable;
+ import prime.bindable.Bindable;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.traits.ISkinnable;
 #if flash9
- import primevc.gui.traits.IDrawable;
+ import prime.gui.traits.IDrawable;
 #end
  
 

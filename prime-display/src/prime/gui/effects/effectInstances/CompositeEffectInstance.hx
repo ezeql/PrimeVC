@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.core.collections.ListChange;
- import primevc.gui.effects.CompositeEffect;		//imports typedef ChildEffectType
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.IEffect;
- import primevc.utils.FastArray;
-  using primevc.utils.Bind;
-  using primevc.utils.FastArray;
+package prime.gui.effects.effectInstances;
+ import prime.core.collections.ListChange;
+ import prime.gui.effects.CompositeEffect;		//imports typedef ChildEffectType
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.IEffect;
+ import prime.utils.FastArray;
+  using prime.utils.Bind;
+  using prime.utils.FastArray;
 
 
 /**

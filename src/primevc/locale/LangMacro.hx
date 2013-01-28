@@ -4,12 +4,12 @@ package primevc.locale;
 import haxe.macro.Context;
 import haxe.macro.Expr;
 import haxe.xml.Fast;
-import primevc.utils.FastArray;
-import primevc.utils.MacroUtils;
+import prime.utils.FastArray;
+import prime.utils.MacroUtils;
 
 
 
-using primevc.utils.StringUtil;
+using prime.utils.StringUtil;
 using StringTools;
 using Lambda;
 
@@ -361,7 +361,7 @@ class LangMacro
 			switch( getElementType(el) )
 			{
 				case leaf:
-				consLines += el.name + ":" + "new primevc.core.Bindable<String>('" + el.innerData+"')"  + ",";
+				consLines += el.name + ":" + "new prime.bindable.Bindable<String>('" + el.innerData+"')"  + ",";
 				
 				case node:
 				consLines += el.name  + ":{";
@@ -502,7 +502,7 @@ class LangMacro
 				type.fields.push( { name :el.name, doc : null, meta : [], access : [APublic], kind :FieldType.FVar(TPath( { pack : ["primevc", "core"], name : "Bindable", params : [ TPType( TPath( { pack : [], name : "String", params : [], sub : null } )) ], sub :null } )), pos : Context.currentPos() }   );
 				
 				//constructor data for LagManBinds
-				constructorLines +=  el.name + " = new primevc.core.Bindable<String>('" +  el.innerData + "');";
+				constructorLines +=  el.name + " = new prime.bindable.Bindable<String>('" +  el.innerData + "');";
 
 				case plural:
 				//not bindable

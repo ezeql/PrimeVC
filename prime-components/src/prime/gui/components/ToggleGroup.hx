@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,12 +30,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
-package primevc.gui.components;
- import primevc.core.Bindable;
- import primevc.gui.core.UIContainer;
- import primevc.gui.events.MouseEvents;
-  using primevc.utils.Bind;
-  using primevc.utils.TypeUtil;
+package prime.gui.components;
+ import prime.bindable.Bindable;
+ import prime.gui.core.UIContainer;
+ import prime.gui.events.MouseEvents;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 
 
 /**

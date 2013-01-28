@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.layout;
- import primevc.gui.behaviours.ValidatingBehaviour;
- import primevc.gui.core.UIWindow;
- import primevc.gui.layout.LayoutFlags;
+package prime.gui.behaviours.layout;
+ import prime.gui.behaviours.ValidatingBehaviour;
+ import prime.gui.core.UIWindow;
+ import prime.layout.LayoutFlags;
  import prime.fsm.states.ValidateStates;
- import primevc.gui.traits.IPropertyValidator;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
+ import prime.gui.traits.IPropertyValidator;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
 
 
 /**

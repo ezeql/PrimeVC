@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
- import primevc.core.geom.space.MoveDirection;
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects;
+ import prime.core.geom.space.MoveDirection;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 #if CSSParser
-  using primevc.types.Reference;
+  using prime.types.Reference;
 #end
 
 
@@ -42,7 +42,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObject,WipeEffect> #else Effect<Dynamic,Dynamic> #end
+class WipeEffect extends #if !CSSParser Effect<prime.gui.display.IDisplayObject,WipeEffect> #else Effect<Dynamic,Dynamic> #end
 {
 	/**
 	 * Move direction of the wipe effect.
@@ -74,7 +74,7 @@ class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	override public function setValues (v:EffectProperties) {}
 	override public function clone ()						{ return new WipeEffect( duration, delay, easing, isReverted, direction, startValue, endValue ); }
 #if !CSSParser
-	override public function createEffectInstance (target)	{ return new primevc.gui.effects.effectInstances.WipeEffectInstance(target, this); }
+	override public function createEffectInstance (target)	{ return new prime.gui.effects.effectInstances.WipeEffectInstance(target, this); }
 
 #else
 
@@ -106,7 +106,7 @@ class WipeEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObjec
 	}
 	
 	
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
 			code.construct( this, [ duration, delay, easing, isReverted, direction, startValue, endValue ] );

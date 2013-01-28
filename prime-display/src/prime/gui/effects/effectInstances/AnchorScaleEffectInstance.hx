@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.core.geom.Point;
- import primevc.gui.display.IDisplayObject;
- import primevc.gui.effects.AnchorScaleEffect;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.states.EffectStates;
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+ import prime.core.geom.Point;
+ import prime.gui.display.IDisplayObject;
+ import prime.gui.effects.AnchorScaleEffect;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.states.EffectStates;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 
 
 

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects.effectInstances;
- import primevc.core.geom.Rectangle;
- import primevc.gui.effects.EffectProperties;
- import primevc.gui.effects.ScrollEffect;
- import primevc.gui.traits.IScrollable;
- import primevc.types.Number;
- import primevc.utils.NumberUtil;
-  using primevc.utils.NumberUtil;
+package prime.gui.effects.effectInstances;
+ import prime.core.geom.Rectangle;
+ import prime.gui.effects.EffectProperties;
+ import prime.gui.effects.ScrollEffect;
+ import prime.gui.traits.IScrollable;
+ import prime.types.Number;
+ import prime.utils.NumberUtil;
+  using prime.utils.NumberUtil;
 
 
 

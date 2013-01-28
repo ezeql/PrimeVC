@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,14 +30,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
-package primevc.gui.behaviours.scroll;
- import primevc.gui.behaviours.IBehaviour;
+package prime.gui.behaviours.scroll;
+ import prime.gui.behaviours.IBehaviour;
 
 /**
  * @author Ruben Weijers
  * @creation-date May 26, 2011
  */
-interface IScrollBehaviour implements IBehaviour<primevc.gui.traits.IScrollable>
+interface IScrollBehaviour implements IBehaviour<prime.gui.traits.IScrollable>
 {
 	
 }

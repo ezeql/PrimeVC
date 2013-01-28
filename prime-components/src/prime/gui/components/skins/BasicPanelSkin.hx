@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components.skins;
- import primevc.gui.components.Label;
- import primevc.gui.core.Skin;
- import primevc.gui.core.UIContainer;
-  using primevc.utils.Bind;
+package prime.gui.components.skins;
+ import prime.gui.components.Label;
+ import prime.gui.core.Skin;
+ import prime.gui.core.UIContainer;
+  using prime.utils.Bind;
 
 
 /**

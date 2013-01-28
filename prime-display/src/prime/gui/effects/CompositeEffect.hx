@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
- import primevc.core.collections.ArrayList;
+package prime.gui.effects;
+ import prime.core.collections.ArrayList;
 #if CSSParser
- import primevc.tools.generator.ICodeGenerator;
-  using primevc.types.Reference;
+ import prime.tools.generator.ICodeGenerator;
+  using prime.types.Reference;
 #end
- import primevc.types.Number;
- import primevc.utils.NumberUtil;
-  using primevc.utils.NumberUtil;
+ import prime.types.Number;
+ import prime.utils.NumberUtil;
+  using prime.utils.NumberUtil;
 
 
 typedef ChildEffectType = Effect < Dynamic, Dynamic >;

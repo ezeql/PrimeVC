@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.effects;
+package prime.gui.effects;
 #if CSSParser
-  using primevc.types.Reference;
+  using prime.types.Reference;
 #end
- import primevc.core.geom.space.Position;
- import primevc.core.geom.IntPoint;
- import primevc.gui.states.EffectStates;
- import primevc.types.Number;
-  using primevc.utils.NumberUtil;
+ import prime.core.geom.space.Position;
+ import prime.core.geom.IntPoint;
+ import prime.gui.states.EffectStates;
+ import prime.types.Number;
+  using prime.utils.NumberUtil;
 
 
 /**
@@ -43,7 +43,7 @@ package primevc.gui.effects;
  * @author Ruben Weijers
  * @creation-date Aug 31, 2010
  */
-class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDisplayObject, AnchorScaleEffect> #else Effect<Dynamic, Dynamic> #end
+class AnchorScaleEffect extends #if !CSSParser Effect<prime.gui.display.IDisplayObject, AnchorScaleEffect> #else Effect<Dynamic, Dynamic> #end
 {
 	/**
 	 * Explicit ScaleX and ScaleY start-value
@@ -79,7 +79,7 @@ class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDispl
 #if !CSSParser
 	override public function createEffectInstance (target)
 	{
-		return new primevc.gui.effects.effectInstances.AnchorScaleEffectInstance(target, this);
+		return new prime.gui.effects.effectInstances.AnchorScaleEffectInstance(target, this);
 	}
 #end
 	
@@ -129,7 +129,7 @@ class AnchorScaleEffect extends #if !CSSParser Effect<primevc.gui.display.IDispl
 	}
 	
 	
-	override public function toCode (code:primevc.tools.generator.ICodeGenerator) : Void
+	override public function toCode (code:prime.tools.generator.ICodeGenerator) : Void
 	{
 		if (!isEmpty())
 			code.construct( this, [ duration, delay, easing, isReverted, zoomPosition, startValue, endValue ] );

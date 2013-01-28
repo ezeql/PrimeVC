@@ -27,13 +27,13 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.styling;
- import primevc.core.collections.PriorityList;
+ import prime.bindable.collections.PriorityList;
  import prime.signal.Signal0;
- import primevc.core.traits.IInvalidateListener;
- import primevc.core.traits.IDisposable;
+ import prime.core.traits.IInvalidateListener;
+ import prime.core.traits.IDisposable;
  import primevc.gui.styling.StyleBlock;
- import primevc.gui.traits.IStylable;
- import primevc.utils.FastArray;
+ import prime.gui.traits.IStylable;
+ import prime.utils.FastArray;
 
 
 /**

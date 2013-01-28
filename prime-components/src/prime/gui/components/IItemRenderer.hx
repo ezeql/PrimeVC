@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,11 +30,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.Bindable;
- import primevc.gui.core.IUIElement;
+package prime.gui.components;
+ import prime.bindable.Bindable;
+ import prime.gui.core.IUIElement;
  import primevc.gui.styling.IIconOwner;
- import primevc.types.Asset;
+ import prime.types.Asset;
 
 
 /**

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,20 +30,20 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
- import primevc.core.media.VideoStream;
+package prime.gui.components;
+ import prime.core.media.VideoStream;
  import prime.fsm.MediaStates;
- import primevc.core.Bindable;
- import primevc.gui.core.IUIElement;
- import primevc.gui.core.UIContainer;
- import primevc.gui.core.UIDataContainer;
- import primevc.gui.core.UIVideo;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.layout.LayoutFlags;
- import primevc.types.URI;
-  using primevc.utils.Bind;
-  using primevc.utils.BitUtil;
-  using primevc.utils.DateUtil;
+ import prime.bindable.Bindable;
+ import prime.gui.core.IUIElement;
+ import prime.gui.core.UIContainer;
+ import prime.gui.core.UIDataContainer;
+ import prime.gui.core.UIVideo;
+ import prime.gui.events.MouseEvents;
+ import prime.layout.LayoutFlags;
+ import prime.types.URI;
+  using prime.utils.Bind;
+  using prime.utils.BitUtil;
+  using prime.utils.DateUtil;
   using Std;
 
 
@@ -230,7 +234,7 @@ class VideoControlBar extends UIContainer
 	
 	override public function validate ()
 	{
-		if (changes.has(primevc.gui.core.UIElementFlags.STREAM) && stream != null)
+		if (changes.has(prime.gui.core.UIElementFlags.STREAM) && stream != null)
 			addStreamListeners();
 		
 		super.validate();
@@ -251,7 +255,7 @@ class VideoControlBar extends UIContainer
 				removeStreamListeners();
 			
 			stream = v;
-			invalidate(primevc.gui.core.UIElementFlags.STREAM);
+			invalidate(prime.gui.core.UIElementFlags.STREAM);
 		}
 		return v;
 	}

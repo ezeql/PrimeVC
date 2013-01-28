@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,22 +30,22 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.core;
- import primevc.core.traits.IIdentifiable;
- import primevc.core.traits.IDisposable;
+package prime.gui.core;
+ import prime.core.traits.IIdentifiable;
+ import prime.core.traits.IDisposable;
 
- import primevc.gui.display.IDisplayContainer;
- import primevc.gui.display.IDisplayObject;
+ import prime.gui.display.IDisplayContainer;
+ import prime.gui.display.IDisplayObject;
 
- import primevc.gui.effects.UIElementEffects;
- import primevc.gui.layout.ILayoutContainer;
- import primevc.gui.managers.ISystem;
- import primevc.gui.states.UIElementStates;
+ import prime.gui.effects.UIElementEffects;
+ import prime.layout.ILayoutContainer;
+ import prime.gui.managers.ISystem;
+ import prime.gui.states.UIElementStates;
  
- import primevc.gui.traits.IBehaving;
- import primevc.gui.traits.ILayoutable;
- import primevc.gui.traits.IPropertyValidator;
- import primevc.gui.traits.IStylable;
+ import prime.gui.traits.IBehaving;
+ import prime.gui.traits.ILayoutable;
+ import prime.gui.traits.IPropertyValidator;
+ import prime.gui.traits.IStylable;
 
 
 /**

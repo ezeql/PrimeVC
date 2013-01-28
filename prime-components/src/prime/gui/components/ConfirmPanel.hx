@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,13 +30,13 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.components;
+package prime.gui.components;
  import prime.signal.Signal0;
- import primevc.gui.core.IUIElement;
- import primevc.gui.events.KeyboardEvents;
- import primevc.gui.input.KeyCodes;
- import primevc.gui.managers.ISystem;
-  using primevc.utils.Bind;
+ import prime.gui.core.IUIElement;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.input.KeyCodes;
+ import prime.gui.managers.ISystem;
+  using prime.utils.Bind;
 
 
 /**

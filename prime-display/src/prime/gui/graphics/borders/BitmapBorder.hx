@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.graphics.borders;
- import primevc.core.geom.IRectangle;
- import primevc.gui.graphics.fills.BitmapFill;
- import primevc.gui.traits.IGraphicsOwner;
+package prime.gui.graphics.borders;
+ import prime.core.geom.IRectangle;
+ import prime.gui.graphics.fills.BitmapFill;
+ import prime.gui.traits.IGraphicsOwner;
 
 
 /**

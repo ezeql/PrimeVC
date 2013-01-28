@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
-package prime.gui.layout;
+package prime.layout;
  import prime.signal.Signal1;
  import prime.core.geom.Box;
  import prime.core.geom.IntRectangle;
  import prime.core.geom.RectangleFlags;
- import prime.core.states.SimpleStateMachine;
+ import prime.fsm.SimpleStateMachine;
  import prime.core.validators.IntRangeValidator;
  import prime.types.Number;
- import prime.gui.states.ValidateStates;
+ import prime.fsm.states.ValidateStates;
   using prime.utils.Bind;
   using prime.utils.BitUtil;
   using prime.utils.IfUtil;
@@ -52,7 +52,7 @@ private typedef Flags = LayoutFlags;
  * @author			Ruben Weijers
  */
 class LayoutClient extends prime.core.traits.Invalidatable
-			,	implements prime.gui.layout.ILayoutClient
+			,	implements prime.layout.ILayoutClient
 #if debug	,	implements prime.core.traits.IUIdentifiable #end
 {
 	private static var EMPTY_BOX 	 = new Box(0,0,0,0);

@@ -1,3 +1,7 @@
+/****
+* 
+****/
+
 /*
  * Copyright (c) 2010, The PrimeVC Project Contributors
  * All rights reserved.
@@ -26,19 +30,19 @@
  * Authors:
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
-package primevc.gui.behaviours.components;
- import primevc.gui.behaviours.BehaviourBase;
- import primevc.gui.components.SelectableListView;
- import primevc.gui.core.IUIDataElement;
- import primevc.gui.display.IInteractiveObject;
- import primevc.gui.events.KeyboardEvents;
- import primevc.gui.events.MouseEvents;
- import primevc.gui.input.KeyCodes;
-  using primevc.gui.input.KeyCodes;
-  using primevc.utils.Bind;
-  using primevc.utils.IfUtil;
-  using primevc.utils.NumberUtil;
-  using primevc.utils.TypeUtil;
+package prime.gui.behaviours.components;
+ import prime.gui.behaviours.BehaviourBase;
+ import prime.gui.components.SelectableListView;
+ import prime.gui.core.IUIDataElement;
+ import prime.gui.display.IInteractiveObject;
+ import prime.gui.events.KeyboardEvents;
+ import prime.gui.events.MouseEvents;
+ import prime.gui.input.KeyCodes;
+  using prime.gui.input.KeyCodes;
+  using prime.utils.Bind;
+  using prime.utils.IfUtil;
+  using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**

@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ prime.vc>
  */
-package prime.binding.collections;
- import prime.binding.collections.iterators.IIterator;
- import prime.binding.collections.iterators.FastDoubleCellForwardIterator;
- import prime.binding.collections.iterators.FastDoubleCellReversedIterator;
+package prime.bindable.collections;
+ import prime.bindable.collections.iterators.IIterator;
+ import prime.bindable.collections.iterators.FastDoubleCellForwardIterator;
+ import prime.bindable.collections.iterators.FastDoubleCellReversedIterator;
  import prime.core.traits.IClonable;
  import prime.core.traits.IPrioritizable;
  import prime.core.traits.IDisposable;
