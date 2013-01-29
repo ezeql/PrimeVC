@@ -1,6 +1,4 @@
-/****
-* 
-****/
+
 
 package prime.gui.traits;
  import prime.bindable.Bindable;
