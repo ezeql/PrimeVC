@@ -453,8 +453,8 @@ class UIElementStyle implements IUIElementStyle
 					  | (style.has( Flags.FONT )		&& font		 .add( style.font ) 		> 0 ? Flags.FONT 		: 0)
 					  | (style.has( Flags.GRAPHICS )	&& graphics	 .add( style.graphics ) 	> 0 ? Flags.GRAPHICS 	: 0)
 					  | (style.has( Flags.LAYOUT )		&& layout	 .add( style.layout ) 		> 0 ? Flags.LAYOUT 		: 0)
-					  | (style.has( Flags.STATES )		&& states	 .add( style.states ) 		> 0 ? Flags.STATES 		: 0)
-					  .set( style.allFilledProperties.filter( Flags.CHILDREN ) );
+					  | (style.has( Flags.STATES )		&& states	 .add( style.states ) 		> 0 ? Flags.STATES 		: 0);
+			changes.set( style.allFilledProperties.filter( Flags.CHILDREN ) );
 			
 			filledProperties = filledProperties.set(changes);
 		}
@@ -487,8 +487,8 @@ class UIElementStyle implements IUIElementStyle
 				| (style.has( Flags.FONT )		 	&& font		 .remove( style.font		, isStyleStillInList ) > 0 ? Flags.FONT 		: 0)
 				| (style.has( Flags.GRAPHICS )	 	&& graphics	 .remove( style.graphics	, isStyleStillInList ) > 0 ? Flags.GRAPHICS 	: 0)
 				| (style.has( Flags.LAYOUT )		&& layout	 .remove( style.layout		, isStyleStillInList ) > 0 ? Flags.LAYOUT 		: 0)
-				| (style.has( Flags.STATES )		&& states	 .remove( style.states		, isStyleStillInList ) > 0 ? Flags.STATES 		: 0)
-				.set( style.allFilledProperties.filter( Flags.CHILDREN ) );
+				| (style.has( Flags.STATES )		&& states	 .remove( style.states		, isStyleStillInList ) > 0 ? Flags.STATES 		: 0);
+		c.set( style.allFilledProperties.filter( Flags.CHILDREN ) );
 		
 		if (isStyleStillInList)
 			styles.removeCell( styleCell );
