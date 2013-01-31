@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.effects.effectInstances;
- import prime.core.collections.ListChange;
+ import prime.bindable.collections.ListChange;
  import prime.gui.effects.CompositeEffect;		//imports typedef ChildEffectType
  import prime.gui.effects.EffectProperties;
  import prime.gui.effects.IEffect;

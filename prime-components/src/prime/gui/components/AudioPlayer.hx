@@ -29,7 +29,7 @@
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.core.media.AudioStream;
+ import prime.media.AudioStream;
  import prime.bindable.Bindable;
  import prime.gui.core.UIDataContainer;
  import prime.types.URI;

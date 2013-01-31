@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ prime.vc>
  */
-package primevc.fsm.states;
+package prime.fsm.states;
 
 
 /**

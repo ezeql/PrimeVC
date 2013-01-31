@@ -36,8 +36,8 @@ package prime.media;
  import prime.avm2.net.NetStream;
 #end
  import prime.fsm.SimpleStateMachine;
- import prime.fsm.MediaStates;
- import prime.core.Bindable;
+ import prime.fsm.states.MediaStates;
+ import prime.bindable.Bindable;
  import prime.core.Error;
  import prime.types.Number;
  import prime.types.URI;
@@ -267,7 +267,6 @@ class VideoStream extends BaseMediaStream
 		var sound				= source.soundTransform;
 		sound.volume			= volume.value; // * flash.media.SoundMixer.soundTransform.volume;
 		source.soundTransform	= sound;
-#end
 	}
 	
 	

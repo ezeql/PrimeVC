@@ -31,7 +31,7 @@
 package prime.gui.components;
  import prime.signal.Wire;
  import prime.bindable.Bindable;
- import prime.core.RevertableBindable;
+ import prime.bindable.RevertableBindable;
  import prime.gui.core.UITextField;
   using prime.utils.Bind;
   using prime.utils.TypeUtil;

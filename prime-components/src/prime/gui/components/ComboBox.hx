@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.core.collections.IReadOnlyList;
+ import prime.bindable.collections.IReadOnlyList;
  import prime.signal.Wire;
  import prime.gui.behaviours.components.ButtonSelectedOpenPopup;
  import prime.gui.behaviours.components.KeyboardListNavigation;

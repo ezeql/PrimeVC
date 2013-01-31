@@ -29,7 +29,7 @@
  *  Ruben Weijers   <ruben @ rubenw.nl>
  */
 package prime.gui.components;
- import prime.core.collections.ListChange;
+ import prime.bindable.collections.ListChange;
  import prime.signal.Signal0;
  import prime.bindable.Bindable;
  

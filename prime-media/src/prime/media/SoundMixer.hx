@@ -32,6 +32,7 @@ package prime.media;
  import flash.media.SoundTransform;
 #end
  import prime.bindable.Bindable;
+  using prime.utils.Bind;
   using prime.utils.IfUtil;
   using prime.utils.NumberUtil;
   using prime.utils.TypeUtil;

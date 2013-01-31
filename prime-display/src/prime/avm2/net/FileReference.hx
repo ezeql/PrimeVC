@@ -33,7 +33,7 @@ package prime.avm2.net;
  import haxe.io.BytesData;
 
  import prime.core.events.LoaderEvents;
- import prime.core.Bindable;
+ import prime.bindable.Bindable;
  import prime.net.CommunicationType;
  import prime.net.FileFilter;
  import prime.net.ICommunicator;

@@ -2,7 +2,7 @@ package prime.js.net;
  import prime.core.events.LoaderEvents;
  import prime.net.ICommunicator;
  import prime.net.CommunicationType;
- import prime.core.Bindable;
+ import prime.bindable.Bindable;
  import prime.js.net.XMLHttpRequest;
  import prime.types.URI;
  import haxe.io.BytesData;

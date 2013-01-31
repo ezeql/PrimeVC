@@ -34,8 +34,8 @@ package prime.gui.core;
  import primevc.gui.styling.UIElementStyle;
 #end
  import prime.signal.Wire;
- import prime.core.media.VideoStream;
- import prime.media.states.MediaStates;
+ import prime.media.VideoStream;
+ import prime.fsm.states.MediaStates;
  import prime.bindable.Bindable;
  
  import prime.gui.behaviours.layout.ValidateLayoutBehaviour;

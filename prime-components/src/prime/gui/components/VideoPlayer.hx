@@ -29,8 +29,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.core.media.VideoStream;
- import prime.fsm.MediaStates;
+ import prime.media.VideoStream;
+ import prime.fsm.states.MediaStates;
  import prime.bindable.Bindable;
  import prime.gui.core.IUIElement;
  import prime.gui.core.UIContainer;

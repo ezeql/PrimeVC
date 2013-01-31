@@ -1,7 +1,7 @@
 package cases;
- import prime.core.RevertableBindableFlags;
- import prime.core.RevertableBindable;
- import prime.core.RevertableBindableFlags;
+ import prime.bindable.BindableFlags;
+ import prime.bindable.RevertableBindable;
+ import prime.bindable.BindableFlags;
   using prime.utils.BitUtil;
 
 /**

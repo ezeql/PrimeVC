@@ -33,10 +33,10 @@ package prime.media;
  import flash.media.SoundChannel;
 #end
  import prime.fsm.SimpleStateMachine;
- import prime.fsm.MediaStates;
+ import prime.fsm.states.MediaStates;
  import prime.core.traits.IDisposable;
  import prime.core.traits.IFreezable;
- import prime.core.Bindable;
+ import prime.bindable.Bindable;
  import prime.types.Number;
  import prime.types.URI;
  import prime.utils.NumberUtil;
