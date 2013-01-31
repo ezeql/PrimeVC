@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.behaviours.layout;
- import prime.core.collections.ListChange;
+ import prime.bindable.collections.ListChange;
  import prime.gui.behaviours.BehaviourBase;
  import prime.gui.display.IDisplayContainer;
  import prime.gui.display.IDisplayObject;
@@ -98,9 +98,10 @@ class AutoChangeLayoutChildlistBehaviour extends BehaviourBase < IDisplayContain
 		switch (change)
 		{
 			case added( child, newPos ):
+#if dragEnabled
 				if (child.is(ISprite) && child.as(ISprite).isDragging)
 					return;
-				
+#end				
 				if (child.is(ILayoutable))
 					addChildToLayout( child.as(ILayoutable), newPos );
 				

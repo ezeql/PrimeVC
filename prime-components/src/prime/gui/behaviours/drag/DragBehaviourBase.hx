@@ -48,6 +48,20 @@ package prime.gui.behaviours.drag;
  * @author Ruben Weijers
  * @creation-date Jul 29, 2010
  */
+
+#if !dragEnabled
+
+class DragBehaviourBase extends BehaviourBase <ISprite>
+{
+	public function new (dragTarget:ISprite, dragBounds:IntRectangle = null, mouseTarget:ISprite = null)
+	{
+		super(dragTarget);
+		Assert.abstractMethod("Dragging not enabled. Add -D dragEnabled");
+	}
+}
+
+#else
+
 class DragBehaviourBase extends BehaviourBase <ISprite>
 {
 	private var dragInfo			: DragInfo;
@@ -146,6 +160,7 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 		Assert.isNotNull(dragInfo, "draginfo can't be null for "+target);
 		Assert.isNotNull(dragInfo.dragRenderer, "dragrenderer can't be null for "+target);
 		var item = dragInfo.dragRenderer;
+
 		item.stopDrag();
 		item.mouseEnabled = mouseEnabledValue;
 		
@@ -162,3 +177,4 @@ class DragBehaviourBase extends BehaviourBase <ISprite>
 		}
 	}
 }
+#end

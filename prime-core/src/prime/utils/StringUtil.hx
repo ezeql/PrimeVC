@@ -83,7 +83,7 @@ class StringUtil
 		var words	= v.split(" ");
 		var len		= words.length;
 		for ( i in 0...len )
-			words[ i ] = words[ i ].capitalizeFirstLetter();
+			words[ i ] = capitalizeFirstLetter( words[ i ] );
 		
 		return words.join(" ");
 	}

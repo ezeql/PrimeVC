@@ -44,6 +44,14 @@ package prime.gui.behaviours.drag;
  * @author Ruben Weijers
  * @creation-date Jul 22, 2010
  */
+
+#if !dragEnabled
+
+class DragMoveBehaviour extends DragBehaviourBase
+{}
+
+#else
+
 class DragMoveBehaviour extends DragBehaviourBase
 {
 	override private function stopDrag (mouseObj:MouseState) : Void
@@ -69,3 +77,4 @@ class DragMoveBehaviour extends DragBehaviourBase
 		target.userEvents.drag.cancel.send( dragInfo );
 	}
 }
+#end

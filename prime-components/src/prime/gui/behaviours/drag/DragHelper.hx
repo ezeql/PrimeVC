@@ -58,6 +58,18 @@ package prime.gui.behaviours.drag;
  * @author Ruben Weijers
  * @creation-date Jul 29, 2010
  */
+#if !dragEnabled
+
+class DragHelper
+{
+	public function new (target:ISprite, startHandler:MouseState -> Void, stopHandler:MouseState -> Void, cancelHandler:MouseState -> Void)
+	{
+		Assert.abstractMethod("Dragging not enabled. Add -D dragEnabled");
+	}
+}
+
+#else
+
 class DragHelper implements IDisposable, implements IDisablable
 {
 	private var target				: ISprite;
@@ -217,3 +229,4 @@ class DragHelper implements IDisposable, implements IDisablable
 		return mouseUpBinding.isEnabled();
 	}
 }
+#end

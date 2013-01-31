@@ -82,7 +82,7 @@ class RevertableBindable<T> extends Bindable<T>,
 	override public  function dispose ()
 	{
 		cancelEdit();
-		set(null);
+		(untyped this).set(null);
 		flags = 0;
 		super.dispose();
 	}

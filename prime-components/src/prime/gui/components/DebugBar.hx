@@ -149,7 +149,11 @@ class DebugBar extends UIContainer
 	private inline function inspectIfLayoutIsValidated (layout:LayoutClient, result:Dynamic)
 	{
 		if (!layout.state.is( ValidateStates.validated )) {
+#if debug
 			result.errors += "\n\t\t[ "+result.invalid+" ]layout of "+layout+"("+layout.includeInLayout+")"+" is "+layout.state.current+" instead of validated. Invalidated properties: "+layout.readChanges();
+#else
+			result.errors = "Build with Haxe option -debug to enable error reporting in inspectIfLayoutIsValidated";
+#end
 			result.invalid++;
 		}
 		else
@@ -210,25 +214,34 @@ class DebugBar extends UIContainer
 	
 	private function traceInvalidationQueue ()
 	{
+#if debug
 		var o = system.invalidation.traceQueues;
 		system.invalidation.traceQueues = true;
 		system.invalidation.traceQueue();
 		system.invalidation.traceQueues = o;
+#else
+		trace( "Build with Haxe option -debug to enable traceInvalidationQueue" );
+#end
 	}
 	
 	
 	private function traceRenderingQueue ()
 	{
+#if debug
 		var o = system.rendering.traceQueues;
 		system.rendering.traceQueues = true;
 		system.rendering.traceQueue();
 		system.rendering.traceQueues = o;
+#else
+		trace( "Build with Haxe option -debug to enable traceRenderingQueue" );
+#end
 	}
 	
 	
 	private function toggleTraceLayout ()
 	{
 		toggleTraceBtn.toggleSelect();
+#if debug
 		if (toggleTraceBtn.selected.value)
 		{
 			system.invalidation.traceQueues = true;
@@ -239,9 +252,26 @@ class DebugBar extends UIContainer
 			system.invalidation.traceQueues = false;
 			toggleTraceBtn.data.value = "Trace layout validation";
 		}
+#else
+		trace( "Build with Haxe option -debug to enable toggleTraceLayout" );
+#end
 	}
 	
 	
-	private function countWires ()		{ trace("Wires [ total: "+Wire.instanceCount+"; disposed: "+Wire.disposeCount + "; active: "+(Wire.instanceCount - Wire.disposeCount)+"; freelist: "+Wire.freeCount+" ]"); }
-	private function countAlgorithms ()	{ trace("Algorithms [ total: "+LayoutAlgorithmBase.created+"; disposed: "+LayoutAlgorithmBase.disposed + "; active: "+(LayoutAlgorithmBase.created - LayoutAlgorithmBase.disposed)+" ]"); }
+	private function countWires ()
+	{ 
+#if debug
+		trace("Wires [ total: "+Wire.instanceCount+"; disposed: "+Wire.disposeCount + "; active: "+(Wire.instanceCount - Wire.disposeCount)+"; freelist: "+Wire.freeCount+" ]"); 
+#else
+		trace( "Build with Haxe option -debug to enable countWires" );
+#end
+	}
+	private function countAlgorithms ()
+	{
+#if debug 
+		trace("Algorithms [ total: "+LayoutAlgorithmBase.created+"; disposed: "+LayoutAlgorithmBase.disposed + "; active: "+(LayoutAlgorithmBase.created - LayoutAlgorithmBase.disposed)+" ]"); 
+#else
+		trace( "Build with Haxe option -debug to enable countAlgorithms" );
+#end
+	}
 }

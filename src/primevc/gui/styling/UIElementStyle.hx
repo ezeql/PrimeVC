@@ -359,7 +359,7 @@ class UIElementStyle implements IUIElementStyle
 			parentStyle = null;
 		}
 		
-		Assert.isEqual( styles.length, 0, styles.string() );
+		Assert.that( styles.length == 0, styles.string() );
 		
 		filledProperties = 0;
 		broadcastChanges( changed );
@@ -729,7 +729,8 @@ class UIElementStyle implements IUIElementStyle
 			
 			// unset all the style properties of the higher-style in the usable properties flag,
 			// except for those they share and are not the same
-			properties = properties.unset( curData.allFilledProperties ).set( commonProps );
+			properties = properties.unset( curData.allFilledProperties );
+			properties = properties.set( commonProps );
 		}
 		
 		return properties;
@@ -744,7 +745,13 @@ class UIElementStyle implements IUIElementStyle
 	{
 		Assert.isNotNull(uniqueStyle);
 		Assert.isNotNull(higherStyle);
-		return uniqueStyle.allFilledProperties.unset( higherStyle.allFilledProperties ) > 0;
+		
+		var given = uniqueStyle.allFilledProperties;
+		var higher = higherStyle.allFilledProperties;
+		return given.unset( higher ) > 0;
+		
+		//haxe is getting an assignment from this expression...  allFilledProperties is read only and can't be written to
+		//return uniqueStyle.allFilledProperties.unset( higherStyle.allFilledProperties ) > 0;
 	}
 	
 	

@@ -44,10 +44,10 @@ import haxe.macro.Context;
 	* @param expected Any expression that can test against actual
 	* @param actual Any expression that can test againt expected
 	**/
-	@:macro public static function  isEqual( expected : Expr, actual : Expr ) : Expr return buildCompareAssert(expected, OpNotEq, actual)
-	@:macro public static function notEqual( expected : Expr, actual : Expr ) : Expr return buildCompareAssert(expected, OpEq, actual)
+	@:macro public static function  isEqual( expected : Expr, actual : Expr, ?message:ExprRequire<String> ) : Expr return buildCompareAssert(expected, OpNotEq, actual, message)
+	@:macro public static function notEqual( expected : Expr, actual : Expr, ?message:ExprRequire<String> ) : Expr return buildCompareAssert(expected, OpEq, actual, message)
 
-	#if macro private static function buildCompareAssert( expected:Expr, assertCompareOp:Binop, actual:Expr ) : Expr {
+	#if macro private static function buildCompareAssert( expected:Expr, assertCompareOp:Binop, actual:Expr, ?message:ExprRequire<String> ) : Expr {
 		if(!Context.defined("debug"))
 			return emptyExpr;
 		var pos = Context.currentPos();
@@ -83,7 +83,8 @@ import haxe.macro.Context;
 							pos : pos
 							}),
 						pos : pos
-						}
+						},
+						message != null ? message : { expr : EConst(CString("")), pos : pos }
 					]),
 				pos : pos }),
 			pos : pos },

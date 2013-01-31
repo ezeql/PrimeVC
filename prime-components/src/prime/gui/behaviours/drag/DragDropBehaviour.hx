@@ -53,6 +53,13 @@ package prime.gui.behaviours.drag;
  * @creation-date	Jul 8, 2010
  * @author			Ruben Weijers
  */
+#if !dragEnabled
+
+class DragDropBehaviour extends DragBehaviourBase
+{}
+
+#else
+
 class DragDropBehaviour extends DragBehaviourBase
 {
 //	private var copyTarget			: Bool;
@@ -221,3 +228,4 @@ class DragDropBehaviour extends DragBehaviourBase
 			dragInfo.dropTarget = curDropTarget;
 	}
 }
+#end

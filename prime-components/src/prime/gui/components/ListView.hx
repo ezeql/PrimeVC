@@ -29,8 +29,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.core.collections.IReadOnlyList;
- import prime.core.collections.ListChange;
+ import prime.bindable.collections.IReadOnlyList;
+ import prime.bindable.collections.ListChange;
  import prime.signal.Signal1;
  import prime.core.traits.IValueObject;
  import prime.core.geom.IRectangle;
@@ -274,11 +274,13 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 		Assert.isNotNull(r);
 		renderMap.unset(oldD);
 
+#if dragEnabled
 		if (r.is(ISprite) && r.as(ISprite).isDragging) {
 			//can't use this renderer.. create a new one
 			addRenderer( newD, toDepth );
 			return;
 		}
+#end
 
 		if (toDepth >= children.length)		// FIXME -> is only happening during scrolling while dragging an item.. Check if there's a better solution
 			toDepth = children.length - 1;

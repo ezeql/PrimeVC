@@ -427,7 +427,7 @@ class EffectsStyle extends StyleSubBlock
 		if (flags == -1)
 			flags = filledProperties;
 
-		return Flags.readProperties(flags);
+		return Flags.read(flags);
 	}
 #end
 }

@@ -128,7 +128,7 @@ package prime.bindable;
 #if debug
 	public static #if !noinline inline #end function readProperties (flags:Int) : String
 	{
-		return RevertableBindableFlagsDebug.readProperties(flags);
+		return RevertableBindableFlagsDebug.read(flags);
 	}
 #end
 }

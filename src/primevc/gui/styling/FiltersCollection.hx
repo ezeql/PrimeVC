@@ -142,7 +142,7 @@ class FiltersCollection extends StyleCollectionBase < FiltersStyle >
 		else
 			filters[ pos ] = filter;
 		
-		Assert.isEqual( filters.length, filterPositions.length );
+		Assert.isEqual( filters.length, Std.int(filterPositions.length) );
 	}
 	
 	
@@ -166,7 +166,7 @@ class FiltersCollection extends StyleCollectionBase < FiltersStyle >
 			}
 		}
 		
-		Assert.isEqual( filters.length, filterPositions.length );
+		Assert.isEqual( filters.length, Std.int(filterPositions.length) );
 	}
 	
 	

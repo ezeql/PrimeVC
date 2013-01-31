@@ -48,7 +48,7 @@ class EffectsCollection extends StyleCollectionBase < EffectsStyle >
 	override public function forwardIterator ()					return new EffectsCollectionForwardIterator( elementStyle, propertyTypeFlag)
 	override public function reversedIterator ()				return new EffectsCollectionReversedIterator( elementStyle, propertyTypeFlag)
 #if debug
-	override public function readProperties (props:Int = -1)	return Flags.readProperties( (props == -1) ? filledProperties : props )
+	override public function readProperties (props:Int = -1)	return Flags.read( (props == -1) ? filledProperties : props )
 #end
 	
 	

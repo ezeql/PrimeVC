@@ -38,6 +38,7 @@ package prime.layout;
  import prime.types.Number;
  import prime.utils.FastArray;
  import prime.utils.NumberUtil;
+ import prime.fsm.states.ValidateStates;
   using prime.utils.Bind;
   using prime.utils.BitUtil;
   using prime.utils.FastArray;
@@ -126,7 +127,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 			invalidate( Flags.CHILDREN_INVALIDATED );
 			
 			if (!child.isValidating())
-				child.state.current = parent_invalidated;
+				child.state.current = ValidateStates.parent_invalidated;
 		}
 		return;
 	}

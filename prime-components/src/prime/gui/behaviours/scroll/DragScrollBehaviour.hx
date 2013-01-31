@@ -35,6 +35,7 @@ package prime.gui.behaviours.scroll;
  import prime.signal.Wire;
  import prime.core.geom.Point;
  import prime.gui.behaviours.drag.DragHelper;
+ import prime.gui.display.ISprite;
  import prime.gui.events.MouseEvents;
  import prime.layout.LayoutFlags;
  import prime.gui.input.Mouse;
@@ -52,10 +53,21 @@ package prime.gui.behaviours.scroll;
  * @author Ruben Weijers
  * @creation-date Jul 29, 2010
  */
+
+#if !dragEnabled
+class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScrollBehaviour
+{
+	public function new()
+	{
+		super(null);
+		Assert.abstractMethod("Dragging not enabled. Add -D dragEnabled");
+	}
+}
+#else
 class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScrollBehaviour
 {
 #if !CSSParser
-	private var layout			: IScrollableLayout;
+	private var scrollLayout	: IScrollableLayout;
 	private var lastMousePos	: Point;
 	private var dragHelper		: DragHelper;
 	private var moveBinding		: Wire < Dynamic >;
@@ -63,14 +75,16 @@ class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScroll
 	
 	override private function init ()
 	{
-		Assert.isNotNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
+		Assert.isNotNull( target.scrollableLayout, "target.scrollableLayout of "+target+" must be a IScrollableLayout" );
+		Assert.that( Std.is( target, ISprite ), target+" must implement ISprite");
+
 		target.enableClipping();
 		
 	//	trace(target+".init DragScrollBehaviour "+target.scrollRect);
-		layout = target.scrollableLayout;
-		checkScrollable.on( layout.changed, this );
-		
-		dragHelper		= new DragHelper( target, startScrolling, stopScrolling, dragAndScroll );
+		scrollLayout = target.scrollableLayout;
+		checkScrollable.on( scrollLayout.changed, this );
+
+		dragHelper		= new DragHelper( cast(target, ISprite), startScrolling, stopScrolling, dragAndScroll );
 		moveBinding		= dragAndScroll.on( target.window.mouse.events.move, this );
 		moveBinding.disable();
 	}
@@ -120,8 +134,8 @@ class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScroll
 		if (mouseObj == null)
 			return;
 		
-		var scrollHor = layout.horScrollable();
-		var scrollVer = layout.verScrollable();
+		var scrollHor = scrollLayout.horScrollable();
+		var scrollVer = scrollLayout.verScrollable();
 		
 		if (!scrollHor && !scrollVer)
 			return;
@@ -133,14 +147,15 @@ class DragScrollBehaviour extends BehaviourBase<IScrollable>, implements IScroll
 		
 		var mousePos		= ScrollHelper.getLocalMouse(target, mouseObj);
 		var mouseDiff		= lastMousePos.subtract(mousePos);
-		var newScrollPos	= layout.scrollPos.clone();
+		var newScrollPos	= scrollLayout.scrollPos.clone();
 		
 		if (scrollHor)	newScrollPos.x += mouseDiff.x.roundFloat();
 		if (scrollVer)	newScrollPos.y += mouseDiff.y.roundFloat();
 		
 		lastMousePos = mousePos;
-		newScrollPos = layout.validateScrollPosition( newScrollPos );
+		newScrollPos = scrollLayout.validateScrollPosition( newScrollPos );
 		scrollLayout.scrollPos.setTo( newScrollPos );
 	}
 #end
 }
+#end
