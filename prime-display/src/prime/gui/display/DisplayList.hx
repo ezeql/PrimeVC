@@ -32,7 +32,7 @@ typedef DisplayList =
 	#if		flash9	prime.avm2.display.DisplayList;
 	#elseif	flash8	prime.avm1.display.DisplayList;
 	#elseif nodejs 	DisplayListImpl;
-	#elseif	js		prime.js  .display.DisplayList;
+	#elseif	js		prime.js.display.DisplayList;
 	#else			DisplayListImpl;
 
 

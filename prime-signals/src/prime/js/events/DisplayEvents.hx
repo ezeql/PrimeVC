@@ -1,6 +1,7 @@
 package prime.js.events;
  import prime.gui.events.DisplayEvents;
  import prime.gui.events.UserEventTarget;
+ import prime.signal.Wire;
 
 
 /**

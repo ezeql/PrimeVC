@@ -234,7 +234,7 @@ class AudioStream extends BaseMediaStream
 #end
     }
 
-
+#if flash9
     private function applyRepeat (event:Event)
     {
         repeated++;
@@ -244,7 +244,7 @@ class AudioStream extends BaseMediaStream
         } else
             stop();
     }
-
+#end
 
     private inline function shouldLoop ()
     {

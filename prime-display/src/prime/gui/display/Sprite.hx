@@ -37,7 +37,7 @@ typedef Sprite =
 	#if		flash9	prime.avm2.display.Sprite;
 	#elseif	flash8	prime.avm1.display.Sprite;
 	#elseif nodejs 	#error;
-	#elseif	js		prime.js  .display.Sprite;
+	#elseif	js		prime.js.display.Sprite;
 	#else			#error;
 /*
 

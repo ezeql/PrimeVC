@@ -93,8 +93,11 @@ class UIComponent extends Sprite, implements IUIComponent
     public var behaviours		(default, null)			        : BehaviourList;
 	public var state			(default, null)					: UIElementStates;
 	public var effects			(default, default)				: UIElementEffects;
-	public var id				(default, null)					: Bindable<String>;
 	
+#if !js
+	public var id				(default, null)					: Bindable<String>;
+#end
+
 	public var skin				(default, setSkin)				: ISkin;
 	public var layout			(default, null)					: LayoutClient;
 	public var system			(getSystem, never)				: ISystem;

@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.gui.components.skins;
-
+import primevc.gui.components.skins.ClosablePanelSkin;
 
 /**
  * Skin to create a movable panel with a close-btn (#closeBtn).

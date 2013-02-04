@@ -13,6 +13,9 @@
 #-cp ../../PrimeVC/libs/swfaddress
 #-cp ../../PrimeVC/libs/macmousewheel
 
+#../prime-signals/libs.hxml
+#../prime-core/libs.hxml
+#../prime-bindable/libs.hxml
 -cp ../prime-core/src
 -cp ../prime-signals/src
 -cp ../prime-bindable/src
@@ -23,5 +26,5 @@
 -cp ../prime-css/src
 -cp ../prime-media/src
 -cp ../src
--cp src
--cp test
+-cp ./src
+-cp ./test
