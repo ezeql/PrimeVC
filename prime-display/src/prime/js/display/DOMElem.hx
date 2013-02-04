@@ -1,5 +1,5 @@
-package primevc.js.display;
-import primevc.js.display.DisplayList;
+package prime.js.display;
+import prime.js.display.DisplayList;
 
 import js.Dom;
 import js.Lib;

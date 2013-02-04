@@ -1,4 +1,4 @@
-package primevc.js.net;
+package prime.js.net;
 
 import js.Dom;
 import js.Lib;

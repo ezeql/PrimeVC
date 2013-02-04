@@ -1,4 +1,4 @@
-package primevc.js.display;
+package prime.js.display;
 
  import js.Dom;
  import prime.signal.Signal1;
