@@ -31,6 +31,14 @@ package prime.avm2.display;
  import prime.gui.display.IDisplayContainer;
  import prime.gui.display.IDisplayObject;
  import prime.gui.display.DisplayList;
+ import prime.gui.display.DisplayDataCursor;
+ import prime.gui.display.DisplayObject;
+ import prime.gui.events.DisplayEvents;
+ import prime.gui.display.Window;
+ import prime.core.geom.IntRectangle;
+ import prime.gui.events.UserEvents;
+ import prime.gui.events.UserEventTarget;
+   using prime.utils.TypeUtil;
 
 
 /**
@@ -41,20 +49,33 @@ package prime.avm2.display;
  */
 class DisplayContainer extends DisplayObjectContainer, implements IDisplayContainer, implements IDisplayObject
 {
-	var children	(default, null)	: DisplayList;
+	public var children			(default, null)				: DisplayList;
+	public var displayEvents	(default, null)				: DisplayEvents;
+	public var container		(default, default)			: IDisplayContainer;
+	public var window			(default, setWindow)		: Window;
+	public var rect				(default, null)				: IntRectangle;
 	
-	
+	private function setWindow(w:Window):Window { window = w; return window; }
+
 	public function new ()
 	{
 		super();
-		children = new DisplayList();
+		children = new DisplayList( this );
 	}
 	
+	public function dispose() : Void { Assert.abstractMethod(); }
 	
 #if !CSSParser
-	public function getDisplayCursor			() : DisplayDataCursor								{ return new DisplayDataCursor(this); }
-	public #if !noinline inline #end function attachDisplayTo		(target:ISprite, pos:Int = -1)	: IDisplayObject	{ target.children.add( this, pos ); return this; }
-	public #if !noinline inline #end function detachDisplay		()								: IDisplayObject	{ container.children.remove( this ); return this; }
-	public #if !noinline inline #end function changeDisplayDepth	(newPos:Int)					: IDisplayObject	{ container.children.move( this, newPos ); return this; }
+	public #if !noinline inline #end function isObjectOn 		(otherObj:IDisplayObject) 				: Bool 				{ return otherObj == null ? false : otherObj.as(DisplayObject).hitTestObject( this.as(DisplayObject) ); }
+	public #if !noinline inline #end function getDisplayCursor	() 										: DisplayDataCursor	{ return new DisplayDataCursor(this); }
+	public #if !noinline inline #end function attachDisplayTo	(target:IDisplayContainer, pos:Int = -1): IDisplayObject	{ target.children.add( this, pos ); return this; }
+	public #if !noinline inline #end function detachDisplay		()										: IDisplayObject	{ container.children.remove( this ); return this; }
+	public #if !noinline inline #end function changeDisplayDepth(newPos:Int)							: IDisplayObject	{ container.children.move( this, newPos ); return this; }
 #end
+
+	// IInteractive interface
+	public var userEvents		(default, null)				: UserEvents;
+	public function setFocus ()		: Void { Assert.abstractMethod(); }
+	public function removeFocus ()	: Void { Assert.abstractMethod(); }
+	public function isFocusOwner ( target: UserEventTarget ) : Bool { Assert.abstractMethod(); return false; }
 }

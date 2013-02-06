@@ -29,6 +29,7 @@
 package prime.gui.graphics;
  import prime.gui.traits.IDrawable;
  import prime.utils.FastArray;
+ import prime.gui.traits.IGraphicsOwner;
   using prime.utils.FastArray;
 
 
@@ -61,14 +62,15 @@ class ComposedGraphicProperties extends GraphicProperties
 	}
 	
 	
-	override public function draw (target:IDrawable, ?useCoordinates:Bool = false) : Void
+	override public function draw (target:IGraphicsOwner, ?useCoordinates:Bool = false) : Bool
 	{
-		beginDraw(target);
-		
+		//beginDraw(target);
+				
 		for (child in children)
 			child.draw(target, true);
 		
-		endDraw(target);
+		return super.draw(target, true);
+		//endDraw(target);
 	}
 
 
@@ -88,7 +90,7 @@ class ComposedGraphicProperties extends GraphicProperties
 	public #if !noinline inline #end function remove ( child:GraphicProperties )
 	{
 		child.listeners.add(this);
-		children.remove(child);
+		children.removeItem(child);
 		invalidate( GraphicFlags.PROPERTIES );
 	}
 

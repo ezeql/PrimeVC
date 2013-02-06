@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.effects;
- import prime.core.collections.ArrayList;
+ import prime.bindable.collections.ArrayList;
 #if CSSParser
  import prime.tools.generator.ICodeGenerator;
   using prime.types.Reference;

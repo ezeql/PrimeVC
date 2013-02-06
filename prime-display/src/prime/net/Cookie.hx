@@ -28,7 +28,6 @@
  */
 package prime.net;
 #if flash9
- import flash.Error;
  import flash.events.NetStatusEvent;
  import flash.net.SharedObject;
  import flash.net.SharedObjectFlushStatus;
@@ -62,8 +61,8 @@ class Cookie < DataType >
 			if (localObj != null)
 				data = localObj.data;
 		}
-		catch (error : Error)
-			trace("Cookie read error! " + error)
+		catch (error : Dynamic)
+			trace("Cookie read error! " + error);
 #end
 	}
 	
@@ -88,8 +87,8 @@ class Cookie < DataType >
 				trace("Value flushed to disk.");
 			}
 		}
-		catch (error : Error)
-			trace("Error... Could not write SharedObject to disk. "+error)
+		catch (error : Dynamic)
+			trace("Error... Could not write SharedObject to disk. "+error);
 #end
 	}
 	
