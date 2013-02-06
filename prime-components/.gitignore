@@ -3,5 +3,4 @@
 .mcover
 TestMain.hx
 .temp
-/test
 /build
