@@ -1,6 +1,5 @@
 import massive.munit.TestSuite;
 
-import ExampleTest;
 import prime.components.AllClassesTest;
 
 /**
@@ -15,7 +14,6 @@ class TestSuite extends massive.munit.TestSuite
 	{
 		super();
 
-		add(ExampleTest);
 		add(prime.components.AllClassesTest);
 	}
 }

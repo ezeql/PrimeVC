@@ -1,6 +1,5 @@
 <mlib bin="bin">
 	<resources>
 		<resource type="src" path="src" dest="" />
-		<resource type="license" path="license.txt" />
 	</resources>
 </mlib>
