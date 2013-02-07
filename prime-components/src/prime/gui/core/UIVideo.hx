@@ -31,7 +31,7 @@
 package prime.gui.core;
 #if flash9
  import prime.bindable.collections.SimpleList;
- import primevc.gui.styling.UIElementStyle;
+ import prime.gui.styling.UIElementStyle;
 #end
  import prime.signal.Wire;
  import prime.media.VideoStream;

@@ -33,7 +33,7 @@ package prime.gui.traits;
 #if flash9
  import prime.bindable.collections.SimpleList;
  import prime.bindable.Bindable;
- import primevc.gui.styling.UIElementStyle;
+ import prime.gui.styling.UIElementStyle;
 #end
 
 

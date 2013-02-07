@@ -28,12 +28,12 @@
  */
 package cases;
  import prime.gui.core.UIComponent;
- import primevc.gui.styling.FontStyle;
- import primevc.gui.styling.GraphicStyleDeclarations;
- import primevc.gui.styling.LayoutStyle;
- import primevc.gui.styling.StyleChildren;
- import primevc.gui.styling.StyleBlock;
- import primevc.gui.styling.UIElementStyle;
+ import prime.gui.styling.FontStyle;
+ import prime.gui.styling.GraphicStyleDeclarations;
+ import prime.gui.styling.LayoutStyle;
+ import prime.gui.styling.StyleChildren;
+ import prime.gui.styling.StyleBlock;
+ import prime.gui.styling.UIElementStyle;
 
 
 /**

@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.tools;
- import primevc.gui.styling.StyleBlock;
- import primevc.gui.styling.StyleFlags;
+ import prime.gui.styling.StyleBlock;
+ import prime.gui.styling.StyleFlags;
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.CodeGenerator;
   using prime.tools.generator.output.HaxeOutputUtil;

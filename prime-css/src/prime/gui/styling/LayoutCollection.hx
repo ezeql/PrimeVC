@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.core.validators.IntRangeValidator;
  import prime.core.validators.PercentIntRangeValidator;
 // import prime.layout.IAdvancedLayoutClient;
  import prime.layout.ILayoutContainer;
- import primevc.gui.styling.StyleCollectionBase;
+ import prime.gui.styling.StyleCollectionBase;
  import prime.gui.traits.ILayoutable;
  import prime.types.Number;
   using prime.utils.BitUtil;

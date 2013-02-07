@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.text;
- import primevc.gui.styling.TextStyleFlags;
+ import prime.gui.styling.TextStyleFlags;
   using prime.utils.Color;
 
 

@@ -26,10 +26,10 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.gui.display.IDisplayObject;
  import prime.gui.filters.BitmapFilter;
- import primevc.gui.styling.StyleCollectionBase;
+ import prime.gui.styling.StyleCollectionBase;
  import prime.utils.FastArray;
   using prime.utils.BitUtil;
   using prime.utils.TypeUtil;

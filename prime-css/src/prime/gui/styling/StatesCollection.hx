@@ -26,9 +26,9 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.signal.Signal1;
- import primevc.gui.styling.StyleCollectionBase;
+ import prime.gui.styling.StyleCollectionBase;
   using prime.utils.BitUtil;
 
 private typedef Flags = StyleStateFlags;

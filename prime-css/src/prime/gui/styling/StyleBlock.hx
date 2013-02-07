@@ -26,15 +26,15 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
 #if CSSParser
  import prime.tools.generator.ICodeGenerator;
  import prime.types.SimpleDictionary;
 #end
  import prime.core.traits.IInvalidatable;
  import prime.core.traits.IPrioritizable;
- import primevc.gui.styling.StyleChildren;	//needed for SelectorMapType typedef
-  using primevc.gui.styling.StyleFlags;
+ import prime.gui.styling.StyleChildren;	//needed for SelectorMapType typedef
+  using prime.gui.styling.StyleFlags;
   using prime.utils.BitUtil;
   using prime.utils.HashUtil;
   using Type;

@@ -31,7 +31,7 @@
 package prime.gui.components;
  import prime.bindable.Bindable;
  import prime.gui.core.IUIElement;
- import primevc.gui.styling.IIconOwner;
+ import prime.gui.styling.IIconOwner;
  import prime.types.Asset;
 
 

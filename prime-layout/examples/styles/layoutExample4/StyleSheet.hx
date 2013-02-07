@@ -27,20 +27,20 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package ;
- import primevc.gui.styling.LayoutStyleFlags;
- import primevc.gui.styling.StyleChildren;
- import primevc.gui.styling.StyleBlockType;
- import primevc.gui.styling.StyleBlock;
+ import prime.gui.styling.LayoutStyleFlags;
+ import prime.gui.styling.StyleChildren;
+ import prime.gui.styling.StyleBlockType;
+ import prime.gui.styling.StyleBlock;
  import prime.types.Number;
  import prime.core.geom.Box;
  import prime.gui.graphics.fills.SolidFill;
  import prime.gui.graphics.shapes.RegularRectangle;
  import prime.layout.algorithms.tile.SimpleTileAlgorithm;
- import primevc.gui.styling.GraphicsStyle;
- import primevc.gui.styling.LayoutStyle;
- import primevc.gui.styling.StatesStyle;
- import primevc.gui.styling.StyleBlock;
- import primevc.gui.styling.StyleBlockType;
+ import prime.gui.styling.GraphicsStyle;
+ import prime.gui.styling.LayoutStyle;
+ import prime.gui.styling.StatesStyle;
+ import prime.gui.styling.StyleBlock;
+ import prime.gui.styling.StyleBlockType;
 
 
 

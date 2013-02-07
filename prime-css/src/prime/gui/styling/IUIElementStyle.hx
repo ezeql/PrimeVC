@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.bindable.collections.PriorityList;
  import prime.signal.Signal0;
  import prime.core.traits.IInvalidateListener;
  import prime.core.traits.IDisposable;
- import primevc.gui.styling.StyleBlock;
+ import prime.gui.styling.StyleBlock;
  import prime.gui.traits.IStylable;
  import prime.utils.FastArray;
 

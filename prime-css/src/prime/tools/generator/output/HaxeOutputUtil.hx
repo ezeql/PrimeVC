@@ -43,7 +43,7 @@ package prime.tools.generator.output;
 class HaxeOutputUtil
 {
 	private static inline var EMPTY_INT	= prime.types.Number.EMPTY;
-	private static inline var FILL_INT	= primevc.gui.styling.LayoutStyleFlags.FILL;
+	private static inline var FILL_INT	= prime.gui.styling.LayoutStyleFlags.FILL;
 	
 	
 	public static function writeValues (values:Array<ValueType>) : StringBuf

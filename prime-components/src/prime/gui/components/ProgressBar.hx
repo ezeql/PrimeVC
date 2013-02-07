@@ -37,8 +37,8 @@ package prime.gui.components;
  import prime.gui.core.UIDataContainer;
  import prime.gui.core.UIElementFlags;
 
- import primevc.gui.styling.StyleState;
- import primevc.gui.styling.StyleStateFlags;
+ import prime.gui.styling.StyleState;
+ import prime.gui.styling.StyleStateFlags;
 
   using prime.utils.Bind;
   using prime.utils.BitUtil;

@@ -26,14 +26,14 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.gui.core.IUIContainer;
  import prime.gui.core.IUIElement;
  import prime.gui.display.IDisplayObject;
  import prime.gui.graphics.borders.EmptyBorder;
  import prime.gui.graphics.EmptyGraphicProperty;
  import prime.gui.graphics.GraphicProperties;
- import primevc.gui.styling.StyleCollectionBase;
+ import prime.gui.styling.StyleCollectionBase;
  import prime.gui.traits.IDrawable;
  import prime.gui.traits.ISkinnable;
   using prime.utils.BitUtil;
@@ -79,9 +79,10 @@ class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 		//
 		
 		var graphicProps:GraphicProperties = null;
+#if flash9		
 		if (changes.has( Flags.DRAWING_PROPERTIES ))
 			graphicProps = elementStyle.target.as(IDrawable).graphicData;
-		
+#end		
 		for (styleObj in this)
 		{
 			if (changes == 0)
@@ -109,7 +110,9 @@ class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 		
 		if ( propsToSet.has( Flags.SHAPE ))			graphicProps.shape					= empty ? null	: styleObj.shape;
 		if ( propsToSet.has( Flags.BORDER_RADIUS ))	graphicProps.borderRadius			= empty ? null	: styleObj.borderRadius;
-		if ( propsToSet.has( Flags.ICON ))			target.as(IIconOwner).icon			= empty ? null	: styleObj.getIconInstance();
+#if flash9
+		if ( propsToSet.has( Flags.ICON ))			target.as(IIconOwner).icon			= empty ? null	: styleObj.getIconInstance(); 
+#end
 		if ( propsToSet.has( Flags.ICON_FILL ))		target.as(IIconOwner).iconFill		= empty ? null	: styleObj.iconFill;
 		if ( propsToSet.has( Flags.OPACITY ))		target.as(IDisplayObject).alpha		= empty ? 1		: styleObj.opacity;
 		

@@ -34,8 +34,8 @@ package prime.gui.behaviours.components;
  import prime.gui.components.ProgressBar;
  import prime.gui.core.IUIContainer;
 
- import primevc.gui.styling.StyleState;
- import primevc.gui.styling.StyleStateFlags;
+ import prime.gui.styling.StyleState;
+ import prime.gui.styling.StyleStateFlags;
 
   using prime.utils.Bind;
 

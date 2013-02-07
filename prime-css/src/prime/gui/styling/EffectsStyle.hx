@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
 #if CSSParser
  import prime.tools.generator.ICodeGenerator;
 #end

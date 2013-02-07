@@ -31,16 +31,16 @@ libs.hxml
 --next
 
 ## JavaScript
--main TestMain
-libs.hxml
--js build/js_test.js
+#-main TestMain
+#libs.hxml
+#-js build/js_test.js
 
 --next
 
 ## Neko
--main TestMain
-libs.hxml
--neko build/neko_test.n
+#-main TestMain
+#libs.hxml
+#-neko build/neko_test.n
 
 --next
 

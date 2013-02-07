@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.core.traits.IInvalidatable;
  import prime.core.traits.Invalidatable;
   using prime.utils.BitUtil;

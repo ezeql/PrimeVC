@@ -32,7 +32,7 @@ package prime.gui.components;
  import prime.bindable.Bindable;
  import prime.gui.core.UIDataContainer;
  import prime.gui.graphics.IGraphicProperty;
- import primevc.gui.styling.IIconOwner;
+ import prime.gui.styling.IIconOwner;
  import prime.gui.text.TextFormat;
  import prime.gui.traits.ISelectable;
  import prime.gui.traits.ITextStylable;

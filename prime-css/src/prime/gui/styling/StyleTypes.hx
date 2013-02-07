@@ -26,11 +26,11 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
 
 
 /**
- * @see primevc.gui.styling.StyleBlockType
+ * @see prime.gui.styling.StyleBlockType
  * @author Ruben Weijers
  * @creation-date Aug 05, 2010
  */

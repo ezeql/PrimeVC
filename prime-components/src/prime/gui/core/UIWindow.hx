@@ -111,7 +111,7 @@ class UIWindow extends prime.gui.display.Window
 	 */
 	public var graphics				(default, null)					: flash.display.Graphics;
 	
-	public var style				(default, null)					: primevc.gui.styling.UIElementStyle;
+	public var style				(default, null)					: prime.gui.styling.UIElementStyle;
 	public var styleClasses			(default, null)					: SimpleList<String>;
 	public var stylingEnabled		(default, setStylingEnabled)	: Bool;
 #end
@@ -331,7 +331,7 @@ class UIWindow extends prime.gui.display.Window
 			
 			stylingEnabled = v;
 			if (v) {
-				style = new primevc.gui.styling.ApplicationStyle(this, this);
+				style = new prime.gui.styling.ApplicationStyle(this, this);
 				style.updateStyles();
 			}
 		}

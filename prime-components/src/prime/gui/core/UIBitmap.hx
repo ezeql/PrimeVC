@@ -40,7 +40,7 @@ package prime.gui.core;
  import prime.gui.states.UIElementStates;
 #if flash9
  import prime.bindable.collections.SimpleList;
- import primevc.gui.styling.UIElementStyle;
+ import prime.gui.styling.UIElementStyle;
 #end
  import prime.gui.traits.IValidatable;
  import prime.types.Number;

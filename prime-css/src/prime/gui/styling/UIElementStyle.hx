@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
 
 #if flash9
  import prime.bindable.collections.FastDoubleCell;
@@ -40,7 +40,7 @@ package primevc.gui.styling;
 #if debug
  import prime.utils.ID;
 #end
-  using primevc.gui.styling.StyleFlags;
+  using prime.gui.styling.StyleFlags;
   using prime.utils.Bind;
   using prime.utils.BitUtil;
   using prime.utils.FastArray;

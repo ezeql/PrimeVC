@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.core.traits.IDisposable;
   using prime.utils.Bind;
   using prime.utils.BitUtil;

@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
  import prime.bindable.collections.iterators.IIterator;
  import prime.bindable.collections.PriorityList;
  import prime.bindable.collections.FastDoubleCell;

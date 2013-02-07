@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package ;
- import primevc.gui.styling.StyleBlock;
- import primevc.gui.styling.StyleBlockType;
+ import prime.gui.styling.StyleBlock;
+ import prime.gui.styling.StyleBlockType;
 
 
 

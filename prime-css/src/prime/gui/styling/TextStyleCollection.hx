@@ -26,12 +26,12 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.styling;
+package prime.gui.styling;
 #if flash9
  import flash.text.Font;
 #end
  import prime.gui.components.ITextArea;
- import primevc.gui.styling.StyleCollectionBase;
+ import prime.gui.styling.StyleCollectionBase;
  import prime.gui.text.FontStyle;
  import prime.gui.text.FontWeight;
  import prime.gui.text.TextAlign;
