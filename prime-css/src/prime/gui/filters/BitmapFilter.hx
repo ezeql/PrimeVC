@@ -46,7 +46,9 @@ class BitmapFilter implements IBitmapFilter
 {
 	public function new ()
 	{
+#if (CSSParser || debug)	
 		_oid = ID.getNext();
+#end
 	}
 	
 	

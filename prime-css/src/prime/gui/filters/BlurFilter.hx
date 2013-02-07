@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.gui.filters;
+package prime.gui.filters;
 
 
 #if (flash9 || flash8)

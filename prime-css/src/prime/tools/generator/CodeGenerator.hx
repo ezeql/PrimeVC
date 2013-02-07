@@ -44,6 +44,13 @@ private typedef ValueType = prime.tools.generator.ValueType;
  * @author Ruben Weijers
  * @creation-date Sep 13, 2010
  */
+
+#if !CSSParser
+class CodeGenerator
+{
+	
+}
+#else
 class CodeGenerator implements ICodeGenerator
 {
 	/**
@@ -79,7 +86,6 @@ class CodeGenerator implements ICodeGenerator
 	
 	public function new ()
 	{
-#if !CSSParser Assert.abstractMethod(); #end
 		instanceIgnoreList	= new IntHash();
 	}
 	
@@ -371,3 +377,4 @@ class CodeGenerator implements ICodeGenerator
 		return type;
 	}
 }
+#end
