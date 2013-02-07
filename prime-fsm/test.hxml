@@ -44,10 +44,4 @@ libs.hxml
 
 --next
 
-## CPP
--main TestMain
-libs.hxml
-#-D HXCPP_M64
--cpp build/cpp_test
-
 

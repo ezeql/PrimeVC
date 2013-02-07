@@ -1,8 +1,6 @@
 import massive.munit.TestSuite;
 
 import prime.mvc.AllClassesTest;
-import prime.mvc.TestjeTest;
-import testjeTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -17,7 +15,5 @@ class TestSuite extends massive.munit.TestSuite
 		super();
 
 		add(prime.mvc.AllClassesTest);
-		add(prime.mvc.TestjeTest);
-		add(testjeTest);
 	}
 }
