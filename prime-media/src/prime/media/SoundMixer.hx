@@ -52,7 +52,7 @@ private typedef Sound = flash.media.SoundMixer;
  */
 class SoundMixer
 {
-    private function new () {}
+    public function new () {}
     
     private static var instance (getInstance, null) : SoundMixerInstance;
     
