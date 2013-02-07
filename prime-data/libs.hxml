@@ -1,0 +1,31 @@
+-lib munit
+-lib hamcrest
+-lib tink_macros
+-lib feffects
+-D prime_net
+#-D dragEnabled
+
+#-cp ../../src/main/haxe
+#-cp ../../generated-src/haxe 
+#-cp ../../PrimeVC/libs/jac
+-cp ../../PrimeVC/libs/apparat
+#-cp ../../PrimeVC/libs/thx/src
+#-cp ../../PrimeVC/libs/swfaddress
+#-cp ../../PrimeVC/libs/macmousewheel
+
+#../prime-signals/libs.hxml
+#../prime-core/libs.hxml
+#../prime-bindable/libs.hxml
+-cp ../prime-components/src
+-cp ../prime-core/src
+-cp ../prime-signals/src
+-cp ../prime-bindable/src
+-cp ../prime-data/src
+-cp ../prime-display/src
+-cp ../prime-layout/src
+-cp ../prime-fsm/src
+-cp ../prime-css/src
+-cp ../prime-media/src
+-cp ../src
+-cp ./src
+-cp ./test
