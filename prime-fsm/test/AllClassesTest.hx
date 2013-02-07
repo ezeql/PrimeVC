@@ -4,6 +4,12 @@ import massive.munit.util.Timer;
 import massive.munit.Assert;
 import massive.munit.async.AsyncFactory;
 
+import prime.fsm.FiniteStateMachine;
+import prime.fsm.IFiniteStateMachine;
+import prime.fsm.IState;
+import prime.fsm.SimpleStateMachine;
+import prime.fsm.State;
+import prime.fsm.states.ValidateStates;
 
 /**
 * Auto generated MassiveUnit Test Class 
