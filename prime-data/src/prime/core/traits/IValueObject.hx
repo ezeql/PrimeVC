@@ -28,6 +28,7 @@
  */
 package prime.core.traits;
 
+import prime.core.traits.IDisposable;
 
 /**
  * Implemented by every Value-Object class.

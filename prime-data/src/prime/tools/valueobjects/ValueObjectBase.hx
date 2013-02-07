@@ -30,7 +30,7 @@ package prime.tools.valueobjects;
  import prime.core.traits.IFlagOwner;
  import prime.core.traits.IValueObject;
  import prime.signal.Signal1;
- import prime.bindable.BindableFlags;
+ import prime.bindable.RevertableBindableFlags;
   using prime.utils.BitUtil;
   using prime.utils.IfUtil;
   using prime.utils.TypeUtil;

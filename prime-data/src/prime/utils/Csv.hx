@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers <ruben {at} rubenw [dot] nl>
  */
-package primevc.utils;
+package prime.utils;
  import prime.utils.FastArray;
   using prime.utils.FastArray;
   using StringTools;
