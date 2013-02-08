@@ -334,7 +334,7 @@ class ChainedListCollection<T>
 			pos				= globalPos;
 			for (list in lists)
 			{
-				if (pos < list.length || ((listNum + 1) == len && pos == list.length))
+				if (pos < Std.int(list.length) || ((listNum + 1) == Std.int(len) && pos == Std.int(list.length)))
 					break;
 				
 				pos -= list.length;

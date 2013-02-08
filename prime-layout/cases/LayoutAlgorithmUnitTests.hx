@@ -119,7 +119,7 @@ class LayoutAlgorithmTest
 			group.childWidth = 5;
 		
 		group.algorithm = algorithm;
-		group.measure();
+		//group.measure();
 		group.validate();
 	}
 }

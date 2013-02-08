@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package ;
+package examples.styles.layoutExample4;
  import prime.gui.styling.LayoutStyleFlags;
  import prime.gui.styling.StyleChildren;
  import prime.gui.styling.StyleBlockType;

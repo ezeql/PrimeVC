@@ -161,7 +161,7 @@ class DynamicTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorith
 		//	tileGroup.percentHeight		= 1;
 		}
 		
-		tileCollection.addList( childList );
+		tileCollection.addList( cast childList );
 		tileGroups.children.add( tileGroup );	
 	}
 	

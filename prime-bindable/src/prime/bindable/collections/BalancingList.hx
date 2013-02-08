@@ -42,6 +42,10 @@ class BalancingList<T> extends SimpleList<T>
 	public var listNum	: Int;
 	public var maxLists	: Int;
 	
+	public function new()
+	{
+		super();
+	}
 	
 	override public function dispose ()
 	{
