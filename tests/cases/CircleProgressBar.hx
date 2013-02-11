@@ -3,7 +3,7 @@ package cases;
  import prime.gui.display.Sprite;
  import prime.gui.display.VectorShape;
  import prime.utils.Formulas;
-  using primevc.gui.utils.GraphicsUtil;
+  using prime.gui.utils.GraphicsUtil;
 
 
 /**

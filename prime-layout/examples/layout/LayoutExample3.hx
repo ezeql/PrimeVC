@@ -37,7 +37,7 @@ package examples.layout;
 
 
 /**
- * LayoutExample3 is identical to LayoutExample2 but uses the primevc.gui.core package instead
+ * LayoutExample3 is identical to LayoutExample2 but uses the prime.gui.core package instead
  * of prime.gui.display.
  *
  * @author			Ruben Weijers

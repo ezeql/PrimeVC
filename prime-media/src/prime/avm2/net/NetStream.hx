@@ -32,7 +32,7 @@ package prime.avm2.net;
 
 
 /**
- * Flash netstream object with primevc events
+ * Flash netstream object with prime events
  * 
  * @author Ruben Weijers
  * @creation-date Jan 07, 2011

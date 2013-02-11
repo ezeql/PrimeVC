@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.core.events;
- import primevc.signal.Signals;
- import primevc.signal.Signal1;
+ import prime.signal.Signals;
+ import prime.signal.Signal1;
 
 
 /**

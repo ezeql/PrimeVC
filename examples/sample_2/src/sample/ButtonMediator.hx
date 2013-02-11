@@ -1,5 +1,5 @@
 package sample;
- import primevc.gui.events.MouseEvents;
+ import prime.gui.events.MouseEvents;
  import prime.mvc.Mediator;
  import prime.signal.Signal1;
  import prime.gui.components.Button;

@@ -4,7 +4,7 @@ package cases;
  import prime.core.geom.constraints.SizeConstraint;
  import prime.core.geom.RangedFloat;
  import prime.types.Number;
- import primevc.gui.events.LayoutEvents;
+ import prime.gui.events.LayoutEvents;
  import prime.layout.LayoutClient;
   using prime.utils.BitUtil;
   using prime.utils.NumberUtil;
