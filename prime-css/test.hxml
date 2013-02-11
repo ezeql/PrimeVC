@@ -33,6 +33,12 @@ libs.hxml
 ## JavaScript
 #-main TestMain
 #libs.hxml
+#-D nodejs
+#-D CSSParser
+#-cp libs/nodejs
+#-cp libs/haxe
+#-cp libs/apparat
+#-cp src
 #-js build/js_test.js
 
 --next

@@ -14,9 +14,6 @@ import prime.avm2.display.TextField;
 import prime.avm2.display.VectorShape;
 import prime.avm2.display.Video;
 import prime.avm2.input.Browser;
-import prime.avm2.net.FileReference;
-import prime.avm2.net.FileReferenceList;
-import prime.avm2.net.URLLoader;
 #end
 
 import prime.core.geom.Corners;
@@ -130,22 +127,8 @@ import prime.js.display.Link;
 import prime.js.display.Sprite;
 import prime.js.display.TextField;
 import prime.js.display.Video;
-import prime.js.net.URLLoader;
-import prime.js.net.XMLHttpRequest;
 #end
 
-import prime.net.CommunicationType;
-import prime.net.CommunicatorsGroup;
-import prime.net.Cookie;
-import prime.net.FileFilter;
-import prime.net.FileReference;
-import prime.net.FileReferenceList;
-import prime.net.HttpStatusCodes;
-import prime.net.ICommunicator;
-import prime.net.IFileReference;
-import prime.net.RequestMethod;
-import prime.net.URLLoader;
-import prime.net.URLVariables;
 import prime.types.Asset;
 import prime.utils.MatrixUtil;
 
