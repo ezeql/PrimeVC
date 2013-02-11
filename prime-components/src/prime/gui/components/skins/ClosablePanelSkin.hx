@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ prime.vc>
  */
-package primevc.gui.components.skins;
+package prime.gui.components.skins;
  import prime.gui.components.Button;
  import prime.gui.components.skins.BasicPanelSkin;
   using prime.utils.Bind;

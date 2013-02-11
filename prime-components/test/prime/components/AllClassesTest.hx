@@ -74,6 +74,8 @@ import prime.gui.components.skins.LinearProgressLabelSkin;
 import prime.gui.components.skins.LinearProgressSkin;
 import prime.gui.components.skins.MovablePanelSkin;
 import prime.gui.components.skins.SlidingToggleButtonSkin;
+import prime.gui.components.skins.ClosablePanelSkin;
+import prime.gui.components.skins.MovablePanelSkin;
 import prime.gui.core.ISkin;
 import prime.gui.core.IUIComponent;
 import prime.gui.core.IUIContainer;
