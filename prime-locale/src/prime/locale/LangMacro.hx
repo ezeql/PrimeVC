@@ -1,4 +1,4 @@
-package primevc.locale;
+package prime.locale;
 
 
 import haxe.macro.Context;
@@ -71,7 +71,7 @@ class LangMacro
 				if (file.endsWith(".yaml") || file.endsWith(".yml") )
 				{
 				//	trace("Prime::Locale:: Parsing YAML file:: " + currentDir +  file);
-					haxe.macro.Context.registerModuleDependency("primevc.locale.LangMacro", currentDir + "/" + file);
+					haxe.macro.Context.registerModuleDependency("prime.locale.LangMacro", currentDir + "/" + file);
 					var yamlStream = YamlHX.read( neko.io.File.getContent( currentDir + "/" + file) );
 					var key = yamlStream.x.firstElement().nodeName;
 					if ( langsRaw.exists(key))
@@ -98,7 +98,7 @@ class LangMacro
 		var t = { pack:[], pos:pos, meta:[], params:[], isExtern:false, kind:TDClass(), name:"LangManBindables", fields:[] };
 		var constructorWords = "";
 		
-		var ILangInterfaceType = { pack:"primevc.locale".split("."), pos:pos, meta:[], params:[], isExtern:false, kind:TDClass(null,null,true), name:"ILang", fields:[] };
+		var ILangInterfaceType = { pack:"prime.locale".split("."), pos:pos, meta:[], params:[], isExtern:false, kind:TDClass(null,null,true), name:"ILang", fields:[] };
 		var list = [];
 		for (yaml in langsRaw) 
 		{
@@ -150,7 +150,7 @@ class LangMacro
 			for (node in yaml.elements) //for each language in each yaml
 			{
 				var t = { // create Class of Type NameLanguage (Ex Dutch,Spanish) implementing ILang
-				  kind:TDClass(null, [ { pack:"primevc.locale".split("."), name:"ILang", params:[ ], sub:null } ], false), name:node.name.capitalizeFirstLetter(),
+				  kind:TDClass(null, [ { pack:"prime.locale".split("."), name:"ILang", params:[ ], sub:null } ], false), name:node.name.capitalizeFirstLetter(),
 				  fields:[ ], pack: ["langMan"],  pos:pos, 	meta:[], params:[],	 isExtern:false //added langMan in pack,else Ill get TypeError: Error #1064: 
 				};
 				
@@ -499,7 +499,7 @@ class LangMacro
 			switch( getElementType(el))
 			{
 				case leaf:
-				type.fields.push( { name :el.name, doc : null, meta : [], access : [APublic], kind :FieldType.FVar(TPath( { pack : ["primevc", "core"], name : "Bindable", params : [ TPType( TPath( { pack : [], name : "String", params : [], sub : null } )) ], sub :null } )), pos : Context.currentPos() }   );
+				type.fields.push( { name :el.name, doc : null, meta : [], access : [APublic], kind :FieldType.FVar(TPath( { pack : ["prime", "bindable"], name : "Bindable", params : [ TPType( TPath( { pack : [], name : "String", params : [], sub : null } )) ], sub :null } )), pos : Context.currentPos() }   );
 				
 				//constructor data for LagManBinds
 				constructorLines +=  el.name + " = new prime.bindable.Bindable<String>('" +  el.innerData + "');";

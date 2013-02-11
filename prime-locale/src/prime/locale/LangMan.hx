@@ -1,4 +1,4 @@
-package primevc.locale;
+package prime.locale;
  import prime.signal.Signal0;
 
 
@@ -6,7 +6,7 @@ package primevc.locale;
  * ...
  * @author EzeQL
  */
-@:build(primevc.locale.LangMacro.build())
+@:build(prime.locale.LangMacro.build())
 class LangMan
 {
 	public static var instance	(getInstance, null) : LangMan;

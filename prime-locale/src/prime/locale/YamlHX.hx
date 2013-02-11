@@ -1,4 +1,4 @@
-package primevc.locale;
+package prime.locale;
 /* The BSD 2-Clause Licence
 
 Copyright (c) 2011, YamlHX Contributors
