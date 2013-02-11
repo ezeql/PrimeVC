@@ -3,3 +3,4 @@
 .mcover
 .temp
 /build
+/bin

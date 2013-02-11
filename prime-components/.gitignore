@@ -4,3 +4,4 @@
 TestMain.hx
 .temp
 /build
+/bin
