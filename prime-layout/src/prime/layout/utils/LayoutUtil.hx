@@ -1,6 +1,6 @@
-package primevc.gui.utils;
+package prime.layout.utils;
 import prime.bindable.collections.IEditableList;
-import primevc.bindable.collections.iterators.IIterator;
+import prime.bindable.collections.iterators.IIterator;
 import prime.gui.core.IUIElement;
 import prime.gui.display.DisplayList;
 import prime.gui.display.IDisplayContainer;

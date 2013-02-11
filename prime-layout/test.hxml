@@ -30,24 +30,5 @@ libs.hxml
 
 --next
 
-## JavaScript
--main TestMain
-libs.hxml
--js build/js_test.js
-
---next
-
-## Neko
--main TestMain
-libs.hxml
--neko build/neko_test.n
-
---next
-
-## CPP
--main TestMain
-libs.hxml
-#-D HXCPP_M64
--cpp build/cpp_test
 
 
