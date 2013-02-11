@@ -1,18 +1,18 @@
-# Flash 9+
+# Flash 11
 -main TestMain
 libs.hxml
 
 -cp test
--swf-version 9
+-swf-version 11
 -swf tmp/as3_test.swf
 --next
-#Flash 8
+#Flash 10
 -main TestMain
 libs.hxml
 
 -cp test
--swf-version 8
--swf tmp/as2_test.swf
+-swf-version 10
+-swf tmp/as3_test.swf
 --next
 # JavaScript
 -main TestMain

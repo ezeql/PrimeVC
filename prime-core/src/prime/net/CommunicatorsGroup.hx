@@ -54,11 +54,11 @@ class CommunicatorsGroup implements ICommunicator
 	/**
 	 * Total bytes loaded/send for all processes together
 	 */
-	public var bytesProgress	(getBytesProgress,	null)		: Int;
+	public var bytesProgress	(#if js default #else getBytesProgress #end,	null)		: Int;
 	/**
 	 * Total number of bytes to load/send for all processes together
 	 */
-	public var bytesTotal		(getBytesTotal,		null)		: Int;
+	public var bytesTotal		(#if js default #else getBytesTotal #end,		null)		: Int;
 	
 	/**
 	 * Indicates the number of process going on within the communicator

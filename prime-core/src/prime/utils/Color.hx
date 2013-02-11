@@ -29,7 +29,7 @@
 package prime.utils;
 
 #if neko
-typedef Color = primevc.neko.utils.Color;
+typedef Color = prime.neko.utils.Color;
 #else
  import prime.types.RGBA;
   using prime.utils.Color;

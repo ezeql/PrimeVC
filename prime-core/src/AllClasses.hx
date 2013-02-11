@@ -43,6 +43,38 @@ import prime.utils.NumberUtil;
 import prime.utils.TimerUtil;
 import prime.utils.TypeUtil;
 import UInt;
+#if neko
+import prime.neko.traits.IHasTypeParameters;
+import prime.neko.utils.Color;
+#end
+
+import prime.net.CommunicationType;
+import prime.net.CommunicatorsGroup;
+import prime.net.Cookie;
+import prime.net.FileFilter;
+#if ( !js && !neko )
+import prime.net.FileReference;
+import prime.net.FileReferenceList;
+import prime.net.IFileReference;
+import prime.net.URLVariables;
+#end
+
+import prime.net.HttpStatusCodes;
+import prime.net.ICommunicator;
+import prime.net.RequestMethod;
+#if !neko
+import prime.net.URLLoader;
+#end
+#if flash
+import prime.avm2.net.FileReference;
+import prime.avm2.net.FileReferenceList;
+import prime.avm2.net.URLLoader;
+#end
+
+#if js
+import prime.js.net.URLLoader;
+import prime.js.net.XMLHttpRequest;
+#end
 
 @IgnoreCover
 class AllClasses
