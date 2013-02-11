@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package primevc.neko.traits;
+package prime.neko.traits;
 
 #if CSSParser
 /**
