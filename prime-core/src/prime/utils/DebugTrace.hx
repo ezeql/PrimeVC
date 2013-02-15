@@ -46,6 +46,8 @@ package prime.utils;
 class DebugTrace
 {
 #if (flash9 && debug)
+	public static inline var tracesEnabled : Bool = true;
+
 	public static inline function getClassName (infos : haxe.PosInfos) : String
 	{
 		return infos.className.split(".").pop(); //infos.fileName;
@@ -63,7 +65,7 @@ class DebugTrace
 		
 		public static function trace (v : Dynamic, ?infos : haxe.PosInfos)
 		{
-			if (!Assert.tracesEnabled)
+			if (!tracesEnabled)
 				return;
 			
 			var name	= getClassName( infos );

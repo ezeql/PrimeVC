@@ -285,8 +285,12 @@ class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
 		if (boundTo.notNull()) while (!boundTo.isEmpty())
 			boundTo.pop().unbind(this);
 	}
-	
-	
+
+	public function beginEdit()  : Void { Assert.abstractMethod(); }
+	public function commitEdit() : Void { Assert.abstractMethod(); }
+	public function cancelEdit() : Void { Assert.abstractMethod(); }
+    public function isEditable() : Bool { Assert.abstractMethod(); return false; }
+		
 #if debug
 	public #if !noinline inline #end function toString () : String {
 		return "Bindable("+value+")";

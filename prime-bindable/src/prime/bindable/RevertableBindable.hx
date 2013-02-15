@@ -129,7 +129,7 @@ class RevertableBindable<T> extends Bindable<T>,
 	// FLAG METHODS
 	//
 	
-	@:keep public  inline function isEditable ()		return  flags.has(   Flags.IN_EDITMODE)
+	@:keep public override inline function isEditable ()		return  flags.has(   Flags.IN_EDITMODE)
 	public  inline function dispatchBeforeCommit ()		flags = flags.set(   Flags.DISPATCH_CHANGES_BEFORE_COMMIT )
 	public  inline function dispatchAfterCommit ()		flags = flags.unset( Flags.DISPATCH_CHANGES_BEFORE_COMMIT )
 	public  inline function updateBeforeCommit ()		flags = flags.set(   Flags.UPDATE_BINDINGS_BEFORE_COMMIT )
@@ -146,7 +146,7 @@ class RevertableBindable<T> extends Bindable<T>,
 	 * Puts this in editing-mode and keeps a copy of the current value
 	 * if not already in edit-mode.
 	 */
-	@:keep public #if !noinline inline #end function beginEdit()
+	@:keep public override #if !noinline inline #end function beginEdit()
 	{
 		Assert.isEqual(Flags.IN_EDITMODE << 11, Flags.MAKE_SHADOW_COPY);
 		flags = flags.set( (((flags & Flags.IN_EDITMODE) << 11) ^ Flags.MAKE_SHADOW_COPY) | Flags.IN_EDITMODE );	// Only set MAKE_SHADOW_COPY if IN_EDITMODE is not set
@@ -156,7 +156,7 @@ class RevertableBindable<T> extends Bindable<T>,
 	/**
 	 * Finishes edit-mode and propagates the new value if needed.
 	 */
-	public /*inline*/ function commitEdit()
+	public override /*inline*/ function commitEdit()
 	{
 		if (isEditable())
 		{
@@ -178,7 +178,7 @@ class RevertableBindable<T> extends Bindable<T>,
 	/**
 	 * Discards the new value and finishes edit-mode.
 	 */
-	public /*inline*/ function cancelEdit()
+	public override /*inline*/ function cancelEdit()
 	{
 		if (isEditable())
 		{
