@@ -60,9 +60,9 @@ class CSSParserMain
 		if (args.length == 0)	throw "Skin folder location is needed to run this script.";
 		
 		var timer = new StopWatch().start();
-		var primevcDir = "src/primevc";
+		var primevcDir = "";
 		if (args.length == 2)
-			primevcDir = args[1] + "/" + primevcDir;
+			primevcDir = args[1] + primevcDir;
 		
 		var css = new CSSParserMain( args[0], primevcDir );
 		css.parse();
@@ -92,7 +92,7 @@ class CSSParserMain
 		generator	= new CodeGenerator();
 		generator.instanceIgnoreList.set( styles._oid, styles );
 		
-		var tplName = primevcDir + "asd/tools/StyleSheet.tpl.hx";
+		var tplName = primevcDir + "prime/tools/StyleSheet.tpl.hx";
 		if (#if nodejs !js.Node.fs.existsSync(tplName) #else !sys.FileSystem.exists( tplName ) #end)
 			throw "Template does not exist! "+tplName;
 		
