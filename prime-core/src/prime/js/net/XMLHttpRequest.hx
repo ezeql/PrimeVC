@@ -38,7 +38,7 @@ import js.Lib;
 	#if !jsfl
 	private static function __init__() : Void {
 		untyped
-		primevc.js.net["XMLHttpRequest"] =
+		prime.js.net["XMLHttpRequest"] =
 			if( window.XMLHttpRequest )
 				__js__("XMLHttpRequest");
 			else if( window.ActiveXObject )

@@ -1,5 +1,5 @@
 package cases;
-// import prime.core.net.URLLoader;
+// import prime.net.URLLoader;
  import prime.core.geom.space.Direction;
  import prime.core.geom.space.Horizontal;
  import prime.core.geom.space.MoveDirection;

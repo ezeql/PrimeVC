@@ -172,7 +172,7 @@ class GraphicProperties implements IGraphicElement
 #if debug
 		Assert.isNotNull(layout, "layout is null for "+target);
 		Assert.isNotNull(shape, "shape is null for "+target);
-	//	Assert.notThat(border == null && fill == null, "Graphic property must have a border or a fill when drawing to "+target);
+	//	Assert.not(border == null && fill == null, "Graphic property must have a border or a fill when drawing to "+target);
 #end
 		if (layout == null || shape == null || (border == null && fill == null))
 			return false;

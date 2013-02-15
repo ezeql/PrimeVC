@@ -1,6 +1,6 @@
 package cases;
  import prime.bindable.Bindable;
- import prime.core.collections.ArrayList;
+ import prime.bindable.collections.ArrayList;
  import prime.core.geom.space.Direction;
  import prime.core.geom.space.Horizontal;
  import prime.gui.core.IUIElement;

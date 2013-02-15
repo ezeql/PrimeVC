@@ -4,6 +4,7 @@
 BUILDSCRIPTDIR=${0//\\//}
 BUILDSCRIPTDIR="${BUILDSCRIPTDIR%/*}"
 PRIMEVC_ROOT="${BUILDSCRIPTDIR}/.."
+STYLE_ROOT=$(haxelib path prime-css | sed -n 1p)
 #PRJROOT=${PRIMEVC_ROOT}
 
 MINPARAMS=1
@@ -64,7 +65,7 @@ if [[ -d "$StyleFolder" ]] && [[ -f "$StyleInputFile" ]] ; then # && [[ -f ${Man
 		echo -e "\tStyleInput: $StyleInputFile"
 		echo -e "\tStyleOutput: $StyleOutputFile"
 		echo -e "\tRunning parser on ${StyleInputFile}"
-		node "$Parser" "$StyleFolder" "$PRIMEVC_ROOT" || exit 1;
+		node "$Parser" "$StyleFolder" "$STYLE_ROOT" || exit 1;
 	else	
 		echo -e "\tStyle is already compiled and up to date.."
 	fi;

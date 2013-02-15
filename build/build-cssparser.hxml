@@ -9,6 +9,8 @@
 -cp libs/haxe
 -cp libs/apparat
 -cp src
+-lib prime-css
+#-D prime_data
 #-cp ../generated-src
 #-cp ../skins/flair
 #-cp ./

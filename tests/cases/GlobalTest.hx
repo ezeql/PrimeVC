@@ -3,7 +3,7 @@ package cases;
  import flash.text.TextFormat;
 // import prime.gui.display.TextField;
 #end
- import prime.core.collections.ArrayList;
+ import prime.bindable.collections.ArrayList;
  import prime.bindable.collections.DataCursor;
  import prime.bindable.collections.IEditableList;
  import prime.core.geom.space.Vertical;

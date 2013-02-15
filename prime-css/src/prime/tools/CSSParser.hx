@@ -2702,22 +2702,22 @@ class CSSParser
 	}
 	
 	
-	private static inline var ALGORITHM_CLASSPATH = "prime.gui.layout.algorithms.";
+	private static inline var ALGORITHM_CLASSPATH = "prime.layout.algorithms.";
 
 
 	private function algorithmToClass (alg:Algorithms) : String
 	{
 		return switch (alg) {
-			case circleHor:     "prime.gui.layout.algorithms.circle.HorizontalCircleAlgorithm";
-			case circleVer:     "prime.gui.layout.algorithms.circle.VerticalCircleAlgorithm";
-			case floatHor:      "prime.gui.layout.algorithms.float.HorizontalFloatAlgorithm";
-			case floatVer:      "prime.gui.layout.algorithms.float.VerticalFloatAlgorithm";
-			case dynamicTile:   "prime.gui.layout.algorithms.tile.DynamicTileAlgorithm";
-			case fixedTile:     "prime.gui.layout.algorithms.tile.FixedTileAlgorithm";
-			case simpleTile:    "prime.gui.layout.algorithms.tile.SimpleTileAlgorithm";
-			case dynamicLayout: "prime.gui.layout.algorithms.DynamicLayoutAlgorithm";
-			case relative:      "prime.gui.layout.algorithms.RelativeAlgorithm";
-		//	case : prime.gui.layout.algorithms.ILayoutAlgorithm;
+			case circleHor:     "prime.layout.algorithms.circle.HorizontalCircleAlgorithm";
+			case circleVer:     "prime.layout.algorithms.circle.VerticalCircleAlgorithm";
+			case floatHor:      "prime.layout.algorithms.float.HorizontalFloatAlgorithm";
+			case floatVer:      "prime.layout.algorithms.float.VerticalFloatAlgorithm";
+			case dynamicTile:   "prime.layout.algorithms.tile.DynamicTileAlgorithm";
+			case fixedTile:     "prime.layout.algorithms.tile.FixedTileAlgorithm";
+			case simpleTile:    "prime.layout.algorithms.tile.SimpleTileAlgorithm";
+			case dynamicLayout: "prime.layout.algorithms.DynamicLayoutAlgorithm";
+			case relative:      "prime.layout.algorithms.RelativeAlgorithm";
+		//	case : prime.layout.algorithms.ILayoutAlgorithm;
 		}
 	}
 

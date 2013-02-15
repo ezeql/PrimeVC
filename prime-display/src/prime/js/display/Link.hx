@@ -2,8 +2,8 @@ package prime.js.display;
 
 import js.Dom;
 import js.Lib;
-import primevc.js.events.TouchEvents;
-import primevc.js.events.TouchSignal;
+import prime.js.events.TouchEvents;
+import prime.js.events.TouchSignal;
 
 /**
  * @since	June 15, 2011

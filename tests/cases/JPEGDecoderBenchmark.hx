@@ -4,7 +4,7 @@ package cases;
  import flash.geom.Point;
  import flash.geom.Rectangle;
  import prime.signal.Signal0;
- import prime.core.net.URLLoader;
+ import prime.net.URLLoader;
  import prime.utils.FastArray;
  import prime.utils.TimerUtil;
   using prime.utils.FastArray;

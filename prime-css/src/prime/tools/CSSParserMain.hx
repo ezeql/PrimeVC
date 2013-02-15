@@ -92,7 +92,7 @@ class CSSParserMain
 		generator	= new CodeGenerator();
 		generator.instanceIgnoreList.set( styles._oid, styles );
 		
-		var tplName = primevcDir + "/tools/StyleSheet.tpl.hx";
+		var tplName = primevcDir + "asd/tools/StyleSheet.tpl.hx";
 		if (#if nodejs !js.Node.fs.existsSync(tplName) #else !sys.FileSystem.exists( tplName ) #end)
 			throw "Template does not exist! "+tplName;
 		

@@ -211,7 +211,7 @@ class LayoutAssertions
 		// TEST ASPECT RATIO
 		//
 		
-		Assert.notThat( layout.maintainAspectRatio );
+		Assert.not( layout.maintainAspectRatio );
 		layout.maintainAspectRatio = true;
 		
 		Assert.isEqual( layout.width, 300 );
@@ -235,21 +235,21 @@ class LayoutAssertions
 		
 		layout.width = 300;
 		Assert.that( layout.changes.has( LayoutFlags.WIDTH ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.HEIGHT ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.X ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.Y ) );
+		Assert.not( layout.changes.has( LayoutFlags.HEIGHT ) );
+		Assert.not( layout.changes.has( LayoutFlags.X ) );
+		Assert.not( layout.changes.has( LayoutFlags.Y ) );
 		
 		layout.height = 500;
 		Assert.that( layout.changes.has( LayoutFlags.WIDTH ) );
 		Assert.that( layout.changes.has( LayoutFlags.HEIGHT ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.X ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.Y ) );
+		Assert.not( layout.changes.has( LayoutFlags.X ) );
+		Assert.not( layout.changes.has( LayoutFlags.Y ) );
 		
 		layout.x = 40;
 		Assert.that( layout.changes.has( LayoutFlags.WIDTH ) );
 		Assert.that( layout.changes.has( LayoutFlags.HEIGHT ) );
 		Assert.that( layout.changes.has( LayoutFlags.X ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.Y ) );
+		Assert.not( layout.changes.has( LayoutFlags.Y ) );
 		
 		layout.y = 40;
 		Assert.that( layout.changes.has( LayoutFlags.WIDTH ) );
@@ -261,14 +261,14 @@ class LayoutAssertions
 		Assert.isEqual( layout.changes, 0 );
 		
 		layout.bounds.left = 50;
-		Assert.notThat( layout.changes.has( LayoutFlags.WIDTH ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.HEIGHT ) );
+		Assert.not( layout.changes.has( LayoutFlags.WIDTH ) );
+		Assert.not( layout.changes.has( LayoutFlags.HEIGHT ) );
 		Assert.that( layout.changes.has( LayoutFlags.X ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.Y ) );
+		Assert.not( layout.changes.has( LayoutFlags.Y ) );
 		
 		layout.bounds.bottom = 900;
-		Assert.notThat( layout.changes.has( LayoutFlags.WIDTH ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.HEIGHT ) );
+		Assert.not( layout.changes.has( LayoutFlags.WIDTH ) );
+		Assert.not( layout.changes.has( LayoutFlags.HEIGHT ) );
 		Assert.that( layout.changes.has( LayoutFlags.X ) );
 		Assert.that( layout.changes.has( LayoutFlags.Y ) );
 		
@@ -276,10 +276,10 @@ class LayoutAssertions
 		Assert.isEqual( layout.changes, 0 );
 		
 		layout.height = 500;
-		Assert.notThat( layout.changes.has( LayoutFlags.WIDTH ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.HEIGHT ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.X ) );
-		Assert.notThat( layout.changes.has( LayoutFlags.Y ) );
+		Assert.not( layout.changes.has( LayoutFlags.WIDTH ) );
+		Assert.not( layout.changes.has( LayoutFlags.HEIGHT ) );
+		Assert.not( layout.changes.has( LayoutFlags.X ) );
+		Assert.not( layout.changes.has( LayoutFlags.Y ) );
 		
 		trace("finish unit test");
 	}

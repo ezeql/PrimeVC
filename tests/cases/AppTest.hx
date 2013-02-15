@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package cases;
- import prime.core.collections.ArrayList;
+ import prime.bindable.collections.ArrayList;
  import prime.bindable.Bindable;
  import prime.gui.components.Button;
  import prime.gui.components.Image;
