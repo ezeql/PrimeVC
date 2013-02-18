@@ -20,6 +20,7 @@ import prime.core.geom.Corners;
 import prime.core.geom.InlineMatrix2D;
 import prime.core.geom.Matrix2D;
 import prime.core.geom.Corners;
+import prime.core.geom.IntMatrix2D;
 import prime.gui.display.BitmapData;
 import prime.gui.display.BitmapShape;
 import prime.gui.display.DisplayDataCursor;
