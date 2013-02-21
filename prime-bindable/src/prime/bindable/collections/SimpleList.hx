@@ -210,7 +210,7 @@ class SimpleList<T> implements IEditableList<T>
 	}
 	
 	
-	public inline function has (item:T) : Bool
+	@:keep public inline function has (item:T) : Bool
 		return indexOf(item) > -1
 	
 	
