@@ -56,7 +56,9 @@ class NetStreamInfo
 		 	case "status":	Level.status;
 			case "error":	Level.error;
 			case "warning":	Level.warning;
-			default:		#if debug throw "unkown level '"+flashObj.level+"'"; #end
+#if debug
+			default: throw "unkown level '"+flashObj.level+"'";
+#end
 		}
 		
 		this.flashObj = flashObj;
@@ -123,9 +125,9 @@ class NetStreamInfo
 				case "NetStream.Connect.Closed":				Code.streamConnectionClosed;
 				case "NetStream.Connect.Success":				Code.streamConnectionSuccess;
 				case "SharedObject.Flush.Success":				Code.sharedObjectFlushed;
-				
-				default:
-#if debug			throw "Unkown code '"+flashObj.code+"'"; #end
+#if debug				
+				default: throw "Unkown code '"+flashObj.code+"'";
+#end
 			}
 		}
 		return code;

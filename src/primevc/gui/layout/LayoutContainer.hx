@@ -43,6 +43,7 @@ package primevc.gui.layout;
   using primevc.utils.BitUtil;
   using primevc.utils.FastArray;
   using primevc.utils.NumberUtil;
+  using primevc.utils.NumberUtil.IntUtil;
   using primevc.utils.TypeUtil;
 
 

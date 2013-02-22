@@ -55,6 +55,7 @@ package primevc.gui.components;
   using primevc.utils.BitUtil;
   using primevc.utils.IfUtil;
   using primevc.utils.NumberUtil;
+  using primevc.utils.NumberUtil.IntUtil;
   using primevc.utils.TypeUtil;
   using haxe.Timer;
 
