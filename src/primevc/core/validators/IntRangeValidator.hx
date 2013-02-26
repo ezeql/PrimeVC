@@ -31,6 +31,7 @@ package primevc.core.validators;
  import primevc.types.Number;
  import primevc.utils.NumberUtil;
   using primevc.utils.NumberUtil;
+  using primevc.utils.NumberUtil.IntUtil;
 
 
 /**
