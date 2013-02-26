@@ -55,7 +55,7 @@ package com.asual.swfaddress {
         private static var _queueTimer:Timer = new Timer(10);
         private static var _initTimer:Timer = new Timer(10);
         private static var _availability:Boolean = ExternalInterface.available;
-        private static var _dispatcher:EventDispatcher = new EventDispatcher();
+        public static var _dispatcher:EventDispatcher = new EventDispatcher();
 
         /**
          * Init event.
