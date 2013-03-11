@@ -97,7 +97,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	}
 	
 	
-	public inline function has (properties:Int) : Bool
+	public #if !noinline inline #end function has (properties:Int) : Bool
 	{
 		return filledProperties.has(properties);
 	}
@@ -158,7 +158,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	
 	public function apply ()
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 
 
@@ -228,11 +228,11 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	
 	public function iterator ()						: Iterator < StyleGroupType >							{ return forwardIterator(); }
 	public function reversed ()						: Iterator < StyleGroupType >							{ return reversedIterator(); }
-	public function forwardIterator ()				: StyleCollectionForwardIterator < StyleGroupType >		{ Assert.abstract(); return null; }
-	public function reversedIterator ()				: StyleCollectionReversedIterator < StyleGroupType >	{ Assert.abstract(); return null; }
+	public function forwardIterator ()				: StyleCollectionForwardIterator < StyleGroupType >		{ Assert.abstractMethod(); return null; }
+	public function reversedIterator ()				: StyleCollectionReversedIterator < StyleGroupType >	{ Assert.abstractMethod(); return null; }
 	
 #if debug
-	public function readProperties (props:Int = -1)	: String	{ Assert.abstract(); return null; }
+	public function readProperties (props:Int = -1)	: String	{ Assert.abstractMethod(); return null; }
 	public function readChanges (props:Int = -1)	: String	{ return readProperties(changes); }
 	public function toString () : String						{ return this.getClass().getClassName(); }
 #end
@@ -275,13 +275,13 @@ class StyleCollectionIteratorBase implements IDisposable
 	}
 	
 	
-	public function rewind () : Void		{ Assert.abstract(); }
+	public function rewind () : Void		{ Assert.abstractMethod(); }
 	
 	/**
 	 * Method will set the current property to the next cell and will return 
 	 * the previous current value.
 	 */
-	private function setNext() : FastDoubleCell<StyleBlock>	{ Assert.abstract(); return null; }
+	private function setNext() : FastDoubleCell<StyleBlock>	{ Assert.abstractMethod(); return null; }
 	public  function hasNext () : Bool		{ return currentCell != null; }
 	
 	
@@ -316,8 +316,8 @@ class StyleCollectionForwardIterator < StyleGroupType > extends StyleCollectionI
 {
 	public function new (elementStyle:UIElementStyle, groupFlag:Int) super(elementStyle, groupFlag)	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 	override public function rewind () : Void	{ setCurrent( elementStyle.styles.first ); }
-	public function next () : StyleGroupType	{ Assert.abstract(); return null; }
-	public function value () : StyleGroupType	{ Assert.abstract(); return null; }
+	public function next () : StyleGroupType	{ Assert.abstractMethod(); return null; }
+	public function value () : StyleGroupType	{ Assert.abstractMethod(); return null; }
 	
 	
 	override private function setNext ()
@@ -363,8 +363,8 @@ class StyleCollectionReversedIterator < StyleGroupType > extends StyleCollection
 {
 	public function new (elementStyle:UIElementStyle, groupFlag:Int) { super(elementStyle, groupFlag); }	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 	override public function rewind () : Void	{ setCurrent( elementStyle.styles.last ); }
-	public function next () : StyleGroupType	{ Assert.abstract(); return null; }
-	public function value () : StyleGroupType	{ Assert.abstract(); return null; }
+	public function next () : StyleGroupType	{ Assert.abstractMethod(); return null; }
+	public function value () : StyleGroupType	{ Assert.abstractMethod(); return null; }
 	
 	
 	override private function setNext ()

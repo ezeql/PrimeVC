@@ -86,7 +86,7 @@ class ToggleGroup extends UIContainer
 	}
 	
 	
-	public inline function select (btn:Button) : Void
+	public #if !noinline inline #end function select (btn:Button) : Void
 	{
 		selected.value = btn;
 	}

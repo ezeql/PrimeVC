@@ -73,7 +73,7 @@ class PopupManager implements IPopupManager
 	 * Method will open the given popup on the forground of the window
 	 * @return 	index of the popup in the displaylist
 	 */
-	public inline function add (popup:IUIComponent, modal:Bool = false) : Int
+	public #if !noinline inline #end function add (popup:IUIComponent, modal:Bool = false) : Int
 	{
 		var isFirst = window.popupLayout.children.length == 0;
 		Assert.isNull( popup.window );
@@ -97,7 +97,7 @@ class PopupManager implements IPopupManager
 	}
 	
 	
-	public inline function remove (popup:IUIComponent)
+	public #if !noinline inline #end function remove (popup:IUIComponent)
 	{
 		Assert.notNull( popup.window );
 		Assert.notNull( popup.layout.parent );

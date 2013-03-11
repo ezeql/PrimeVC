@@ -93,7 +93,7 @@ class SimpleStateMachine <StateType> implements primevc.core.traits.IDisposable
 	
 	
 	
-	public inline function is (state : StateType) : Bool
+	public #if !noinline inline #end function is (state : StateType) : Bool
 	{
 		return current == state;
 	}

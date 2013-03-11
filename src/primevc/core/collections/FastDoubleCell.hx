@@ -51,7 +51,7 @@ class FastDoubleCell <T>
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		data = null;
 		next = prev = null;

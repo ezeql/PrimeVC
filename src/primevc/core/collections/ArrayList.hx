@@ -57,7 +57,7 @@ package primevc.core.collections;
 	}
 	
 	
-	@:keep public inline function isEmpty()
+	@:keep public #if !noinline inline #end function isEmpty()
 	{
 		return length == 0;
 	}

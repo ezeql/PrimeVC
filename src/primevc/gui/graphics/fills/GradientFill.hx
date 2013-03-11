@@ -148,7 +148,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	// FILL METHODS
 	//
 	
-	public inline function begin (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
 		Assert.that( gradientStops.length >= 2, "There should be at least be two fills in an gradient.");
 			
@@ -173,7 +173,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
 #if flash9
 		target.graphics.endFill();
@@ -183,7 +183,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	
 	
 #if flash9
-	public inline function createMatrix (bounds:IRectangle) : Matrix2D
+	public #if !noinline inline #end function createMatrix (bounds:IRectangle) : Matrix2D
 	{
 		var m = new Matrix2D();
 		m.createGradientBox( bounds.width, bounds.height, rotation.degreesToRadians() );
@@ -194,7 +194,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	
 
 #if flash9
-	public inline function getFlashType () : FlashGradientType
+	public #if !noinline inline #end function getFlashType () : FlashGradientType
 	{
 		return (type == GradientType.linear) ? FlashGradientType.LINEAR : FlashGradientType.RADIAL;
 	}

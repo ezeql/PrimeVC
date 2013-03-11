@@ -47,8 +47,8 @@ class IntPoint	implements IClonable <IntPoint>
 #if CSSParser,	implements ICSSFormattable
 			,	implements ICodeFormattable		#end
 {
-	public static inline function fromFloat (x:Float, y:Float)	: IntPoint	{ return new IntPoint( x.roundFloat(), y.roundFloat() ); }
-	public static inline function fromPoint (p:Point)			: IntPoint	{ return new IntPoint( p.x.roundFloat(), p.y.roundFloat() ); }
+	public static #if !noinline inline #end function fromFloat (x:Float, y:Float)	: IntPoint	{ return new IntPoint( x.roundFloat(), y.roundFloat() ); }
+	public static #if !noinline inline #end function fromPoint (p:Point)			: IntPoint	{ return new IntPoint( p.x.roundFloat(), p.y.roundFloat() ); }
 	
 	public var x		(getX, setX)	: Int;
 	public var y		(getY, setY)	: Int;
@@ -81,7 +81,7 @@ class IntPoint	implements IClonable <IntPoint>
 	private function setY(v)	{ return y = v; }
 	
 	
-	public inline function subtract (v:IntPoint) {
+	public #if !noinline inline #end function subtract (v:IntPoint) {
 		return new IntPoint(
 			x - v.x,
 			y - v.y
@@ -89,7 +89,7 @@ class IntPoint	implements IClonable <IntPoint>
 	}
 	
 	
-	public inline function add (v:IntPoint) {
+	public #if !noinline inline #end function add (v:IntPoint) {
 		return new IntPoint(
 			x + v.x,
 			y + v.y
@@ -97,19 +97,19 @@ class IntPoint	implements IClonable <IntPoint>
 	}
 	
 	
-	public inline function isEqualTo (v:IntPoint) : Bool {
+	public #if !noinline inline #end function isEqualTo (v:IntPoint) : Bool {
 		return x == v.x && y == v.y;
 	}
 	
 	
-	public inline function setTo (v:IntPoint) : Void {
+	public #if !noinline inline #end function setTo (v:IntPoint) : Void {
 		x = v.x;
 		y = v.y;
 	}
 	
 	
 #if CSSParser
-	public inline function toString ()				{ return "IntPoint( "+x+", "+y+" )"; }
+	public #if !noinline inline #end function toString ()				{ return "IntPoint( "+x+", "+y+" )"; }
 	public function toCSS (prefix:String = "")		{ return x + "px, " + y + "px"; }
 	public function cleanUp () : Void				{}
 	public function toCode (code:ICodeGenerator)	{ code.construct( this, [ x, y ] ); }

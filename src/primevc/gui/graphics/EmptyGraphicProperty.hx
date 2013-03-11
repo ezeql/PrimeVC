@@ -42,15 +42,15 @@ package primevc.gui.graphics;
  */
 class EmptyGraphicProperty extends GraphicElement, implements IGraphicProperty
 {
-	public inline function begin (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
-		Assert.abstract('this class is supposed to be ignored');
+		Assert.abstractMethod('this class is supposed to be ignored');
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
-		Assert.abstract('this class is supposed to be ignored');
+		Assert.abstractMethod('this class is supposed to be ignored');
 	}
 	
 	

@@ -35,6 +35,7 @@ package primevc.avm2.display;
  import primevc.core.collections.IReadOnlyList;
  import primevc.core.events.ListChangeSignal;
  import primevc.core.traits.IDisposable;
+ import primevc.core.traits.IIdentifiable;
  import primevc.gui.display.IDisplayContainer;
  import primevc.gui.display.IDisplayObject;
   using primevc.utils.TypeUtil;
@@ -107,19 +108,19 @@ class DisplayList implements IEditableList <ChildType>
 	}
 	
 	
-	public inline function isEmpty () : Bool
+	public #if !noinline inline #end function isEmpty () : Bool
 	{
 		return length == 0;
 	}
 	
 	
-	public inline function clone () : IReadOnlyList <ChildType>
+	public #if !noinline inline #end function clone () : IReadOnlyList <ChildType>
 	{
 		return new DisplayList( target, owner );
 	}
 	
 	
-	public inline function duplicate () : IReadOnlyList <ChildType>
+	public #if !noinline inline #end function duplicate () : IReadOnlyList <ChildType>
 	{
 		return new DisplayList( target, owner );
 	}
@@ -177,9 +178,9 @@ class DisplayList implements IEditableList <ChildType>
 	public function forwardIterator () : IIterator <ChildType>	{ return new DisplayListForwardIterator(this); }
 	public function reversedIterator () : IIterator <ChildType>	{ return new DisplayListReversedIterator(this); }
 	
-	public inline function getItemAt	(pos:Int)				{ var v = target.getChildAt( pos ); return v.is(ChildType) ? v.as(ChildType) : null; }
-	public inline function has			(item:ChildType)		{ return target.contains( item.as( TargetChildType ) ); } 
-	public inline function indexOf		(item:ChildType)		{ return target.getChildIndex( item.as( TargetChildType ) ); }
+	public #if !noinline inline #end function getItemAt	(pos:Int)				{ var v = target.getChildAt( pos ); return v.is(ChildType) ? v.as(ChildType) : null; }
+	public #if !noinline inline #end function has			(item:ChildType)		{ return target.contains( item.as( TargetChildType ) ); } 
+	public #if !noinline inline #end function indexOf		(item:ChildType)		{ return target.getChildIndex( item.as( TargetChildType ) ); }
 	
 	
 	public function add (item:ChildType, pos:Int = -1) : ChildType
@@ -232,6 +233,14 @@ class DisplayList implements IEditableList <ChildType>
 		change.send( ListChange.moved( item, newPos, curPos ) );
 		return item;
 	}
+	
+	public function getChildById(id:String):ChildType
+	{
+		for (c in this)	
+			if (c.as(IIdentifiable).id.value == id) 
+				return c;	
+		return null;
+	}
 
 #if debug
 	public var name : String;
@@ -245,7 +254,7 @@ class DisplayList implements IEditableList <ChildType>
 		}
 		return name + "DisplayList ("+items.length+")\n" + items.join("\n");
 	}
-	public inline function toString () { return name + "DisplayList( "+length+" ) of " + target; }
+	public #if !noinline inline #end function toString () { return name + "DisplayList( "+length+" ) of " + target; }
 #end
 }
 
@@ -262,12 +271,12 @@ class DisplayListForwardIterator implements IIterator <ChildType>
 	private var list 	: DisplayList;
 	public var current	: Int;
 	
-	public function new (list:DisplayList)			{ this.list = list; rewind(); }
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function rewind ()				{ current = 0; }
-	public inline function hasNext ()				{ return current < list.length; }
-	public inline function next ()					{ return list.getItemAt( current++ ); }
-	public inline function value ()					{ return list.getItemAt( current ); }
+	public function new (list:DisplayList)								{  this.list = list; rewind(); }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function rewind ()					{ current = 0; }
+	public #if !noinline inline #end function hasNext ()				{ return current < list.length; }
+	public #if !noinline inline #end function next ()					{ return list.getItemAt( current++ ); }
+	public #if !noinline inline #end function value ()					{ return list.getItemAt( current ); }
 }
 
 
@@ -283,10 +292,10 @@ class DisplayListReversedIterator implements IIterator <ChildType>
 	private var list 	: DisplayList;
 	public var current	: Int;
 
-	public function new (list:DisplayList)			{ this.list = list; rewind(); }
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function rewind ()				{ current = list.length; }
-	public inline function hasNext ()				{ return current >= 0; }
-	public inline function next ()					{ return list.getItemAt( current-- ); }
-	public inline function value ()					{ return list.getItemAt( current ); }
+	public function new (list:DisplayList)								{ this.list = list; rewind(); }
+	public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
+	public #if !noinline inline #end function rewind ()					{ current = list.length-1; }
+	public #if !noinline inline #end function hasNext ()				{ return current >= 0; }
+	public #if !noinline inline #end function next ()					{ return list.getItemAt( current-- ); }
+	public #if !noinline inline #end function value ()					{ return list.getItemAt( current ); }
 }

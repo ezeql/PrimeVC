@@ -109,7 +109,7 @@ class HorizontalBaseAlgorithm extends LayoutAlgorithmBase
 	/**
 	 * Method indicating if the size is invalidated or not.
 	 */
-	public inline function isInvalid (changes:Int)	: Bool
+	public #if !noinline inline #end function isInvalid (changes:Int)	: Bool
 	{
 		return (changes.has( LayoutFlags.WIDTH * group.childWidth.notSet().boolCalc() )) || ( vertical != null && changes.has( LayoutFlags.HEIGHT ) );
 	}
@@ -230,7 +230,7 @@ class HorizontalBaseAlgorithm extends LayoutAlgorithmBase
 	
 	
 #if (CSSParser || debug)
-	override public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+	override public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 #end
 
 #if CSSParser

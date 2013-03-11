@@ -44,7 +44,7 @@ package primevc.tools;
  */
 class CSSParserMain
 {
-	public static inline function print(v:String)
+	public static #if !noinline inline #end function print(v:String)
 		#if js 	untyped console.log(v)
 		#else	neko.Lib.print(v+"\n") #end
 

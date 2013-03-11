@@ -59,7 +59,7 @@ class SolidFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function begin (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
 #if flash9
 		target.graphics.beginFill( color.rgb(), color.alpha().float() );
@@ -68,7 +68,7 @@ class SolidFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	public inline function end (target:IGraphicsOwner, bounds:IRectangle)
+	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
 #if flash9
 		target.graphics.endFill();

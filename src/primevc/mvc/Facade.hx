@@ -92,7 +92,7 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	
 	
 	// method is called by the static main function or the object that created the facade
-	public inline function start ()
+	public #if !noinline inline #end function start ()
 	{
 		if (controller != null)
 			controller.startListening();
@@ -102,7 +102,7 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	}
 	
 	
-	public inline function stop ()
+	public #if !noinline inline #end function stop ()
 	{
 		view.stopListening();
 		if (controller != null)
@@ -132,7 +132,7 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	/**
 	 * Must instantiate the event-signals for this Facade.
 	 */
-	function setupEvents()		{ Assert.abstract(); }
+	function setupEvents()		{ Assert.abstractMethod(); }
 	/**
 	 * Can instantiate the states for this Facade.
 	 */
@@ -141,7 +141,7 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	/**
 	 * Must instantiate the Model for this Facade.
 	 */
-	function setupModel()		{ Assert.abstract(); }
+	function setupModel()		{ Assert.abstractMethod(); }
 	
 	/**
 	 * Should map the event handlers, and setup behaviours/commands for this (sub)system.
@@ -157,5 +157,5 @@ class Facade<EventsType:Signals, ModelType:IMVCCore, StatesType:IDisposable, Con
 	 * function to given the window or it should be called by the object 
 	 * creating the Facade.
 	 */
-	function setupView()		{ Assert.abstract(); }
+	function setupView()		{ Assert.abstractMethod(); }
 }

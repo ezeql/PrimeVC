@@ -92,16 +92,16 @@ class MouseSignals extends Signals
 	private inline function getScroll ()		{ if (scroll == null)		{ createScroll(); }			return scroll; }
 	
 	
-	private function createDown ()			{ Assert.abstract(); }
-	private function createUp ()			{ Assert.abstract(); }
-	private function createMove ()			{ Assert.abstract(); }
-	private function createClick () 		{ Assert.abstract(); }
-	private function createDoubleClick ()	{ Assert.abstract(); }
-	private function createOverChild ()		{ Assert.abstract(); }
-	private function createOutOfChild ()	{ Assert.abstract(); }
-	private function createRollOver ()		{ Assert.abstract(); }
-	private function createRollOut ()		{ Assert.abstract(); }
-	private function createScroll ()		{ Assert.abstract(); }
+	private function createDown ()			{ Assert.abstractMethod(); }
+	private function createUp ()			{ Assert.abstractMethod(); }
+	private function createMove ()			{ Assert.abstractMethod(); }
+	private function createClick () 		{ Assert.abstractMethod(); }
+	private function createDoubleClick ()	{ Assert.abstractMethod(); }
+	private function createOverChild ()		{ Assert.abstractMethod(); }
+	private function createOutOfChild ()	{ Assert.abstractMethod(); }
+	private function createRollOver ()		{ Assert.abstractMethod(); }
+	private function createRollOut ()		{ Assert.abstractMethod(); }
+	private function createScroll ()		{ Assert.abstractMethod(); }
 	
 	
 	/*override public function dispose ()
@@ -185,14 +185,14 @@ class MouseState extends KeyModState, implements IClonable<MouseState>
 	
 	
 #if flash9
-	public inline function isDispatchedBy (obj:UserEventTarget) : Bool
+	public #if !noinline inline #end function isDispatchedBy (obj:UserEventTarget) : Bool
 	{
 		return obj != null && obj == related;
 	}
 #end
 	
 	
-	public inline function clone () : MouseState
+	public #if !noinline inline #end function clone () : MouseState
 	{
 		return new MouseState( flags, target, local, stage, related);
 	}

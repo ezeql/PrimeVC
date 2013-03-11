@@ -48,7 +48,7 @@ class VerticalFloatAlgorithm extends primevc.gui.layout.algorithms.VerticalBaseA
 	/**
 	 * Method will return the total height of all the children.
 	 */
-	public inline function validate ()
+	public #if !noinline inline #end function validate ()
 	{
 		if (group.children.length == 0)
 			return;
@@ -178,7 +178,7 @@ class VerticalFloatAlgorithm extends primevc.gui.layout.algorithms.VerticalBaseA
 	/**
 	 * 
 	 */
-	public inline function getDepthForBounds (bounds:IRectangle) : Int
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle) : Int
 	{
 		return switch (direction) {
 			case Vertical.top:		getDepthForBoundsTtB(bounds);
@@ -242,7 +242,7 @@ class VerticalFloatAlgorithm extends primevc.gui.layout.algorithms.VerticalBaseA
 
 	private inline function getDepthForBoundsC (bounds:IRectangle) : Int
 	{
-		Assert.abstract( "Wrong implementation since the way centered layouts behave is changed");
+		Assert.abstractMethod( "Wrong implementation since the way centered layouts behave is changed");
 		return 0;
 	/*	var depth:Int	= 0;
 		var posY:Int	= bounds.top;
@@ -398,7 +398,7 @@ class VerticalFloatAlgorithm extends primevc.gui.layout.algorithms.VerticalBaseA
 			    }
 			
 			case center:
-			    Assert.abstract();
+			    Assert.abstractMethod();
 			
 			
 			case bottom:

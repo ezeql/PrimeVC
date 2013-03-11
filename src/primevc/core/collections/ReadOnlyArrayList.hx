@@ -90,10 +90,10 @@ package primevc.core.collections;
 	@:keep public  inline function forwardIterator () 	return new primevc.core.collections.iterators.FastArrayForwardIterator<DataType>(list)
 	@:keep public  inline function reversedIterator () 	return new primevc.core.collections.iterators.FastArrayReversedIterator<DataType>(list)
 
-	public inline function disableEvents ()								{ beforeChange.disable(); change.disable(); }
-	public inline function enableEvents ()								{ beforeChange.enable();  change.enable(); }
+	public #if !noinline inline #end function disableEvents ()								{ beforeChange.disable(); change.disable(); }
+	public #if !noinline inline #end function enableEvents ()								{ beforeChange.enable();  change.enable(); }
 	
-	public inline function asIterableOf<B> ( type:Class<B> ) : Iterator<B>
+	public #if !noinline inline #end function asIterableOf<B> ( type:Class<B> ) : Iterator<B>
 	{
 		#if debug for (i in 0 ... list.length) Assert.isType(list[i], type); #end
 		return cast forwardIterator();
@@ -106,7 +106,7 @@ package primevc.core.collections;
 	 * @param	pos
 	 * @return
 	 */
-	@:keep public inline function getItemAt (pos:Int) : DataType
+	@:keep public #if !noinline inline #end function getItemAt (pos:Int) : DataType
 	{
 		Assert.that(pos >= 0, pos+"");
 	//	var i:Int = pos < 0 ? length + pos : pos;
@@ -114,13 +114,13 @@ package primevc.core.collections;
 	}
 	
 	
-	@:keep public inline function indexOf (item:DataType) : Int
+	@:keep public #if !noinline inline #end function indexOf (item:DataType) : Int
 	{
 		return list.indexOf(item);
 	}
 	
 	
-	@:keep public inline function has (item:DataType) : Bool
+	@:keep public #if !noinline inline #end function has (item:DataType) : Bool
 	{
 		return list.indexOf(item) >= 0;
 	}
@@ -161,7 +161,7 @@ package primevc.core.collections;
 	 *	
 	 * In other words, update this when otherList changes.
 	 */
-	@:keep public inline function bind (other:ReadOnlyArrayList<DataType>)
+	@:keep public #if !noinline inline #end function bind (other:ReadOnlyArrayList<DataType>)
 	{
 		other.keepUpdated(this);
 	}

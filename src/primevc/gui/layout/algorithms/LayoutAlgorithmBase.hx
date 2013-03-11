@@ -201,13 +201,13 @@ class LayoutAlgorithmBase
 	}
 	
 	
-	public function scrollToDepth (depth:Int) { Assert.abstract(); }
+	public function scrollToDepth (depth:Int) { Assert.abstractMethod(); }
 	
 	
 	
 #if (CSSParser || debug)
 	public function toString () : String				{ return toCSS(); }
-	public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+	public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 	public function isEmpty () : Bool					{ return false; }
 #end
 	

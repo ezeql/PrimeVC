@@ -69,10 +69,10 @@ class TouchSignals extends Signals
     private inline function getCancel ()    { if (cancel == null)       { createCancel(); } return cancel; }
     
     
-    private function createStart ()         { Assert.abstract(); }
-    private function createEnd ()           { Assert.abstract(); }
-    private function createMove ()          { Assert.abstract(); }
-    private function createCancel ()        { Assert.abstract(); }
+    private function createStart ()         { Assert.abstractMethod(); }
+    private function createEnd ()           { Assert.abstractMethod(); }
+    private function createMove ()          { Assert.abstractMethod(); }
+    private function createCancel ()        { Assert.abstractMethod(); }
 }
 
 /**
@@ -102,14 +102,14 @@ class TouchState implements IClonable<TouchState>, implements haxe.Public
     }
     
 #if flash9
-    public inline function isDispatchedBy (obj:UserEventTarget) : Bool
+    public #if !noinline inline #end function isDispatchedBy (obj:UserEventTarget) : Bool
     {
         return obj != null && obj == related;
     }
 #end
     
     
-    public inline function clone () : TouchState
+    public #if !noinline inline #end function clone () : TouchState
     {
         return new TouchState(target, local, stage);
     }

@@ -55,7 +55,7 @@ package primevc.core.geom;
 	
 	
 #if debug
-	public static inline function readProperties (flags:Int) : String
+	public static #if !noinline inline #end function readProperties (flags:Int) : String
 	{
 		var output	= [];
 		

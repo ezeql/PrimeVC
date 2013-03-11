@@ -65,7 +65,7 @@ class ValidatingValue < DataType > extends primevc.core.traits.QueueingInvalidat
 	}
 	
 	
-	public inline function validateValue ()
+	public #if !noinline inline #end function validateValue ()
 	{
 		value = applyValidator(value);
 	}

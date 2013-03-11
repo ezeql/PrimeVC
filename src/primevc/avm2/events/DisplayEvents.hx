@@ -47,5 +47,6 @@ class DisplayEvents extends DisplaySignals
 		removedFromStage	= new FlashSignal0( target, Event.REMOVED_FROM_STAGE );
 		enterFrame			= new FlashSignal0( target, Event.ENTER_FRAME );
 		render				= new FlashSignal0( target, Event.RENDER );
+		//resize		    = new FlashSignal0( target, Event.RESIZE ); Use layout.changed signal!!
 	}
 }

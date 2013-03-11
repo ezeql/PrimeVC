@@ -55,14 +55,14 @@ class FloatRangeValidator implements IValueValidator <Float>
 	}
 	
 	
-	public inline function dispose ()
+	public #if !noinline inline #end function dispose ()
 	{
 		change.dispose();
 		change = null;
 	}
 	
 	
-		public inline function getDiff () : Float
+		public #if !noinline inline #end function getDiff () : Float
 		{
 #if debug	Assert.that(min.isSet());
 			Assert.that(max.isSet());

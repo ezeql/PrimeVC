@@ -57,7 +57,7 @@ class QueueingInvalidatable extends Invalidatable, implements IQueueingInvalidat
 	}
 	
 	
-	public inline function resetValidation ()
+	public #if !noinline inline #end function resetValidation ()
 	{
 		changes = 0;
 		(untyped this).invalidatable = true;

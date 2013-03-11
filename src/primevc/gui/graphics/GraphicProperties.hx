@@ -363,12 +363,12 @@ class GraphicProperties implements IGraphicElement
 	}
 	
 	
-	public inline function isEmpty () : Bool		{ return (layout == null || layout.isEmpty()) || shape == null; }
+	public #if !noinline inline #end function isEmpty () : Bool		{ return (layout == null || layout.isEmpty()) || shape == null; }
 	
 	
 #if CSSParser
 	public function toString ()						{ return "GraphicProperties: l: "+layout+"; s: "+shape+"; f: "+fill+"; b: "+border; }
-	public function toCSS (prefix:String = "")		{ Assert.abstract(); return ""; }
+	public function toCSS (prefix:String = "")		{ Assert.abstractMethod(); return ""; }
 	public function toCode (code:ICodeGenerator)	{ code.construct(this, [ layout, shape, fill, border, borderRadius ]); }
 #end
 }

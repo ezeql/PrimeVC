@@ -38,6 +38,7 @@ package primevc.tools.generator;
 
 
 private typedef HaxeType = Type.ValueType;
+private typedef ValueType = primevc.tools.generator.ValueType;
 
 /**
  * @author Ruben Weijers
@@ -78,12 +79,12 @@ class CodeGenerator implements ICodeGenerator
 	
 	public function new ()
 	{
-#if !CSSParser Assert.abstract(); #end
+#if !CSSParser Assert.abstractMethod(); #end
 		instanceIgnoreList	= new IntHash();
 	}
 	
 	
-	public inline function start () : Void
+	public #if !noinline inline #end function start () : Void
 	{
 		if (!isStarted)
 		{
@@ -118,7 +119,7 @@ class CodeGenerator implements ICodeGenerator
 	
 	
 	
-	public inline function setSelfAction (name:String, ?params:Array<Dynamic>) : Void
+	public #if !noinline inline #end function setSelfAction (name:String, ?params:Array<Dynamic>) : Void
 	{
 		values.push( tCallMethod(null, name, formatParams(params)) );
 	}

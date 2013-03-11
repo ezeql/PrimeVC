@@ -64,6 +64,8 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 		this.isReverted = isReverted;
 #if flash9
 		easing			= newEasing == null 	? feffects.easing.Linear.easeNone : newEasing;
+#elseif CSSParser
+		easing 			= newEasing;
 #end
 		autoHideFilters	= false;
 	}
@@ -79,13 +81,13 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 	
 	public function clone () : IEffect
 	{
-		Assert.abstract(); return null;
+		Assert.abstractMethod(); return null;
 	}
 	
 	
 	public function setValues( v:EffectProperties ) : Void
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 	}
 	
 	
@@ -105,7 +107,7 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 	
 	public function createEffectInstance (target:TargetType) : IEffectInstance < TargetType, EffectClass >
 	{
-		Assert.abstract();
+		Assert.abstractMethod();
 		return null;
 	}
 #end
@@ -171,10 +173,10 @@ class Effect <TargetType, EffectClass:IEffect> extends primevc.core.traits.Inval
 	
 #if CSSParser
 	public function toString ()						{ return toCSS(); }
-	public function toCSS (prefix:String = "")		{ Assert.abstract(); return null; }
+	public function toCSS (prefix:String = "")		{ Assert.abstractMethod(); return null; }
 	public function isEmpty () : Bool				{ return duration <= 0; }
 	public function cleanUp ()						{}
 	public function toCode (code:primevc.tools.generator.ICodeGenerator)
-		Assert.abstract()
+		Assert.abstractMethod()
 #end
 }

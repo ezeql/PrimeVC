@@ -74,5 +74,5 @@ class DOMSignal1<Type> extends Signal1<Type>, implements IWireWatcher<Type->Void
 	}
 	
 	
-	private function dispatch(e:Event)	Assert.abstract()
+	private function dispatch(e:Event)	Assert.abstractMethod()
 }

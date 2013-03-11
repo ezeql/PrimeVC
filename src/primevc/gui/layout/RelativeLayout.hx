@@ -180,13 +180,13 @@ class RelativeLayout
 	}
 	
 	
-	public inline function clone () : IBox
+	public #if !noinline inline #end function clone () : IBox
 	{
 		return new RelativeLayout( top, right, bottom, left, hCenter, vCenter );
 	}
 
 
-	public inline function center () : RelativeLayout
+	public #if !noinline inline #end function center () : RelativeLayout
 	{
 		hCenter = vCenter = 0;
 		return this;

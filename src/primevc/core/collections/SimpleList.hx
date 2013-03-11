@@ -118,7 +118,7 @@ class SimpleList<DataType> implements IEditableList<DataType>
 	}
 	
 	
-	@:keep public inline function isEmpty()	//FIXME: @:keep shouldn't be needed. Without it, DCE will cause runtime error: Illegal override of SimpleList_String with....
+	@:keep public #if !noinline inline #end function isEmpty()	//FIXME: @:keep shouldn't be needed. Without it, DCE will cause runtime error: Illegal override of SimpleList_String with....
 	{
 		return length == 0;
 	}
@@ -222,7 +222,7 @@ class SimpleList<DataType> implements IEditableList<DataType>
 	 * @param	pos
 	 * @return	position where the cell is inserted
 	 */
-	public inline function insertAt (item:DataType, ?pos:Int = -1) : Int
+	public #if !noinline inline #end function insertAt (item:DataType, ?pos:Int = -1) : Int
 	{
 		return insertCellAt( new FastDoubleCell<DataType>( item, null ), pos );
 	}

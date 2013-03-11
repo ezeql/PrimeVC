@@ -143,7 +143,7 @@ private typedef Flags = RevertableBindableFlags;
 	 * Puts this in editing-mode and keeps a copy of the current value
 	 * if not already in edit-mode.
 	 */
-	@:keep public inline function beginEdit()
+	@:keep public #if !noinline inline #end function beginEdit()
 	{
 		// Only set MAKE_SHADOW_COPY if IN_EDITMODE is not set
 		Assert.that(Flags.IN_EDITMODE << 11 == Flags.MAKE_SHADOW_COPY);

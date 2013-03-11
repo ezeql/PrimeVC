@@ -89,7 +89,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	}
 	
 	
-	public inline function isDisposed ()
+	public #if !noinline inline #end function isDisposed ()
 	{
 		return behaviours == null;
 	}
@@ -143,15 +143,15 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	// METHODS
 	//
 	
-	//TODO RUBEN - enable Assert.abstract
-//	private function createStates ()			: Void {} //	{ Assert.abstract(); }
-	private function createBehaviours ()		: Void {} //	{ Assert.abstract(); }
-//	public function drawGraphics ()				: Void {} //	{ Assert.abstract(); }
-	public function createChildren ()			: Void {} //	{ Assert.abstract(); }
+	//TODO RUBEN - enable Assert.abstractMethod
+//	private function createStates ()			: Void {} //	{ Assert.abstractMethod(); }
+	private function createBehaviours ()		: Void {} //	{ Assert.abstractMethod(); }
+//	public function drawGraphics ()				: Void {} //	{ Assert.abstractMethod(); }
+	public function createChildren ()			: Void {} //	{ Assert.abstractMethod(); }
 	public function childrenCreated ()			: Void {}
 	
-//	private function removeStates ()			: Void {} //	{ Assert.abstract(); }
-	public  function disposeChildren ()			: Void {} //	{ Assert.abstract(); }
+//	private function removeStates ()			: Void {} //	{ Assert.abstractMethod(); }
+	public  function disposeChildren ()			: Void {} //	{ Assert.abstractMethod(); }
 	public function validate (changes:Int)		: Void {}
 	
 	private function removeBehaviours ()

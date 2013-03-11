@@ -57,7 +57,7 @@ package primevc.gui.display;
 #if !CSSParser
 class Window implements IDisplayContainer, implements IDisablable
 {
-	public static inline function startup<WindowInstance>(windowClassFactory : Stage -> WindowInstance) : WindowInstance
+	public static #if !noinline inline #end function startup<WindowInstance>(windowClassFactory : Stage -> WindowInstance) : WindowInstance
 	{
 		var stage:Stage = null;
 #if flash9
@@ -78,6 +78,11 @@ class Window implements IDisplayContainer, implements IDisablable
 		haxe.Log.trace	= primevc.utils.DebugTrace.trace;
 		haxe.Log.clear	= com.hexagonstar.util.debug.Debug.clear;
 		com.hexagonstar.util.debug.Debug.monitor( stage );
+	#elseif (debug && CC)
+		haxe.Log.trace	= primevc.utils.DebugTrace.trace;
+		//haxe.Log.clear	= com.junkbyte.console.Cc.clear
+		com.junkbyte.console.Cc.startOnStage(stage);
+	
 	#end
 #end
 #if debug
@@ -190,14 +195,14 @@ class Window implements IDisplayContainer, implements IDisablable
 	public var tabIndex				: Int;
 	
 	
-	public inline function globalToLocal (point:Point) : Point		{ return target.globalToLocal(point); }
-	public inline function localToGlobal (point:Point) : Point		{ return target.localToGlobal(point); }
+	public #if !noinline inline #end function globalToLocal (point:Point) : Point		{ return target.globalToLocal(point); }
+	public #if !noinline inline #end function localToGlobal (point:Point) : Point		{ return target.localToGlobal(point); }
 	
 	public function isFocusOwner (target:UserEventTarget)			{ return target == this.target; }
 	
 	public function enable ()										{ mouseEnabled = tabEnabled = children.mouseEnabled = children.tabEnabled = true; }		//use local mouseEnabled and tabEnabled since Stage doesn't have these properties
 	public function disable ()										{ mouseEnabled = tabEnabled = children.mouseEnabled = children.tabEnabled = false; }	//use local mouseEnabled and tabEnabled since Stage doesn't have these properties
-	public inline function isEnabled ()								{ return mouseEnabled; }
+	public #if !noinline inline #end function isEnabled ()								{ return mouseEnabled; }
 	
 	private inline function setFocusOn (child:IInteractiveObject)	{ target.focus = child.as(InteractiveObject); return child; }
 	private inline function getFocus ()	: IInteractiveObject		{ return target.focus.as(IInteractiveObject); }
@@ -213,8 +218,8 @@ class Window implements IDisplayContainer, implements IDisablable
 	 * Method will give the acti focus to the stage.
 	 * FIXME better naming -> looks alot like setFocusOn (the setter)
 	 */
-	public inline function setFocus ()		{ target.focus = target; }
-	public inline function removeFocus ()	{ if (target.focus == target) { target.focus = null; } }
+	public #if !noinline inline #end function setFocus ()		{ target.focus = target; }
+	public #if !noinline inline #end function removeFocus ()	{ if (target.focus == target) { target.focus = null; } }
 	
 	
 	

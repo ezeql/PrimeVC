@@ -48,9 +48,9 @@ class FastArrayReversedIterator <DataType> implements IIterator <DataType>
 		this.target = target;
 		rewind();
 	}
-	public inline function setCurrent (val:Dynamic)	{ current = val; }
-	public inline function rewind ()				{ current = target.length - 1; }
-	public inline function hasNext ()				{ return current >= 0; }
-	public inline function next ()					{ return target[ current-- ]; }
-	public inline function value ()					{ return target[ current ]; }
+	@:keep public inline function setCurrent (val:Dynamic)	{ current = val; }
+	@:keep public inline function rewind ()					{ current = target.length - 1; }
+	@:keep public inline function hasNext ()				{ return current >= 0; }
+	@:keep public inline function next ()					{ return target[ current-- ]; }
+	@:keep public inline function value ()					{ return target[ current ]; }
 }

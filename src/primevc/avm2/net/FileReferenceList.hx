@@ -65,7 +65,7 @@ class FileReferenceList extends SelectEvents, implements IFileReference
 	}
 	
 	
-	public inline function browse (?types:Array<FileFilter>)
+	public #if !noinline inline #end function browse (?types:Array<FileFilter>)
 	{
 		return target.browse(types);
 	}

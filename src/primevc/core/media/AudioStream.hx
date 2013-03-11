@@ -134,11 +134,11 @@ class AudioStream extends BaseMediaStream
     
     override public function play ( ?newUrl:URI )
     {
-        if (!isLoaded())                            load();
-        if (!isStopped() || channel.notNull())      stop();
         if (newUrl.notNull())                       url.value = newUrl;
-        
         Assert.notNull( url.value, "There is no sound-url to play" );
+        
+        if (!isStopped() || channel.notNull())      stop();
+        if (!isLoaded())                            load();
         
         state.current = MediaStates.playing;
         applyResume();

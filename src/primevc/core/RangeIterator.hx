@@ -53,19 +53,19 @@ class RangeIterator
 	}
 	
 	
-	public inline function set (max:Int, stepSize:Int = 1, start:Int = 0) {
+	public #if !noinline inline #end function set (max:Int, stepSize:Int = 1, start:Int = 0) {
 		this.max		= max;
 		this.stepSize	= stepSize;
 		this.start		= start;
 	}
 	
 	
-	public inline function hasNext () : Bool {
+	public #if !noinline inline #end function hasNext () : Bool {
 		return current < max;
 	}
 	
 	
-	public inline function next () {
+	public #if !noinline inline #end function next () {
 		var c = current;
 		current = current + stepSize;
 		if (current > max)

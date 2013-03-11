@@ -55,7 +55,7 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 	private var validatePreparedVer : Bool;
 	
 	
-	public inline function isInvalid (changes:Int)
+	public #if !noinline inline #end function isInvalid (changes:Int)
 	{
 		return changes.has( Flags.WIDTH | Flags.HEIGHT | Flags.X | Flags.Y | Flags.RELATIVE | Flags.LIST );
 	}
@@ -119,12 +119,12 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 	}
 	
 	
-	public inline function validate ()				{ if (!validatePrepared) 	prepareValidate(); }
-	public inline function validateHorizontal ()	{  }
-	public inline function validateVertical ()		{  }
+	public #if !noinline inline #end function validate ()				{ if (!validatePrepared) 	prepareValidate(); }
+	public #if !noinline inline #end function validateHorizontal ()	{  }
+	public #if !noinline inline #end function validateVertical ()		{  }
 	
 	
-	public inline function apply ()
+	public #if !noinline inline #end function apply ()
 	{
 		if (!validatePrepared)
 			validate();
@@ -204,7 +204,7 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 	 * have any influence on the depth. That's why the algorithm will always 
 	 * return the position at the end of the child-list.
 	 */
-	public inline function getDepthForBounds (bounds:IRectangle) : Int
+	public #if !noinline inline #end function getDepthForBounds (bounds:IRectangle) : Int
 	{
 		return group.children.length;
 	}

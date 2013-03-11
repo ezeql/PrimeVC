@@ -56,13 +56,13 @@ class Point
 		this.y = y;
 	}
 	
-	public inline function clone ()					return new Point( x, y )
-	public inline function subtract (v:Point)		return new Point( x - v.x, y - v.y )
-	public inline function add (v:Point)			return new Point( x + v.x, y + v.y )
-	public inline function isEqualTo (v:Point) 		return x == v.x && y == v.y
-	public inline function setTo (v:Point) 		{ 	x = v.x; y = v.y; }
+	public #if !noinline inline #end function clone ()					return new Point( x, y )
+	public #if !noinline inline #end function subtract (v:Point)		return new Point( x - v.x, y - v.y )
+	public #if !noinline inline #end function add (v:Point)			return new Point( x + v.x, y + v.y )
+	public #if !noinline inline #end function isEqualTo (v:Point) 		return x == v.x && y == v.y
+	public #if !noinline inline #end function setTo (v:Point) 		{ 	x = v.x; y = v.y; }
 #if debug
-	public inline function toString ()				return "Point( "+x+", "+y+" )"
+	public #if !noinline inline #end function toString ()				return "Point( "+x+", "+y+" )"
 #end
 }
 #end

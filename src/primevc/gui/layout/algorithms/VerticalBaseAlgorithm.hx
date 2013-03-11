@@ -103,7 +103,7 @@ class VerticalBaseAlgorithm extends primevc.gui.layout.algorithms.LayoutAlgorith
 	/**
 	 * Method indicating if the size is invalidated or not.
 	 */
-	public inline function isInvalid (changes:Int)	: Bool
+	public #if !noinline inline #end function isInvalid (changes:Int)	: Bool
 	{
 		return (changes.has( LayoutFlags.HEIGHT ) && group.childHeight.notSet()) || ( horizontal != null && changes.has( LayoutFlags.WIDTH ) );
 	}
@@ -218,7 +218,7 @@ class VerticalBaseAlgorithm extends primevc.gui.layout.algorithms.LayoutAlgorith
 	
 	
 #if (CSSParser || debug)
-	override public function toCSS (prefix:String = "") : String	{ Assert.abstract(); return ""; }
+	override public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 #end
 #if CSSParser
 	override public function toCode (code:primevc.tools.generator.ICodeGenerator)
