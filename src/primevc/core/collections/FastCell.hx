@@ -34,7 +34,8 @@ package primevc.core.collections;
  * Copied from haxe.FastList (since it's not in a seperate file :-S)
  * @since	20 okt 2010
  */
-class FastCell<T> implements IDisposable #if (flash9 || cpp) , implements haxe.rtti.Generic #end
+#if (flash9 || cpp) @:generic #end
+class FastCell<T> implements IDisposable
 {
 	public var data : T;
 	public var next : FastCell<T>;

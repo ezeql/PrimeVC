@@ -36,8 +36,8 @@ package primevc.core;
  * @author Danny Wilson
  * @creation-date Jun 25, 2010
  */
+//#if (flash9 || cpp) @:generic #end
 interface IBindable <DataType> implements IBindableReadonly<DataType>, implements IEditEnabledValueObject
-//	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	/**
 	 * Value property with write access.

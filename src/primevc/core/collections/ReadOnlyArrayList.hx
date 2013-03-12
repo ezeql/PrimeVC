@@ -45,7 +45,7 @@ package primevc.core.collections;
  * @author Ruben Weijers
  * @creation-date Nov 19, 2010
  */
-class ReadOnlyArrayList<DataType> implements IReadOnlyList<DataType>, implements haxe.rtti.Generic
+@:generic class ReadOnlyArrayList<DataType> implements IReadOnlyList<DataType>
 {
 	public var beforeChange	(default, null)		: ListChangeSignal<DataType>;
 	public var change		(default, null)		: ListChangeSignal<DataType>;

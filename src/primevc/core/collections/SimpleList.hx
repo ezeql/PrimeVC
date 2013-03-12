@@ -43,8 +43,8 @@ package primevc.core.collections;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class SimpleList<DataType> implements IEditableList<DataType> 
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var change		(default, null)		: ListChangeSignal<DataType>;
 	public var beforeChange	(default, null)		: ListChangeSignal<DataType>;

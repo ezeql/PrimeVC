@@ -37,7 +37,7 @@ package primevc.core.collections;
  * @author Ruben Weijers
  * @creation-date Jan 5, 2012
  */
-class Sort<DataType> extends ReadOnlyArrayList<DataType>, implements haxe.rtti.Generic
+@:generic class Sort<DataType> extends ReadOnlyArrayList<DataType>
 {
 	public  var source 	(default, setSource) 	: IReadOnlyList<DataType>;
 	public  var sort 	(default, setSort) 		: DataType -> DataType -> Int;

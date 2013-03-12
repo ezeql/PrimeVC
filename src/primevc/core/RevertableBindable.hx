@@ -59,7 +59,7 @@ private typedef Flags = RevertableBindableFlags;
  * @creation-date	Jun 18, 2010
  * @author			Danny Wilson
  */
-class RevertableBindable <DataType> extends Bindable<DataType>, implements IEditableValueObject, implements haxe.rtti.Generic
+@:generic class RevertableBindable <DataType> extends Bindable<DataType>, implements IEditableValueObject
 {
 	/**
 	 * Keeps track of settings.

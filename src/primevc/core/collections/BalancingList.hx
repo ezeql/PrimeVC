@@ -35,8 +35,8 @@ package primevc.core.collections;
  * @creation-date	Jul 1, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class BalancingList <DataType> extends SimpleList <DataType>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var nextList : BalancingList<DataType>;
 	public var listNum	: Int;

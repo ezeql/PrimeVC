@@ -49,11 +49,11 @@ package primevc.types;
  * @author Ruben Weijers
  * @creation-date Sep 30, 2010
  */
+#if !CSSParser @:generic #end
 class SimpleDictionary < KType, VType > 
 				implements IDisposable
 			,	implements IClonable<SimpleDictionary<KType, VType>>
-#if !CSSParser,	implements haxe.rtti.Generic
-#else		,	implements ICodeFormattable		#end
+#if CSSParser,	implements ICodeFormattable		#end
 {
 	private var _keys	: FastArray < KType >;
 	private var _values	: FastArray < VType >;

@@ -36,8 +36,8 @@ package primevc.core.collections.iterators;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class FastDoubleCellForwardIterator <DataType> implements IIterator <DataType>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	private var first (default, null)	: FastDoubleCell<DataType>;
 	public var current (default, null)	: FastDoubleCell<DataType>;

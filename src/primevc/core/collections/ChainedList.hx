@@ -42,8 +42,8 @@ package primevc.core.collections;
  * @creation-date	Jun 30, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class ChainedList <DataType> extends SimpleList <DataType> 
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var nextList							: ChainedList < DataType >;
 	/**

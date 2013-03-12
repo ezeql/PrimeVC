@@ -72,9 +72,8 @@ package primevc.core.collections;
  * @creation-date	Jul 1, 2010
  * @author			Ruben Weijers
  */
-class BalancingListCollection <DataType> implements IEditableList <DataType>,
-	implements IListCollection < DataType, BalancingList<DataType> > 
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
+#if (flash9 || cpp) @:generic #end
+class BalancingListCollection <DataType> implements IEditableList <DataType>, implements IListCollection < DataType, BalancingList<DataType> > 
 {
 	private var _length		: Int;
 	public var length		(getLength, never)			: Int;
@@ -546,8 +545,8 @@ class BalancingListCollectionForwardIterator <DataType> implements IIterator <Da
  * @creation-date	Jul 23, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class BalancingListCollectionReversedIterator <DataType> implements IIterator <DataType>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	private var target			(default, null) : BalancingListCollection<DataType>;
 	private var currentListNum	: Int;

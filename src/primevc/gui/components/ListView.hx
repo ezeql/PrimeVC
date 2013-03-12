@@ -66,7 +66,8 @@ package primevc.gui.components;
  * @author Ruben Weijers
  * @creation-date Oct 26, 2010
  */
-class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataType > >, implements IDropTarget //, implements haxe.rtti.Generic
+//@:generic
+class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataType > >, implements IDropTarget
 {
 	/**
 	 * Signal which will dispatch mouse-clicks of interactive item-rendered 

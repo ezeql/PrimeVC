@@ -41,10 +41,10 @@ package primevc.core.collections;
  * @author Ruben Weijers
  * @creation-date Oct 20, 2010
  */
+#if (flash9 || cpp) @:generic #end
 class PriorityList < DataType : IPrioritizable >
 						implements IDisposable
 					,	implements IClonable < PriorityList < DataType > >
-#if (flash9 || cpp)	,	implements haxe.rtti.Generic #end
 {
 	public var length		(default, null)		: Int;
 	/**

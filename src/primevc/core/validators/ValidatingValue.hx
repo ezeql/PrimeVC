@@ -37,8 +37,8 @@ package primevc.core.validators;
  * @creation-date	Jun 20, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class ValidatingValue < DataType > extends QueueingInvalidatable
-#if flash	,	implements haxe.rtti.Generic	#end
 {
 	public var validator			(default, setValidator)	: IValueValidator < DataType >;
 	public var value				(default, setValue)		: DataType;

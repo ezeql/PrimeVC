@@ -47,9 +47,8 @@ package primevc.gui.styling;
  * @author Ruben Weijers
  * @creation-date Oct 22, 2010
  */
-class StyleCollectionBase < StyleGroupType:StyleSubBlock >
-				implements IInvalidateListener
-//#if flash9	,	implements haxe.rtti.Generic #end
+//#if (flash9 || cpp) @:generic #end
+class StyleCollectionBase <StyleGroupType:StyleSubBlock> implements IInvalidateListener
 {
 	/**
 	 * Flag with all the style-declaration-properties that are defined for 
@@ -310,9 +309,8 @@ class StyleCollectionIteratorBase implements IDisposable
  * @author Ruben Weijers
  * @creation-date Oct 22, 2010
  */
-class StyleCollectionForwardIterator < StyleGroupType > extends StyleCollectionIteratorBase
-			,	implements IIterator < StyleGroupType >
-//#if flash9	,	implements haxe.rtti.Generic #end
+//#if (flash9 || cpp) @:generic #end
+class StyleCollectionForwardIterator <StyleGroupType> extends StyleCollectionIteratorBase, implements IIterator < StyleGroupType >
 {
 	public function new (elementStyle:IUIElementStyle, groupFlag:Int) super(elementStyle, groupFlag)	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 	override public function rewind () : Void	{ setCurrent( elementStyle.styles.first ); }

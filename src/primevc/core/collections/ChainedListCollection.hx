@@ -43,10 +43,10 @@ package primevc.core.collections;
  * list.
  * 
  */
+#if (flash9 || cpp) @:generic #end
 class ChainedListCollection <DataType>
 				implements IEditableList <DataType>
 			,	implements IListCollection < DataType, ChainedList<DataType> > 
-#if flash9	,	implements haxe.rtti.Generic #end
 {
 	public var change		(default, null)				: Signal1 < ListChange < DataType > >;
 	
@@ -429,8 +429,8 @@ class ChainedListCollection <DataType>
  * @creation-date	Jun 30, 2010
  * @author			Ruben Weijers
  */
+#if (flash9 || cpp) @:generic #end
 class ChainedListCollectionIterator <DataType> implements IIterator <DataType>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	private var target			(default, null)					: ChainedListCollection<DataType>;
 	private var currentList 	(default, setCurrentList)		: ChainedList<DataType>;
