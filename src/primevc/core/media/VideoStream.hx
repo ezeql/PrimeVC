@@ -38,7 +38,6 @@ package primevc.core.media;
  import primevc.core.states.SimpleStateMachine;
  import primevc.core.states.MediaStates;
  import primevc.core.Bindable;
- import primevc.core.Error;
  import primevc.types.Number;
  import primevc.types.URI;
   using primevc.utils.Bind;
@@ -292,7 +291,7 @@ class VideoStream extends BaseMediaStream
 	}
 	
 	
-	private function handleASyncError (error:Error)
+	private function handleASyncError (error:String)
 	{
 		trace(error);
 	}

@@ -691,7 +691,7 @@ class CSSParser
 	private function importManifests ( styleContent ) : String
 	{
 		var importExpr = new EReg ( R.IMPORT_MANIFEST, "i" );
-		return importExpr.customReplace(styleContent, importManifest);
+		return importExpr.map(styleContent, importManifest);
 	}
 	
 	
@@ -712,7 +712,7 @@ class CSSParser
 	private inline function importStyleSheets ( styleContent ) : String
 	{
 		var importExpr = new EReg(R.IMPORT_SHEET, "i");
-		return importExpr.customReplace(styleContent, importStyleSheet);
+		return importExpr.map(styleContent, importStyleSheet);
 	}
 	
 	

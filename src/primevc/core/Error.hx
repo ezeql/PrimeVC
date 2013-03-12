@@ -36,4 +36,5 @@ package primevc.core;
 typedef Error = 
 	#if		flash9	flash.errors.Error;
 	#elseif	flash8	flash.errors.Error;
+	#elseif js 		String;
 	#else	#error	#end

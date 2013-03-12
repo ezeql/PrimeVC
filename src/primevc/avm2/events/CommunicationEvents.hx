@@ -47,6 +47,6 @@ class CommunicationEvents extends CommunicationSignals
 		init		= new FlashSignal0(   target,	Event.INIT );
 		completed	= new FlashSignal0(   target,	Event.COMPLETE );
 		progress	= new primevc.avm2.events.ProgressSignal( target, ProgressEvent.PROGRESS );
-		error		= new primevc.avm2.events.ErrorSignal(   target, IOErrorEvent.IO_ERROR );
+		error		= new primevc.avm2.events.ErrorSignal(    target, IOErrorEvent.IO_ERROR );
 	}
 }

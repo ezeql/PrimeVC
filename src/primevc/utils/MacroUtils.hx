@@ -112,7 +112,7 @@ class MacroUtils
 	@:macro public static function autoInstantiate (searchType:String, instType:String, insertBefore:Bool = false) : Array<Field>
 	{
 //		return Context.getBuildFields();
-		return Context.getBuildFields().addMethod( "new", "Void", [], createMacroCall("new", callback(instantiateFieldsOfImpl, searchType, instType)), insertBefore );
+		return Context.getBuildFields().addMethod( "new", "Void", [], createMacroCall("new", instantiateFieldsOfImpl.callback(searchType, instType)), insertBefore );
 	//	var f = Context.getBuildFields();
 	//	return f.addMethod( "new", "Void", [], instantiateFieldsImpl( f.toClassFields(), searchType, instType ), insertBefore );
 	}
@@ -121,7 +121,7 @@ class MacroUtils
 	@:macro public static function autoDispose () : Array<Field>
 	{
 	//	trace("========== "+Context.getLocalClass().get().name+" ==========");
-		return Context.getBuildFields().addMethod( "dispose", "Void", [], createMacroCall("dispose", callback(disposeFieldsImpl)) );
+		return Context.getBuildFields().addMethod( "dispose", "Void", [], createMacroCall("dispose", disposeFieldsImpl.callback()) );
 	//	return Context.getBuildFields();
 //		return Context.getBuildFields().addMethod( "dispose", "Void", [], createMacroCall("disposeFields", [], "dispose") );
 	//	var name	= Context.getLocalClass().get().name;
@@ -132,7 +132,7 @@ class MacroUtils
 	
 	@:macro public static function autoStartListening () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "startListening", "Void", [], createMacroCall("startListening", callback(startListeningFieldsImpl), false) );
+		return Context.getBuildFields().addMethod( "startListening", "Void", [], createMacroCall("startListening", startListeningFieldsImpl.callback(), false) );
 	//	var f = Context.getBuildFields();
 	//	return f.addMethod( "startListening", "Void", [], startListeningFieldsImpl( f.toClassFields() ) );
 	}
@@ -140,7 +140,7 @@ class MacroUtils
 	
 	@:macro public static function autoStopListening () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "stopListening", "Void", [], createMacroCall("stopListening", callback(stopListeningFieldsImpl)) );
+		return Context.getBuildFields().addMethod( "stopListening", "Void", [], createMacroCall("stopListening", stopListeningFieldsImpl.callback()) );
 //		return Context.getBuildFields().addMethod( "stopListening", "Void", [], createMacroCall("stopListeningFields", [], "stopListening") );
 	//	var f = Context.getBuildFields();
 	//	return f.addMethod( "stopListeningFieldsImpl", "Void", [], stopListeningFieldsImpl( f.toClassFields() ) );
@@ -149,7 +149,7 @@ class MacroUtils
 	
 	@:macro public static function autoEnable () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "enable", "Void", [], createMacroCall("enable", callback(enableFieldsImpl)) );
+		return Context.getBuildFields().addMethod( "enable", "Void", [], createMacroCall("enable", enableFieldsImpl.callback()) );
 	//	return Context.getBuildFields();
 //		return Context.getBuildFields().addMethod( "enable", "Void", [], createMacroCall("enableFields", [], "enable") );
 	//	var f = Context.getBuildFields();
@@ -159,7 +159,7 @@ class MacroUtils
 	
 	@:macro public static function autoDisable () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "disable", "Void", [], createMacroCall("disable", callback(disableFieldsImpl)) );
+		return Context.getBuildFields().addMethod( "disable", "Void", [], createMacroCall("disable", disableFieldsImpl.callback()) );
 	//	var f = Context.getBuildFields();
 	//	return f.addMethod( "disable", "Void", [], disableFieldsImpl( f.toClassFields() ) );
 	}
@@ -167,7 +167,7 @@ class MacroUtils
 	
 	@:macro public static function autoUnbind () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "unbind", "Void", ["l:Dynamic", "?h:Dynamic"], createMacroCall("unbind", callback(unbindFieldsImpl, 'l', 'h')) );
+		return Context.getBuildFields().addMethod( "unbind", "Void", ["l:Dynamic", "?h:Dynamic"], createMacroCall("unbind", unbindFieldsImpl.callback('l', 'h')) );
 	//	return Context.getBuildFields();
 //		return Context.getBuildFields().addMethod( "unbind", "Void", ["l:Dynamic", "?h:Dynamic"], createMacroCall("unbindFields", ["l", "h"], "unbind") );
 	//	var f = Context.getBuildFields();
@@ -178,14 +178,14 @@ class MacroUtils
 	
 	@:macro public static function autoUnbindAll () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "unbindAll", "Void", [], createMacroCall("unbindAll", callback(unbindAllFieldsImpl)) );
+		return Context.getBuildFields().addMethod( "unbindAll", "Void", [], createMacroCall("unbindAll", unbindAllFieldsImpl.callback()) );
 	}
 	
 
 #if debug	
 	@:macro public static function autoTraceFields () : Array<Field>
 	{
-		return Context.getBuildFields().addMethod( "traceFields", "Void", [], createMacroCall("traceFields", callback(traceFieldsImpl)) );
+		return Context.getBuildFields().addMethod( "traceFields", "Void", [], createMacroCall("traceFields", traceFieldsImpl.callback()) );
 	}
 #end
 	
@@ -854,7 +854,6 @@ class MacroExprUtil
 					case CFloat(s):		s;
 					case CString(s):	s;
 					case CIdent(s):		s;
-					case CType(s):		s;
 					default:			null;
 				}
 			default:					null;

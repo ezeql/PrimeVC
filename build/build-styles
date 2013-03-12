@@ -49,7 +49,7 @@ if $Force || [[ ! -f "$Parser" ]]  ||  test "$MainFile" -nt "$Parser"  ||  test 
 		-main $MainClass \
 		-js "$Parser" \
 		$Debug \
-		${Debug:---no-traces --dead-code-elimination} || exit 1;
+		${Debug:---no-traces --dce full -D no-pattern-matching} || exit 1;
 	CompilerUpdated=true
 fi;
 

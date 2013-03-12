@@ -178,8 +178,8 @@ class UIVideo extends Video, implements IUIElement
 		attachNetStream( stream.source );
 		clear.onEntering( stream.state, MediaStates.stopped, this );
 #end
-		callback(invalidate, Flags.VIDEO_WIDTH)	.on( stream.width.change, this );
-		callback(invalidate, Flags.VIDEO_HEIGHT).on( stream.height.change, this );
+		invalidate.callback(Flags.VIDEO_WIDTH) .on( stream.width.change, this );
+		invalidate.callback(Flags.VIDEO_HEIGHT).on( stream.height.change, this );
 		
 		validate();
 		removeValidation.on( displayEvents.removedFromStage, this );

@@ -72,7 +72,7 @@ class LangMacro
 				{
 				//	trace("Prime::Locale:: Parsing YAML file:: " + currentDir +  file);
 					haxe.macro.Context.registerModuleDependency("primevc.locale.LangMacro", currentDir + "/" + file);
-					var yamlStream = YamlHX.read( neko.io.File.getContent( currentDir + "/" + file) );
+					var yamlStream = YamlHX.read( sys.io.File.getContent( currentDir + "/" + file) );
 					var key = yamlStream.x.firstElement().nodeName;
 					if ( langsRaw.exists(key))
 					{
@@ -252,7 +252,7 @@ class LangMacro
 				var auxResult = [];
 				var varNames:Array<String> = [];
 				var i = -1;
-				var nodeParsedValue = regExp.customReplace(el.innerData, function (e) {
+				var nodeParsedValue = regExp.map(el.innerData, function (e) {
 					var lastVal =  varNames.indexOf(e.matched(1));
 					if (lastVal == -1)
 					{
@@ -327,7 +327,7 @@ class LangMacro
 				var auxResult = [];
 				var varNames:Array<String> = [];
 				var i = -1;
-				var nodeParsedValue = regExp.customReplace(el.innerData, function (e) {
+				var nodeParsedValue = regExp.map(el.innerData, function (e) {
 					var lastVal =  varNames.indexOf(e.matched(1));
 					if (lastVal == -1)
 					{
@@ -463,7 +463,7 @@ class LangMacro
 					var regExp = new EReg("{([^:}]*):?([^}])*}", "");
 				
 					var varNames:Array<String> = [];
-					regExp.customReplace(el.innerData, function (e) {
+					regExp.map(el.innerData, function (e) {
 						if (varNames.indexOf(e.matched(1)) == -1)
 						{
 							varNames.push( e.matched(1) );

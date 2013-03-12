@@ -227,7 +227,7 @@ class UIElementEffects implements IDisposable
 			else							target.visible = false;
 			
 			if (target.layout.isInvalidated())
-				callback(show.play).onceOnEntering( target.layout.state, validated, this );
+				show.play.callback().onceOnEntering( target.layout.state, validated, this );
 			else
 				show.play();
 		}
