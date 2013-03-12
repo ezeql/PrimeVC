@@ -28,6 +28,7 @@
  */
 package primevc.core.states;
  import primevc.core.dispatcher.Signal2;
+ import primevc.core.dispatcher.Wire;
  import primevc.core.traits.IDisposable;
  
 
@@ -116,8 +117,6 @@ class SimpleStateMachine <StateType> implements IDisposable
 #end
 }
 
-
- import primevc.core.dispatcher.Wire;
 
 /**
  * @author 	Ruben Weijers

@@ -27,7 +27,6 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package primevc.avm2.events;
-private typedef KeyboardSignal = primevc.avm2.events.KeyboardSignal; // override import
  import primevc.gui.events.KeyboardEvents;
  import flash.events.KeyboardEvent;
 
@@ -42,7 +41,7 @@ class KeyboardEvents extends KeyboardSignals
 	public function new (eventDispatcher)
 	{
 		super();
-		down = new KeyboardSignal(eventDispatcher, KeyboardEvent.KEY_DOWN);
-		up   = new KeyboardSignal(eventDispatcher, KeyboardEvent.KEY_UP  );
+		down = new primevc.avm2.events.KeyboardSignal(eventDispatcher, KeyboardEvent.KEY_DOWN);
+		up   = new primevc.avm2.events.KeyboardSignal(eventDispatcher, KeyboardEvent.KEY_UP  );
 	}
 }
