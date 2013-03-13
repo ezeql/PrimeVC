@@ -76,15 +76,15 @@ interface IDisplayObject
 	public var filters				: Array<flash.filters.BitmapFilter>;
 	public var name					: String;
 	public var scrollRect			: flash.geom.Rectangle;
-	public var parent 				(default, null) 		: flash.display.DisplayObjectContainer;
+	public var parent 				(default, null) 					: flash.display.DisplayObjectContainer;
 	
 	public function globalToLocal 	(point : Point) 					: Point;
 	public function localToGlobal 	(point : Point) 					: Point;
 	public function getBounds 	  	(other:DisplayObject)				: Rectangle;
 #else
 	public var parent 				: IDisplayContainer;
-	public var visible				(getVisibility, setVisibility)		: Bool;
-	public var alpha				(getAlpha,		setAlpha)			: Float;
+	public var visible				(get_visibility, set_visibility)	: Bool;
+	public var alpha				(get_alpha,		set_alpha)			: Float;
 	public function getBounds 		(other:IDisplayObject)				: Rectangle;
 #end
 }

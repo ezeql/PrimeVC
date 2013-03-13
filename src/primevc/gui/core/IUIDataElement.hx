@@ -39,7 +39,7 @@ package primevc.gui.core;
  */
 interface IUIDataElement < DataType > implements IUIElement
 {
-	public var data (default, setData)		: DataType;
+	public var data (default, set_data)		: DataType;
 	
 	
 	/**

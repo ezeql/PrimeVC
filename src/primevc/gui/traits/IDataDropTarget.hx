@@ -45,7 +45,7 @@ interface IDataDropTarget < DataType > implements IDropTarget
 	 * be an IReadOnlyList and an IEditableList which will give errors (even
 	 * when they are the same instance).
 	 */
-	public var list	(getList, never)	: IEditableList < DataType >;
+	public var list	(get_list, never)	: IEditableList < DataType >;
 	
 	/**
 	 * Method to check if an IDraggabledata--item is allowed to drop on this

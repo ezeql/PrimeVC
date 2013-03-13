@@ -70,8 +70,8 @@ class BindablePoint extends IntPoint, implements IDisposable
 	
 	
 	
-	override private function getX ()	{ return xProp.value; }
-	override private function setX (v)	{ return xProp.value = v; }
-	override private function getY ()	{ return yProp.value; }
-	override private function setY (v)	{ return yProp.value = v; }
+	override private function get_x ()	{ return xProp.value; }
+	override private function set_x (v)	{ return xProp.value = v; }
+	override private function get_y ()	{ return yProp.value; }
+	override private function set_y (v)	{ return yProp.value = v; }
 }

@@ -53,11 +53,11 @@ private typedef Flags		= primevc.gui.core.UIElementFlags;
 class Label extends UIDataComponent <Bindable<String>>, implements ITextStylable
 {
 	public var field				(default, null)				: UITextField;
-	public var displayHTML			(default, setDisplayHTML)	: Bool;
-	public var multiline			(default, setMultiline)		: Bool;
+	public var displayHTML			(default, set_displayHTML)	: Bool;
+	public var multiline			(default, set_multiline)	: Bool;
 	
 #if flash9
-	public var textStyle			(default, setTextStyle)		: TextFormat;
+	public var textStyle			(default, set_textStyle)	: TextFormat;
 	public var wordWrap				: Bool;
 	public var embedFonts			: Bool;
 #end
@@ -115,7 +115,7 @@ class Label extends UIDataComponent <Bindable<String>>, implements ITextStylable
 	//
 	
 #if flash9
-	private inline function setTextStyle (v:TextFormat)
+	private inline function set_textStyle (v:TextFormat)
 	{
 		if (field != null) {
 			field.wordWrap		= wordWrap;
@@ -128,7 +128,7 @@ class Label extends UIDataComponent <Bindable<String>>, implements ITextStylable
 #end
 	
 	
-	private inline function setDisplayHTML (v:Bool)
+	private inline function set_displayHTML (v:Bool)
 	{
 		if (displayHTML != v)
 		{
@@ -139,7 +139,7 @@ class Label extends UIDataComponent <Bindable<String>>, implements ITextStylable
 	}
 	
 	
-	private inline function setMultiline (v:Bool)
+	private inline function set_multiline (v:Bool)
 	{
 		if (multiline != v)
 		{

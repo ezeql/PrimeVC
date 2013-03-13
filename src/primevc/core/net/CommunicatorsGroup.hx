@@ -35,6 +35,11 @@ package primevc.core.net;
   using primevc.utils.Bind;
   using primevc.utils.NumberUtil;
 
+//LoaderGroupEvents imports
+ import primevc.core.dispatcher.Signal0;
+ import primevc.core.dispatcher.Signal1;
+ import primevc.core.dispatcher.Signal2;
+ import primevc.core.events.CommunicationEvents;
 
 
 /**
@@ -47,18 +52,18 @@ package primevc.core.net;
 class CommunicatorsGroup implements ICommunicator
 {
 	public var events			(default,			null)		: LoaderSignals;
-	public var bytes			(getBytes,			setBytes)	: BytesData;
+	public var bytes			(get_bytes,			set_bytes)	: BytesData;
 	public var type				(default,			null)		: CommunicationType;
 	
 	
 	/**
 	 * Total bytes loaded/send for all processes together
 	 */
-	public var bytesProgress	(getBytesProgress,	null)		: Int;
+	public var bytesProgress	(get_bytesProgress,	null)		: Int;
 	/**
 	 * Total number of bytes to load/send for all processes together
 	 */
-	public var bytesTotal		(getBytesTotal,		null)		: Int;
+	public var bytesTotal		(get_bytesTotal,	null)		: Int;
 	
 	/**
 	 * Indicates the number of process going on within the communicator
@@ -151,11 +156,11 @@ class CommunicatorsGroup implements ICommunicator
 	// GETTERS / SETTERS
 	//
 	
-	private inline function getBytesProgress ()		{ return bytesProgress; }
-	private inline function getBytesTotal ()		{ return bytesTotal; }
+	private inline function get_bytesProgress ()	{ return bytesProgress; }
+	private inline function get_bytesTotal ()		{ return bytesTotal; }
 	
-	private inline function getBytes ()				{ Assert.abstractMethod(); return null; }
-	private inline function setBytes (v)			{ Assert.abstractMethod(); return null; }
+	private inline function get_bytes ()			{ Assert.abstractMethod(); return null; }
+	private inline function set_bytes (v)			{ Assert.abstractMethod(); return null; }
 	
 	
 	
@@ -217,12 +222,6 @@ class CommunicatorsGroup implements ICommunicator
 	}
 }
 
-
-
- import primevc.core.dispatcher.Signal0;
- import primevc.core.dispatcher.Signal1;
- import primevc.core.dispatcher.Signal2;
- import primevc.core.events.CommunicationEvents;
 
 
 /**

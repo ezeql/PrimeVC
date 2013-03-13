@@ -91,7 +91,7 @@ class ProgressBar extends UIDataContainer<PercentageHelper>
 	 * 
 	 * @default null
 	 */
-	public var source			(default, setSource)		: ICommunicator;
+	public var source			(default, set_source)		: ICommunicator;
 	
 	/**
 	 * state tells what the source is doing. The progressState won't change
@@ -99,13 +99,13 @@ class ProgressBar extends UIDataContainer<PercentageHelper>
 	 * 
 	 * @default null
 	 */
-	public var progressState	(default, setProgressState)	: ProgressState;
+	public var progressState	(default, set_progressState)	: ProgressState;
 	
 	/**
 	 * Indicates if the progress of the bar is determinate or indeterminate
 	 * @default true
 	 */
-	public var isDeterminate	(default, setIsDeterminate)	: Bool;
+	public var isDeterminate	(default, set_isDeterminate)	: Bool;
 	
 	
 	private var progressStyle		: StyleState;
@@ -170,7 +170,7 @@ class ProgressBar extends UIDataContainer<PercentageHelper>
 	// GETTERS / SETTERS
 	//
 	
-	private function setSource (v:ICommunicator)
+	private function set_source (v:ICommunicator)
 	{
 		if (v != source)
 		{
@@ -191,7 +191,7 @@ class ProgressBar extends UIDataContainer<PercentageHelper>
 	}
 	
 	
-	private /*inline*/ function setProgressState ( state:ProgressState ) : ProgressState
+	private /*inline*/ function set_progressState ( state:ProgressState ) : ProgressState
 	{
 		if (progressState != state)
 		{
@@ -210,7 +210,7 @@ class ProgressBar extends UIDataContainer<PercentageHelper>
 	}
 	
 	
-	private inline function setIsDeterminate (v:Bool) : Bool
+	private inline function set_isDeterminate (v:Bool) : Bool
 	{
 		if (v != isDeterminate) {
 			isDeterminate = v;

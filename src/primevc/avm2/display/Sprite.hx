@@ -60,7 +60,7 @@ class Sprite extends flash.display.Sprite, implements ISprite
 	 */
 	public var children			(default, null)			: DisplayList;
 	
-	public var window			(default, setWindow)	: Window;
+	public var window			(default, set_window)	: Window;
 	public var container		(default, default)		: IDisplayContainer;
 	
 	public var userEvents		(default, null)			: UserEvents;
@@ -171,7 +171,7 @@ class Sprite extends flash.display.Sprite, implements ISprite
 	}*/
 	
 	
-	private inline function setWindow (v)
+	private inline function set_window (v)
 	{
 		if (window != v)
 		{

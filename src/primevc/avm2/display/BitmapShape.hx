@@ -47,11 +47,11 @@ package primevc.avm2.display;
 class BitmapShape extends flash.display.Bitmap, implements IDisplayObject
 {
 	public var container		(default, default)		: IDisplayContainer;
-	public var window			(default, setWindow)	: Window;
+	public var window			(default, set_window)	: Window;
 	public var displayEvents	(default, null)			: DisplayEvents;
 	public var rect				(default, null)			: IntRectangle;
 
-	public var data 			(getData, setData)		: BitmapData;
+	public var data 			(get_data, set_data)	: BitmapData;
 	
 	
 	public function new (?data:BitmapData) 
@@ -108,11 +108,11 @@ class BitmapShape extends flash.display.Bitmap, implements IDisplayObject
 	}*/
 	
 	
-	private inline function setWindow (v)	{ return window = v; }
-	private inline function getData () 		{ return bitmapData; }
+	private inline function set_window (v)	{ return window = v; }
+	private inline function get_data ()		{ return bitmapData; }
 
 
-	private function setData (v)
+	private function set_data (v)
 	{
 		return bitmapData = v;
 	}

@@ -59,8 +59,8 @@ interface ITextField
 	 * 
 	 * TODO: not implemented for the htmlText property
 	 */
-	public var data					(default, setData)		: Bindable < String >;
-	public var value				(getValue, setValue)	: String;
+	public var data					(default, set_data)		: Bindable < String >;
+	public var value				(get_value, set_value)	: String;
 	
 	
 	/**

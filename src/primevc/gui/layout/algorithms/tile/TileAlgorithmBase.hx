@@ -51,7 +51,7 @@ class TileAlgorithmBase extends DynamicLayoutAlgorithm, implements ITileAlgorith
 	 * Defines in which direction the layout will start calculating.
 	 * @default		Direction.horizontal
 	 */
-	public var startDirection			(default, setStartDirection)		: Direction;
+	public var startDirection			(default, set_startDirection)	: Direction;
 	
 	
 	public function new( ?startDir:Direction, ?horDirection:Horizontal, ?verDirection:Vertical ) 
@@ -72,7 +72,7 @@ class TileAlgorithmBase extends DynamicLayoutAlgorithm, implements ITileAlgorith
 	//
 	
 	
-	private function setStartDirection (v) {
+	private function set_startDirection (v) {
 		if (v != startDirection) {
 			startDirection = v;
 			invalidate( false );

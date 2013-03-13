@@ -56,7 +56,7 @@ class LayoutAlgorithmBase
 #if debug public static var created		: Int = 0; #end
 #if debug public static var disposed	: Int = 0; #end
 	public var algorithmChanged 		(default, null)				: Signal0;
-	public var group					(default, setGroup)			: ILayoutContainer;
+	public var group					(default, set_group)		: ILayoutContainer;
 	
 #if CSSParser
 	public var _oid						(default, null)				: Int;
@@ -67,7 +67,7 @@ class LayoutAlgorithmBase
 	
 	public function new()
 	{
-#if debug		created++;							#end
+#if debug		created++;						#end
 #if CSSParser	_oid		= ID.getNext();		#end
 		algorithmChanged	= new Signal0();
 		validatePrepared	= false;
@@ -111,7 +111,7 @@ class LayoutAlgorithmBase
 	}
 	
 	
-	private function setGroup (v)		{ return group = v; }
+	private function set_group (v)		{ return group = v; }
 	public function prepareValidate ()	{ validatePrepared = true; }
 	
 	

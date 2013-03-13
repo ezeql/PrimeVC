@@ -69,7 +69,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	 */
 	public var popup				(default, null)					: ListHolder<DataType, DataType>;
 	public var list                 (default, null)                 : SelectableListView<DataType>;
-	public var listData				(default, setListData)			: IReadOnlyList<DataType>;
+	public var listData				(default, set_listData)			: IReadOnlyList<DataType>;
 	
 	/**
 	 * Injectable method which will create the needed itemrenderer
@@ -77,7 +77,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	 * @param	pos:Int
 	 * @return 	IUIDataElement
 	 */
-	public var createItemRenderer	(default, setCreateItemRenderer) : DataType -> Int -> IUIDataElement<DataType>;
+	public var createItemRenderer	(default, set_createItemRenderer) : DataType -> Int -> IUIDataElement<DataType>;
 	
 //	private var selectListItemWire	: Wire<DataType->DataType->Void>;
 	
@@ -153,7 +153,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	//
 	
 	
-	private function setListData (v)
+	private function set_listData (v)
 	{
 		if (v != listData)
 		{
@@ -168,7 +168,7 @@ class ComboBox <DataType> extends DataButton <DataType>
 	}
 	
 	
-	private inline function setCreateItemRenderer (v)
+	private inline function set_createItemRenderer (v)
 	{
 		if (v != createItemRenderer)
 		{

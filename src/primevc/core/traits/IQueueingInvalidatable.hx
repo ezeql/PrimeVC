@@ -42,7 +42,7 @@ interface IQueueingInvalidatable implements IInvalidatable
 	 * 
 	 * @default	true
 	 */
-	public var invalidatable	(default, setInvalidatable)	: Bool;
+	public var invalidatable	(default, set_invalidatable)	: Bool;
 	
 	/**
 	 * bitflag with all the changes that have happened to the invalidatable

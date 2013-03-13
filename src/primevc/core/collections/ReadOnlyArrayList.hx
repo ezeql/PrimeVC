@@ -50,10 +50,10 @@ package primevc.core.collections;
 	public var beforeChange	(default, null)		: ListChangeSignal<DataType>;
 	public var change		(default, null)		: ListChangeSignal<DataType>;
 	public var list			(default, null)		: FastArray<DataType>;
-	public var length		(getLength, never)	: Int;
+	public var length		(get_length, never)	: Int;
 	
-	public var array		(getArray,null)		: FastArray<DataType>;
- 		inline function getArray() : FastArray<DataType> return #if flash10 flash.Vector.convert(list) #else list #end
+	public var array		(get_array,null)	: FastArray<DataType>;
+ 		inline function get_array() : FastArray<DataType> return #if flash10 flash.Vector.convert(list) #else list #end
 	
 
 	public function new( wrapAroundList:FastArray<DataType> = null )
@@ -89,13 +89,13 @@ package primevc.core.collections;
 	}
 	
 	
-	@:keep private inline function getLength ()								return list.length
-	@:keep public  inline function iterator () : Iterator<DataType>			return forwardIterator()
-	@:keep public  inline function forwardIterator () : IIterator<DataType>	return new FastArrayForwardIterator<DataType>(list)
+	@:keep private inline function get_length ()								return list.length
+	@:keep public  inline function iterator () : Iterator<DataType>				return forwardIterator()
+	@:keep public  inline function forwardIterator () : IIterator<DataType>		return new FastArrayForwardIterator<DataType>(list)
 	@:keep public  inline function reversedIterator () : IIterator<DataType>	return new FastArrayReversedIterator<DataType>(list)
 
-	public #if !noinline inline #end function disableEvents ()								{ beforeChange.disable(); change.disable(); }
-	public #if !noinline inline #end function enableEvents ()								{ beforeChange.enable();  change.enable(); }
+	public #if !noinline inline #end function disableEvents ()					{ beforeChange.disable(); change.disable(); }
+	public #if !noinline inline #end function enableEvents ()					{ beforeChange.enable();  change.enable(); }
 	
 	public #if !noinline inline #end function asIterableOf<B> ( type:Class<B> ) : Iterator<B>
 	{

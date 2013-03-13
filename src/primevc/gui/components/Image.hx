@@ -55,7 +55,7 @@ class Image extends UIDataComponent<Asset>	//FIXME (Ruben @ Mar 16, '11): used t
 	 * Bool indicating wether the image should maintain it's aspect-ratio
 	 * @default true
 	 */
-	public var maintainAspectRatio	(default, setMaintainAspectRatio)	: Bool;
+	public var maintainAspectRatio	(default, set_maintainAspectRatio)	: Bool;
 	
 #if flash9
 	public var assetChild			(default, null) 					: flash.display.DisplayObject;
@@ -201,7 +201,7 @@ class Image extends UIDataComponent<Asset>	//FIXME (Ruben @ Mar 16, '11): used t
 	//
 	
 	
-	private inline function setMaintainAspectRatio (v:Bool) : Bool
+	private inline function set_maintainAspectRatio (v:Bool) : Bool
 	{
 		if (v != maintainAspectRatio)
 		{

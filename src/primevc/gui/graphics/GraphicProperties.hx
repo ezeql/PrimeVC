@@ -69,16 +69,16 @@ class GraphicProperties implements IGraphicElement
 	 */
 	public var changeEvent	(default, null)				: Signal1<Int>;
 
-	public var fill			(default, setFill)			: IGraphicProperty;
-	public var border		(default, setBorder)		: IBorder;
-	public var shape		(default, setShape)			: IGraphicShape;
-	public var layout		(default, setLayout)		: IntRectangle;
-	public var borderRadius	(default, setBorderRadius)	: Corners;
+	public var fill			(default, set_fill)			: IGraphicProperty;
+	public var border		(default, set_border)		: IBorder;
+	public var shape		(default, set_shape)		: IGraphicShape;
+	public var layout		(default, set_layout)		: IntRectangle;
+	public var borderRadius	(default, set_borderRadius)	: Corners;
 	/**
 	 * Percentage of the graphic-shape to draw (value between 0-1)
 	 * @default 1
 	 */
-	public var percentage	(default, setPercentage)	: Float;
+	public var percentage	(default, set_percentage)	: Float;
 	
 	
 	public function new (layout:IntRectangle = null, shape:IGraphicShape = null, fill:IGraphicProperty = null, border:IBorder = null, borderRadius:Corners = null)
@@ -275,7 +275,7 @@ class GraphicProperties implements IGraphicElement
 	//
 	
 	
-	private function setShape (v:IGraphicShape)
+	private function set_shape (v:IGraphicShape)
 	{
 		if (v != shape)
 		{
@@ -292,7 +292,7 @@ class GraphicProperties implements IGraphicElement
 	}
 	
 	
-	private function setFill (v:IGraphicProperty)
+	private function set_fill (v:IGraphicProperty)
 	{
 		if (v != fill)
 		{
@@ -309,7 +309,7 @@ class GraphicProperties implements IGraphicElement
 	}
 
 
-	private function setBorder (v:IBorder)
+	private function set_border (v:IBorder)
 	{
 		if (v != border)
 		{
@@ -326,7 +326,7 @@ class GraphicProperties implements IGraphicElement
 	}
 
 
-	private function setLayout (v)
+	private function set_layout (v)
 	{
 		if (v != layout)
 		{
@@ -343,7 +343,7 @@ class GraphicProperties implements IGraphicElement
 	}
 	
 	
-	private inline function setBorderRadius (v:Corners)
+	private inline function set_borderRadius (v:Corners)
 	{
 		if (v != borderRadius) {
 			borderRadius = v;
@@ -353,7 +353,7 @@ class GraphicProperties implements IGraphicElement
 	}
 	
 	
-	private inline function setPercentage (v:Float)
+	private inline function set_percentage (v:Float)
 	{
 		if (v != percentage) {
 			percentage = v;

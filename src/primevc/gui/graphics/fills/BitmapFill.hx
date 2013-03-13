@@ -50,11 +50,11 @@ package primevc.gui.graphics.fills;
  */
 class BitmapFill extends GraphicElement, implements IGraphicProperty 
 {
-	public var asset		(default, setAsset)			: Asset;
-	public var assetFactory	(default, setAssetFactory)	: Factory<Dynamic>;
-	public var matrix		(default, setMatrix)		: Matrix2D;
-	public var smooth		(default, setSmooth)		: Bool;
-	public var repeat		(default, setRepeat)		: Bool;
+	public var asset		(default, set_asset)		: Asset;
+	public var assetFactory	(default, set_assetFactory)	: Factory<Dynamic>;
+	public var matrix		(default, set_matrix)		: Matrix2D;
+	public var smooth		(default, set_smooth)		: Bool;
+	public var repeat		(default, set_repeat)		: Bool;
 	public var isFinished	(default, null)				: Bool;
 	public var data			(default, null)				: BitmapData;
 	
@@ -92,7 +92,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	// GETTERS / SETTERES
 	//
 	
-	private inline function setAsset (v)
+	private inline function set_asset (v)
 	{
 		if (v != asset)
 		{
@@ -119,7 +119,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	private inline function setAssetFactory (v)
+	private inline function set_assetFactory (v)
 	{
 		if (v != assetFactory)
 		{
@@ -133,7 +133,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 
 
-	private inline function setMatrix (v:Matrix2D)
+	private inline function set_matrix (v:Matrix2D)
 	{
 		if (v != matrix) {
 			matrix = v;
@@ -143,7 +143,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 
 
-	private inline function setSmooth (v:Bool)
+	private inline function set_smooth (v:Bool)
 	{
 		if (v != smooth) {
 			smooth = v;
@@ -153,7 +153,7 @@ class BitmapFill extends GraphicElement, implements IGraphicProperty
 	}
 
 
-	private inline function setRepeat (v:Bool)
+	private inline function set_repeat (v:Bool)
 	{
 		if (v != repeat) {
 			repeat = v;

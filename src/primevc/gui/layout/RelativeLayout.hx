@@ -106,7 +106,7 @@ class RelativeLayout
 	 * 
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var hCenter		(default, setHCenter)	: Int;
+	public var hCenter		(default, set_hCenter)	: Int;
 	
 	/**
 	 * Defines at what vertical-location the center of the layoutclient 
@@ -120,7 +120,7 @@ class RelativeLayout
 	 * 
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var vCenter		(default, setVCenter)	: Int;
+	public var vCenter		(default, set_vCenter)	: Int;
 	
 	
 	
@@ -135,25 +135,25 @@ class RelativeLayout
 	 * 		client.relative.left = 10;	//left side of client will be 10px from the left side of the parent
 	 * @default		Number.INT_NOT_SET
 	 */
-	@:isVar public var left					(getLeft, setLeft)				: Int;
+	@:isVar public var left					(get_left, set_left)			: Int;
 	/**
 	 * Property defines the relative right position in relation with the parent.
 	 * @see			primevc.gui.layout.RelativeLayout#left
 	 * @default		Number.INT_NOT_SET
 	 */
-	@:isVar public var right				(getRight, setRight)			: Int;
+	@:isVar public var right				(get_right, set_right)			: Int;
 	/**
 	 * Property defines the relative top position in relation with the parent.
 	 * @see			primevc.gui.layout.RelativeLayout#left
 	 * @default		Number.INT_NOT_SET
 	 */
-	@:isVar public var top					(getTop, setTop)				: Int;
+	@:isVar public var top					(get_top, set_top)				: Int;
 	/**
 	 * Property defines the relative bottom position in relation with the parent.
 	 * @see			primevc.gui.layout.RelativeLayout#left
 	 * @default		Number.INT_NOT_SET
 	 */
-	@:isVar public var bottom				(getBottom, setBottom)			: Int;
+	@:isVar public var bottom				(get_bottom, set_bottom)		: Int;
 	
 	
 	public function new ( top:Int = Number.INT_NOT_SET, right:Int = Number.INT_NOT_SET, bottom:Int = Number.INT_NOT_SET, left:Int = Number.INT_NOT_SET, hCenter:Int = Number.INT_NOT_SET, vCenter:Int = Number.INT_NOT_SET )
@@ -199,14 +199,14 @@ class RelativeLayout
 	//
 	
 	
-	private inline function getLeft ()		{ return left; }
-	private inline function getRight ()		{ return right; }
-	private inline function getTop ()		{ return top; }
-	private inline function getBottom ()	{ return bottom; }
+	private inline function get_left ()		{ return left; }
+	private inline function get_right ()	{ return right; }
+	private inline function get_top ()		{ return top; }
+	private inline function get_bottom ()	{ return bottom; }
 	
 	
 	
-	private function setHCenter (v:Int) {
+	private function set_hCenter (v:Int) {
 		//unset left and right
 		if (v.isSet())
 			left = right = Number.INT_NOT_SET;
@@ -219,7 +219,7 @@ class RelativeLayout
 		return v;
 	}
 	
-	private function setVCenter (v:Int) {
+	private function set_vCenter (v:Int) {
 		//unset top and bottom
 		if (v.isSet())
 			top = bottom = Number.INT_NOT_SET;
@@ -234,7 +234,7 @@ class RelativeLayout
 	
 	
 	
-	private inline function setLeft (v:Int) {
+	private inline function set_left (v:Int) {
 		if (v.isSet())
 			hCenter = Number.INT_NOT_SET;
 		
@@ -246,7 +246,7 @@ class RelativeLayout
 		return v;
 	}
 	
-	private inline function setRight (v:Int) {
+	private inline function set_right (v:Int) {
 		if (v.isSet())
 			hCenter = Number.INT_NOT_SET;
 		
@@ -258,7 +258,7 @@ class RelativeLayout
 		return v;
 	}
 	
-	private inline function setTop (v:Int) {
+	private inline function set_top (v:Int) {
 		if (v.isSet())
 			vCenter = Number.INT_NOT_SET;
 		
@@ -270,7 +270,7 @@ class RelativeLayout
 		return v;
 	}
 	
-	private inline function setBottom (v:Int) {
+	private inline function set_bottom (v:Int) {
 		if (v.isSet())
 			vCenter = Number.INT_NOT_SET;
 		

@@ -11,8 +11,8 @@ class UserEvents extends UserSignals
 {
 	private var eventDispatcher : UserEventTarget;
 
-	public var touch	(getTouch,		null)	: TouchEvents;
-	public var gesture	(getGesture,	null)	: GestureEvents;
+	public var touch	(get_touch,		null)	: TouchEvents;
+	public var gesture	(get_gesture,	null)	: GestureEvents;
 
 	
 	public function new(eventDispatcher)
@@ -26,6 +26,6 @@ class UserEvents extends UserSignals
 	private function createFocus 	() { focus		= new FocusEvents(eventDispatcher); }
 	private function createKeyboard	() { keyboard	= new KeyboardEvents(eventDispatcher); }
 	
-	private inline function getTouch 	() { if (touch == null)		{ createTouch();	} return touch; }
-	private inline function getGesture 	() { if (gesture == null)	{ createGesture();	} return gesture; }
+	private inline function get_touch 	() { if (touch == null)		{ createTouch();	} return touch; }
+	private inline function get_gesture () { if (gesture == null)	{ createGesture();	} return gesture; }
 }

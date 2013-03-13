@@ -61,7 +61,7 @@ class Panel extends UIContainer
 	/**
 	 * Container in which the real content for the panel can be placed.
 	 */
-	public var content	(default, setContent)	: IUIElement;
+	public var content	(default, set_content)	: IUIElement;
 
 	public var closed 	(default, null) 		: Signal0;
 
@@ -120,7 +120,7 @@ class Panel extends UIContainer
 	}
 
 
-	private function setContent (v:IUIElement)
+	private function set_content (v:IUIElement)
 	{
 		if (v != content)
 		{

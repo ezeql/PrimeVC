@@ -36,8 +36,8 @@ package primevc.core.geom;
  */
 interface IBox implements IClonable<IBox>
 {
-	public var left		(getLeft, setLeft)		: Int;
-	public var right	(getRight, setRight)	: Int;
-	public var top		(getTop, setTop)		: Int;
-	public var bottom	(getBottom, setBottom)	: Int;
+	public var left		(get_left, set_left)	: Int;
+	public var right	(get_right, set_right)	: Int;
+	public var top		(get_top, set_top)		: Int;
+	public var bottom	(get_bottom, set_bottom): Int;
 }

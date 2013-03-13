@@ -510,10 +510,10 @@ class StopWatch
 	public static inline var MAX_VALUE:Int			= 2147483647;
 	
 	private var timesList							: Vector < Int >;
-	public var average		(getAverage, null)		: Float;
-	public var fastest		(getFastest, null)		: Int;
-	public var currentTime	(getCurrentTime, null)	: Int;
-	public var times		(getTimes, null)		: String;
+	public var average		(get_average, null)		: Float;
+	public var fastest		(get_fastest, null)		: Int;
+	public var currentTime	(get_currentTime, null)	: Int;
+	public var times		(get_times, null)		: String;
 	
 	private var startTime							: Int;
 	private var runnedTime							: Int;
@@ -537,11 +537,11 @@ class StopWatch
 	}
 	
 	
-	private inline function getCurrentTime () : Int {
+	private inline function get_currentTime () : Int {
 		return runnedTime;
 	}
 	
-	private inline function getAverage () : Float
+	private inline function get_average () : Float
 	{
 		var len:Int		= timesList.length;
 		var total:Int	= 0;
@@ -551,7 +551,7 @@ class StopWatch
 		return Math.round( (total / len) * 1000 ) / 1000;
 	}
 	
-	private inline function getFastest () : Int {
+	private inline function get_fastest () : Int {
 		var len:Int	= timesList.length;
 		var fas:Int	= len > 0 ? timesList[0] : -1;
 		
@@ -566,7 +566,7 @@ class StopWatch
 	public function toString () : String {
 		return fastest + " ms";
 	}
-	public inline function getTimes () : String {
+	public inline function get_times () : String {
 		return "Times: " + timesList.join(" ms, ") + " ms";
 	}
 }

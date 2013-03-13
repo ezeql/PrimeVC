@@ -47,7 +47,7 @@ package primevc.gui.graphics.shapes;
  */
 class Triangle extends ShapeBase, implements IGraphicShape
 {
-	public var direction (default, setDirection)	: Position;
+	public var direction (default, set_direction)	: Position;
 	
 	private var a		: IntPoint; 
 	private var b		: IntPoint;
@@ -180,7 +180,7 @@ class Triangle extends ShapeBase, implements IGraphicShape
 	}
 	
 	
-	private inline function setDirection (v:Position)
+	private inline function set_direction (v:Position)
 	{
 		if (v != direction) {
 			direction = v;

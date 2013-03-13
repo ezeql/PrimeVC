@@ -12,12 +12,12 @@ package primevc.js.display;
  */
 class Image extends DOMElem {
     
-	public var src 				(default, setSrc):String;
+	public var src 				(default, set_src):String;
 	public var events			(default, null):DisplayEvents;
 	public var isDisplayed		(default, null):Bool;
 	public var loaded			(default, null):Signal1<Image>;
-	override public var width	(default, setWidth):Int;
-	override public var height	(default, setHeight):Int;
+	override public var width	(default, set_width):Int;
+	override public var height	(default, set_height):Int;
 	
 	public function new() {
 		super("img");
@@ -35,7 +35,7 @@ class Image extends DOMElem {
 		untyped elem.addEventListener("load", onLoad, false);
 	}
 	
-	override private function setWidth(v:Int):Int {
+	override private function set_width(v:Int):Int {
 		if (width != v) {
 			width = v;
 			elem.width = v;
@@ -43,7 +43,7 @@ class Image extends DOMElem {
 		return width;
 	}
 	
-	override private function setHeight(v:Int):Int {
+	override private function set_height(v:Int):Int {
 		if (height != v) {
 			height = v;
 			elem.height = v;
@@ -51,7 +51,7 @@ class Image extends DOMElem {
 		return height;
 	}
 	
-	private function setSrc(v:String):String {
+	private function set_src(v:String):String {
 		if (src != v) {
 			src = v;
 			if (isDisplayed) { 

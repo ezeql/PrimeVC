@@ -39,7 +39,7 @@ interface ISizeable #if !CSSParser implements IDisplayable #end
 	var height					: Float;
 	var width					: Float;
 #else
-	var width		(getWidth,		setWidth)			: Float;
-	var height		(getHeight,		setHeight)			: Float;
+	var width		(get_width,		set_width)			: Float;
+	var height		(get_height,	set_height)			: Float;
 #end
 }

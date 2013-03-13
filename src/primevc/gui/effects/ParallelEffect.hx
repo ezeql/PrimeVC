@@ -58,7 +58,7 @@ class ParallelEffect extends CompositeEffect
 #end
 	
 	
-	override private function getCompositeDuration ()
+	override private function get_compositeDuration ()
 	{
 		var d = 0;
 		for (effect in effects)

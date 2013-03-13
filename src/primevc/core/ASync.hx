@@ -57,8 +57,8 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	private var state			: Int;
 	private var _reply			: DataType;
 	
-	public var handleRequest	(default, setHandleRequest)	: Void -> Void;
-	public var handleCancel		(default, setHandleCancel)	: Void -> Void;
+	public var handleRequest	(default, set_handleRequest): Void -> Void;
+	public var handleCancel		(default, set_handleCancel)	: Void -> Void;
 	
 	
 	
@@ -165,7 +165,7 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	// GETTERS / SETTERS
 	//
 	
-	private inline function setHandleRequest (handler:Void->Void)
+	private inline function set_handleRequest (handler:Void->Void)
 	{
 		Assert.that( state.hasNone(DISPOSED) );
 		handleRequest = handler;
@@ -175,7 +175,7 @@ class ASync <DataType> implements IDisposable, implements IUnbindable<DataType->
 	}
 	
 	
-	private inline function setHandleCancel (handler:Void->Void)
+	private inline function set_handleCancel (handler:Void->Void)
 	{
 		Assert.that( state.hasNone(DISPOSED) );
 		handleCancel = handler;

@@ -69,7 +69,7 @@ interface IUIElement
 	/**
 	 * Reference to the window manager objects
 	 */
-	public var system	(getSystem, never)	: ISystem;
+	public var system	(get_system, never)	: ISystem;
 	
 	
 	public function isDisposed ()			: Bool;

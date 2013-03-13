@@ -50,7 +50,7 @@ class SimpleList<DataType> implements IEditableList<DataType>
 	public var beforeChange	(default, null)		: ListChangeSignal<DataType>;
 	
 	private var _length		: Int;
-	public var length		(getLength, never)	: Int;
+	public var length		(get_length, never)	: Int;
 	/**
 	 * Pointer to the first added cell
 	 */
@@ -127,7 +127,7 @@ class SimpleList<DataType> implements IEditableList<DataType>
 		return length == 0;
 	}
 	
-	private inline function getLength ()	: Int					{ return _length; }
+	private inline function get_length ()	: Int					{ return _length; }
 	public function iterator ()				: Iterator <DataType>	{ return forwardIterator(); }
 	public function forwardIterator ()		: IIterator <DataType>	{ return new FastDoubleCellForwardIterator <DataType> (first); }
 	public function reversedIterator ()		: IIterator <DataType>	{ return new FastDoubleCellReversedIterator <DataType> (last); }

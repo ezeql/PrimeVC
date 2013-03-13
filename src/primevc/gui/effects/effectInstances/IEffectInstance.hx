@@ -61,7 +61,7 @@ interface IEffectInstance < TargetType, PropertiesType:IEffect >
 	 * Flag indicating if the effect should play reverted or not
 	 * @default		false
 	 */
-	public var isReverted	(default, setIsReverted)	: Bool;
+	public var isReverted	(default, set_isReverted)	: Bool;
 	
 	/**
 	 * Target to play the effect on

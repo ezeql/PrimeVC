@@ -51,13 +51,13 @@ class ChainedListCollection <DataType>
 	public var change		(default, null)				: Signal1 < ListChange < DataType > >;
 	
 	private var _length		: Int;
-	public var length		(getLength, never)			: Int;
+	public var length		(get_length, never)			: Int;
 	
 	public var lists		(default, null)				: ArrayList < ChainedList < DataType > >;
 	/**
 	 * Maximum number of items per chained list.
 	 */
-	public var maxPerList	(default, setMaxPerList)	: Int;
+	public var maxPerList	(default, set_maxPerList)	: Int;
 	
 	
 	public function new (max:Int = -1)
@@ -384,7 +384,7 @@ class ChainedListCollection <DataType>
 	// GETTERS / SETTERS
 	//
 	
-	private inline function setMaxPerList (v) {
+	private inline function set_maxPerList (v) {
 		for (list in lists)
 			list.max = v;
 		
@@ -392,7 +392,7 @@ class ChainedListCollection <DataType>
 	}
 	
 	
-	private inline function getLength () {
+	private inline function get_length () {
 		return _length;
 	}
 	
@@ -433,7 +433,7 @@ class ChainedListCollection <DataType>
 class ChainedListCollectionIterator <DataType> implements IIterator <DataType>
 {
 	private var target			(default, null)					: ChainedListCollection<DataType>;
-	private var currentList 	(default, setCurrentList)		: ChainedList<DataType>;
+	private var currentList 	(default, set_currentList)		: ChainedList<DataType>;
 	private var listIterator	: IIterator<DataType>;
 	private var current			: Int;
 	
@@ -474,7 +474,7 @@ class ChainedListCollectionIterator <DataType> implements IIterator <DataType>
 	}
 	
 	
-	private inline function setCurrentList (v) {
+	private inline function set_currentList (v) {
 		currentList = v;
 		if (v != null)	listIterator = v.forwardIterator();
 		else			listIterator = null;

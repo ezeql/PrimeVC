@@ -51,7 +51,7 @@ typedef ChildEffectType = Effect < Dynamic, Dynamic >;
 class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 {
 	public var effects				(default, null)					: ArrayList < ChildEffectType >;
-	public var compositeDuration	(getCompositeDuration, never)	: Int;
+	public var compositeDuration	(get_compositeDuration, never)	: Int;
 	
 	
 	public function new (duration:Int = 0, delay:Int = 0, easing:Easing = null, isReverted:Bool = false)
@@ -100,7 +100,7 @@ class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 	// GETTERS / SETTERS
 	//
 	
-	private function getCompositeDuration ()
+	private function get_compositeDuration ()
 	{
 		var duration = this.duration;
 		
@@ -135,7 +135,7 @@ class CompositeEffect extends Effect < Dynamic, CompositeEffect >
 	
 	override public function isEmpty ()
 	{
-		return getCompositeDuration() <= 0 || effects.length <= 0;
+		return get_compositeDuration() <= 0 || effects.length <= 0;
 	}
 	
 	

@@ -46,8 +46,8 @@ package primevc.core.states;
 //#if (flash9 || cpp) @:generic #end
 class SimpleStateMachine <StateType> implements IDisposable
 {
-	public var current		(default, setCurrent)	: StateType;
-	public var defaultState	(default, setDefault)	: StateType;
+	public var current		(default, set_current)		: StateType;
+	public var defaultState	(default, set_defaultState)	: StateType;
 	
 	/**
 	 * Change event, dispatched when the state changes
@@ -74,7 +74,7 @@ class SimpleStateMachine <StateType> implements IDisposable
 	}
 	
 	
-	private inline function setDefault (v:StateType)
+	private inline function set_defaultState (v:StateType)
 	{
 		defaultState = v;
 		if (current == null)
@@ -84,7 +84,7 @@ class SimpleStateMachine <StateType> implements IDisposable
 	}
 	
 	
-	private /*inline*/ function setCurrent (v:StateType)
+	private /*inline*/ function set_current (v:StateType)
 	{
 		if (current != v) {
 			var old	= current;
@@ -105,7 +105,7 @@ class SimpleStateMachine <StateType> implements IDisposable
 	public function changeTo (toState:StateType) : Void -> Void
 	{
 		var self = this;
-		return function () { self.setCurrent( toState ); };
+		return function () { self.set_current( toState ); };
 	}
 	
 	

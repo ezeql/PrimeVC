@@ -63,6 +63,6 @@ interface IInteractive
 	
 #elseif !neko
 	var mouseEnabled								: Bool;
-//	var mouseEnabled	(default, setEnabled)		: Bool;
+//	var mouseEnabled	(default, set_enabled)		: Bool;
 #end
 }

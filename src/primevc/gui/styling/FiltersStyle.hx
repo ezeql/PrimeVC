@@ -58,12 +58,12 @@ class FiltersStyle extends StyleSubBlock
 	private var _gradientGlow	: BitmapFilter;
 	
 	
-	public var shadow			(getShadow,			setShadow)			: BitmapFilter;
-	public var bevel			(getBevel,			setBevel)			: BitmapFilter;
-	public var blur				(getBlur,			setBlur)			: BitmapFilter;
-	public var glow				(getGlow,			setGlow)			: BitmapFilter;
-	public var gradientBevel	(getGradientBevel,	setGradientBevel)	: BitmapFilter;
-	public var gradientGlow		(getGradientGlow,	setGradientGlow)	: BitmapFilter;
+	public var shadow			(get_shadow,		set_shadow)			: BitmapFilter;
+	public var bevel			(get_bevel,			set_bevel)			: BitmapFilter;
+	public var blur				(get_blur,			set_blur)			: BitmapFilter;
+	public var glow				(get_glow,			set_glow)			: BitmapFilter;
+	public var gradientBevel	(get_gradientBevel,	set_gradientBevel)	: BitmapFilter;
+	public var gradientGlow		(get_gradientGlow,	set_gradientGlow)	: BitmapFilter;
 	
 	
 	
@@ -198,7 +198,7 @@ class FiltersStyle extends StyleSubBlock
 	//
 	
 	
-	private function getShadow ()
+	private function get_shadow ()
 	{
 		var v = _shadow;
 		if (v == null && getExtended() != null)		v = extendedStyle.shadow;
@@ -207,7 +207,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function getBevel ()
+	private function get_bevel ()
 	{
 		var v = _bevel;
 		if (v == null && getExtended() != null)		v = extendedStyle.bevel;
@@ -216,7 +216,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function getBlur ()
+	private function get_blur ()
 	{
 		var v = _blur;
 		if (v == null && getExtended() != null)		v = extendedStyle.blur;
@@ -225,7 +225,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function getGlow ()
+	private function get_glow ()
 	{
 		var v = _glow;
 		if (v == null && getExtended() != null)		v = extendedStyle.glow;
@@ -234,7 +234,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function getGradientBevel ()
+	private function get_gradientBevel ()
 	{
 		var v = _gradientBevel;
 		if (v == null && getExtended() != null)		v = extendedStyle.gradientBevel;
@@ -243,7 +243,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 
 
-	private function getGradientGlow ()
+	private function get_gradientGlow ()
 	{
 		var v = _gradientGlow;
 		if (v == null && getExtended() != null)		v = extendedStyle.gradientGlow;
@@ -259,7 +259,7 @@ class FiltersStyle extends StyleSubBlock
 	//
 	
 	
-	private function setShadow (v)
+	private function set_shadow (v)
 	{
 		if (v != _shadow) {
 			_shadow = v;
@@ -269,7 +269,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function setBevel (v)
+	private function set_bevel (v)
 	{
 		if (v != _bevel) {
 			_bevel = v;
@@ -279,7 +279,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function setBlur (v)
+	private function set_blur (v)
 	{
 		if (v != _blur) {
 			_blur = v;
@@ -289,7 +289,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function setGlow (v)
+	private function set_glow (v)
 	{
 		if (v != _glow) {
 			_glow = v;
@@ -299,7 +299,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function setGradientBevel (v)
+	private function set_gradientBevel (v)
 	{
 		if (v != _gradientBevel) {
 			_gradientBevel = v;
@@ -309,7 +309,7 @@ class FiltersStyle extends StyleSubBlock
 	}
 	
 	
-	private function setGradientGlow (v)
+	private function set_gradientGlow (v)
 	{
 		if (v != _gradientGlow) {
 			_gradientGlow = v;

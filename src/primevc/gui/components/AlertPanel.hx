@@ -41,7 +41,7 @@ package primevc.gui.components;
  */
 class AlertPanel extends Panel
 {
-    public var acceptLabel  (default, setAcceptLabel)   : String;
+    public var acceptLabel  (default, set_acceptLabel)   : String;
     public var acceptBtn    (default, null)             : Button;
     public var accepted     (default, null)             : Signal0;
 
@@ -92,7 +92,7 @@ class AlertPanel extends Panel
     }
 
 
-    private inline function setAcceptLabel (v:String)
+    private inline function set_acceptLabel (v:String)
     {
         if (v != acceptLabel) {
             acceptLabel = v;

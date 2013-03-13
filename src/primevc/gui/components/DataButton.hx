@@ -55,7 +55,7 @@ class DataButton <DataType> extends Button, implements IItemRenderer <DataType>
 	 * (i.e. the selected value label).
 	 */
 	public var getLabelForVO								: DataType -> String;
-	public var defaultLabel		(default, setDefaultLabel)	: String;
+	public var defaultLabel		(default, set_defaultLabel)	: String;
 	
 	private var updateLabelBinding							: Wire<Dynamic>;
 	
@@ -114,7 +114,7 @@ class DataButton <DataType> extends Button, implements IItemRenderer <DataType>
 	}
 	
 	
-	private function setDefaultLabel (v:String) : String
+	private function set_defaultLabel (v:String) : String
 	{
 		if (v != defaultLabel)
 		{

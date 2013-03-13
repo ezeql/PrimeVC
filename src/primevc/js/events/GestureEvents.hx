@@ -11,9 +11,9 @@ class GestureEvents extends Signals
 {
 	private var eventDispatcher : primevc.gui.events.UserEventTarget;
 	
-	public var start	(getStart,	null) : GestureSignal;
-	public var change	(getChange,	null) : GestureSignal;
-	public var end		(getEnd,	null) : GestureSignal;
+	public var start	(get_start,	null) : GestureSignal;
+	public var change	(get_change,null) : GestureSignal;
+	public var end		(get_end,	null) : GestureSignal;
 	
 
 	public function new(eventDispatcher:Dynamic)
@@ -30,9 +30,9 @@ class GestureEvents extends Signals
 	}
 
 	
-	private inline function getStart 	() { if (start	== null) { createStart();	} return start; }
-	private inline function getChange	() { if (change	== null) { createChange();	} return change; }
-	private inline function getEnd		() { if (end 	== null) { createEnd();		} return end; }
+	private inline function get_start 	() { if (start	== null) { createStart();	} return start; }
+	private inline function get_change	() { if (change	== null) { createChange();	} return change; }
+	private inline function get_end		() { if (end 	== null) { createEnd();		} return end; }
 	
 	private inline function createStart	() { start 	= new GestureSignal(eventDispatcher, "gesturestart"); }
 	private inline function createChange() { change = new GestureSignal(eventDispatcher, "gesturechange"); }

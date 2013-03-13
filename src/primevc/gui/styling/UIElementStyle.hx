@@ -120,15 +120,15 @@ class UIElementStyle implements IUIElementStyle
 	 */
 	private var stylesAreSearched		: Bool;
 	
-	public var graphics					(getGraphics, null)		: GraphicsCollection;
-	public var effects					(getEffects, null)		: EffectsCollection;
-	public var boxFilters				(getBoxFilters, null)	: FiltersCollection;
-	public var font						(getFont, null)			: TextStyleCollection;
-	public var layout					(getLayout, null)		: LayoutCollection;
+	public var graphics					(get_graphics, null)	: GraphicsCollection;
+	public var effects					(get_effects, null)		: EffectsCollection;
+	public var boxFilters				(get_boxFilters, null)	: FiltersCollection;
+	public var font						(get_font, null)		: TextStyleCollection;
+	public var layout					(get_layout, null)		: LayoutCollection;
 	/**
 	 * Proxy object to loop through all available states in this object.
 	 */
-	public var states					(getStates, null)		: StatesCollection;
+	public var states					(get_states, null)		: StatesCollection;
 	
 	/**
 	 * Reference to the style of whom the current-style got it's properteies
@@ -382,12 +382,12 @@ class UIElementStyle implements IUIElementStyle
 	}
 	
 	
-	private inline function getBoxFilters ()	{ return (boxFilters == null)	? boxFilters	= new FiltersCollection( this, FilterCollectionType.box ) : boxFilters; }
-	private inline function getEffects ()		{ return (effects == null)		? effects		= new EffectsCollection( this ) : effects; }
-	private inline function getFont ()			{ return (font == null)			? font			= new TextStyleCollection( this ) : font; }
-	private inline function getGraphics ()		{ return (graphics == null)		? graphics		= new GraphicsCollection( this ) : graphics; }
-	private inline function getLayout ()		{ return (layout == null)		? layout		= new LayoutCollection( this ) : layout; }
-	private inline function getStates ()		{ return (states == null)		? states		= new StatesCollection( this ) : states; }
+	private inline function get_boxFilters ()	{ return (boxFilters == null)	? boxFilters	= new FiltersCollection( this, FilterCollectionType.box ) : boxFilters; }
+	private inline function get_effects ()		{ return (effects == null)		? effects		= new EffectsCollection( this ) : effects; }
+	private inline function get_font ()			{ return (font == null)			? font			= new TextStyleCollection( this ) : font; }
+	private inline function get_graphics ()		{ return (graphics == null)		? graphics		= new GraphicsCollection( this ) : graphics; }
+	private inline function get_layout ()		{ return (layout == null)		? layout		= new LayoutCollection( this ) : layout; }
+	private inline function get_states ()		{ return (states == null)		? states		= new StatesCollection( this ) : states; }
 	
 	
 	/**

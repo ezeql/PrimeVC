@@ -55,7 +55,7 @@ interface IStylable
 	 * Flag indicating if the object should use styling or not
 	 * @default		true
 	 */
-	public var stylingEnabled	(default, setStylingEnabled)	: Bool;
+	public var stylingEnabled	(default, set_stylingEnabled)	: Bool;
 	
 	public function isDisposed ()								: Bool;
 #end

@@ -39,5 +39,5 @@ package primevc.gui.layout.algorithms;
  */
 interface IVerticalAlgorithm implements ILayoutAlgorithm
 {
-	public var direction			(default, setDirection)	: Vertical;
+	public var direction			(default, set_direction)	: Vertical;
 }

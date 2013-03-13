@@ -61,18 +61,18 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 {
 	public var events			(default,				null)		: LoaderSignals;
 	
-	public var bytesProgress	(getBytesProgress,		null)		: Int;
-	public var bytesTotal		(getBytesTotal,			null)		: Int;
-	public var bytes			(getBytes,				setBytes)	: BytesData;
+	public var bytesProgress	(get_bytesProgress,		null)		: Int;
+	public var bytesTotal		(get_bytesTotal,		null)		: Int;
+	public var bytes			(get_bytes,				set_bytes)	: BytesData;
 	public var type				(default,				null)		: CommunicationType;
 	public var length			(default,				null)		: Bindable<Int>;
 	public var isStarted		(default,				null)		: Bool;
 	
-	public var creationDate		(getCreationDate,	 	never)		: Date;
-	public var creator			(getCreator,		 	never)		: String;
-	public var modificationDate	(getModificationDate,	never)		: Date;
-	public var name				(getName,				never)		: String;
-	public var fileType			(getFileType,			never)		: String;
+	public var creationDate		(get_creationDate,	 	never)		: Date;
+	public var creator			(get_creator,		 	never)		: String;
+	public var modificationDate	(get_modificationDate,	never)		: Date;
+	public var name				(get_name,				never)		: String;
+	public var fileType			(get_fileType,			never)		: String;
 	
 	private var loader			: FlashFileRef;
 	
@@ -177,22 +177,22 @@ class FileReference extends SelectEvents, implements ICommunicator, implements I
 	// GETTERS / SETTERS
 	//
 	
-	private inline function getBytesProgress ()		{ return bytesProgress; }
-	private inline function getBytesTotal ()		{ return loader.size.int(); }
-	private inline function getBytes ()				{ return bytes != null ? bytes : loader.data; }
-	private inline function setBytes (v)			{ return bytes = v; }
-//	private inline function getLength ()			{ return 1; }
+	private inline function get_bytesProgress ()	{ return bytesProgress; }
+	private inline function get_bytesTotal ()		{ return loader.size.int(); }
+	private inline function get_bytes ()			{ return bytes != null ? bytes : loader.data; }
+	private inline function set_bytes (v)			{ return bytes = v; }
+//	private inline function get_length ()			{ return 1; }
 	
-	private inline function getModificationDate ()	{ return loader.modificationDate; }
-	private inline function getCreationDate ()		{ return loader.creationDate; }
-	private inline function getCreator ()			{ return loader.creator; }
-	private inline function getName ()				{ return loader.name; }
+	private inline function get_modificationDate ()	{ return loader.modificationDate; }
+	private inline function get_creationDate ()		{ return loader.creationDate; }
+	private inline function get_creator ()			{ return loader.creator; }
+	private inline function get_name ()				{ return loader.name; }
 	
 	/**
 	 * Method will return the FileReference.type variable when it's not null or 
 	 * the extension of the file
 	 */
-	private inline function getFileType ()			{ return loader.type == null ? name.getExtension() : loader.type; }
+	private inline function get_fileType ()			{ return loader.type == null ? name.getExtension() : loader.type; }
 	public #if !noinline inline #end function isCompleted ()			{ return bytesTotal > 0 && bytesProgress >= bytesTotal; }
 	public #if !noinline inline #end function isInProgress ()			{ return isStarted && !isCompleted(); }
 	

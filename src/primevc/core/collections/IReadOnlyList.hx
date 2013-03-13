@@ -51,7 +51,7 @@ interface IReadOnlyList < DataType >
 	 * to indicate if the change is before or after applying the change..
 	 */
 //	public var beforeChange	(default, null)									: ListChangeSignal<DataType>;
-	public var length		(getLength, never)								: Int;
+	public var length		(get_length, never)								: Int;
 	
 	/**
 	 * Method will check if the requested item is in this collection

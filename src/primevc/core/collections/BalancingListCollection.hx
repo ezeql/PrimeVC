@@ -76,7 +76,7 @@ package primevc.core.collections;
 class BalancingListCollection <DataType> implements IEditableList <DataType>, implements IListCollection < DataType, BalancingList<DataType> > 
 {
 	private var _length		: Int;
-	public var length		(getLength, never)			: Int;
+	public var length		(get_length, never)			: Int;
 	public var change		(default, null)				: Signal1 < ListChange < DataType > >;
 	public var lists		(default, null)				: ArrayList < BalancingList < DataType > > ;
 	
@@ -445,7 +445,7 @@ class BalancingListCollection <DataType> implements IEditableList <DataType>, im
 	// GETTERS / SETTERS
 	//
 	
-	private inline function getLength () {
+	private inline function get_length () {
 		return _length;
 	}
 	

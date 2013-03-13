@@ -40,9 +40,9 @@ package primevc.gui.input;
  */
 class Mouse //implements IInputDevice 
 {
-	public var x		(getX, 		never)	: Float;
-	public var y		(getY, 		never)	: Float;
-	public var pos 		(getPos, 	never) 	: Point;
+	public var x		(get_x, 	never)	: Float;
+	public var y		(get_y, 	never)	: Float;
+	public var pos 		(get_pos, 	never) 	: Point;
 	
 	private var window	(default, 	null)	: Window;
 	public var events	(default, 	null)	: MouseEvents;
@@ -76,7 +76,7 @@ class Mouse //implements IInputDevice
 	// GETTERS / SETTERS
 	//
 	
-	private inline function getX ()
+	private inline function get_x ()
 	{
 #if (flash9 || air)
 		return window.target.mouseX;
@@ -84,7 +84,7 @@ class Mouse //implements IInputDevice
 	}
 	
 	
-	private inline function getY ()
+	private inline function get_y ()
 	{
 #if (flash9 || air)
 		return window.target.mouseY;
@@ -92,7 +92,7 @@ class Mouse //implements IInputDevice
 	}
 
 
-	private inline function getPos ()
+	private inline function get_pos ()
 	{
 		return new Point(x,y);
 	}

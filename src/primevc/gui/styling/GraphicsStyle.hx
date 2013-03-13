@@ -80,16 +80,16 @@ class GraphicsStyle extends StyleSubBlock
 	private var iconAsset		: Asset;
 	
 	
-	public var shape		(getShape,			setShape)			: Shape;
-	public var skin			(getSkin,			setSkin)			: Skin;
-	public var overflow		(getOverflow,		setOverflow)		: Overflow;
-	public var opacity		(getOpacity,		setOpacity)			: Float;
-	public var visible		(getVisible,		setVisible)			: Null< Bool >;
-	public var icon			(getIcon,			setIcon)			: Icon;
-	public var iconFill		(getIconFill,		setIconFill)		: IGraphicProperty;
-	public var background	(getBackground, 	setBackground)		: IGraphicProperty;
-	public var border		(getBorder,			setBorder)			: IBorder;
-	public var borderRadius	(getBorderRadius,	setBorderRadius)	: Corners;
+	public var shape		(get_shape,			set_shape)			: Shape;
+	public var skin			(get_skin,			set_skin)			: Skin;
+	public var overflow		(get_overflow,		set_overflow)		: Overflow;
+	public var opacity		(get_opacity,		set_opacity)		: Float;
+	public var visible		(get_visible,		set_visible)		: Null< Bool >;
+	public var icon			(get_icon,			set_icon)			: Icon;
+	public var iconFill		(get_iconFill,		set_iconFill)		: IGraphicProperty;
+	public var background	(get_background, 	set_background)		: IGraphicProperty;
+	public var border		(get_border,		set_border)			: IBorder;
+	public var borderRadius	(get_borderRadius,	set_borderRadius)	: Corners;
 	
 	
 	
@@ -259,7 +259,7 @@ class GraphicsStyle extends StyleSubBlock
 	//
 	
 	
-	private function getSkin ()
+	private function get_skin ()
 	{
 		//if the skin flag is set, the property is allowed to be null (skin: 'none')
 		var v:Skin = null;
@@ -272,7 +272,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function getShape ()
+	private function get_shape ()
 	{
 		var v = _shape;
 		if (v == null && extendedStyle != null)		v = extendedStyle.shape;
@@ -281,7 +281,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 
-	private function getBackground ()
+	private function get_background ()
 	{
 		var v = _background;
 		if (v == null && extendedStyle != null)		v = extendedStyle.background;
@@ -290,7 +290,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 
 
-	private function getBorder ()
+	private function get_border ()
 	{
 		var v = _border;
 		if (v == null && extendedStyle != null)		v = extendedStyle.border;
@@ -299,7 +299,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function getVisible ()
+	private function get_visible ()
 	{
 		var v = _visible;
 		if (v == null && extendedStyle != null)		v = extendedStyle.visible;
@@ -308,7 +308,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 
 
-	private function getOpacity ()
+	private function get_opacity ()
 	{
 		var v = _opacity;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.opacity;
@@ -317,7 +317,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 
-	private function getIcon ()
+	private function get_icon ()
 	{
 		var v = _icon;
 		if (v == null && extendedStyle != null)		v = extendedStyle.icon;
@@ -326,7 +326,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 
-	private function getIconFill ()
+	private function get_iconFill ()
 	{
 		var v = _iconFill;
 		if (v == null && extendedStyle != null)		v = extendedStyle.iconFill;
@@ -335,7 +335,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 
-	private function getOverflow ()
+	private function get_overflow ()
 	{
 		//if the overflow flag is set, the property is allowed to be null (overflow: 'visible')
 		var v:Overflow = null;
@@ -348,7 +348,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 
-	private function getBorderRadius ()
+	private function get_borderRadius ()
 	{
 		var v = _borderRadius;
 		if (v == null && extendedStyle != null)		v = extendedStyle.borderRadius;
@@ -379,7 +379,7 @@ class GraphicsStyle extends StyleSubBlock
 	// SETTERS
 	//
 	
-	private function setSkin (v)
+	private function set_skin (v)
 	{
 		if (v != _skin) {
 			_skin = v;
@@ -389,7 +389,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 
 
-	private function setShape (v)
+	private function set_shape (v)
 	{
 		if (v != _shape) {
 			_shape = v;
@@ -399,7 +399,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setBackground (v)
+	private function set_background (v)
 	{
 		if (v != _background) {
 			_background = v;
@@ -409,7 +409,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 
 
-	private function setBorder (v)
+	private function set_border (v)
 	{
 		if (v != _border) {
 			_border = v;
@@ -419,7 +419,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setVisible (v)
+	private function set_visible (v)
 	{
 		if (v != _visible) {
 			_visible = v;
@@ -429,7 +429,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setOpacity (v)
+	private function set_opacity (v)
 	{
 		if (v != _opacity) {
 			_opacity = v;
@@ -439,7 +439,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setIcon (v)
+	private function set_icon (v)
 	{
 		if (v != _icon) {
 			_icon = v;
@@ -449,7 +449,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setIconFill (v)
+	private function set_iconFill (v)
 	{
 		if (v != _iconFill) {
 			_iconFill = v;
@@ -459,7 +459,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setOverflow (v)
+	private function set_overflow (v)
 	{
 		if (v != _overflow) {
 			_overflow = v;
@@ -469,7 +469,7 @@ class GraphicsStyle extends StyleSubBlock
 	}
 	
 	
-	private function setBorderRadius (v)
+	private function set_borderRadius (v)
 	{
 		if (v != _borderRadius) {
 			_borderRadius = v;

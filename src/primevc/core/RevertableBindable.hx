@@ -88,7 +88,7 @@ private typedef Flags = RevertableBindableFlags;
 	}
 
 
-	override private function setValue (newV:DataType) : DataType
+	override private function set_value (newV:DataType) : DataType
 	{
 		var f = flags;
 		
@@ -184,7 +184,7 @@ private typedef Flags = RevertableBindableFlags;
 		if (isEditable())
 		{
 			if (isChanged())
-				setValue(shadowValue);
+				set_value(shadowValue);
 			
 			flags = flags.unset(Flags.IN_EDITMODE | RevertableBindableFlags.MAKE_SHADOW_COPY);
 		}

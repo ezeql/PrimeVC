@@ -47,8 +47,8 @@ package primevc.gui.graphics.fills;
  */
 class GradientStop extends GraphicElement
 {
-	public var color		(default, setColor)		: RGBA;
-	public var position		(default, setPosition)	: Int;
+	public var color		(default, set_color)	: RGBA;
+	public var position		(default, set_position)	: Int;
 	
 	
 	public function new (color:RGBA, position:Int)
@@ -59,7 +59,7 @@ class GradientStop extends GraphicElement
 	}
 	
 	
-	private inline function setColor (v:RGBA)
+	private inline function set_color (v:RGBA)
 	{
 		if (v != color) {
 			color = v;
@@ -69,7 +69,7 @@ class GradientStop extends GraphicElement
 	}
 	
 	
-	private inline function setPosition (v:Int)
+	private inline function set_position (v:Int)
 	{
 		if (v != position) {
 			position = v;

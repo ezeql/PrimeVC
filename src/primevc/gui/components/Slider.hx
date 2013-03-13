@@ -120,14 +120,14 @@ class Slider extends SliderBase
 	}
 	
 	
-	override private function setDirection (v)
+	override private function set_direction (v)
 	{
 		if (direction != v)
 		{
 			if (direction != null)
 				styleClasses.remove( direction.string()+"Slider" );
 			
-			super.setDirection(v);
+			super.set_direction(v);
 			
 			if (v != null)
 				styleClasses.add( direction.string()+"Slider" );

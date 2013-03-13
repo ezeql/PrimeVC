@@ -224,9 +224,9 @@ class Loader implements ICommunicator
 	
 	public  var events			(default,			null)		: LoaderSignals;
 	
-	public  var bytes			(getBytes,			setBytes)	: BytesData;
-	public  var bytesProgress	(getBytesProgress,	never)		: Int;
-	public  var bytesTotal		(getBytesTotal,		never)		: Int;
+	public  var bytes			(get_bytes,			set_bytes)	: BytesData;
+	public  var bytesProgress	(get_bytesProgress,	never)		: Int;
+	public  var bytesTotal		(get_bytesTotal,	never)		: Int;
 	public  var type			(default,			null)		: CommunicationType;
 	public  var length			(default,			null)		: Bindable<Int>;
 
@@ -234,10 +234,10 @@ class Loader implements ICommunicator
 	public  var isStarted		(default,			null)		: Bool;
 	private var isFinished										: Bool;
 	
-	public  var info			(getInfo,			never)		: LoaderInfo;
-	public  var content			(getContent,		null)		: DisplayObject;
-	public  var height			(getHeight,			never)		: Float;
-	public  var width			(getWidth,			never)		: Float;
+	public  var info			(get_info,			never)		: LoaderInfo;
+	public  var content			(get_content,		null)		: DisplayObject;
+	public  var height			(get_height,		never)		: Float;
+	public  var width			(get_width,			never)		: Float;
 	public  var isAnimated		(default,			null)		: Bool;
 	
 	private var loader			: FlashLoader;
@@ -415,16 +415,16 @@ class Loader implements ICommunicator
 	// GETTERS / SETTERS
 	//
 	
-	private inline function getBytes ()				{ return info.bytes; }
-	private inline function setBytes (v:BytesData)	{ return loadBytes(v); }
+	private inline function get_bytes ()			{ return info.bytes; }
+	private inline function set_bytes (v:BytesData)	{ return loadBytes(v); }
 	
-	private inline function getInfo ()				{ return loader.contentLoaderInfo; }
-	private inline function getBytesProgress ()		{ return info.bytesLoaded; }
-	private inline function getBytesTotal ()		{ return info.bytesTotal; }
-//	private inline function getLength ()			{ return 1; }
+	private inline function get_info ()				{ return loader.contentLoaderInfo; }
+	private inline function get_bytesProgress ()	{ return info.bytesLoaded; }
+	private inline function get_bytesTotal ()		{ return info.bytesTotal; }
+//	private inline function get_length ()			{ return 1; }
 	
-	private inline function getWidth ()				{ return info.width; }
-	private inline function getHeight ()			{ return info.height; }
+	private inline function get_width ()			{ return info.width; }
+	private inline function get_height ()			{ return info.height; }
 	
 	
 	/**
@@ -439,7 +439,7 @@ class Loader implements ICommunicator
 	 * If the loaded content is an avm2-movie, the loader will also be returned
 	 * since some flex-swf's will otherwise throw errors.
 	 */
-	private function getContent () : DisplayObject
+	private function get_content () : DisplayObject
 	{
 		if (content != null)
 			return content;

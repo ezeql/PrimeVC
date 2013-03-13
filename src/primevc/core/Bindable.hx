@@ -74,7 +74,7 @@ package primevc.core;
  */
 class Bindable <DataType> implements IBindable<DataType>, implements IClonable<Bindable<DataType>>
 {
-	public var value	(default, setValue)	: DataType;
+	public var value	(default, set_value)	: DataType;
 	
 	/** 
 	 * Dispatched just before "value" is set to a new value.
@@ -161,7 +161,7 @@ class Bindable <DataType> implements IBindable<DataType>, implements IClonable<B
 #end
 	
 	
-	private function setValue (newValue:DataType) : DataType
+	private function set_value (newValue:DataType) : DataType
 	{
 		if (value != newValue)	//FIXME (Ruben @ Mar 11, 2011) Will also evaluate true with NaN == NaN and (Null<Bool> = null) == false 
 		{

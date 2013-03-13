@@ -98,23 +98,23 @@ class URI #if CSSParser implements primevc.tools.generator.ICodeFormattable #end
 #end
 	
 	
-	public var string (getString, null) : String;
+	public var string (get_string, null) : String;
 	
-	public var scheme	(default, setScheme)	: URIScheme;
-	public var userinfo	(default, setUserinfo)	: String;
-	public var host		(default, setHost)		: String;
-	public var port		(default, setPort)		: Int;
-	public var path		(default, setPath)		: String;
-	public var query	(default, setQuery)		: String;
-	public var fragment	(default, setFragment)	: String;
+	public var scheme	(default, set_scheme)	: URIScheme;
+	public var userinfo	(default, set_userinfo)	: String;
+	public var host		(default, set_host)		: String;
+	public var port		(default, set_port)		: Int;
+	public var path		(default, set_path)		: String;
+	public var query	(default, set_query)	: String;
+	public var fragment	(default, set_fragment)	: String;
 	
-	private inline function setScheme(v)	{ string = null; return scheme = v; }
-	private inline function setUserinfo(v)	{ string = null; return userinfo = v; }
-	private inline function setHost(v)		{ string = null; return host = v; }
-	private inline function setPort(v)		{ string = null; return port = v; }
-	private inline function setPath(v)		{ string = null; return path = v; }
-	private inline function setQuery(v)		{ string = null; return query = v; }
-	private inline function setFragment(v)	{ string = null; return fragment = v; }
+	private inline function set_scheme(v)	{ string = null; return scheme = v; }
+	private inline function set_userinfo(v)	{ string = null; return userinfo = v; }
+	private inline function set_host(v)		{ string = null; return host = v; }
+	private inline function set_port(v)		{ string = null; return port = v; }
+	private inline function set_path(v)		{ string = null; return path = v; }
+	private inline function set_query(v)	{ string = null; return query = v; }
+	private inline function set_fragment(v)	{ string = null; return fragment = v; }
 	
 	/** Returns true if this URI has a scheme and thus is a URL **/
 	public inline function isURL() : Bool			{ return scheme.notNull(); }
@@ -138,13 +138,13 @@ class URI #if CSSParser implements primevc.tools.generator.ICodeFormattable #end
 	 	Returns an empty string if it has no dots in the path.
 	 	Returns empty string if the first char is a dot and there are no other dots (UNIX hidden file convention).
 	*/
-	public var fileExt	(getFileExt,setFileExt)	: String;
-		private inline function getFileExt()	: String	{ return path.getExtension().toLowerCase(); }
-		private inline function setFileExt(v)	: String	{ path.setExtension(v); return v; }
+	public var fileExt	(get_fileExt,set_fileExt)	: String;
+		private inline function get_fileExt()		: String	{ return path.getExtension().toLowerCase(); }
+		private inline function set_fileExt(v)		: String	{ path.setExtension(v); return v; }
 	
 	
-	public var isSet		(getIsSet, never) : Bool;
-		private function getIsSet() return
+	public var isSet		(get_isSet, never) : Bool;
+		private function get_isSet() return
 		 	(string.notNull() && string.length.not0()) ||
 		 	(  host.notNull() &&   host.length.not0()) ||
 		 	(  path.notNull() &&   path.length.not0())
@@ -190,7 +190,7 @@ class URI #if CSSParser implements primevc.tools.generator.ICodeFormattable #end
 	}
 	
 	
-	private function getString()
+	private function get_string()
 	{
 		if (this.string.notNull())	return this.string;
 		if (isEmpty())				return null;
@@ -361,7 +361,7 @@ class URI #if CSSParser implements primevc.tools.generator.ICodeFormattable #end
 
 #if CSSParser
 	public function cleanUp () : Void {}
-	public function toCode (code:primevc.tools.generator.ICodeGenerator)	code.construct( this, [ getString() ] )
+	public function toCode (code:primevc.tools.generator.ICodeGenerator)	code.construct( this, [ get_string() ] )
 #end
 }
 

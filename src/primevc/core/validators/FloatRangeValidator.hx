@@ -43,8 +43,8 @@ class FloatRangeValidator implements IValueValidator <Float>
 {
 	public var change (default, null)	: Signal0;
 
-	public var min	(default, setMin)	: Float;
-	public var max	(default, setMax)	: Float;
+	public var min	(default, set_min)	: Float;
+	public var max	(default, set_max)	: Float;
 
 
 	public function new( min:Float = Number.INT_NOT_SET, max:Float = Number.INT_NOT_SET )
@@ -70,7 +70,7 @@ class FloatRangeValidator implements IValueValidator <Float>
 		}
 	
 	
-	private inline function setMin (v)
+	private inline function set_min (v)
 	{
 		if (v != min) {
 			min = v;
@@ -80,7 +80,7 @@ class FloatRangeValidator implements IValueValidator <Float>
 	}
 	
 	
-	private inline function setMax (v)
+	private inline function set_max (v)
 	{
 		if (v != max) {
 			max = v;

@@ -239,7 +239,7 @@ class VideoStream extends BaseMediaStream
 	// GETTERS / SETTERS
 	//
 	
-	override private function getCurrentTime ()
+	override private function get_currentTime ()
 	{
 		if (!isPlaying())
 			return currentTime;

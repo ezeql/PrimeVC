@@ -44,8 +44,8 @@ package primevc.gui.graphics.borders;
  */
 class EmptyBorder extends GraphicElement, implements IGraphicProperty, implements IBorder
 {
-	public var weight		(default, setWeight)		: Float;
-	public var innerBorder	(default, setInnerBorder)	: Bool;
+	public var weight		(default, set_weight)		: Float;
+	public var innerBorder	(default, set_innerBorder)	: Bool;
 	
 	
 	public #if !noinline inline #end function begin (target:IGraphicsOwner, bounds:IRectangle)
@@ -60,8 +60,8 @@ class EmptyBorder extends GraphicElement, implements IGraphicProperty, implement
 	}
 	
 	
-	private inline function setWeight (v:Float)			{ return 0; }
-	private inline function setInnerBorder (v:Bool)		{ return false; }
+	private inline function set_weight (v:Float)			{ return 0; }
+	private inline function set_innerBorder (v:Bool)		{ return false; }
 	
 	
 #if CSSParser

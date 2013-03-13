@@ -46,7 +46,7 @@ interface IDisplayable implements primevc.core.traits.IDisposable
 	/**
 	 * Wrapper object for the stage.
 	 */
-	public var window			(default, setWindow)		: primevc.gui.display.Window;
+	public var window			(default, set_window)		: primevc.gui.display.Window;
 	
 	
 	/**

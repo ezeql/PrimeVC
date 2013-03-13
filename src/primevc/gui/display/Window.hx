@@ -115,7 +115,7 @@ class Window implements IDisplayContainer, implements IDisablable
 	// IDISPLAYABLE PROPERTIES
 	//
 	
-	public var window			(default, setWindow)	: Window;
+	public var window			(default, set_window)	: Window;
 	public var container		(default, default)		: IDisplayContainer;
 	public var rect				(default, null)			: IntRectangle;
 	public var displayEvents	(default, null)			: DisplayEvents;
@@ -134,7 +134,7 @@ class Window implements IDisplayContainer, implements IDisablable
 	public var activated		(default, null)			: Signal0;
 	
 #if flash9
-	public var focus			(getFocus, setFocusOn)	: IInteractiveObject;
+	public var focus			(get_focus, set_focus)	: IInteractiveObject;
 #end
 	
 	
@@ -204,8 +204,8 @@ class Window implements IDisplayContainer, implements IDisablable
 	public function disable ()										{ mouseEnabled = tabEnabled = children.mouseEnabled = children.tabEnabled = false; }	//use local mouseEnabled and tabEnabled since Stage doesn't have these properties
 	public #if !noinline inline #end function isEnabled ()								{ return mouseEnabled; }
 	
-	private inline function setFocusOn (child:IInteractiveObject)	{ target.focus = child.as(InteractiveObject); return child; }
-	private inline function getFocus ()	: IInteractiveObject		{ return target.focus.as(IInteractiveObject); }
+	private inline function set_focus (child:IInteractiveObject)	{ target.focus = child.as(InteractiveObject); return child; }
+	private inline function get_focus ()	: IInteractiveObject	{ return target.focus.as(IInteractiveObject); }
 
 //	@:getter(scrollRect)
 	// FIXME => won't be called since scrollRect can't be defined as (getScrollRect, setScrollRect)
@@ -216,7 +216,7 @@ class Window implements IDisplayContainer, implements IDisablable
 	
 	/**
 	 * Method will give the acti focus to the stage.
-	 * FIXME better naming -> looks alot like setFocusOn (the setter)
+	 * FIXME better naming -> looks alot like set_focus (the setter)
 	 */
 	public #if !noinline inline #end function setFocus ()		{ target.focus = target; }
 	public #if !noinline inline #end function removeFocus ()	{ if (target.focus == target) { target.focus = null; } }
@@ -230,7 +230,7 @@ class Window implements IDisplayContainer, implements IDisablable
 	
 	
 	
-	private inline function setWindow (v)		{ return window = this; }
+	private inline function set_window (v)		{ return window = this; }
 //	private inline function setContainer (v)	{ return container = this; }
 }
 

@@ -56,7 +56,7 @@ package primevc.gui.behaviours.layout;
  */
 class FollowObjectBehaviour extends BehaviourBase<IUIElement>
 {
-	public  var followedElement 		(default, setFollowedElement) : IUIElement;
+	public  var followedElement 		(default, set_followedElement) : IUIElement;
 	
 	private var followedLayoutBinding	: Wire<Dynamic>;
 	private var containerLayoutBinding	: Wire<Dynamic>;
@@ -198,7 +198,7 @@ class FollowObjectBehaviour extends BehaviourBase<IUIElement>
 	}
 
 
-	private function setFollowedElement (v:IUIElement)
+	private function set_followedElement (v:IUIElement)
 	{
 		if (v != followedElement) {
 			if (initialized) {

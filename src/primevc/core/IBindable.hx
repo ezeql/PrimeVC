@@ -42,7 +42,7 @@ interface IBindable <DataType> implements IBindableReadonly<DataType>, implement
 	/**
 	 * Value property with write access.
 	 */
-	public var value	(default, setValue)	: DataType;
+	public var value	(default, set_value)	: DataType;
 	
 	/**
 	 * Makes sure this value is (and remains) equal

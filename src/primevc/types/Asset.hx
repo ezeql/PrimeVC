@@ -236,7 +236,7 @@ class Asset		implements primevc.core.traits.IDisposable
 	// ABSTRACT METHODS
 	//
 	
-//	private function setData (v:SourceType)	: SourceType		{ Assert.abstractMethod(); return v; }
+//	private function set_data (v:SourceType)	: SourceType		{ Assert.abstractMethod(); return v; }
 	public  function toDisplayObject ()		: DisplayObject		{ Assert.abstractMethod(); return null; }
 #if flash9
 	public  function toDrawable ()			: IBitmapDrawable	{ Assert.abstractMethod(); return null; }
@@ -284,7 +284,7 @@ class Asset		implements primevc.core.traits.IDisposable
  */
 class BitmapAsset extends Asset
 {
-	public var data	(default, setData) : BitmapData;
+	public var data	(default, set_data) : BitmapData;
 	
 	
 	public function new (source:BitmapData = null)
@@ -303,7 +303,7 @@ class BitmapAsset extends Asset
 	}
 	
 	
-	private function setData (v:BitmapData)
+	private function set_data (v:BitmapData)
 	{
 		if (v != data)
 		{
@@ -346,7 +346,7 @@ class BitmapAsset extends Asset
  */
 class DisplayAsset extends Asset
 {
-	public var data	(default, setData) : DisplayObject;
+	public var data	(default, set_data) : DisplayObject;
 	private var factory : Factory;
 	
 	
@@ -359,7 +359,7 @@ class DisplayAsset extends Asset
 	}
 	
 	
-	private function setData (v:DisplayObject)
+	private function set_data (v:DisplayObject)
 	{
 		if (v != data)
 		{
@@ -501,7 +501,7 @@ class BytesAssetBase extends Asset
  */
 class BytesAsset extends BytesAssetBase
 {
-	public var data	(default, setData) : BytesData;
+	public var data	(default, set_data) : BytesData;
 	
 	
 	public function new (source:BytesData)					{ super(); data = source; }
@@ -512,7 +512,7 @@ class BytesAsset extends BytesAssetBase
 #end
 	
 	
-	private function setData (v:BytesData)
+	private function set_data (v:BytesData)
 	{
 		if (v != data)
 		{
@@ -538,8 +538,8 @@ class BytesAsset extends BytesAssetBase
  */
 class ExternalAsset extends BytesAssetBase
 {
-	public var externalLoader	(default, setExternalLoader)	: ICommunicator;
-	public var data				(default, setData)				: URI;
+	public var externalLoader	(default, set_externalLoader)	: ICommunicator;
+	public var data				(default, set_data)				: URI;
 
 	
 	public function new (source:URI, ?loader:ICommunicator)
@@ -589,7 +589,7 @@ class ExternalAsset extends BytesAssetBase
 	// GETTERS / SETTERS
 	//
 	
-	private inline function setExternalLoader (v:ICommunicator)
+	private inline function set_externalLoader (v:ICommunicator)
 	{
 		if (v != externalLoader)
 		{
@@ -623,7 +623,7 @@ class ExternalAsset extends BytesAssetBase
 	}
 	
 	
-	private function setData (v:URI)
+	private function set_data (v:URI)
 	{
 		if (v != data)
 		{

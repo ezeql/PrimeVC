@@ -50,8 +50,8 @@ interface IPositionable #if !CSSParser implements IDisplayable #end
 	var z						: Float;
 	#end
 #else
-	var x			(getX,		setX) : Float;
-	var y			(getY,		setY) : Float;
+	var x			(get_x,		set_x) : Float;
+	var y			(get_y,		set_y) : Float;
 	var transform	(default, 	null) : primevc.core.geom.Matrix2D;
 #end
 }

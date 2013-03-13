@@ -9,7 +9,7 @@ package primevc.js.events;
 class TransitionEvents extends Signals
 {
 	private var eventDispatcher : Dynamic;
-	public  var end 			(getEnd, null) : TransitionSignal;
+	public  var end 			(get_end, null) : TransitionSignal;
 
 	
 	public function new(eventDispatcher:Dynamic)
@@ -26,6 +26,6 @@ class TransitionEvents extends Signals
 	}
 
 	
-	private inline function getEnd() { if (end == null) { createEnd(); } return end; }
+	private inline function get_end() { if (end == null) { createEnd(); } return end; }
 	private inline function createEnd() { end = new TransitionSignal(eventDispatcher, "webkitTransitionEnd"); }
 }

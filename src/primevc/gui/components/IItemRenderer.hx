@@ -41,7 +41,7 @@ interface IItemRenderer <DataType> implements IUIElement, implements IIconOwner
 {
 	public var data				(default, null)				: Bindable<String>;
 	public var vo				(default, null)				: Bindable<DataType>;
-	public var defaultLabel		(default, setDefaultLabel)	: String;
+	public var defaultLabel		(default, set_defaultLabel)	: String;
 	
 	
 	/**

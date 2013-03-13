@@ -49,7 +49,7 @@ package primevc.gui.layout.algorithms;
  */
 class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 {
-	public var direction			(default, setDirection)		: Vertical;
+	public var direction			(default, set_direction)	: Vertical;
 	
 	/**
 	 * Property indicating if and how the children of the group should be 
@@ -59,7 +59,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	 * 
 	 * @default null
 	 */
-	public var horizontal			(default, setHorizontal)	: Horizontal;
+	public var horizontal			(default, set_horizontal)	: Horizontal;
 	
 	
 	public function new ( ?direction:Vertical, ?horizontal:Horizontal = null )
@@ -80,7 +80,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	 * on the given direction. After that it will dispatch a 'directionChanged'
 	 * signal.
 	 */
-	private inline function setDirection (v:Vertical) : Vertical
+	private inline function set_direction (v:Vertical) : Vertical
 	{
 		if (v != direction) {
 			direction = v;
@@ -90,7 +90,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	}
 
 
-	private inline function setHorizontal (v:Horizontal) : Horizontal
+	private inline function set_horizontal (v:Horizontal) : Horizontal
 	{
 		if (v != horizontal) {
 			horizontal = v;

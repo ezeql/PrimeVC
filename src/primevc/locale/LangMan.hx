@@ -9,8 +9,8 @@ package primevc.locale;
 @:build(primevc.locale.LangMacro.build())
 class LangMan
 {
-	public static var instance	(getInstance, null) : LangMan;
-		private static function getInstance()
+	public static var instance	(get_instance, null) : LangMan;
+		private static function get_instance()
 			return (instance == null ? instance = new LangMan() : instance)
 
 	public var current			(default, null) : ILang;

@@ -37,7 +37,7 @@ package primevc.core.collections;
 class DataCursor < DataType > implements IDataCursor < DataType > 
 {
 	public var target	(default, null)		: DataType;
-	public var list		(default, setList)	: IEditableList < DataType >;
+	public var list		(default, set_list)	: IEditableList < DataType >;
 	public var depth	(default, null)		: Int;
 	
 	
@@ -56,7 +56,7 @@ class DataCursor < DataType > implements IDataCursor < DataType >
 	}
 	
 	
-	private inline function setList (v)
+	private inline function set_list (v)
 	{
 		if (v != list)
 		{

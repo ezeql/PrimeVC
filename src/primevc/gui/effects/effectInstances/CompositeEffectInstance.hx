@@ -88,9 +88,9 @@ class CompositeEffectInstance extends EffectInstance < Dynamic, CompositeEffect 
 	}
 	
 	
-	override private function setIsReverted (v)
+	override private function set_isReverted (v)
 	{
-		super.setIsReverted( v );
+		super.set_isReverted( v );
 		for (effect in effectInstances)
 			effect.isReverted = isReverted;
 		return isReverted;

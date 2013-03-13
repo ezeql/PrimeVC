@@ -54,19 +54,19 @@ typedef TouchSignal     = primevc.core.dispatcher.Signal1<TouchState>;
 class TouchSignals extends Signals
 {
     /** Fires to indicate when the user places a touch point on the touch surface. */
-    public var start        (getStart,  null) : TouchSignal;
+    public var start        (get_start,  null) : TouchSignal;
     /** Fires when the user removes a touch point from the touch surface, also including cases where the touch point physically leaves the touch surface, such as being dragged off of the screen */
-    public var end          (getEnd,    null) : TouchSignal;
+    public var end          (get_end,    null) : TouchSignal;
     /** Fires to indicate when the user moves a touch point along the touch surface. */
-    public var move         (getMove,   null) : TouchSignal;
+    public var move         (get_move,   null) : TouchSignal;
     /** Fires when the user removes a touch point from the touch surface, also including cases where the touch point physically leaves the touch surface, such as being dragged off of the screen */
-    public var cancel       (getCancel, null) : TouchSignal;
+    public var cancel       (get_cancel, null) : TouchSignal;
     
     
-    private inline function getStart ()     { if (start == null)        { createStart(); }  return start; }
-    private inline function getEnd ()       { if (end == null)          { createEnd(); }    return end; }
-    private inline function getMove ()      { if (move == null)         { createMove(); }   return move; }
-    private inline function getCancel ()    { if (cancel == null)       { createCancel(); } return cancel; }
+    private inline function get_start ()     { if (start == null)        { createStart(); }  return start; }
+    private inline function get_end ()       { if (end == null)          { createEnd(); }    return end; }
+    private inline function get_move ()      { if (move == null)         { createMove(); }   return move; }
+    private inline function get_cancel ()    { if (cancel == null)       { createCancel(); } return cancel; }
     
     
     private function createStart ()         { Assert.abstractMethod(); }

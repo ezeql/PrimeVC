@@ -84,7 +84,7 @@ class DragInfo implements primevc.core.traits.IDisposable
 	 * the boundaries of the dragged-item or if the displayObject has mouseEnabled
 	 * or mouseChildren enabled).
 	 */
-	public var dropTarget		(default, setDropTarget)	: IDropTarget;
+	public var dropTarget		(default, set_dropTarget)	: IDropTarget;
 	
 	/**
 	 * Location on which the item is dropped. Location is already converted
@@ -141,7 +141,7 @@ class DragInfo implements primevc.core.traits.IDisposable
 	//
 	
 	
-	private inline function setDropTarget (v:IDropTarget)
+	private inline function set_dropTarget (v:IDropTarget)
 	{
 		if (dropTarget != v)
 		{

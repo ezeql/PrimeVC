@@ -39,17 +39,17 @@ interface ITextArea implements IUIElement, implements ITextStylable
 	/**
 	 * Maximum number of columns that the textarea can have.
 	 */
-	public var maxColumns (default, setMaxColumns)				: Int;
+	public var maxColumns (default, set_maxColumns)				: Int;
 	
 	/**
 	 * Number of pixels between columns
 	 */
-	public var columnGap	(default, setColumnGap)				: Int;
+	public var columnGap	(default, set_columnGap)			: Int;
 	
 	/**
 	 * The width of one column. If not specified, the width will be calculated
 	 * automaticly.
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var columnWidth	(getColumnWidth, setColumnWidth)	: Int;
+	public var columnWidth	(get_columnWidth, set_columnWidth)	: Int;
 }

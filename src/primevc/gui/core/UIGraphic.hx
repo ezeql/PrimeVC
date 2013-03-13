@@ -72,13 +72,13 @@ class UIGraphic extends VectorShape
 	public var effects			(default, default)				: UIElementEffects;
 	
 	public var layout			(default, null)					: LayoutClient;
-	public var system			(getSystem, never)				: ISystem;
+	public var system			(get_system, never)				: ISystem;
 	
 #if flash9	
 	public var graphicData		(default, null)					: GraphicProperties;
 	public var style			(default, null)					: UIElementStyle;
 	public var styleClasses		(default, null)					: SimpleList< String >;
-	public var stylingEnabled	(default, setStylingEnabled)	: Bool;
+	public var stylingEnabled	(default, set_stylingEnabled)	: Bool;
 #end
 	
 	
@@ -294,7 +294,7 @@ class UIGraphic extends VectorShape
 	// GETTERS / SETTESR
 	//
 	
-	private inline function getSystem () : ISystem		{ return window.as(ISystem); }
+	private inline function get_system () : ISystem		{ return window.as(ISystem); }
 #if flash9
 	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
 #else
@@ -304,7 +304,7 @@ class UIGraphic extends VectorShape
 	
 	
 #if flash9
-	private function setStylingEnabled (v:Bool)
+	private function set_stylingEnabled (v:Bool)
 	{
 		if (v != stylingEnabled)
 		{

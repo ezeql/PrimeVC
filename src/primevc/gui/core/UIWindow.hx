@@ -75,8 +75,8 @@ class UIWindow extends primevc.gui.display.Window
 	 * variable 'layout' casted as LayoutContainer. The 'layout' is meant for
 	 * the children of window except for popups.
 	 */
-	public var layoutContainer		(getLayoutContainer, never)		: LayoutContainer;
-	public var scrollableLayout		(getScrollableLayout, never)	: IScrollableLayout;
+	public var layoutContainer		(get_layoutContainer, never)	: LayoutContainer;
+	public var scrollableLayout		(get_scrollableLayout, never)	: IScrollableLayout;
 	public var isScrollable											: Bool;
 	
 	/**
@@ -111,12 +111,12 @@ class UIWindow extends primevc.gui.display.Window
 	
 	public var style				(default, null)					: primevc.gui.styling.UIElementStyle;
 	public var styleClasses			(default, null)					: SimpleList<String>;
-	public var stylingEnabled		(default, setStylingEnabled)	: Bool;
+	public var stylingEnabled		(default, set_stylingEnabled)	: Bool;
 #end
 	
 	public var invalidation			(default, null)					: InvalidationManager;
 	public var rendering			(default, null)					: RenderManager;
-	public var popups				(getPopupManager, null)			: primevc.gui.managers.IPopupManager;
+	public var popups				(get_popups, null)				: primevc.gui.managers.IPopupManager;
 	public var toolTip				(default, null)					: ToolTipManager;
 	
 	
@@ -311,14 +311,14 @@ class UIWindow extends primevc.gui.display.Window
 	// GETTERS / SETTERS
 	//
 	
-	public #if !noinline inline #end function isDisposed ()			{ return displayEvents == null; }
-	private inline function getLayoutContainer ()	{ return layout.as(LayoutContainer); }
-	private inline function getScrollableLayout () 	{ return layout.as(IScrollableLayout); }
-	private inline function getPopupManager ()		{ if (popups == null) { popups = new primevc.gui.managers.PopupManager(this); } return popups; }
+	public #if !noinline inline #end function isDisposed ()	{ return displayEvents == null; }
+	private inline function get_layoutContainer ()			{ return layout.as(LayoutContainer); }
+	private inline function get_scrollableLayout () 		{ return layout.as(IScrollableLayout); }
+	private inline function get_popups ()					{ if (popups == null) { popups = new primevc.gui.managers.PopupManager(this); } return popups; }
 	
 	
 #if flash9
-	private function setStylingEnabled (v:Bool)
+	private function set_stylingEnabled (v:Bool)
 	{
 		if (v != stylingEnabled)
 		{

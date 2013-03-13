@@ -57,7 +57,7 @@ class SliderBase extends UIDataContainer <PercentageHelper>
 	 * Defines if the slider is horizontal or vertical
 	 * @default		horizontal
 	 */
-	public var direction	(default, setDirection)		: Direction;
+	public var direction	(default, set_direction)	: Direction;
 	
 	/**
 	 * Eventgroup with events that are dispatched when the user starts sliding
@@ -194,7 +194,7 @@ class SliderBase extends UIDataContainer <PercentageHelper>
 	// GETTERS / SETTERS
 	//
 	
-	private function setDirection (v)
+	private function set_direction (v)
 	{
 		if (direction != v)
 		{

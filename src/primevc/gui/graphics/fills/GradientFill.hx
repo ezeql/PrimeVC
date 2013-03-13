@@ -56,16 +56,16 @@ typedef FlashGradientType = flash.display.GradientType;
  */
 class GradientFill extends GraphicElement, implements IGraphicProperty 
 {
-	public var gradientStops	(default, null)			: FastArray <GradientStop>;
-	public var type				(default, setType)		: GradientType;
-	public var spread			(default, setSpread)	: SpreadMethod;
-	public var focalPointRatio	(default, setFocalP)	: Float;
-	public var isFinished		(default, null)			: Bool;
+	public var gradientStops	(default, null)					: FastArray <GradientStop>;
+	public var type				(default, set_type)				: GradientType;
+	public var spread			(default, set_spread)			: SpreadMethod;
+	public var focalPointRatio	(default, set_focalPointRatio)	: Float;
+	public var isFinished		(default, null)					: Bool;
 	
 	/**
 	 * gradient rotation in degrees
 	 */
-	public var rotation			(default, setRotation)	: Int;
+	public var rotation			(default, set_rotation)	: Int;
 	
 	private var lastBounds		: IRectangle;
 	private var lastMatrix		: Matrix2D;
@@ -101,7 +101,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	// SETTERS
 	//
 	
-	private inline function setRotation ( v:Int )
+	private inline function set_rotation ( v:Int )
 	{
 		if (v != rotation) {
 			lastMatrix	= null;
@@ -112,7 +112,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	}
 	
 	
-	private inline function setType (v:GradientType)
+	private inline function set_type (v:GradientType)
 	{
 		if (v != type) {
 			type = v;
@@ -122,7 +122,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	}
 
 
-	private inline function setSpread (v:SpreadMethod)
+	private inline function set_spread (v:SpreadMethod)
 	{
 		if (v != spread) {
 			spread = v;
@@ -132,7 +132,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	}
 
 
-	private inline function setFocalP (v:Float)
+	private inline function set_focalPointRatio (v:Float)
 	{
 		if (v != focalPointRatio) {
 			focalPointRatio = v;

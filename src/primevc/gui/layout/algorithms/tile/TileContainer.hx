@@ -55,9 +55,9 @@ private typedef Flags = LayoutFlags;
  */
 class TileContainer extends LayoutClient, implements ILayoutContainer
 {
-	public var algorithm	(default, setAlgorithm)		: ILayoutAlgorithm;
-	public var childWidth	(default, setChildWidth)	: Int;
-	public var childHeight	(default, setChildHeight)	: Int;
+	public var algorithm	(default, set_algorithm)	: ILayoutAlgorithm;
+	public var childWidth	(default, set_childWidth)	: Int;
+	public var childHeight	(default, set_childHeight)	: Int;
 	
 	
 	public function new( list:IEditableList<LayoutClient> = null )
@@ -225,7 +225,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	// GETTERS / SETTERS
 	//
 	
-	private inline function setAlgorithm (v:ILayoutAlgorithm)
+	private inline function set_algorithm (v:ILayoutAlgorithm)
 	{
 		if (v != algorithm)
 		{
@@ -246,7 +246,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	}
 
 
-	private inline function setChildWidth (v)
+	private inline function set_childWidth (v)
 	{
 		if (v != childWidth)
 		{
@@ -257,7 +257,7 @@ class TileContainer extends LayoutClient, implements ILayoutContainer
 	}
 
 
-	private inline function setChildHeight (v)
+	private inline function set_childHeight (v)
 	{
 		if (v != childHeight)
 		{

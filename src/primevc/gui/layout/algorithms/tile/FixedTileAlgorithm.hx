@@ -79,7 +79,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 	 * 
 	 * @default		4
 	 */
-	public var maxTilesInDirection	(default, setMaxTilesInDirection)		: Int;
+	public var maxTilesInDirection	(default, set_maxTilesInDirection)		: Int;
 	
 	
 	
@@ -89,14 +89,14 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 	 * 
 	 * @default		Number.INT_NOT_SET
 	 */
-//	public var tileWidth			(default, setTileWidth)					: Int;
+//	public var tileWidth			(default, set_tileWidth)				: Int;
 	/**
 	 * The maximum height of each tile. Their orignal height will be ignored if
 	 * the tile is heigher then this number (it won't get resized).
 	 * 
 	 * @default		Number.INT_NOT_SET
 	 */
-//	public var tileHeight			(default, setTileHeight)				: Int;
+//	public var tileHeight			(default, set_tileHeight)				: Int;
 	
 	
 	
@@ -473,7 +473,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 	//
 	
 	
-	private inline function setMaxTilesInDirection (v)
+	private inline function set_maxTilesInDirection (v)
 	{
 		if (v != maxTilesInDirection) {
 			maxTilesInDirection = v;
@@ -483,7 +483,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 	}
 	
 	
-	override private function setStartDirection (v)
+	override private function set_startDirection (v)
 	{
 		if (v != startDirection) {
 			swapHorizontalAndVertical();
@@ -493,7 +493,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 	}
 	
 	
-	override private function setGroup (v)
+	override private function set_group (v)
 	{
 		if (group != v)
 		{

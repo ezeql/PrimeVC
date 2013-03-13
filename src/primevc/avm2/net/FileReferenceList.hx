@@ -45,7 +45,7 @@ private typedef FlashFileReferenceList = flash.net.FileReferenceList;
 class FileReferenceList extends SelectEvents, implements IFileReference
 {
 	private var target	: FlashFileReferenceList;
-	public var list		(getList, null)	: Array<FileReference>;
+	public var list		(get_list, null)	: Array<FileReference>;
 	
 	
 	public function new (target:FlashFileReferenceList = null)
@@ -71,7 +71,7 @@ class FileReferenceList extends SelectEvents, implements IFileReference
 	}
 	
 	
-	private function getList () : Array<FileReference>
+	private function get_list () : Array<FileReference>
 	{
 		if (list != null)
 			return list;

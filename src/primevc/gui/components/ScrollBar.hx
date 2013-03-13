@@ -55,7 +55,7 @@ class ScrollBar extends SliderBase
 	/**
 	 * Object on which the scrollbar's apply
 	 */
-	public var target (default, setTarget)	: IScrollable;
+	public var target (default, set_target)	: IScrollable;
 	
 	/**
 	 * Reference to the wire that listens to changes in the scroll-x or y values
@@ -219,7 +219,7 @@ class ScrollBar extends SliderBase
 	// SETTERS
 	//
 	
-	private inline function setTarget (newTarget:IScrollable) : IScrollable
+	private inline function set_target (newTarget:IScrollable) : IScrollable
 	{
 		if (newTarget != target)
 		{
@@ -232,12 +232,12 @@ class ScrollBar extends SliderBase
 	}
 	
 	
-	override private function setDirection (v:Direction)
+	override private function set_direction (v:Direction)
 	{
 		if (v != direction)
 		{
 			styleClasses.remove( direction.string()+"ScrollBar" );
-			super.setDirection(v);
+			super.set_direction(v);
 			styleClasses.add( direction.string()+"ScrollBar" );
 		}
 		return v;

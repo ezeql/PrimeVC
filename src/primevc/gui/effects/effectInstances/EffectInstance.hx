@@ -51,7 +51,7 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 	public var ended		(default, null)				: Signal0;
 	public var state		(default, null)				: EffectStates;
 	
-	public var isReverted	(default, setIsReverted)	: Bool;
+	public var isReverted	(default, set_isReverted)	: Bool;
 	public var effect		(default, null)				: PropertiesType;
 	
 	private var target			: TargetType;
@@ -279,7 +279,7 @@ class EffectInstance<TargetType, PropertiesType:primevc.gui.effects.IEffect>
 	public #if !noinline inline #end function isWaiting () : Bool	{ return delayTimer != null; }
 
 	
-	private function setIsReverted (v:Bool)
+	private function set_isReverted (v:Bool)
 	{
 		return isReverted = v;
 	}

@@ -36,7 +36,7 @@ package primevc.gui.traits;
  */
 interface ISkinnable implements IDisplayable
 {
-	public var skin		(default, setSkin)	: ISkin;
+	public var skin		(default, set_skin)	: ISkin;
 	
 	/**
 	 * Factory method for creating the default skin of this UIComponent.

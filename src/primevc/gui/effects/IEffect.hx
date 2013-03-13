@@ -52,32 +52,32 @@ interface IEffect
 	 * @default		null
 	 * @see			feffects.easing
 	 */
-	public var easing			(default, setEasing)			: Easing;
+	public var easing			(default, set_easing)			: Easing;
 	
 	/**
 	 * Number of milliseconds to wait before starting the effect
 	 * @default		0
 	 */
-	public var delay			(default, setDelay)				: Int;
+	public var delay			(default, set_delay)			: Int;
 	
 	/**
 	 * Effect duration
 	 * @default		350
 	 */
-	public var duration			(default, setDuration)			: Int;
+	public var duration			(default, set_duration)			: Int;
 	
 	/**
 	 * Flag indicating if the target's filters should be hidden when the effect
 	 * is running.
 	 * @default	false
 	 */
-	public var autoHideFilters	(default, setAutoHideFilters)	: Bool;
+	public var autoHideFilters	(default, set_autoHideFilters)	: Bool;
 	
 	/**
 	 * Flag indicating if the effect is supposed to be playing backwards
 	 * @default false
 	 */
-	public var isReverted		(default, setIsReverted)		: Bool;
+	public var isReverted		(default, set_isReverted)		: Bool;
 	
 	/**
 	 * Method to set the explicit start and end values of the effect

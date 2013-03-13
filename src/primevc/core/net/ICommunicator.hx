@@ -43,17 +43,17 @@ package primevc.core.net;
 interface ICommunicator implements IDisposable
 {
 	public var events		(default,				null)		: LoaderSignals;
-	public var bytes		(getBytes,				setBytes)	: BytesData;
+	public var bytes		(get_bytes,				set_bytes)	: BytesData;
 	public var type			(default,				null)		: CommunicationType;
 	
 	/**
 	 * Total bytes loaded/send for all processes together
 	 */
-	public var bytesProgress	(#if js default #else getBytesProgress #end,	never)		: Int;
+	public var bytesProgress	(#if js default #else get_bytesProgress #end,	never)		: Int;
 	/**
 	 * Total number of bytes to load/send for all processes together
 	 */
-	public var bytesTotal		(#if js default #else getBytesTotal #end,		never)		: Int;
+	public var bytesTotal		(#if js default #else get_bytesTotal #end,		never)		: Int;
 	
 	/**
 	 * Indicates the number of process going on within the communicator

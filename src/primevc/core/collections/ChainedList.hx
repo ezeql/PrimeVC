@@ -50,7 +50,7 @@ class ChainedList <DataType> extends SimpleList <DataType>
 	 * Maximum number of items. If there are more items, they will be moved to
 	 * the next list
 	 */
-	public var max			(default, setMax)	: Int;
+	public var max			(default, set_max)	: Int;
 	
 	
 	public function new( max:Int = -1 )
@@ -130,7 +130,7 @@ class ChainedList <DataType> extends SimpleList <DataType>
 	
 	
 	
-	private function setMax (v) : Int
+	private function set_max (v) : Int
 	{
 		if (max == 0)
 			max = v;

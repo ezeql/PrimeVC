@@ -42,7 +42,7 @@ private typedef Code	= NetStreamInfoCode;
 class NetStreamInfo
 {
 	public var level	(default, null) : NetStreamInfoLevel;
-	public var code		(getCode, null) : NetStreamInfoCode;
+	public var code		(get_code, null) : NetStreamInfoCode;
 	private var flashObj				: Dynamic;
 	
 	
@@ -65,7 +65,7 @@ class NetStreamInfo
 	}
 	
 	
-	private function getCode ()
+	private function get_code ()
 	{
 		if (code == null)
 		{

@@ -79,13 +79,13 @@ class UIVideo extends Video, implements IUIElement
 	public var behaviours		(default, null)					: BehaviourList;
 	public var effects			(default, default)				: UIElementEffects;
 	public var layout			(default, null)					: LayoutClient;
-	public var system			(getSystem, never)				: ISystem;
+	public var system			(get_system, never)				: ISystem;
 	public var state			(default, null)					: UIElementStates;
 	
 #if flash9
 	public var style			(default, null)					: UIElementStyle;
 	public var styleClasses		(default, null)					: SimpleList<String>;
-	public var stylingEnabled	(default, setStylingEnabled)	: Bool;
+	public var stylingEnabled	(default, set_stylingEnabled)	: Bool;
 #end
 	
 	public var stream			(default, null)					: VideoStream;
@@ -189,7 +189,7 @@ class UIVideo extends Video, implements IUIElement
 	
 	
 #if flash9
-	private function setStylingEnabled (v:Bool)
+	private function set_stylingEnabled (v:Bool)
 	{
 		if (v != stylingEnabled)
 		{
@@ -283,13 +283,13 @@ class UIVideo extends Video, implements IUIElement
 	//
 	
 	
-	private inline function getSystem () : ISystem		{ return window.as(ISystem); }
+	private inline function get_system () : ISystem					{ return window.as(ISystem); }
 #if flash9
-	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+	public #if !noinline inline #end function isOnStage () : Bool	{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
 #else
-	public #if !noinline inline #end function isOnStage () : Bool			{ return window != null; }
+	public #if !noinline inline #end function isOnStage () : Bool	{ return window != null; }
 #end
-	public #if !noinline inline #end function isQueued () : Bool			{ return nextValidatable != null || prevValidatable != null; }
+	public #if !noinline inline #end function isQueued () : Bool	{ return nextValidatable != null || prevValidatable != null; }
 	
 	
 	private var validateWire : Wire<Dynamic>;

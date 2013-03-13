@@ -42,7 +42,7 @@ package primevc.mvc;
  */
 class Proxy<VOType:IValueObject, EventsTypedef> extends MVCNotifier
 {
-	public var vo		(default, setVO)	: VOType;
+	public var vo		(default, set_vo)	: VOType;
 	public var events	(default, null)		: EventsTypedef;
 	
 	
@@ -62,7 +62,7 @@ class Proxy<VOType:IValueObject, EventsTypedef> extends MVCNotifier
 	}
 
 
-	private inline function setVO (v:VOType)
+	private inline function set_vo (v:VOType)
 	{
 		if (v != vo) {
 			vo 		= v;

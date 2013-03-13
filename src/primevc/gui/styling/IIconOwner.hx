@@ -38,6 +38,6 @@ package primevc.gui.styling;
  */
 interface IIconOwner implements IUIElement
 {
-	public var icon			(default, setIcon)		: Asset;
-	public var iconFill		(default, setIconFill)	: IGraphicProperty;
+	public var icon			(default, set_icon)		: Asset;
+	public var iconFill		(default, set_iconFill)	: IGraphicProperty;
 }

@@ -47,7 +47,7 @@ class ConfirmPanel extends AlertPanel
      * Text to display on the cancel button. If the value is "",
      * the button won't be displayed.
      */
-    public var cancelLabel  (default, setCancelLabel)   : String;
+    public var cancelLabel  (default, set_cancelLabel)   : String;
     public var cancelBtn    (default, null)             : Button;
     public var canceled     (default, null)             : Signal0;
 
@@ -97,7 +97,7 @@ class ConfirmPanel extends AlertPanel
     }
 
 
-    private inline function setCancelLabel (v:String)
+    private inline function set_cancelLabel (v:String)
     {
         if (v != cancelLabel)
         {

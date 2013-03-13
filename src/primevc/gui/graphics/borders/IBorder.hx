@@ -38,7 +38,7 @@ package primevc.gui.graphics.borders;
  */
 interface IBorder implements IGraphicProperty
 {
-	public var weight		(default, setWeight)		: Float;
+	public var weight		(default, set_weight)		: Float;
 //	public var fill			(default, setFill)			: FillType;
 	/**
 	 * The capsstyle that is used at the end of lines
@@ -54,7 +54,7 @@ interface IBorder implements IGraphicProperty
 	 * Should this border be drawn on the inside of the parent shape (true) or
 	 * on the outside of the parentshape.
 	 */
-	public var innerBorder	(default, setInnerBorder)	: Bool;
+	public var innerBorder	(default, set_innerBorder)	: Bool;
 	
 	
 //	public function begin (target:IDrawable, ?bounds:IRectangle) : Void;

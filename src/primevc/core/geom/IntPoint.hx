@@ -50,8 +50,8 @@ class IntPoint	implements IClonable <IntPoint>
 	public static #if !noinline inline #end function fromFloat (x:Float, y:Float)	: IntPoint	{ return new IntPoint( x.roundFloat(), y.roundFloat() ); }
 	public static #if !noinline inline #end function fromPoint (p:Point)			: IntPoint	{ return new IntPoint( p.x.roundFloat(), p.y.roundFloat() ); }
 	
-	@:isVar public var x		(getX, setX)	: Int;
-	@:isVar public var y		(getY, setY)	: Int;
+	@:isVar public var x		(get_x, set_x)	: Int;
+	@:isVar public var y		(get_y, set_y)	: Int;
 	
 #if CSSParser
 	public var _oid		(default, null) : Int;
@@ -75,10 +75,10 @@ class IntPoint	implements IClonable <IntPoint>
 	}
 	
 	
-	private function getX()		{ return x; }
-	private function setX(v)	{ return x = v; }
-	private function getY()		{ return y; }
-	private function setY(v)	{ return y = v; }
+	private function get_x()	{ return x; }
+	private function set_x(v)	{ return x = v; }
+	private function get_y()	{ return y; }
+	private function set_y(v)	{ return y = v; }
 	
 	
 	public #if !noinline inline #end function subtract (v:IntPoint) {
@@ -109,7 +109,7 @@ class IntPoint	implements IClonable <IntPoint>
 	
 	
 #if CSSParser
-	public #if !noinline inline #end function toString ()				{ return "IntPoint( "+x+", "+y+" )"; }
+	public #if !noinline inline #end function toString () { return "IntPoint( "+x+", "+y+" )"; }
 	public function toCSS (prefix:String = "")		{ return x + "px, " + y + "px"; }
 	public function cleanUp () : Void				{}
 	public function toCode (code:ICodeGenerator)	{ code.construct( this, [ x, y ] ); }

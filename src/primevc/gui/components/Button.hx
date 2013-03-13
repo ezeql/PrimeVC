@@ -49,10 +49,10 @@ private typedef Flags = primevc.gui.core.UIElementFlags;
 class Button extends UIDataContainer <Bindable<String>>, implements IIconOwner, implements ITextStylable, implements ISelectable
 {
 	public var selected		(default, null)			: Bindable<Bool>;
-	public var icon			(default, setIcon)		: Asset;
-	public var iconFill		(default, setIconFill)	: IGraphicProperty;
+	public var icon			(default, set_icon)		: Asset;
+	public var iconFill		(default, set_iconFill)	: IGraphicProperty;
 #if flash9
-	public var textStyle	(default, setTextStyle)	: TextFormat;
+	public var textStyle	(default, set_textStyle)	: TextFormat;
 	public var wordWrap		: Bool;
 	public var embedFonts	: Bool;
 #end
@@ -80,7 +80,7 @@ class Button extends UIDataContainer <Bindable<String>>, implements IIconOwner, 
 	}
 	
 	
-	private inline function setIcon (v:Asset)
+	private inline function set_icon (v:Asset)
 	{
 		if (v != icon) {
 			icon = v;
@@ -90,7 +90,7 @@ class Button extends UIDataContainer <Bindable<String>>, implements IIconOwner, 
 	}
 	
 	
-	private inline function setIconFill (v:IGraphicProperty)
+	private inline function set_iconFill (v:IGraphicProperty)
 	{
 		if (v != iconFill) {
 			iconFill = v;
@@ -101,7 +101,7 @@ class Button extends UIDataContainer <Bindable<String>>, implements IIconOwner, 
 	
 	
 #if flash9
-	private inline function setTextStyle (v:TextFormat)
+	private inline function set_textStyle (v:TextFormat)
 	{
 		textStyle = v;
 		invalidate( Flags.TEXTSTYLE );

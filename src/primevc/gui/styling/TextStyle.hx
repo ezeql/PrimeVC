@@ -78,25 +78,25 @@ class TextStyle extends StyleSubBlock
 	private var _columnWidth	: Int;
 	
 	
-	public var size				(getSize,			setSize)			: Int;
-	public var family			(getFamily,			setFamily)			: String;
-	public var embeddedFont		(getEmbeddedFont,	setEmbeddedFont)	: Bool;
-	public var color			(getColor,			setColor)			: Null<RGBA>;
-	public var weight			(getWeight,			setWeight)			: FontWeight;
-	public var style			(getStyle,			setStyle)			: FontStyle;
+	public var size				(get_size,			set_size)			: Int;
+	public var family			(get_family,		set_family)			: String;
+	public var embeddedFont		(get_embeddedFont,	set_embeddedFont)	: Bool;
+	public var color			(get_color,			set_color)			: Null<RGBA>;
+	public var weight			(get_weight,		set_weight)			: FontWeight;
+	public var style			(get_style,			set_style)			: FontStyle;
 	/**
 	 * @default	0
 	 */
-	public var letterSpacing	(getLetterSpacing,	setLetterSpacing)	: Float;
-	public var align			(getAlign,			setAlign)			: TextAlign;
-	public var decoration		(getDecoration,		setDecoration)		: TextDecoration;
-	public var indent			(getIndent,			setIndent)			: Float;
-	public var transform		(getTransform,		setTransform)		: TextTransform;
+	public var letterSpacing	(get_letterSpacing,	set_letterSpacing)	: Float;
+	public var align			(get_align,			set_align)			: TextAlign;
+	public var decoration		(get_decoration,	set_decoration)		: TextDecoration;
+	public var indent			(get_indent,		set_indent)			: Float;
+	public var transform		(get_transform,		set_transform)		: TextTransform;
 	
-	public var textWrap			(getTextWrap,		setTextWrap)		: Null < Bool >;
-	public var columnCount		(getColumnCount,	setColumnCount)		: Int;
-	public var columnGap		(getColumnGap,		setColumnGap)		: Int;
-	public var columnWidth		(getColumnWidth,	setColumnWidth)		: Int;
+	public var textWrap			(get_textWrap,		set_textWrap)		: Null < Bool >;
+	public var columnCount		(get_columnCount,	set_columnCount)	: Int;
+	public var columnGap		(get_columnGap,		set_columnGap)		: Int;
+	public var columnWidth		(get_columnWidth,	set_columnWidth)	: Int;
 	
 	
 	public function new (
@@ -315,7 +315,7 @@ class TextStyle extends StyleSubBlock
 	// GETTERS
 	//
 	
-	private function getSize ()
+	private function get_size ()
 	{
 		var v = _size;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.size;
@@ -327,7 +327,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getFamily ()
+	private function get_family ()
 	{
 		var v = _family;
 		if (v == null && extendedStyle != null)		v = extendedStyle.family;
@@ -339,7 +339,7 @@ class TextStyle extends StyleSubBlock
 	}
 
 	
-	private function getEmbeddedFont ()
+	private function get_embeddedFont ()
 	{
 		var fam = _family;
 		var val = _embeddedFont;
@@ -352,7 +352,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getColor ()
+	private function get_color ()
 	{
 		var v = _color;
 		if (v == null && extendedStyle != null)		v = extendedStyle.color;
@@ -364,7 +364,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getAlign ()
+	private function get_align ()
 	{
 		var v = _align;
 		if (v == null && extendedStyle != null)		v = extendedStyle.align;
@@ -376,7 +376,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getWeight ()
+	private function get_weight ()
 	{
 		var v = _weight;
 		if (v == null && extendedStyle != null)		v = extendedStyle.weight;
@@ -388,7 +388,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getStyle ()
+	private function get_style ()
 	{
 		var v = _style;
 		if (v == null && extendedStyle != null)		v = extendedStyle.style;
@@ -400,7 +400,7 @@ class TextStyle extends StyleSubBlock
 	}
 
 	
-	private function getLetterSpacing ()
+	private function get_letterSpacing ()
 	{
 		var v = _letterSpacing;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.letterSpacing;
@@ -412,7 +412,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getDecoration ()
+	private function get_decoration ()
 	{
 		var v = _decoration;
 		if (v == null && extendedStyle != null)		v = extendedStyle.decoration;
@@ -424,7 +424,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getIndent ()
+	private function get_indent ()
 	{
 		var v = _indent;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.indent;
@@ -436,7 +436,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getTransform ()
+	private function get_transform ()
 	{
 		var v = _transform;
 		if (v == null && extendedStyle != null)		v = extendedStyle.transform;
@@ -448,7 +448,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getTextWrap ()
+	private function get_textWrap ()
 	{
 		var v = _textWrap;
 		if (v == null && extendedStyle != null)		v = extendedStyle.textWrap;
@@ -460,7 +460,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getColumnCount ()
+	private function get_columnCount ()
 	{
 		var v = _columnCount;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.columnCount;
@@ -472,7 +472,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getColumnGap ()
+	private function get_columnGap ()
 	{
 		var v = _columnGap;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.columnGap;
@@ -484,7 +484,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function getColumnWidth ()
+	private function get_columnWidth ()
 	{
 		var v = _columnWidth;
 		if (v.notSet() && extendedStyle != null)	v = extendedStyle.columnWidth;
@@ -502,7 +502,7 @@ class TextStyle extends StyleSubBlock
 	// SETTERS
 	//
 	
-	private function setSize (v)
+	private function set_size (v)
 	{
 		if (v != _size) {
 			_size = v;
@@ -512,7 +512,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setFamily (v)
+	private function set_family (v)
 	{
 		if (v != _family) {
 			_family = v;
@@ -522,7 +522,7 @@ class TextStyle extends StyleSubBlock
 	}
 
 	
-	private function setEmbeddedFont (v)
+	private function set_embeddedFont (v)
 	{
 		if (v != _embeddedFont) {
 			_embeddedFont = v;
@@ -532,7 +532,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setColor (v:Null<RGBA>)
+	private function set_color (v:Null<RGBA>)
 	{
 		if (v != null)
 			v = v.validate();
@@ -545,7 +545,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setWeight (v)
+	private function set_weight (v)
 	{
 		if (v != _weight) {
 			_weight = v;
@@ -555,7 +555,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setStyle (v)
+	private function set_style (v)
 	{
 		if (v != _style) {
 			_style = v;
@@ -565,7 +565,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setLetterSpacing (v)
+	private function set_letterSpacing (v)
 	{
 		if (v != _letterSpacing) {
 			_letterSpacing = v;
@@ -575,7 +575,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setAlign (v)
+	private function set_align (v)
 	{
 		if (v != _align) {
 			_align = v;
@@ -585,7 +585,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setDecoration (v)
+	private function set_decoration (v)
 	{
 		if (v != _decoration) {
 			_decoration = v;
@@ -595,7 +595,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setIndent (v)
+	private function set_indent (v)
 	{
 		if (v != _indent) {
 			_indent = v;
@@ -605,7 +605,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setTransform (v)
+	private function set_transform (v)
 	{
 		if (v != _transform) {
 			_transform = v;
@@ -615,7 +615,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setTextWrap (v)
+	private function set_textWrap (v)
 	{
 		if (v != _textWrap) {
 			_textWrap = v;
@@ -625,7 +625,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setColumnCount (v)
+	private function set_columnCount (v)
 	{
 		if (v != _columnCount) {
 			_columnCount = v;
@@ -635,7 +635,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setColumnGap (v)
+	private function set_columnGap (v)
 	{
 		if (v != _columnGap) {
 			_columnGap = v;
@@ -645,7 +645,7 @@ class TextStyle extends StyleSubBlock
 	}
 	
 	
-	private function setColumnWidth (v)
+	private function set_columnWidth (v)
 	{
 		if (v != _columnWidth) {
 			_columnWidth = v;

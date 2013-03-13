@@ -57,11 +57,11 @@ interface IFiniteStateMachine implements haxe.rtti.Infos, implements IDisposable
 	 * Current state of the group. State must be in the <code>states</code>
 	 * list.
 	 */
-	public var current		(default, setCurrent)		: IState;
+	public var current		(default, set_current)		: IState;
 	/**
 	 * State that will be used when there is no state set.
 	 */
-	public var defaultState	(default, setDefaultState)	: IState;
+	public var defaultState	(default, set_defaultState)	: IState;
 	/**
 	 * Change dispatcher. First parameter is the new state, the second parameter
 	 * is the old state.
