@@ -12,7 +12,6 @@ class ButtonMediator extends Mediator <MainFacade, Button>
     {
         if (isListening())
             return;
-
         gui.addEventListener("click", clickHandler);
         super.startListening();
     }
@@ -23,7 +22,7 @@ class ButtonMediator extends Mediator <MainFacade, Button>
         if (!isListening())
             return;
         
-		super.stopListening();
+        super.stopListening();
         gui.removeEventListener("click", clickHandler);
     }
     

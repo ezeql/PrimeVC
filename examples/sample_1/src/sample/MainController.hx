@@ -1,11 +1,10 @@
 package sample;
  import prime.mvc.MVCActor;
-  using prime.utils.Bind;
 
 /**
  * Receives and dispatches global events.
  */
-class MainController extends MVCActor<MainFacade>
+class MainController extends MVCActor<MainFacade> , implements prime.mvc.IMVCCoreActor
 {	
     public function new (facade:MainFacade)		{ super(facade); }
 }

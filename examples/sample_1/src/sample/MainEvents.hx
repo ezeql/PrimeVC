@@ -6,7 +6,7 @@ package sample;
  * Defines and groups together application events
  * and provides an access point for them.
  */
-class MainEvents extends MVCEvents
+class MainEvents extends Signals
 {
     public var loadImage:Signal1 < String >;
 
