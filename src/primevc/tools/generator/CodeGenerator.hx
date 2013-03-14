@@ -53,7 +53,7 @@ class CodeGenerator implements ICodeGenerator
 	/**
 	 * List with an index of all the object-ids and their valueTypes 
 	 */
-	private var objInstances		: Map<Int,ValueType>;
+	private var objInstances		: IntMap<Int,ValueType>;
 	
 	/**
 	 * Index of previously generated array's and the correct value-type.
@@ -67,13 +67,13 @@ class CodeGenerator implements ICodeGenerator
 	 * Keys are the names of the classes and the values are the full paths to 
 	 * the classes.
 	 */
-	public  var imports				(default, null) : Map<String,String>;
+	public  var imports				(default, null) : StrMap<String,String>;
 
 	/**
 	 * List with instances that should be set to 'null' when an object is 
 	 * refering to them.
 	 */
-	public var instanceIgnoreList	(default, null) : Map<Int,Dynamic>;
+	public var instanceIgnoreList	(default, null) : IntMap<Int,Dynamic>;
 	
 	
 	
@@ -89,9 +89,9 @@ class CodeGenerator implements ICodeGenerator
 		if (!isStarted)
 		{
 			values			= new Array();
-			objInstances	= new Map();
+			objInstances	= new IntMap();
 			arrInstances	= new SimpleDictionary();
-			imports			= new Map();
+			imports			= new StrMap();
 			isStarted		= true;
 		}
 	}
