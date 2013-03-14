@@ -101,26 +101,26 @@ cd "$PRIMEVC_ROOT" &&
 if [[ ${MainClass} == "" ]] ; then
 	echo "Error: Mainclass is not specified"
 else
-#	echo -e "\tMain: $MainClass"
-#	echo -e "\tStyle: $STYLEDIR"
-#	echo -e "\tDebugging: ${Debug:-false}"
-#	echo -e "\tProfiling: ${PROFILING:-false}"
-#	echo -e "\tConsole: ${CONSOLE}"
-#	echo -e "\tAssets: $ASSETS"
-#	echo -e "\tProject: $PRJROOT"
-#	echo -e "\tOutput: $OUTPUT"
-#	echo -e "\tPrimeVC: $PRIMEVC_ROOT"
-#	echo -e "\tLocal file access: $ACCESS"
-#	echo -e "\tExtra: ${EXTRA:-"no extra's"}"
-#	echo -e "\tCode coverage: $CODECOVERAGE"
+	echo -e "\tMain: $MainClass"
+	echo -e "\tStyle: $STYLEDIR"
+	echo -e "\tDebugging: ${Debug:-false}"
+	echo -e "\Profiling: ${PROFILING:-false}"
+	echo -e "\tConsole: ${CONSOLE}"
+	echo -e "\tAssets: $ASSETS"
+	echo -e "\tProject: $PRJROOT"
+	echo -e "\tOutput: $OUTPUT"
+	echo -e "\tPrimeVC: $PRIMEVC_ROOT"
+	echo -e "\tLocal file access: $ACCESS"
+	echo -e "\tExtra: ${EXTRA:-"no extra's"}"
+	echo -e "\tCode coverage: $CODECOVERAGE"
 	
-#	echo "=== BUILDING ASSETS ==="
+	echo "=== BUILDING ASSETS ==="
 	bash build/build-assets \
 		--release-lib "$PRIMEVC_ROOT/libs/macmousewheel" --release-lib "$PRIMEVC_ROOT/libs/as3-flexless" --release-lib "$PRIMEVC_ROOT/libs/swfaddress" \
 		--debug-lib "$PRIMEVC_ROOT/libs/monsterdebugger/v3" --debug-lib "$PRIMEVC_ROOT/libs/monsterdebugger/v2" --debug-lib "$PRIMEVC_ROOT/libs/alcon" \
 		 	|| exit 1;
 	
-#	echo -e "\n=== BUILDING STYLES ==="
+	echo -e "\n=== BUILDING STYLES ==="
 	bash build/build-styles -s "${STYLEDIR}" ${Force:+-f} || exit 1;
 
 	if [[ -f "$OUTPUT" ]] ; then
@@ -129,8 +129,7 @@ else
 		OLDSIZE=0
 	fi;
 
-	echo -e "\tCompiling App ($(date))"
-#	haxe --connect 6543 build/build.hxml \
+	echo -e "\n=== COMPILING SWF === ($(date))"
 	time echo build/build.hxml \
 		-swf "'$OUTPUT'" \
 		--dead-code-elimination \
