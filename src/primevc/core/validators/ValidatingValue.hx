@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.validators;
- import primevc.core.traits.QueueingInvalidatable;
   using primevc.utils.Bind;
   using primevc.utils.BitUtil;
   using Std;
@@ -37,8 +36,8 @@ package primevc.core.validators;
  * @creation-date	Jun 20, 2010
  * @author			Ruben Weijers
  */
-class ValidatingValue < DataType > extends QueueingInvalidatable
-#if flash	,	implements haxe.rtti.Generic	#end
+#if flash9 @:generic #end
+class ValidatingValue < DataType > extends primevc.core.traits.QueueingInvalidatable
 {
 	public var validator			(default, setValidator)	: IValueValidator < DataType >;
 	public var value				(default, setValue)		: DataType;

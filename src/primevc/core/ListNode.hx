@@ -29,7 +29,7 @@
 package primevc.core;
 
 
-class ListNode <T> implements haxe.rtti.Generic
+@:generic class ListNode <T>
 {
 	/** Pointer to the next ListNode object **/
 	private var n : T;

@@ -854,7 +854,7 @@ class MacroExprUtil
 					case CFloat(s):		s;
 					case CString(s):	s;
 					case CIdent(s):		s;
-					case CType(s):		s;
+			//		case CType(s):		s;
 					default:			null;
 				}
 			default:					null;

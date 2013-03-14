@@ -87,10 +87,10 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 	override public function play ( withEffect:Bool = true, directly:Bool = false ) : Void
 	{
 		var p = anchorPoint;
-		var t = target;
+		var t = target.rect;
 		
 		var curScale = target.scaleX;
-		t.scaleX = t.scaleY = 1;
+		target.scaleX = target.scaleY = 1;
 		
 		switch (effect.zoomPosition)
 		{
@@ -110,7 +110,7 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 			default:			p.x = 0;				p.y = 0;
 		}
 		trace("startValue: "+ startValue +", anchorPoint " + p.x + ", " + p.y+"; scale "+curScale);
-		t.scaleX = t.scaleY = curScale;
+		target.scaleX = target.scaleY = curScale;
 		super.play( withEffect, directly );
 	}
 #end

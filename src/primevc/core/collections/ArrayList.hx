@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.collections;
- import primevc.utils.FastArray;
   using primevc.utils.FastArray;
  
 
@@ -35,7 +34,7 @@ package primevc.core.collections;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
-class ArrayList <DataType> extends ReadOnlyArrayList <DataType>, implements IEditableList <DataType>, implements haxe.rtti.Generic
+@:generic class ArrayList <DataType> extends ReadOnlyArrayList <DataType>, implements IEditableList <DataType>
 {
 	public function new( wrapAroundList:FastArray<DataType> = null ) super(wrapAroundList)	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 

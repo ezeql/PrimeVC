@@ -27,11 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.collections;
- import primevc.core.collections.iterators.IIterator;
- import primevc.core.collections.iterators.FastDoubleCellForwardIterator;
- import primevc.core.collections.iterators.FastDoubleCellReversedIterator;
  import primevc.core.events.ListChangeSignal;
- import primevc.utils.DuplicateUtil;
   using primevc.utils.NumberUtil;
  
 
@@ -43,8 +39,8 @@ package primevc.core.collections;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
+#if flash9 @:generic #end
 class SimpleList<DataType> implements IEditableList<DataType> 
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var change		(default, null)		: ListChangeSignal<DataType>;
 	public var beforeChange	(default, null)		: ListChangeSignal<DataType>;
@@ -116,7 +112,7 @@ class SimpleList<DataType> implements IEditableList<DataType>
 		var inst	= new SimpleList<DataType>();
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( primevc.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}
@@ -127,10 +123,10 @@ class SimpleList<DataType> implements IEditableList<DataType>
 		return length == 0;
 	}
 	
-	private inline function getLength ()	: Int					{ return _length; }
-	public function iterator ()				: Iterator <DataType>	{ return forwardIterator(); }
-	public function forwardIterator ()		: IIterator <DataType>	{ return new FastDoubleCellForwardIterator <DataType> (first); }
-	public function reversedIterator ()		: IIterator <DataType>	{ return new FastDoubleCellReversedIterator <DataType> (last); }
+	private inline function getLength ()	return _length
+	public function iterator ()				return forwardIterator()
+	public function forwardIterator ()		return new primevc.core.collections.iterators.FastDoubleCellForwardIterator <DataType> (first)
+	public function reversedIterator ()		return new primevc.core.collections.iterators.FastDoubleCellReversedIterator <DataType> (last)
 
 	
 	

@@ -27,13 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.gui.layout.algorithms;
-#if CSSParser
- import primevc.tools.generator.ICodeGenerator;
-#end
  import primevc.core.geom.space.Horizontal;
  import primevc.core.geom.space.Vertical;
- import primevc.gui.layout.algorithms.LayoutAlgorithmBase;
- import primevc.gui.layout.AdvancedLayoutClient;
  import primevc.gui.layout.LayoutFlags;
   using primevc.utils.BitUtil;
   using primevc.utils.NumberUtil;
@@ -47,7 +42,7 @@ package primevc.gui.layout.algorithms;
  * @author Ruben Weijers
  * @creation-date Sep 03, 2010
  */
-class VerticalBaseAlgorithm extends LayoutAlgorithmBase
+class VerticalBaseAlgorithm extends primevc.gui.layout.algorithms.LayoutAlgorithmBase
 {
 	public var direction			(default, setDirection)		: Vertical;
 	
@@ -118,7 +113,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	{
 		if (!validatePrepared)
 		{
-			var width:Int = group.childWidth;
+			var width = group.childWidth;
 		
 			if (group.childWidth.notSet())
 			{
@@ -226,7 +221,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	override public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 #end
 #if CSSParser
-	override public function toCode (code:ICodeGenerator)
+	override public function toCode (code:primevc.tools.generator.ICodeGenerator)
 	{
 		code.construct( this, [ direction, horizontal ] );
 	}

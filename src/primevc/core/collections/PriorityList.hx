@@ -27,12 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.collections;
- import primevc.core.collections.iterators.IIterator;
- import primevc.core.collections.iterators.FastDoubleCellForwardIterator;
- import primevc.core.collections.iterators.FastDoubleCellReversedIterator;
- import primevc.core.traits.IClonable;
- import primevc.core.traits.IPrioritizable;
- import primevc.core.traits.IDisposable;
 
 
 /**
@@ -41,10 +35,10 @@ package primevc.core.collections;
  * @author Ruben Weijers
  * @creation-date Oct 20, 2010
  */
-class PriorityList < DataType : IPrioritizable >
-						implements IDisposable
-					,	implements IClonable < PriorityList < DataType > >
-#if (flash9 || cpp)	,	implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class PriorityList<DataType:primevc.core.traits.IPrioritizable>
+		implements primevc.core.traits.IDisposable
+	,	implements primevc.core.traits.IClonable < PriorityList < DataType > >
 {
 	public var length		(default, null)		: Int;
 	/**
@@ -59,9 +53,9 @@ class PriorityList < DataType : IPrioritizable >
 	
 	public function new ()				{ length = 0; }
 	public function dispose ()			{ removeAll(); }
-	public function iterator ()			: Iterator <DataType>	{ return forwardIterator(); }
-	public function forwardIterator ()	: IIterator <DataType>	{ return new FastDoubleCellForwardIterator <DataType> (first); }
-	public function reversedIterator ()	: IIterator <DataType>	{ return new FastDoubleCellReversedIterator <DataType> (last); }
+	public function iterator ()			{ return forwardIterator(); }
+	public function forwardIterator ()	{ return new primevc.core.collections.iterators.FastDoubleCellForwardIterator <DataType> (first); }
+	public function reversedIterator ()	{ return new primevc.core.collections.iterators.FastDoubleCellReversedIterator <DataType> (last); }
 	
 	
 	public function clone ()

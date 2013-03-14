@@ -27,14 +27,14 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package primevc.core.collections;
- import primevc.core.traits.IDisposable;
 
 
 /**
  * Copied from haxe.FastList (since it's not in a seperate file :-S)
  * @since	20 okt 2010
  */
-class FastCell<T> implements IDisposable #if (flash9 || cpp) , implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class FastCell<T> implements primevc.core.traits.IDisposable
 {
 	public var data : T;
 	public var next : FastCell<T>;
