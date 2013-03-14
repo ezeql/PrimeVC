@@ -133,7 +133,7 @@ else
 #	haxe --connect 6543 build/build.hxml \
 	time echo build/build.hxml \
 		-swf "'$OUTPUT'" \
-		--dead-code-elimination \
+		--dce full \
 		${Debug:---no-traces} \
 		$EXTRA \
 		--cwd "'$PRJROOT'" \
