@@ -128,6 +128,18 @@ class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements
 	}
 	
 	
+	public #if !noinline inline #end function hasListener( owner : Dynamic, ?handler : Null<FunctionSignature> ) : Bool
+	{
+		var b = this.n;
+		
+		while (b.notNull()) {
+			if( b.isBoundTo(owner, handler) ) return true;
+			b = b.next();
+		}
+		return false;
+	}
+	
+	
 	/** Identify where the event is called (nice for debugging) ** /
 	public #if !noinline inline #end function source(?pos:haxe.PosInfos)
 	{

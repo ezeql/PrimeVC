@@ -551,7 +551,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 					if (child.outerBounds.top == 0)		child.outerBounds.top	= padding.top;
 					invalidate( Flags.LIST );
 				}
-				child.listeners.add(this);
+				child.invalidated.bind(this, invalidateCall);
 				
 				if (!fixedLength)
 					childrenLength++;
@@ -559,7 +559,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 			
 			case removed( child, oldPos ):
 				child.parent = null;
-				child.listeners.remove(this);
+				child.invalidated.unbind(this);
 				
 				//reset boundary properties without validating
 			/*	child.outerBounds.left	= 0;

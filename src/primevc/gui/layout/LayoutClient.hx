@@ -168,8 +168,8 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 		(untyped this).margin			= EMPTY_BOX;
 		(untyped this).padding			= EMPTY_BOX;
 		
-		innerBounds	.listeners.add( this );
-		outerBounds	.listeners.add( this );
+		innerBounds.invalidated.bind(this, invalidateCall);
+		outerBounds.invalidated.bind(this, invalidateCall);
 		
 		//remove and set correct flags
 		changes = changes.set( Flags.X | Flags.Y | Flags.WIDTH * newWidth.isSet().boolCalc() | Flags.HEIGHT * newHeight.isSet().boolCalc() );
@@ -341,7 +341,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 
-	public #if !noinline inline #end function isChanged ()			{ return changes > 0; }
+	public #if !noinline inline #end function isChanged ()			{ return changes != 0; }
 	public #if !noinline inline #end function isValidated ()		{ return state.is(ValidateStates.validated); }
 	public #if !noinline inline #end function isValidating ()		{ return state == null ? false : state.is(ValidateStates.validating) || (parent != null && parent.isValidating()); }
 	public #if !noinline inline #end function isInvalidated ()		{ return state == null ? false : state.is(ValidateStates.invalidated) || state.is(ValidateStates.parent_invalidated); }
@@ -770,7 +770,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			return;
 		}
 		
-		
+		//FIXME: Is this always safe? Why?
 		if (propChanges == RectangleFlags.BOTTOM || propChanges == RectangleFlags.RIGHT)
 			return;
 		
