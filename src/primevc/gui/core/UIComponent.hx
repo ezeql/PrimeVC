@@ -141,6 +141,7 @@ class UIComponent extends Sprite, implements IUIComponent
 		    layout = new LayoutClient();
 #if debug
         layout.name = id+"Layout";
+        this.name = id;
 #end
 		state.current = state.constructed;
 	}

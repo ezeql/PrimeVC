@@ -770,8 +770,9 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			return;
 		}
 		
-		//FIXME: Is this always safe? Why?
-		if (propChanges == RectangleFlags.BOTTOM || propChanges == RectangleFlags.RIGHT)
+		// Ruben: Should be safe, bottom and right properties don't change the x,y, width or height.
+		//        If they do, those flags are also set in propChanges.
+		if (propChanges == propChanges & (RectangleFlags.BOTTOM | RectangleFlags.RIGHT))
 			return;
 		
 		var box = sender.as(IntRectangle);
@@ -783,7 +784,6 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			if (propChanges.has( RectangleFlags.WIDTH ))	width	= box.width  - getHorPadding() - getHorMargin(); //.abs();
 			if (propChanges.has( RectangleFlags.HEIGHT ))	height	= box.height - getVerPadding() - getVerMargin(); //.abs();
 		}
-	
 		else if (box == innerBounds)
 		{
 			if (propChanges.has( RectangleFlags.LEFT ))		x		= /*margin == null ? box.left : */box.left - margin.left; //.abs();
@@ -791,6 +791,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			if (propChanges.has( RectangleFlags.WIDTH ))	width	= box.width - getHorPadding();
 			if (propChanges.has( RectangleFlags.HEIGHT ))	height	= box.height - getVerPadding();
 		}
+		else Assert.that(box == null, "box ("+box+") should be innerBounds or outerBounds");
 	}
 	
 	
