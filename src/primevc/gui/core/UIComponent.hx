@@ -268,13 +268,13 @@ class UIComponent extends Sprite, implements IUIComponent
 	// ATTACH METHODS
 	//
 	
-	public  inline function attachLayoutTo		(t:ILayoutContainer, pos:Int = -1)	: IUIElement	{ layout.attachTo( t, pos );												return this; }
-	public  inline function detachLayout		()									: IUIElement	{ layout.detach();															return this; }
-	public  inline function changeLayoutDepth	(pos:Int)							: IUIElement	{ layout.changeDepth( pos );												return this; }
-	public  inline function changeDepth			(pos:Int)							: IUIElement	{ changeLayoutDepth(pos);					changeDisplayDepth(pos);		return this; }
+	public  #if !noinline inline #end function attachLayoutTo	(t:ILayoutContainer, pos:Int = -1)	: IUIElement	{ layout.attachTo( t, pos );												return this; }
+	public  #if !noinline inline #end function detachLayout		()									: IUIElement	{ layout.detach();															return this; }
+	public  #if !noinline inline #end function changeLayoutDepth(pos:Int)							: IUIElement	{ layout.changeDepth( pos );												return this; }
+	public  #if !noinline inline #end function changeDepth		(pos:Int)							: IUIElement	{ changeLayoutDepth(pos);					changeDisplayDepth(pos);		return this; }
 
-	public  inline function attachTo			(t:IUIContainer, pos:Int = -1)		: IUIElement	{ attachLayoutTo(t.layoutContainer, pos);	attachToDisplayList(t, pos);	return this; }
-	private inline function applyDetach			()									: IUIElement	{ detachDisplay();							detachLayout();					return this; }
+	public  #if !noinline inline #end function attachTo			(t:IUIContainer, pos:Int = -1)		: IUIElement	{ attachLayoutTo(t.layoutContainer, pos);	attachToDisplayList(t, pos);	return this; }
+	private #if !noinline inline #end function applyDetach		()									: IUIElement	{ detachDisplay();							detachLayout();					return this; }
 	
 
 	public  /*inline*/ function attachToDisplayList (t:IDisplayContainer, pos:Int = -1)	: IUIElement
@@ -454,7 +454,7 @@ class UIComponent extends Sprite, implements IUIComponent
 			return;
 		
 	    validateWire.disable();
-		if (changes > 0) {
+		if (changes != 0) {
 			if (skin != null)
 				skin.validate(changes);
 			
