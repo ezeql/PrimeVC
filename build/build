@@ -134,8 +134,8 @@ else
 		-swf "'$OUTPUT'" \
 		--dead-code-elimination \
 		${Debug:---no-traces} \
-		$EXTRA \
 		--cwd "'$PRJROOT'" \
+		$EXTRA \
 		-cp "'${PRIMEVC_ROOT}/src'" \
 		-cp "'$STYLEDIR'" \
 		-main $MainClass \

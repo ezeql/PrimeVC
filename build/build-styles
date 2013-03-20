@@ -3,8 +3,9 @@
 
 BUILDSCRIPTDIR=${0//\\//}
 BUILDSCRIPTDIR="${BUILDSCRIPTDIR%/*}"
-PRIMEVC_ROOT="${BUILDSCRIPTDIR}/.."
-STYLE_ROOT=$(haxelib path prime-css | sed -n 1p)
+PRIMEVC_ROOT=`cd "${BUILDSCRIPTDIR}/.."; pwd;`
+STYLE_ROOT="${PRIMEVC_ROOT}/prime-css/src/"
+#STYLE_ROOT=$(haxelib path prime-css | sed -n 1p)
 #PRJROOT=${PRIMEVC_ROOT}
 
 MINPARAMS=1
@@ -29,6 +30,8 @@ while getopts "s:tfd" OptionName
 	esac
 done
 
+if [ -z $StyleFolder ]; then echo "Usage: build-styles <path/to/style/directory>"; exit 1; fi;
+
 #StyleFolder="$PRJROOT/$STYLE"
 StyleInputFile="$StyleFolder/Style.css"
 StyleOutputFile="$StyleFolder/StyleSheet.hx"
@@ -46,12 +49,14 @@ CompilerUpdated=false
 #create parser if the source files have changed
 if $Force || [[ ! -f "$Parser" ]]  ||  test "$MainFile" -nt "$Parser"  ||  test "$ParserClass" -nt "$Parser"; then  # ||  test ${StyleFile} -nt ${Parser} ; then
 	echo -e "\tCompiling parser"
-	haxe "$PRIMEVC_ROOT/build/build-cssparser.hxml" \
+	cd "$PRIMEVC_ROOT"
+	time haxe build/build-cssparser.hxml \
 		-main $MainClass \
 		-js "$Parser" \
 		$Debug \
 		${Debug:---no-traces --dead-code-elimination} || exit 1;
 	CompilerUpdated=true
+	cd -
 fi;
 
 if [[ ! -f "$Parser" ]] ; then
