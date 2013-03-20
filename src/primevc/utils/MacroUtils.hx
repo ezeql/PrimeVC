@@ -249,14 +249,32 @@ class MacroUtils
 	 */
 	private static inline function disposeFieldsImpl () : Expr
 	{
-		var blocks = fields().generateMethodCalls([], "dispose()", "IDisposable", true);
-		if (blocks.length > 0)
-			blocks = fields().setValueOf(blocks, "IDisposable", "null" );
+		var blocks = [];
+		var pos = Context.currentPos();	
+		var f = fields();
 		
+		for ( field in f )
+		{
+			if ( !MacroTypeUtil.isVar(field) )
+				continue;
+			
+			var c = field.getClassType();
+			if ( c.hasInterface("IDisposable") || c.isClass("IDisposable") )
+			{
+				// @manual is blanket skip of build/autoBuild macros, @borrowed skips only dispose() calls
+				if ( !field.meta.has("manual") && !field.meta.has("borrowed") )
+				{				
+					var expr = "if ((untyped this)." + field.name + " != null) { (untyped this)."+field.name+".dispose(); }";
+					blocks.push( Context.parse(expr, pos) );
+				}
+			}
+			
+			if ( !field.meta.has("manual") )
+			blocks.push( Context.parse("this."+field.name+" = null", pos) );
+		}
+			
 		return blocks.toExpr();
 	}
-	
-	
 	
 	private static inline function startListeningFieldsImpl () : Expr
 	{
