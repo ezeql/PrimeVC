@@ -29,7 +29,6 @@
  */
 package prime.utils;
  import haxe.macro.Expr;
- import tink.macro.tools.AST;
 
 /**
  * Helper class for working with bit flags
@@ -97,17 +96,17 @@ package prime.utils;
 	/**
 	 * Returns an UInt with the bits set in 'flag' added to 'bits'.
 	 */
-	@:macro static public function set (bits:ExprRequire<UInt>, flag:ExprRequire<UInt>) return AST.build({
+	@:macro static public function set (bits:ExprRequire<UInt>, flag:ExprRequire<UInt>) return macro {
 		$bits |= $flag;
-	})
+	}
 
 	/**
 	 * Returns an UInt with the bits set in 'flag' removed from 'bits'.
 	 */
-	@:macro static public function unset (bits:ExprRequire<UInt>, flag:ExprRequire<UInt>) return AST.build(
+	@:macro static public function unset (bits:ExprRequire<UInt>, flag:ExprRequire<UInt>) return  macro {
 		//is faster and better predictable than the commented code since there's one if statement less (6 ms faster on 7.000.000 iterations)
 		//return bits &= 0xffffffff ^ flag; // has(bits, flag) ? bits ^= flag : bits;
 		//or what about (bits & -flag)
-		$bits &= (0xffffffff ^ $flag)
-	)
+		$bits &= (0xffffffff ^ $flag);
+	}
 }
