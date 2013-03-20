@@ -235,7 +235,7 @@ class URI #if CSSParser implements prime.tools.generator.ICodeFormattable #end
 		return string = s.toString();
 	}
 	
-#if (flash9 && prime_net)
+#if flash9
 	public function toRequest(method : prime.net.RequestMethod = null)
 	{
 		var r = new flash.net.URLRequest(this.toString());
