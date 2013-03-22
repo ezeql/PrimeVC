@@ -85,9 +85,6 @@ class QueueManager implements IDisposable, implements IValidatable
 	 */
 	public function add ( obj:IValidatable )
 	{
-		if (traceQueues)
-			trace("Add "+obj+" to queue. "+ (obj.isQueued()? " – already queued tho." : ""));
-
 		//if the invalidated object is the first in the list, it's probably 
 		//invalidated during it's own validation. To make sure the object is valid
 		//it will be removed from the queue and then added at the end of the 
@@ -134,9 +131,6 @@ class QueueManager implements IDisposable, implements IValidatable
 	 */
 	public function remove ( obj:IValidatable )
 	{
-		if (traceQueues)
-			trace("Remove "+obj+"from queue.");
-
 		var next = obj.nextValidatable;
 		var prev = obj.prevValidatable;
 		if (prev == this) prev = null;
