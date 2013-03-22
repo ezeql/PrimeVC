@@ -181,7 +181,6 @@ class Window implements IDisplayContainer, implements IDisablable
 	public function invalidate ()
 	{
 		target.invalidate();
-		displayEvents.render.send();
 	//	target.focus = target;
 	}
 	

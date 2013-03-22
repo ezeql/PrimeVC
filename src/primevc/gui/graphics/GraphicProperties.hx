@@ -332,8 +332,8 @@ class GraphicProperties implements IGraphicElement
 				layout.invalidated.unbind(this);
 
 			layout = v;
-			if (layout != null)
-				layout.invalidated.bind(this, invalidateCall);
+			if (v != null)
+				v.invalidated.bind(this, invalidateCall);
 			
 			invalidate( GraphicFlags.LAYOUT );
 		}
