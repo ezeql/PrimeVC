@@ -132,11 +132,12 @@ class Signal <FunctionSignature> extends WireList<FunctionSignature>, implements
 	{
 		var b = this.n;
 		
+		var found = false;
 		while (b.notNull()) {
-			if( b.isBoundTo(owner, handler) ) return true;
-			b = b.next();
+			if ( b.isBoundTo(owner, handler) ) { b = null; found = true; }
+			else b = b.next();
 		}
-		return false;
+		return found;
 	}
 	
 	
