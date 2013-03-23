@@ -46,7 +46,8 @@ class ButtonLabelSkin extends primevc.gui.core.Skin<primevc.gui.components.Butto
 	override public function createChildren ()
 	{
 		owner.attach( labelField = UITextField.createLabelField(owner.id.value + "TextField", owner.data, owner, owner.layoutContainer) );
-		Assert.isNull(owner.layoutContainer.algorithm);
+		owner.layoutContainer.algorithm = null;
+		//Assert.isNull(owner.layoutContainer.algorithm, "Skin of " + owner.id.value);
 	}
 
 

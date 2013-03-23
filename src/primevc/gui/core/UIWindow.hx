@@ -208,7 +208,7 @@ class UIWindow extends primevc.gui.display.Window
 		topLayout	=	#if flash9	new primevc.avm2.layout.StageLayout( target );
 						#else		new LayoutContainer();	#end
 		
-		layout		= new VirtualLayoutContainer( #if debug "contentLayout" #end );
+		layout		= new VirtualLayoutContainer( #if debug "stagecontentLayout" #end );
 		popupLayout	= new VirtualLayoutContainer( #if debug "popupLayout" #end );
 		layout.invalidatable 	= popupLayout.invalidatable = false;
 		
