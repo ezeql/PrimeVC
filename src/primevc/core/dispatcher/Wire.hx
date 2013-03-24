@@ -40,7 +40,7 @@ package primevc.core.dispatcher;
  * 
  * This allows to quickly (temporarily) disconnect (disable) the handler from the signal dispatcher.
  * 
- * Implementation detail: Wires are added to a bounded freelist (max 256 free objects) to reduce garbage collector pressure.
+ * Implementation detail: Wires are added to a bounded freelist (max 8096 free objects) to reduce garbage collector pressure.
  * This means you should never reuse a Wire after calling dispose() and/or after unbinding the handler from the signal (which returned this Wire).
  */
 class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements IDisposable, implements IDisablable
@@ -57,17 +57,18 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	static private var free : Wire<Dynamic>;
 	static public  var freeCount : Int = 0;
 	
-/*	static function __init__()
-	{	X_WIRES) {
-			var b  = new Wire();
-			b.n	   = W.free;
+	static function __init__()
+	{
+		var W = Wire;
+		var b = new Wire();
+			b.n	= W.free;
 		var W = Wire;
 		// Pre-allocate Wires
-		for (i in 0 ... MA
+		for (i in 0 ... MAX_WIRES) {
 			W.free = b;
 			++W.freeCount;
 		}
-	}*/
+	}
 		
 	static public function make<T>( dispatcher:Signal<T>, owner:Dynamic, handlerFn:T, flags:Int #if debug, ?pos : haxe.PosInfos #end ) : Wire<T>
 	{

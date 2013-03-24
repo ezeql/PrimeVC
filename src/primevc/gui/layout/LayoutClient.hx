@@ -168,8 +168,8 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 		(untyped this).margin			= EMPTY_BOX;
 		(untyped this).padding			= EMPTY_BOX;
 		
-		innerBounds	.listeners.add( this );
-		outerBounds	.listeners.add( this );
+		innerBounds.invalidated.bind(this, invalidateCall);
+		outerBounds.invalidated.bind(this, invalidateCall);
 		
 		//remove and set correct flags
 		changes = changes.set( Flags.X | Flags.Y | Flags.WIDTH * newWidth.isSet().boolCalc() | Flags.HEIGHT * newHeight.isSet().boolCalc() );
@@ -341,7 +341,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 
-	public #if !noinline inline #end function isChanged ()			{ return changes > 0; }
+	public #if !noinline inline #end function isChanged ()			{ return changes != 0; }
 	public #if !noinline inline #end function isValidated ()		{ return state.is(ValidateStates.validated); }
 	public #if !noinline inline #end function isValidating ()		{ return state == null ? false : state.is(ValidateStates.validating) || (parent != null && parent.isValidating()); }
 	public #if !noinline inline #end function isInvalidated ()		{ return state == null ? false : state.is(ValidateStates.invalidated) || state.is(ValidateStates.parent_invalidated); }
@@ -770,8 +770,9 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			return;
 		}
 		
-		
-		if (propChanges == RectangleFlags.BOTTOM || propChanges == RectangleFlags.RIGHT)
+		// Ruben: Should be safe, bottom and right properties don't change the x,y, width or height.
+		//        If they do, those flags are also set in propChanges.
+		if (propChanges == propChanges & (RectangleFlags.BOTTOM | RectangleFlags.RIGHT))
 			return;
 		
 		var box = sender.as(IntRectangle);
@@ -783,7 +784,6 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			if (propChanges.has( RectangleFlags.WIDTH ))	width	= box.width  - getHorPadding() - getHorMargin(); //.abs();
 			if (propChanges.has( RectangleFlags.HEIGHT ))	height	= box.height - getVerPadding() - getVerMargin(); //.abs();
 		}
-	
 		else if (box == innerBounds)
 		{
 			if (propChanges.has( RectangleFlags.LEFT ))		x		= /*margin == null ? box.left : */box.left - margin.left; //.abs();
@@ -791,6 +791,7 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 			if (propChanges.has( RectangleFlags.WIDTH ))	width	= box.width - getHorPadding();
 			if (propChanges.has( RectangleFlags.HEIGHT ))	height	= box.height - getVerPadding();
 		}
+		else Assert.that(box == null, "box ("+box+") should be innerBounds or outerBounds");
 	}
 	
 	

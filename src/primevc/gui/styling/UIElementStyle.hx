@@ -433,7 +433,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		if (styleCell.notNull())
 		{
 			// ADD LISTENERS
-			style.listeners.add( this );
+			style.invalidated.bind(this, invalidateCall);
 			// FIND CHANGES
 			changes =   (style.has( Flags.BOX_FILTERS ) && boxFilters.add( style.boxFilters ) 	> 0 ? Flags.BOX_FILTERS : 0)
 					  | (style.has( Flags.EFFECTS )		&& effects	 .add( style.effects ) 		> 0 ? Flags.EFFECTS 	: 0)
@@ -467,7 +467,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		//
 		// REMOVE LISTENERS
 		//
-		style.listeners.remove( this );
+		style.invalidated.unbind(this);
 		
 		var c =   (style.has( Flags.BOX_FILTERS )	&& boxFilters.remove( style.boxFilters	, isStyleStillInList ) > 0 ? Flags.BOX_FILTERS 	: 0)
 				| (style.has( Flags.EFFECTS )		&& effects	 .remove( style.effects		, isStyleStillInList ) > 0 ? Flags.EFFECTS 		: 0)
@@ -637,7 +637,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	}
 
 
-	private inline function removeStyles (removableStyles:FastArray<StyleBlock>) : Int
+	private function removeStyles (removableStyles:FastArray<StyleBlock>) : Int
 	{
 		var changes = 0;
 		for (style in removableStyles)
@@ -647,7 +647,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	}
 
 
-	private inline function addStyles (newStyles:FastArray<StyleBlock>) : Int
+	private function addStyles (newStyles:FastArray<StyleBlock>) : Int
 	{
 		var changes = 0;
 		for (newStyle in newStyles)

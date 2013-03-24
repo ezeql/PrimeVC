@@ -131,7 +131,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 		if (isListeningTo(style))
 			return 0;
 		
-		style.listeners.add( this );
+		style.invalidated.bind( this, invalidateCall );
 
 		var updatedProps = getRealChangesOf( style, style.allFilledProperties );
 		if (updatedProps > 0) {
@@ -145,8 +145,10 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 	public function remove ( style:StyleGroupType, isStyleStillInList:Bool = true ) : Int
 	{
 		Assert.notNull(style);
-		if (!style.listeners.remove( this ))
+
+		if (!style.invalidated.hasListener(this))
 			return 0;
+		else style.invalidated.unbind(this); //TODO: Optimize by getting unbind count from Signal
 		
 		updateFilledPropertiesFlag( style );	//exclude the to be removed style
 		
@@ -164,13 +166,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 
 	private inline function isListeningTo (style:StyleGroupType) : Bool
 	{
-		var l = false;
-		var c = style.listeners.head;
-		while (c != null && !l) {
-			l = this == c.elt;
-			c = c.next;
-		}
-		return l;
+		return style.invalidated.hasListener(this);
 	}
 	
 	
