@@ -80,7 +80,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 			W.free = (w = W.free).n; // i know it's unreadable.. but it's faster.
 			--W.freeCount;
 			w.n = null;
-			Assert.that(w.owner == null && w.handler == null && w.signal == null && w.n == null);
+			Assert.that(w.owner == null && w.handler == null && w.signal == null && w.n == null, w.owner + ", " + w.handler + ", " + w.signal + ", " + w.n);
 			w.flags	  = flags;
 		}
 		
