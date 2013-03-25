@@ -26,15 +26,15 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
- * An ISender4 facilitates dispatching of 4-tuple messages.
+ * An ISender1 facilitates dispatching of messages.
  * 
  * @author Danny Wilson
  * @creation-date Jun 09, 2010
  */
-interface ISender4 <A,B,C,D> implements ISender
+interface ISender1 <A> implements ISender
 {
-	public function send (a:A, b:B, c:C, d:D)	: Void;
+	public function send (a:A)					: Void;
 }

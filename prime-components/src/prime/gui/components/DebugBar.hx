@@ -30,7 +30,7 @@
  */
 package prime.gui.components;
  import prime.core.Error;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.gui.core.UIContainer;
  import prime.gui.core.UIWindow;
  import prime.layout.algorithms.LayoutAlgorithmBase;

@@ -1,7 +1,7 @@
 package prime.js.events;
  import prime.gui.events.DisplayEvents;
  import prime.gui.events.UserEventTarget;
- import prime.signal.Wire;
+ import prime.signals.Wire;
 
 
 /**
@@ -29,7 +29,7 @@ class DisplayEvents extends DisplaySignals
  * @author Ruben Weijers
  * @creation-date Nov 22, 2011
  */
-private class EnterFrameSignal extends prime.signal.Signal0
+private class EnterFrameSignal extends prime.signals.Signal0
 {
 	private static inline var INTERVAL = 33; 	//30fps
 	private var timer : Timer;

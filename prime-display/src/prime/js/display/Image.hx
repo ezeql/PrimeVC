@@ -1,7 +1,7 @@
 package prime.js.display;
 
  import js.Dom;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.js.events.DisplayEvents;
  import prime.js.events.DisplaySignal;
   using prime.utils.Bind;

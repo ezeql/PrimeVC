@@ -29,7 +29,7 @@
 package prime.fsm;
  import prime.core.traits.IDisablable;
  import prime.core.traits.IDisposable;
- import prime.signal.Signal2;
+ import prime.signals.Signal2;
  import prime.utils.FastArray;
 
 

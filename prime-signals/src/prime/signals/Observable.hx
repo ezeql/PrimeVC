@@ -26,7 +26,7 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
  * Used by prime.utils.Bind

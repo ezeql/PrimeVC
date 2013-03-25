@@ -30,7 +30,7 @@
  */
 package prime.gui.components;
  import prime.bindable.collections.IReadOnlyList;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.core.traits.IValueObject;
  import prime.gui.core.IUIDataElement;
  import prime.gui.core.UIDataContainer;

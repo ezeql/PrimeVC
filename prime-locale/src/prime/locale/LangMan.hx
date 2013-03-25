@@ -1,5 +1,5 @@
 package prime.locale;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
 
 
 /**

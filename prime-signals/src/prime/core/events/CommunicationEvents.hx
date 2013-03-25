@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.core.events;
- import prime.signal.Signal0;
- import prime.signal.Signals;
+ import prime.signals.Signal0;
+ import prime.signals.Signals;
 
 
 typedef CommunicationEvents =
@@ -43,8 +43,8 @@ typedef CommunicationEvents =
 
 typedef ErrorHandler	= String -> Void;
 typedef ProgressHandler	= UInt -> UInt -> Void;
-typedef ErrorSignal		= prime.signal.Signal1<String>;
-typedef ProgressSignal	= prime.signal.Signal2<UInt,UInt>;
+typedef ErrorSignal		= prime.signals.Signal1<String>;
+typedef ProgressSignal	= prime.signals.Signal2<UInt,UInt>;
 
 
 /**

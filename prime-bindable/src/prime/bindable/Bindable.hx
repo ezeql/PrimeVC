@@ -29,7 +29,7 @@
  */
 package prime.bindable;
  import prime.bindable.IBindableReadonly;
- import prime.signal.Signal2;
+ import prime.signals.Signal2;
  import prime.core.traits.IClonable;
  import haxe.FastList;
   using prime.utils.IfUtil;

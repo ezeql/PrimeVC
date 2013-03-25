@@ -36,7 +36,7 @@ package prime.layout.algorithms;
  import prime.layout.IAdvancedLayoutClient;
  import prime.layout.ILayoutContainer;
  import prime.layout.LayoutClient;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.types.Number;
  import prime.utils.NumberUtil;
   using prime.utils.NumberUtil;

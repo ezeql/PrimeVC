@@ -1,8 +1,8 @@
 package prime.js.events;
 
-import prime.signal.Wire;
-import prime.signal.Signal0;
-import prime.signal.IWireWatcher;
+import prime.signals.Wire;
+import prime.signals.Signal0;
+import prime.signals.IWireWatcher;
 import prime.core.ListNode;
 import js.Dom;
 

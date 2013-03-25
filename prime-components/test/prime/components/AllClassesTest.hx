@@ -121,7 +121,7 @@ import prime.gui.traits.IStylable;
 import prime.gui.traits.IValidatable;
 import prime.gui.utils.UIElementActions;
 
-import prime.signal.Wire;
+import prime.signals.Wire;
 
 /**
 * Auto generated MassiveUnit Test Class 

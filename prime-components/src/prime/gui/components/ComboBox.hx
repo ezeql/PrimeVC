@@ -30,7 +30,7 @@
  */
 package prime.gui.components;
  import prime.bindable.collections.IReadOnlyList;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.gui.behaviours.components.ButtonSelectedOpenPopup;
  import prime.gui.behaviours.components.KeyboardListNavigation;
  import prime.gui.behaviours.layout.FollowObjectBehaviour;

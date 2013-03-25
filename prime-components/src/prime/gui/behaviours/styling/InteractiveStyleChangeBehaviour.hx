@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.behaviours.styling;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.gui.behaviours.BehaviourBase;
  import prime.gui.core.IUIComponent;
  import prime.gui.events.FocusState;

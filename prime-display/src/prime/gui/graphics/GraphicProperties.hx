@@ -28,7 +28,7 @@
  */
 package prime.gui.graphics;
  import haxe.FastList;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.core.geom.Corners;
  import prime.core.geom.IntRectangle;
  import prime.core.geom.RectangleFlags;

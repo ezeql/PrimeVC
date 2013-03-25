@@ -27,7 +27,7 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package prime.gui.events;
- import prime.signal.Signals;
+ import prime.signals.Signals;
  import prime.core.geom.Point;
  import prime.core.traits.IClonable;
  import prime.gui.events.KeyModState;
@@ -42,7 +42,7 @@ typedef MouseEvents =
 	#else   #error; #end
 
 typedef MouseHandler	= MouseState -> Void;
-typedef MouseSignal		= prime.signal.Signal1<MouseState>;
+typedef MouseSignal		= prime.signals.Signal1<MouseState>;
 
 /**
  * Cross-platform mouse events.

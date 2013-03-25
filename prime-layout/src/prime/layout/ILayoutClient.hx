@@ -35,7 +35,7 @@ package prime.layout;
  import prime.core.traits.IDisposable;
  import prime.fsm.SimpleStateMachine;
  import prime.fsm.states.ValidateStates;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
 
 
 //typedef SizeType = ValidatingValue < Int >;

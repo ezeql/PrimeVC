@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.styling;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.gui.styling.StyleCollectionBase;
   using prime.utils.BitUtil;
 

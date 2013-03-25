@@ -27,7 +27,7 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package prime.gui.events;
- import prime.signal.Signals;
+ import prime.signals.Signals;
 
 typedef KeyboardEvents =
 	#if     flash9     prime.avm2.events.KeyboardEvents;
@@ -37,7 +37,7 @@ typedef KeyboardEvents =
 	#else   #error;    #end
 
 typedef KeyboardHandler = KeyboardState -> Void;
-typedef KeyboardSignal  = prime.signal.INotifier<KeyboardHandler>;
+typedef KeyboardSignal  = prime.signals.INotifier<KeyboardHandler>;
 
 /**
  * Cross-platform keyboard events.

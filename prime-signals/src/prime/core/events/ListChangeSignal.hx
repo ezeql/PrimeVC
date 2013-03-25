@@ -28,7 +28,7 @@
  */
 package prime.core.events;
  import prime.bindable.collections.ListChange;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
 
 
 /**

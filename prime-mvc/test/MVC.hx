@@ -1,8 +1,8 @@
 package;
- import prime.signal.ISender1;
- import prime.signal.INotifier;
- import prime.signal.Signal1;
- import prime.signal.Signals;
+ import prime.signals.ISender1;
+ import prime.signals.INotifier;
+ import prime.signals.Signal1;
+ import prime.signals.Signals;
 
  import prime.mvc.Facade;
  import prime.mvc.Model;

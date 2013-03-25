@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.behaviours.drag;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.core.geom.Point;
  import prime.gui.core.IUIElement;
  import prime.gui.display.IDisplayObject;

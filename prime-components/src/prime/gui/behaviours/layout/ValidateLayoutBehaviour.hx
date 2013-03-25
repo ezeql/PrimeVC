@@ -30,7 +30,7 @@
  */
 package prime.gui.behaviours.layout;
  import prime.bindable.collections.FastDoubleCell;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.gui.behaviours.ValidatingBehaviour;
  import prime.gui.core.IUIElement;
  import prime.layout.LayoutClient;

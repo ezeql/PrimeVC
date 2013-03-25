@@ -33,7 +33,7 @@ package prime.gui.core;
  import prime.bindable.collections.SimpleList;
  import prime.gui.styling.UIElementStyle;
 #end
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.media.VideoStream;
  import prime.fsm.states.MediaStates;
  import prime.bindable.Bindable;

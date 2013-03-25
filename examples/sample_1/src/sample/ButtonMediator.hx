@@ -1,7 +1,7 @@
 package sample;
  import prime.gui.events.MouseEvents;
  import prime.mvc.Mediator;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
   using prime.utils.Bind;
   using prime.utils.TypeUtil;
 

@@ -27,7 +27,7 @@
  *  Danny Wilson    <danny @ onlinetouch.nl>
  */
 package prime.gui.events;
- import prime.signal.Signals;
+ import prime.signals.Signals;
  import prime.core.geom.Point;
  import prime.core.traits.IClonable;
  import prime.gui.events.KeyModState;
@@ -42,7 +42,7 @@ typedef TouchEvents =
     #else           #error; #end
 
 typedef TouchHandler    = TouchState -> Void;
-typedef TouchSignal     = prime.signal.Signal1<TouchState>;
+typedef TouchSignal     = prime.signals.Signal1<TouchState>;
 
 
 /**

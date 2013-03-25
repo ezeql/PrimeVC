@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.bindable.Bindable;
  import prime.bindable.RevertableBindable;
  import prime.gui.core.UITextField;

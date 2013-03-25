@@ -42,10 +42,10 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package prime.utils;
- import prime.signal.Sender;
- import prime.signal.Notifier;
- import prime.signal.Observable;
- import prime.signal.Wire;
+ import prime.signals.Sender;
+ import prime.signals.Notifier;
+ import prime.signals.Observable;
+ import prime.signals.Wire;
 
 
 extern class RedispatchObserveAny {

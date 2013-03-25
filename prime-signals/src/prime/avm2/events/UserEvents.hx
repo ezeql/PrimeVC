@@ -28,7 +28,7 @@
  */
 package prime.avm2.events;
  import flash.events.IEventDispatcher;
- import prime.signal.INotifier;
+ import prime.signals.INotifier;
  import prime.gui.events.EditEvents;
  import prime.gui.events.KeyboardEvents;
  import prime.gui.events.MouseEvents;

@@ -29,9 +29,9 @@
 package prime.avm2.events;
  import prime.gui.events.KeyboardEvents;
  import prime.gui.events.KeyModState;
- import prime.signal.Wire;
- import prime.signal.Signal1;
- import prime.signal.IWireWatcher;
+ import prime.signals.Wire;
+ import prime.signals.Signal1;
+ import prime.signals.IWireWatcher;
 // import flash.display.InteractiveObject;
  import flash.events.IEventDispatcher;
  import flash.events.KeyboardEvent;

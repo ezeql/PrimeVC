@@ -30,7 +30,7 @@
  */
 package prime.gui.behaviours.scroll;
 #if !CSSParser
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.core.geom.IntPoint;
  import prime.gui.events.MouseEvents;
   using prime.utils.Bind;

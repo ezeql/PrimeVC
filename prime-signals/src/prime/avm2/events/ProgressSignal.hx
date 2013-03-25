@@ -29,9 +29,9 @@
 package prime.avm2.events;
  import flash.events.IEventDispatcher;
  import flash.events.ProgressEvent;
- import prime.signal.IWireWatcher;
- import prime.signal.Signal2;
- import prime.signal.Wire;
+ import prime.signals.IWireWatcher;
+ import prime.signals.Signal2;
+ import prime.signals.Wire;
  import prime.core.ListNode;
  import prime.core.events.CommunicationEvents;		// needed for ProgressHandler typedef
   using Std;

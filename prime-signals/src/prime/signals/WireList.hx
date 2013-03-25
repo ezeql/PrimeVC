@@ -24,17 +24,14 @@
  *
  *
  * Authors:
- *  Danny Wilson	<danny @ onlinetouch.nl>
+ *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
+ import prime.core.ListNode;
+
 
 /**
- * An ISender1 facilitates dispatching of messages.
- * 
- * @author Danny Wilson
- * @creation-date Jun 09, 2010
+ * @author Ruben Weijers
+ * @creation-date Nov 02, 2010
  */
-interface ISender1 <A> implements ISender
-{
-	public function send (a:A)					: Void;
-}
+class WireList < FunctionSignature > extends ListNode<Wire<FunctionSignature>> {}

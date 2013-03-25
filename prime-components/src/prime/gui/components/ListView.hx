@@ -31,7 +31,7 @@
 package prime.gui.components;
  import prime.bindable.collections.IReadOnlyList;
  import prime.bindable.collections.ListChange;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.core.traits.IValueObject;
  import prime.core.geom.IRectangle;
 

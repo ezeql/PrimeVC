@@ -2,7 +2,7 @@ package prime.js.events;
 
 import prime.core.events.CommunicationEvents;
 import prime.js.net.XMLHttpRequest;
-import prime.signal.Signal0;
+import prime.signals.Signal0;
 import js.Dom;
 
 /**

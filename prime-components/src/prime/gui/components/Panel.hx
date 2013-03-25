@@ -30,7 +30,7 @@
  */
 package prime.gui.components;
  import prime.core.geom.space.Horizontal;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.bindable.Bindable;
 
  import prime.gui.components.Form;

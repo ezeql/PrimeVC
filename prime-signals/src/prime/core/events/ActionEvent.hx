@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.core.events;
- import prime.signal.Signal0;
- import prime.signal.Signals;
+ import prime.signals.Signal0;
+ import prime.signals.Signals;
 
 
 /**

@@ -29,7 +29,7 @@
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.net.FileReferenceList;
  import prime.net.FileReference;
  import prime.net.FileFilter;

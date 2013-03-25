@@ -30,7 +30,7 @@ package prime.avm2.events;
  import flash.events.DataEvent;
  import flash.events.IEventDispatcher;
  import flash.events.Event;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.events.CommunicationEvents;
  import prime.core.events.LoaderEvents;
 

@@ -26,13 +26,13 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
  import prime.core.traits.IDisablable;
  import prime.core.traits.IDisposable;
   using prime.core.ListNode;
   using prime.utils.IfUtil;
   using prime.utils.TypeUtil;
-  using prime.signal.Wire;
+  using prime.signals.Wire;
 
 /**
  * Abstract internal base class for all Signals.

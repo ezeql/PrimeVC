@@ -30,7 +30,7 @@
  */
 package prime.gui.behaviours.drag;
  import haxe.Timer;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.core.traits.IDisablable;
  import prime.core.traits.IDisposable;
  import prime.gui.display.ISprite;

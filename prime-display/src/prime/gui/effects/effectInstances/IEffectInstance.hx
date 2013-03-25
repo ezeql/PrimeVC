@@ -28,7 +28,7 @@
  */
 package prime.gui.effects.effectInstances;
  import haxe.Timer;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.traits.IDisposable;
  import prime.gui.effects.EffectProperties;
  import prime.gui.effects.IEffect;

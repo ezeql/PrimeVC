@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.mvc;
- import prime.signal.Signals;
+ import prime.signals.Signals;
  import prime.core.traits.IDisposable;
 
 

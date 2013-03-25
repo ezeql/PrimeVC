@@ -26,23 +26,15 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
- * Either a signal, a group of signals, or anything else that can unbind.
- *  
+ * An ISender0 facilitates dispatching of simple notifications.
+ * 
  * @author Danny Wilson
- * @creation-date jun 10, 2010
+ * @creation-date Jun 09, 2010
  */
-interface IUnbindable<T>
+interface ISender0 implements ISender
 {
-	/**
-	 * Unbind all handlers for the given listener object,
-	 *  or when a handler != null: unbound that specific handler.
-	 * 
-	 * @param	listener	Handler owner object
-	 * @param	?handler	Handler method. When handler == null, all methods owned by listener will be unbound.
-	 */
-	public function unbind    ( listener : Dynamic, ?handler : Null<T> ) : Void;
-    public function unbindAll () : Void;
+	public function send ()						: Void;
 }

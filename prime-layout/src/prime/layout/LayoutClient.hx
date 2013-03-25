@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.core.geom.Box;
  import prime.core.geom.IntRectangle;
  import prime.core.geom.RectangleFlags;

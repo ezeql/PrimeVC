@@ -33,7 +33,7 @@ package prime.layout;
  import prime.tools.generator.ICSSFormattable;
  import prime.utils.ID;
 #end
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.geom.IBox;
  import prime.core.traits.IDisposable;
  import prime.types.Number;

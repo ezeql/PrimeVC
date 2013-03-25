@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.bindable;
- import prime.signal.IUnbindable;
- import prime.signal.Signal1;
+ import prime.signals.IUnbindable;
+ import prime.signals.Signal1;
  import prime.core.traits.IDisposable;
   using prime.utils.Bind;
   using prime.utils.BitUtil;

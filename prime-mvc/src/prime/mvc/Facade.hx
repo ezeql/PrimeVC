@@ -28,8 +28,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.mvc;
- import prime.signal.Signal0;
- import prime.signal.Signals;
+ import prime.signals.Signal0;
+ import prime.signals.Signals;
  import prime.core.traits.IDisposable;
 
 

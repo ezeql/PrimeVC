@@ -30,7 +30,7 @@
  */
 package prime.gui.components;
  import prime.bindable.collections.ListChange;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.bindable.Bindable;
  
  import prime.gui.core.IUIDataElement;

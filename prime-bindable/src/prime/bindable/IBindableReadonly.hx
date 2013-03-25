@@ -27,7 +27,7 @@
  *  Danny Wilson	<danny @ prime.vc>
  */
 package prime.bindable;
- import prime.signal.Signal2;
+ import prime.signals.Signal2;
 
 
 typedef OldValue <V> = V;

@@ -26,14 +26,15 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
+ * An ISender2 facilitates dispatching of tuple messages.
+ * 
  * @author Danny Wilson
- * @creation-date jun 10, 2010
+ * @creation-date Jun 09, 2010
  */
-interface IWireWatcher <T>
+interface ISender2 <A,B> implements ISender
 {
-	function wireEnabled	(wire:Wire<T>) : Void;
-	function wireDisabled	(wire:Wire<T>) : Void;
+	public function send (a:A, b:B)				: Void;
 }

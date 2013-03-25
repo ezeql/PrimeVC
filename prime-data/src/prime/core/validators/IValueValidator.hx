@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.core.validators;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.traits.IDisposable;
  
 

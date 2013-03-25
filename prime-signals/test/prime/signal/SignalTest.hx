@@ -3,7 +3,7 @@ package prime.signal;
 import massive.munit.util.Timer;
 import massive.munit.Assert;
 import massive.munit.async.AsyncFactory;
-import prime.signal.Signal;
+import prime.signals.Signal;
  using prime.utils.Bind;
 
 /**

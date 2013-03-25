@@ -1,6 +1,6 @@
 package sample;
- import prime.signal.Signal1;
- import prime.signal.Signals;
+ import prime.signals.Signal1;
+ import prime.signals.Signals;
 
 /**
  * MainEvents defines and groups together the events used 

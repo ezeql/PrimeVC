@@ -26,18 +26,23 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
- * Type tag for ISender0-4
- * 
- * @see ISender0
- * @see ISender1
- * @see ISender2
- * @see ISender3
- * @see ISender4
- * 
+ * Either a signal, a group of signals, or anything else that can unbind.
+ *  
  * @author Danny Wilson
- * @creation-date Jun 09, 2010
+ * @creation-date jun 10, 2010
  */
-interface ISender {}
+interface IUnbindable<T>
+{
+	/**
+	 * Unbind all handlers for the given listener object,
+	 *  or when a handler != null: unbound that specific handler.
+	 * 
+	 * @param	listener	Handler owner object
+	 * @param	?handler	Handler method. When handler == null, all methods owned by listener will be unbound.
+	 */
+	public function unbind    ( listener : Dynamic, ?handler : Null<T> ) : Void;
+    public function unbindAll () : Void;
+}

@@ -29,7 +29,7 @@
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
 package prime.gui.core;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.bindable.Bindable;
  import prime.gui.behaviours.BehaviourList;
  import prime.gui.display.BitmapData;

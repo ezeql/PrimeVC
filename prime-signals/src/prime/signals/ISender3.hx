@@ -26,25 +26,15 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
- import prime.core.traits.IDisposable;
-
+package prime.signals;
 
 /**
- * An INotifier calls message handlers of type <FunctionSignature> that are registered using bind().
- * INotifier is Observable aswell.
+ * An ISender3 facilitates dispatching of 3-tuple messages.
  * 
- * @see Observable
  * @author Danny Wilson
  * @creation-date Jun 09, 2010
  */
-interface INotifier <FunctionSignature> implements IUnbindable <FunctionSignature>, implements IDisposable
+interface ISender3 <A,B,C> implements ISender
 {
-	public function observe		    (owner:Dynamic, handler:Void->Void)			: Wire<FunctionSignature>;
-	public function observeOnce	    (owner:Dynamic, handler:Void->Void)			: Wire<FunctionSignature>;
-	public function observeDisabled	(owner:Dynamic, handler:Void->Void)	        : Wire<FunctionSignature>;
-    
-    public function bind            (owner:Dynamic, handler:FunctionSignature)  : Wire<FunctionSignature>;
-    public function bindOnce        (owner:Dynamic, handler:FunctionSignature)  : Wire<FunctionSignature>;
-    public function bindDisabled    (owner:Dynamic, handler:FunctionSignature)  : Wire<FunctionSignature>;
+	public function send (a:A, b:B, c:C)		: Void;
 }

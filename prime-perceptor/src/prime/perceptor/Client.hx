@@ -28,7 +28,7 @@
  */
 package prime.perceptor;
  import prime.perceptor.remoting.Specimen;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
 
 #if prime_display
 	import prime.gui.display.Window;

@@ -3,7 +3,7 @@ package cases;
  import flash.display.Bitmap;
  import flash.geom.Point;
  import flash.geom.Rectangle;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.net.URLLoader;
  import prime.utils.FastArray;
  import prime.utils.TimerUtil;

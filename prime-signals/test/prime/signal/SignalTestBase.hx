@@ -3,10 +3,10 @@ package prime.signal;
 import massive.munit.util.Timer;
 import massive.munit.Assert;
 import massive.munit.async.AsyncFactory;
-import prime.signal.Signal;
+import prime.signals.Signal;
 
 /**
-* Auto generated MassiveUnit Test Class  for prime.signal.Signal0 
+* Auto generated MassiveUnit Test Class  for prime.signals.Signal0 
 */
 class SignalTestBase<T : Signal<Dynamic>>
 {

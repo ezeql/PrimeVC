@@ -28,7 +28,7 @@
  */
 package prime.fsm;
  import prime.core.traits.IDisposable;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
 
 
 /**

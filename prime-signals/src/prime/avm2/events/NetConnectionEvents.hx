@@ -31,8 +31,8 @@ package prime.avm2.events;
  import flash.events.IEventDispatcher;
  import flash.events.IOErrorEvent;
  import flash.events.SecurityErrorEvent;
- import prime.signal.Signals;
- import prime.signal.Signal0;
+ import prime.signals.Signals;
+ import prime.signals.Signal0;
 
 
 /**

@@ -26,9 +26,9 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
   using prime.core.ListNode;
-  using prime.signal.Wire;
+  using prime.signals.Wire;
   using prime.utils.BitUtil;
   using prime.utils.IfUtil;
 

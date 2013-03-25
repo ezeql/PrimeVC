@@ -3,12 +3,12 @@ package prime.signal;
 import massive.munit.util.Timer;
 import massive.munit.Assert;
 import massive.munit.async.AsyncFactory;
-import prime.signal.Signal2;
-import prime.signal.SignalTestBase;
+import prime.signals.Signal2;
+import prime.signals.SignalTestBase;
  using prime.utils.Bind;
 
 /**
-* Auto generated MassiveUnit Test Class  for prime.signal.Signal0 
+* Auto generated MassiveUnit Test Class  for prime.signals.Signal0 
 */
 class Signal2Test extends SignalTestBase<Signal2<String,Int>>
 {

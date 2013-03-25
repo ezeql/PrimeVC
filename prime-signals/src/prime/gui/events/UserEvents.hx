@@ -27,8 +27,8 @@
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
 package prime.gui.events;
- import prime.signal.Signals;
- import prime.signal.Signal1;
+ import prime.signals.Signals;
+ import prime.signals.Signal1;
 
 typedef UserEvents =
 	#if     flash9 prime.avm2.events.UserEvents;

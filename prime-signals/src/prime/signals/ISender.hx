@@ -26,14 +26,18 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
- * @see INotifier
+ * Type tag for ISender0-4
+ * 
+ * @see ISender0
+ * @see ISender1
+ * @see ISender2
+ * @see ISender3
+ * @see ISender4
+ * 
  * @author Danny Wilson
  * @creation-date Jun 09, 2010
  */
-typedef Notifier <FunctionSignature> = {
-	public function bind		(owner:Dynamic, handler:FunctionSignature) : Wire<FunctionSignature>;
-	public function bindOnce	(owner:Dynamic, handler:FunctionSignature) : Wire<FunctionSignature>;
-}
+interface ISender {}

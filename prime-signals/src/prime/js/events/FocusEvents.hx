@@ -1,5 +1,5 @@
 package prime.js.events;
- import prime.signal.Signals;
+ import prime.signals.Signals;
  import prime.gui.events.UserEventTarget;
 
 /**

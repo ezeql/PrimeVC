@@ -28,9 +28,9 @@
  */
 package prime.core.events;
  import prime.core.events.CommunicationEvents;
- import prime.signal.Signal0;
- import prime.signal.Signal1;
- import prime.signal.Signals;
+ import prime.signals.Signal0;
+ import prime.signals.Signal1;
+ import prime.signals.Signals;
 
 
 typedef LoaderEvents =

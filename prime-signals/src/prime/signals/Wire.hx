@@ -26,12 +26,12 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
  import prime.core.traits.IDisablable;
  import prime.core.traits.IDisposable;
  import prime.core.ListNode;
   using prime.utils.BitUtil;
-  using prime.signal.Signal;
+  using prime.signals.Signal;
 
 /**
  * A Wire is the connection between a Signal0-4 dispatcher, and a handler object+function.

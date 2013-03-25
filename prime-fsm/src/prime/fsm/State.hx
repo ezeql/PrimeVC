@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.fsm;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
 
 
 /**

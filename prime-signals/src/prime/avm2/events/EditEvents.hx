@@ -32,7 +32,7 @@ package prime.avm2.events;
 #elseif flash9
  import flash.events.IEventDispatcher;
  import flash.events.KeyboardEvent;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.gui.input.KeyCodes;
 #end
  import prime.gui.events.EditEvents;

@@ -29,7 +29,7 @@
 package prime.bindable.collections;
  import prime.bindable.collections.iterators.IIterator;
  import prime.bindable.collections.IEditableList;
- import prime.signal.Signal1;
+ import prime.signals.Signal1;
  import prime.utils.DuplicateUtil;
  import prime.utils.NumberUtil;
   using prime.utils.NumberUtil;

@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.gui.display;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.geom.IntRectangle;
  import prime.core.traits.IDisablable;
 #if flash9

@@ -24,14 +24,16 @@
  *
  *
  * Authors:
- *  Ruben Weijers	<ruben @ onlinetouch.nl>
+ *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
- import prime.core.ListNode;
-
+package prime.signals;
 
 /**
- * @author Ruben Weijers
- * @creation-date Nov 02, 2010
+ * @author Danny Wilson
+ * @creation-date jun 10, 2010
  */
-class WireList < FunctionSignature > extends ListNode<Wire<FunctionSignature>> {}
+interface IWireWatcher <T>
+{
+	function wireEnabled	(wire:Wire<T>) : Void;
+	function wireDisabled	(wire:Wire<T>) : Void;
+}

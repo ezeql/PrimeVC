@@ -1,7 +1,7 @@
 package prime.js.events;
- import prime.signal.Wire;
- import prime.signal.Signal1;
- import prime.signal.IWireWatcher;
+ import prime.signals.Wire;
+ import prime.signals.Signal1;
+ import prime.signals.IWireWatcher;
  import prime.core.ListNode;
  import prime.gui.events.UserEventTarget;
  import js.Dom;

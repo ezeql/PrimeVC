@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.events;
- import prime.signal.Signals;
- import prime.signal.Signal1;
+ import prime.signals.Signals;
+ import prime.signals.Signal1;
  import prime.gui.behaviours.drag.DragInfo;
 
 

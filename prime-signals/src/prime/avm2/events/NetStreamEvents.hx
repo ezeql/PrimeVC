@@ -30,7 +30,7 @@ package prime.avm2.events;
  import flash.events.AsyncErrorEvent;
  import flash.events.IEventDispatcher;
  import flash.events.IOErrorEvent;
- import prime.signal.Signals;
+ import prime.signals.Signals;
 
 
 /**

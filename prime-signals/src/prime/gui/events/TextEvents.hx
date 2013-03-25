@@ -27,8 +27,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.events;
- import prime.signal.Signal0;
- import prime.signal.Signals;
+ import prime.signals.Signal0;
+ import prime.signals.Signals;
 
 
 typedef TextEvents =
@@ -40,7 +40,7 @@ typedef TextEvents =
 
 
 typedef TextHandler	= String -> Void;
-typedef TextSignal  = prime.signal.INotifier<TextHandler>;
+typedef TextSignal  = prime.signals.INotifier<TextHandler>;
 
 /**
  * Cross-platform text events.

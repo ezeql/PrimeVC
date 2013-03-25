@@ -29,7 +29,7 @@
  *  Ruben Weijers   <ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.gui.core.IUIElement;
  import prime.gui.events.KeyboardEvents;
  import prime.gui.input.KeyCodes;

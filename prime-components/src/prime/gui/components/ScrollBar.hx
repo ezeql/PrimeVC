@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.core.geom.space.Direction;
  import prime.gui.core.UIElementFlags;
  import prime.gui.events.MouseEvents;

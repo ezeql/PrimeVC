@@ -26,16 +26,15 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
- * A Sender is an object which allows sending of messages trough a dynamic method of type: <FunctionSignature>
- *  Usage: senderObj.send(...)
- *  
- * @see ISender
+ * An ISender4 facilitates dispatching of 4-tuple messages.
+ * 
  * @author Danny Wilson
  * @creation-date Jun 09, 2010
  */
-typedef Sender <FunctionSig> = {
-	public var send (default,null) : FunctionSig;
+interface ISender4 <A,B,C,D> implements ISender
+{
+	public function send (a:A, b:B, c:C, d:D)	: Void;
 }

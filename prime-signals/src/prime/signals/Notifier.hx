@@ -26,15 +26,14 @@
  * Authors:
  *  Danny Wilson	<danny @ onlinetouch.nl>
  */
-package prime.signal;
+package prime.signals;
 
 /**
- * An ISender3 facilitates dispatching of 3-tuple messages.
- * 
+ * @see INotifier
  * @author Danny Wilson
  * @creation-date Jun 09, 2010
  */
-interface ISender3 <A,B,C> implements ISender
-{
-	public function send (a:A, b:B, c:C)		: Void;
+typedef Notifier <FunctionSignature> = {
+	public function bind		(owner:Dynamic, handler:FunctionSignature) : Wire<FunctionSignature>;
+	public function bindOnce	(owner:Dynamic, handler:FunctionSignature) : Wire<FunctionSignature>;
 }

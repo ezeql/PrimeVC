@@ -29,9 +29,9 @@
 package prime.avm2.events;
  import flash.events.IEventDispatcher;
  import flash.events.TextEvent;
- import prime.signal.IWireWatcher;
- import prime.signal.Signal1;
- import prime.signal.Wire;
+ import prime.signals.IWireWatcher;
+ import prime.signals.Signal1;
+ import prime.signals.Wire;
  import prime.core.ListNode;
  import prime.gui.events.TextEvents;
 

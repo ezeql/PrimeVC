@@ -34,7 +34,7 @@ package prime.gui.core;
  import prime.bindable.collections.SimpleList;
  import prime.gui.styling.UIElementStyle;
 #end
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.bindable.Bindable;
  
  import prime.gui.behaviours.layout.ValidateLayoutBehaviour;

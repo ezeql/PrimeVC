@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.fsm;
- import prime.signal.Signal2;
+ import prime.signals.Signal2;
  import prime.utils.FastArray;
 
 

@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.net;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
 
 
 /**
@@ -36,7 +36,7 @@ package prime.net;
  */
 interface IFileReference 
 		implements prime.core.traits.IDisposable
-	,	implements prime.signal.IUnbindable<Dynamic>
+	,	implements prime.signals.IUnbindable<Dynamic>
 {
 	public var select		(default,null) : Signal0;
 	public var cancel		(default,null) : Signal0;

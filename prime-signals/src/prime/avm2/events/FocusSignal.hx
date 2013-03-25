@@ -29,9 +29,9 @@
 package prime.avm2.events;
  import flash.events.IEventDispatcher;
  import flash.events.FocusEvent;
- import prime.signal.IWireWatcher;
- import prime.signal.Signal1;
- import prime.signal.Wire;
+ import prime.signals.IWireWatcher;
+ import prime.signals.Signal1;
+ import prime.signals.Wire;
  import prime.gui.events.FocusState;
  import prime.gui.events.KeyModState;
   using prime.core.ListNode;

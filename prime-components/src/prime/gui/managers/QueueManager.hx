@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.managers;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.core.traits.IDisposable;
  import prime.gui.display.Window;
  import prime.gui.traits.IValidatable;

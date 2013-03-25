@@ -32,7 +32,7 @@ package prime.gui.behaviours.scroll;
  import prime.gui.behaviours.BehaviourBase;
  import prime.gui.traits.IScrollable;
 #if !CSSParser
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.gui.events.MouseEvents;
  import prime.layout.IScrollableLayout;
   using prime.utils.Bind;

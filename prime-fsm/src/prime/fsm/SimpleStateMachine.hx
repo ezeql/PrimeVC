@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.fsm;
- import prime.signal.Signal2;
+ import prime.signals.Signal2;
  import prime.core.traits.IDisposable;
  
 
@@ -113,7 +113,7 @@ class SimpleStateMachine<StateType> implements IDisposable
 }
 
 
- import prime.signal.Wire;
+ import prime.signals.Wire;
 
 /**
  * @author 	Ruben Weijers

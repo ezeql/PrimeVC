@@ -31,7 +31,7 @@ package prime.layout.algorithms;
  import prime.tools.generator.ICodeFormattable;
  import prime.tools.generator.ICSSFormattable;
 #end
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.geom.IRectangle;
  import prime.core.traits.IDisposable;
  import prime.layout.ILayoutContainer;

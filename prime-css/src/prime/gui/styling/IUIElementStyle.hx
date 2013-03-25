@@ -28,7 +28,7 @@
  */
 package prime.gui.styling;
  import prime.bindable.collections.PriorityList;
- import prime.signal.Signal0;
+ import prime.signals.Signal0;
  import prime.core.traits.IInvalidateListener;
  import prime.core.traits.IDisposable;
  import prime.gui.styling.StyleBlock;

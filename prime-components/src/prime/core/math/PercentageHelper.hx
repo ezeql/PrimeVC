@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.core.math;
- import prime.signal.Wire;
+ import prime.signals.Wire;
  import prime.core.traits.IDisposable;
  import prime.bindable.Bindable;
  import prime.core.validators.FloatRangeValidator;
