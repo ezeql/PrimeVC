@@ -285,8 +285,8 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 #if debug	Assert.notNull( owner.container, "container of "+owner+" is null" );
 			Assert.that( owner.container.is( IStylable ) ); #end
 		
-		styleNamesBinding.handler = updateStyleNameStyles;
-		idChangeBinding.handler = updateIdStyle;
+		styleNamesBinding.setArgsHandler(updateStyleNameStyles);
+		idChangeBinding.setVoidHandler(cast updateIdStyle);
 
 		removedBinding   .enable();
 		addedBinding     .disable();
@@ -318,8 +318,8 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		if (addedBinding.notNull())		addedBinding.enable();
 		
 		invalidated = 0;
-		styleNamesBinding.handler = invalidateStyleNames;
-		idChangeBinding.handler = invalidateIdStyle;
+		styleNamesBinding.setVoidHandler(invalidateStyleNames);
+		idChangeBinding.setVoidHandler(invalidateIdStyle);
 	}
 	
 	
@@ -521,8 +521,8 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	//
 	
 
-	private function invalidateStyleNames (change)	invalidated = invalidated.set(Flags.STYLE_NAME_CHILDREN)
-	private function invalidateIdStyle ()			invalidated = invalidated.set(Flags.ID_CHILDREN)
+	private function invalidateStyleNames ()	invalidated = invalidated.set(Flags.STYLE_NAME_CHILDREN)
+	private function invalidateIdStyle ()		invalidated = invalidated.set(Flags.ID_CHILDREN)
 	
 	
 	/**

@@ -109,7 +109,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	/** Is this Wire connected? Should it be called with 0 args? Should it be unbound after calling? **/
 	public var flags	(default,null)	: Int;
 	/** Handler function **/
-	public var handler	(default,setHandler) : FunctionSignature;
+	public var handler	(default,null) : FunctionSignature;
 	/** Wire owner object **/
 	public var owner	(default, null) : Dynamic;
 	/** Object referencing the parent Link in the Chain **/
@@ -169,13 +169,18 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 		return flags.has(ENABLED);
 	}
 	
-	private inline function setHandler( h:FunctionSignature )
+	public #if !noinline inline #end function setArgsHandler( h:FunctionSignature )
 	{
 		// setHandler only accepts functions with FunctionSignature
 		// and this is not a VOID_HANDLER for Signal1..4
 		flags = flags.unset(VOID_HANDLER);
-		
 		return handler = h;
+	}
+
+	public #if !noinline inline #end function setVoidHandler( h:Void->Void )
+	{
+		flags = flags.set(VOID_HANDLER);
+		return handler = cast h;
 	}
 	
 	/** Enable propagation for the handler this link belongs too. **/
