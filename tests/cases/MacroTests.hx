@@ -84,6 +84,7 @@ class Test1 //extends Test0
 	@manual public  var testStrA	: String;
 	public  var testStrB	: String;
 	public function new () { testStrA = testStrB = "TEST"; }
+	public function dispose() { trace("Custom dispose function here"); }
 //	public function new () { clientA = new Client(); testStr = "blaat1"; }
 //	public function traceFields() {}
 	

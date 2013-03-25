@@ -120,13 +120,7 @@ class MacroUtils
 	
 	@:macro public static function autoDispose () : Array<Field>
 	{
-	//	trace("========== "+Context.getLocalClass().get().name+" ==========");
-		return Context.getBuildFields().addMethod( "dispose", "Void", [], createMacroCall("dispose", callback(disposeFieldsImpl)) );
-	//	return Context.getBuildFields();
-//		return Context.getBuildFields().addMethod( "dispose", "Void", [], createMacroCall("disposeFields", [], "dispose") );
-	//	var name	= Context.getLocalClass().get().name;
-	//	var f = Context.getBuildFields();
-	//	return f.addMethod( "dispose", "Void", [], disposeFieldsImpl( f.toClassFields() ) );
+		return Context.getBuildFields().addMethod( "dispose", "Void", [], createMacroCall("dispose", callback(disposeFieldsImpl) ) );
 	}
 	
 	
@@ -270,7 +264,8 @@ class MacroUtils
 			}
 			
 			if ( !field.meta.has("manual") )
-			blocks.push( Context.parse("this."+field.name+" = null", pos) );
+			blocks.push( Context.parse("this." + field.name + " = null", pos) );
+			//blocks.push( Context.parse("trace(\"YES!\")", pos) );
 		}
 			
 		return blocks.toExpr();
