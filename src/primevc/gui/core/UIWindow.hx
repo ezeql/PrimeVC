@@ -48,6 +48,9 @@ package primevc.gui.core;
  import primevc.core.collections.SimpleList;
  import primevc.gui.display.VectorShape;
 #end
+#if debug
+ import primevc.gui.events.KeyboardEvents;
+#end
 
 
 /**
@@ -156,9 +159,11 @@ class UIWindow extends primevc.gui.display.Window
 		layout.invalidatable = false;
 		behaviours.init();
 		createChildren();
-#if debug
-		new primevc.gui.components.DebugBar().attachLayoutTo(topLayout).attachDisplayTo(this);
-		topLayout.margin = new primevc.core.geom.Box(50,0,0,0);
+#if debug 
+		var debugBar = new primevc.gui.components.DebugBar();
+		function(ks:KeyboardState) { 
+			if (ks.keyCode() == primevc.gui.input.KeyCodes.KeyCodes.ESCAPE) { debugBar.isAttached() ? debugBar.detach() : attach(debugBar); }
+		}.on(this.userEvents.key.up, this);
 #end
 #if (flash9 && stats)
 		children.add( new net.hires.debug.Stats() );
