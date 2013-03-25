@@ -65,7 +65,9 @@ class LangMacro
       {
         try { currentDir = sys.FileSystem.fullPath(currentDir); }
         catch (e:Dynamic) {} //{ trace("errror "+e); }
-        if (!sys.FileSystem.exists(currentDir))         continue;
+        	if ( Sys.systemName() != "Windows" )
+	        	// this is required on Mac only in order to work, on Win it breaks 
+				if (!sys.FileSystem.exists(currentDir))         continue;
       }
       for (file in sys.FileSystem.readDirectory(currentDir))
 			{
