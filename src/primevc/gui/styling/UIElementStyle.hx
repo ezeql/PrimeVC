@@ -362,7 +362,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 	{
 		//update styles.. start with the lowest priorities
 		stylesAreSearched	= false;
-		var changes			= updateElementStyle() | updateStyleNameStyles(reset) | updateIdStyle() | updateStatesStyle();
+		var changes			= updateElementStyle() | updateStyleNameStyles(reset) | updateIdStyle() | updateStatesStyle() | Flags.CHILDREN;
 		stylesAreSearched 	= true;
 		
 		return broadcastChanges(changes);
@@ -404,6 +404,7 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		//	states.change.send( statesChangedProps );
 		}
 		
+	//	trace(target+".broadcastChanges "+Flags.read(changedProperties));
 		if (changedProperties.has( Flags.STATES ))			states		.apply();
 		if (changedProperties.has( Flags.GRAPHICS ))		graphics	.apply();
 		if (changedProperties.has( Flags.LAYOUT ))			layout		.apply();
@@ -414,8 +415,6 @@ class UIElementStyle implements primevc.core.traits.IInvalidateListener, impleme
 		Assert.notNull(childrenChanged);
 		if (changedProperties.has( Flags.CHILDREN ))
 			childrenChanged.send();
-		
-	//	trace(target+".broadcastChanges "+Flags.readProperties(changedProperties));
 		
 		return changedProperties;
 	}
