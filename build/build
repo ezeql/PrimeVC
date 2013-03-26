@@ -152,11 +152,19 @@ else
 	
 	if (set -u; : $Debug) 2> /dev/null ; then
 		#mv ${PRIMEVC_ROOT}/tmp.swf ${PRIMEVC_ROOT}/bin-debug/app.swf &&
-		open "$OUTPUT"
+		if [[ "$MSYSTEM"=="MING32" ]] ; then
+			start "$OUTPUT"
+		else
+			open "$OUTPUT"
+		fi;
 	else
 		echo -e "\n4. OPTIMIZING BUILD" &&
 		bash build/optimize-build "$OUTPUT" &&
-		open "$OUTPUT"
+		if [[ "$MSYSTEM"=="MING32" ]] ; then
+			start "$OUTPUT"
+		else
+			open "$OUTPUT"
+		fi;
 	fi;
 
 	NEWSIZE=`wc -c < "$OUTPUT"`
