@@ -266,6 +266,8 @@ class SliderBase extends UIDataContainer <PercentageHelper>
 		mouseMoveBinding.disable();
 		
 	//	calculateValue( mouseObj );
+		if (direction == horizontal)	dragBtn.layout.relative.left 		= dragBtn.layout.x;
+		else							dragBtn.layout.relative.top 		= dragBtn.layout.y;
 		dragBtn.mouseEnabled				= true;
 		dragBtn.layout.includeInLayout		= true;
 		sliding.apply.send();
