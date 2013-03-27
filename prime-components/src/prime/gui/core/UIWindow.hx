@@ -90,7 +90,9 @@ class UIWindow extends prime.gui.display.Window
 	 */
 	public var popupLayout			(default, null)					: LayoutContainer;
 	
-	
+#if embed_perceptor
+	public var perceptorLayout 		(default, null )				: LayoutContainer;
+#end
 	
 	public var behaviours			(default, null)					: BehaviourList;
 	public var id					(default, null)					: Bindable<String>;
@@ -165,6 +167,7 @@ class UIWindow extends prime.gui.display.Window
 #if (flash9 && stats)
 		children.add( new Stats() );
 #end
+
 		layout.invalidatable = true;
 	}
 
@@ -214,6 +217,17 @@ class UIWindow extends prime.gui.display.Window
 		popupLayout	= new VirtualLayoutContainer( #if debug "popupLayout" #end );
 		layout.invalidatable 	= popupLayout.invalidatable = false;
 		
+#if embed_perceptor
+		// use a seperate top level layout instead of adding to contentLayout
+		// as no assumptions can be made about what layout algorithm contentLayout
+		// will get
+		perceptorLayout = new VirtualLayoutContainer();
+		perceptorLayout.algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+
+
+		layout.as(LayoutContainer).algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+#end
+		
 		popupLayout.algorithm	= new prime.layout.algorithms.RelativeAlgorithm();
 		layout.percentWidth		= layout.percentHeight = popupLayout.percentWidth = popupLayout.percentHeight = 1.0;
 		layout.invalidatable 	= popupLayout.invalidatable = true;
@@ -238,7 +252,12 @@ class UIWindow extends prime.gui.display.Window
 	}
 	
 	
-	private function createChildren ()		: Void {}
+	private function createChildren ()		: Void 
+	{
+#if embed_perceptor
+		attach( new prime.perceptor.embedded.Inspector(this) );
+#end
+	}
 	
 	public #if !noinline inline #end function attach        (child:IUIElement)          : UIWindow { child.attachLayoutTo(layoutContainer).attachToDisplayList(this); return this; }
 	public #if !noinline inline #end function attachDisplay (child:IUIElement)          : UIWindow { child.attachToDisplayList(this);                                 return this; }

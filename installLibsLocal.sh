@@ -35,3 +35,6 @@ mlib i -no-source-license
 
 cd ../prime-media
 mlib i -no-source-license
+
+cd ../prime-perceptor
+mlib i -no-source-license

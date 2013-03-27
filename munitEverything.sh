@@ -35,3 +35,6 @@ munit test
 
 cd ../prime-core
 munit test
+
+cd ../prime-perceptor
+munit test

@@ -5,7 +5,7 @@ package cases;
  import prime.gui.display.TextField;
 // import com.elad.optimize.memory.FrameStats;
 #end
- import prime.core.geom.constraints.SizeConstraint;
+ //import prime.core.geom.constraints.SizeConstraint;
  import prime.core.geom.space.Direction;
  import prime.core.geom.space.Horizontal;
  import prime.core.geom.space.Position;

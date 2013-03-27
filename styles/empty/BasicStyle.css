@@ -198,8 +198,15 @@ Panel #closeBtn {
 	width: 51%;
 }
 
-
-
+/***************
+ * Perceptor
+ **************/
+Inspector {
+	background: #ccc;
+	color: #333;
+	width: 50%;
+	height: 100%;	
+}
 
 /***************
  * DEBUGBAR
