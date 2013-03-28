@@ -86,7 +86,7 @@ class UIContainer extends UIComponent, implements IUIContainer
     public function enableClipping ()
     {
         Assert.isNull(scrollRect, id.value);
-        createScrollRect( rect.width, rect.height);
+        createScrollRect( layout.outerBounds.width, layout.outerBounds.height);
         
         var s = layoutContainer.scrollPos;
         updateScrollRect.on( layoutContainer.changed, this );
@@ -112,8 +112,8 @@ class UIContainer extends UIComponent, implements IUIContainer
             return;
         
         var r = getScrollRect();
-        r.width  = rect.width;
-        r.height = rect.height;
+        r.width  = layout.outerBounds.width;
+        r.height = layout.outerBounds.height;
         
         if (graphicData.border != null)
         {
