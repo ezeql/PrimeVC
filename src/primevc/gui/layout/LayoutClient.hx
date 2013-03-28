@@ -33,6 +33,7 @@ package primevc.gui.layout;
  import primevc.core.geom.RectangleFlags;
  import primevc.core.states.SimpleStateMachine;
  import primevc.core.validators.IntRangeValidator;
+ import primevc.core.traits.IInvalidatable;
  import primevc.types.Number;
  import primevc.gui.states.ValidateStates;
   using primevc.utils.Bind;
@@ -168,8 +169,8 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 		(untyped this).margin			= EMPTY_BOX;
 		(untyped this).padding			= EMPTY_BOX;
 		
-		innerBounds.invalidated.bind(this, invalidateCall);
-		outerBounds.invalidated.bind(this, invalidateCall);
+		invalidatedInnerBounds.on(innerBounds.invalidated, this);
+		invalidatedOuterBounds.on(outerBounds.invalidated, this);
 		
 		//remove and set correct flags
 		changes = changes.set( Flags.X | Flags.Y | Flags.WIDTH * newWidth.isSet().boolCalc() | Flags.HEIGHT * newHeight.isSet().boolCalc() );
@@ -758,40 +759,30 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	
 	
 	
+
 	
-	
-	override public function invalidateCall (propChanges:Int, sender:primevc.core.traits.IInvalidatable)
+	private function invalidatedOuterBounds(propChanges:Int, box:IInvalidatable)
 	{
-		if (propChanges == 0)
-			return;
-		
-		if (!sender.is(IntRectangle)) {
-			super.invalidateCall( propChanges, sender );
-			return;
-		}
-		
-		// Ruben: Should be safe, bottom and right properties don't change the x,y, width or height.
-		//        If they do, those flags are also set in propChanges.
-		if (propChanges == propChanges & (RectangleFlags.BOTTOM | RectangleFlags.RIGHT))
-			return;
-		
-		var box = sender.as(IntRectangle);
-		
-		if (box == outerBounds)
-		{
-			if (propChanges.has( RectangleFlags.LEFT ))		x		= box.left;
-			if (propChanges.has( RectangleFlags.TOP ))		y		= box.top;
-			if (propChanges.has( RectangleFlags.WIDTH ))	width	= box.width  - getHorPadding() - getHorMargin(); //.abs();
-			if (propChanges.has( RectangleFlags.HEIGHT ))	height	= box.height - getVerPadding() - getVerMargin(); //.abs();
-		}
-		else if (box == innerBounds)
-		{
-			if (propChanges.has( RectangleFlags.LEFT ))		x		= /*margin == null ? box.left : */box.left - margin.left; //.abs();
-			if (propChanges.has( RectangleFlags.TOP ))		y		= /*margin == null ? box.top  : */box.top - margin.top; //.abs();
-			if (propChanges.has( RectangleFlags.WIDTH ))	width	= box.width - getHorPadding();
-			if (propChanges.has( RectangleFlags.HEIGHT ))	height	= box.height - getVerPadding();
-		}
-		else Assert.that(box == null, "box ("+box+") should be innerBounds or outerBounds");
+		Assert.notEqual(propChanges, 0);
+		Assert.equal(box, outerBounds);
+		var box:IntRectangle = cast box;
+
+		if (propChanges.has( RectangleFlags.LEFT   )) x      = box.left;
+		if (propChanges.has( RectangleFlags.TOP    )) y      = box.top;
+		if (propChanges.has( RectangleFlags.WIDTH  )) width  = box.width  - getHorPadding() - getHorMargin();
+		if (propChanges.has( RectangleFlags.HEIGHT )) height = box.height - getVerPadding() - getVerMargin();
+	}
+
+	private function invalidatedInnerBounds(propChanges:Int, box:IInvalidatable)
+	{
+		Assert.notEqual(propChanges, 0);
+		Assert.equal(box, innerBounds);
+		var box:IntRectangle = cast box;
+
+		if (propChanges.has( RectangleFlags.LEFT   )) x      = box.left   - margin.left;
+		if (propChanges.has( RectangleFlags.TOP    )) y      = box.top    - margin.top;
+		if (propChanges.has( RectangleFlags.WIDTH  )) width  = box.width  - getHorPadding();
+		if (propChanges.has( RectangleFlags.HEIGHT )) height = box.height - getVerPadding();
 	}
 	
 	
