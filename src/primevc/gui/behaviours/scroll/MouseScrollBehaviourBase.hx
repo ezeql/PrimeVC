@@ -32,6 +32,7 @@ package primevc.gui.behaviours.scroll;
  import primevc.gui.events.MouseEvents;
   using primevc.utils.Bind;
   using primevc.utils.TypeUtil;
+  using Std;
 #end
 
 
@@ -62,10 +63,14 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 
 	private function addListeners ()
 	{
-		var mouse = target.container.userEvents.mouse;
-		activateBinding		= mouse.rollOver.bind(this, activateScrolling);
-		deactivateBinding	= mouse.rollOut.observeDisabled(this, deactivateScrolling);
-		calcScrollBinding	= mouse.move.bindDisabled(this, calculateScroll);
+		var mouseEvt = target.container.userEvents.mouse;
+		activateBinding		= mouseEvt.rollOver.bind(this, activateScrolling);
+		deactivateBinding	= mouseEvt.rollOut.observeDisabled(this, deactivateScrolling);
+		calcScrollBinding	= mouseEvt.move.bindDisabled(this, calculateScroll);
+
+		var mouse = target.container.globalToLocal(target.window.mouse.pos);
+		if (target.rect.containsPoint(mouse.x.int(), mouse.y.int()))
+			callback(activateScrolling, new MouseState(0, cast target, mouse, target.window.mouse.pos, cast target)).onceOn(target.displayEvents.enterFrame, this);
 	}
 	
 	
@@ -83,14 +88,11 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 	}
 
 
-	private function activateScrolling (mouseObj:MouseState) {
-		if (!target.isScrollable)
-			return;
-		
+	private function activateScrolling (mouseObj:MouseState) if (target.isScrollable)
+	{
 		activateBinding.disable();
 		deactivateBinding.enable();
 		calcScrollBinding.enable();
-		
 		calculateScroll( mouseObj );
 	}
 
