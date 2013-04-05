@@ -109,9 +109,9 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 			case Custom( cp ):	p.x = cp.x;				p.y = cp.y;
 			default:			p.x = 0;				p.y = 0;
 		}
-		trace("startValue: "+ startValue +", anchorPoint " + p.x + ", " + p.y+"; scale "+curScale);
 		target.scaleX = target.scaleY = curScale;
 		super.play( withEffect, directly );
+	//	trace("scale: "+ startValue + " -> " + endValue + ", anchorPoint " + p.x + ", " + p.y+"; scale "+curScale+"; pos: " + target.x+", "+target.y+"; size: "+t.width+", "+t.height+"; "+target);
 	}
 #end
 	

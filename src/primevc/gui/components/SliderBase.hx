@@ -231,6 +231,7 @@ class SliderBase extends UIDataContainer <PercentageHelper>
 								? ((curMouse.x - layout.padding.left) / layout.width).within(0, 1)
 								: ((curMouse.y - layout.padding.top) / layout.height).within(0, 1);
 		
+		dragBtn.layout.includeInLayout = false;
 		validate();
 		
 		//enable dragging as long as the mouse is down

@@ -53,7 +53,6 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 	override private function init ()
 	{
 		Assert.notNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
-		target.enableClipping();
 		if (target.container == null)
 			addListeners.onceOn(target.displayEvents.addedToStage, this);
 		else
@@ -63,7 +62,9 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 
 	private function addListeners ()
 	{
-		var mouseEvt = target.container.userEvents.mouse;
+		if (target.getScrollRect() == null)
+			target.enableClipping();
+		var mouseEvt 		= target.container.userEvents.mouse;
 		activateBinding		= mouseEvt.rollOver.bind(this, activateScrolling);
 		deactivateBinding	= mouseEvt.rollOut.observeDisabled(this, deactivateScrolling);
 		calcScrollBinding	= mouseEvt.move.bindDisabled(this, calculateScroll);

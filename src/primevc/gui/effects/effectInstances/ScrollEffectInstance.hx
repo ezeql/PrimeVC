@@ -97,7 +97,8 @@ class ScrollEffectInstance extends EffectInstance < IScrollable, ScrollEffect >
     {
         var t = target;
         if (!t.isScrollable)
-            t.createScrollRect(t.rect.width, t.rect.height);
+            t.enableClipping();
+        //  t.createScrollRect(t.rect.width, t.rect.height);
 
         var rect  = t.getScrollRect();
         if (effect.startX.isSet())  startX  = effect.startX;
@@ -138,5 +139,15 @@ class ScrollEffectInstance extends EffectInstance < IScrollable, ScrollEffect >
                 (rect.x - startX) / (endX - startX),
                 (rect.y - startY) / (endY - startY)
             );
+    }
+
+
+    override private function onTweenReady ()
+    {
+        var s = target.scrollableLayout.scrollPos;
+        var r = target.getScrollRect();
+        (untyped s).x = r.x.roundFloat();
+        (untyped s).y = r.y.roundFloat();
+        super.onTweenReady();
     }
 }
