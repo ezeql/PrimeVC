@@ -48,7 +48,10 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 	private var activateBinding		: Wire < Dynamic >;
 	private var deactivateBinding	: Wire < Dynamic >;
 	private var calcScrollBinding	: Wire < Dynamic >;
-	
+	/**
+	 * Flag indicating if the target already was clipped before the behaviour was applied. Needed for resetting
+	 */
+	private var hadClipping 		: Bool;
 	
 	override private function init ()
 	{
@@ -62,7 +65,8 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 
 	private function addListeners ()
 	{
-		if (target.getScrollRect() == null)
+		hadClipping = target.getScrollRect() != null;
+		if (!hadClipping)
 			target.enableClipping();
 		var mouseEvt 		= target.container.userEvents.mouse;
 		activateBinding		= mouseEvt.rollOver.bind(this, activateScrolling);
@@ -85,7 +89,8 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 		activateBinding		= null;
 		deactivateBinding	= null;
 		calcScrollBinding	= null;
-		target.disableClipping();
+		if (!hadClipping)
+			target.disableClipping();
 	}
 
 

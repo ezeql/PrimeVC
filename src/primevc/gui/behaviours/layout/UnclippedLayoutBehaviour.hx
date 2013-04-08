@@ -37,6 +37,7 @@ package primevc.gui.behaviours.layout;
  * Behaviour to overwrite the ClippedLayoutBehaviour. Behaviour will remove
  * the scrollrect of the target to represent the css property 
  * "overflow = visible;".
+ * UNUSED
  * 
  * @author Ruben Weijers
  * @creation-date Oct 13, 2010

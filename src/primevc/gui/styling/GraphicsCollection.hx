@@ -125,7 +125,7 @@ class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 		if (propsToSet.has( Flags.OVERFLOW ))
 		{
 			var target = target.as(IUIContainer);
-
+			
 			//remove old overflow behaviours
 			for (b in target.behaviours.list)
 				if (b.is(primevc.gui.behaviours.scroll.IScrollBehaviour)) {
@@ -135,7 +135,7 @@ class GraphicsCollection extends StyleCollectionBase < GraphicsStyle >
 
 			//create new overflow behaviour
 			if (!empty && styleObj.overflow != null)
-				target.behaviours.add( styleObj.overflow(target) );
+				target.behaviours.add(styleObj.overflow(target));
 		}
 		
 		
