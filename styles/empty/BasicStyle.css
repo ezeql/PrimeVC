@@ -201,12 +201,12 @@ Panel #closeBtn {
 /***************
  * Perceptor
  **************/
-Inspector {
+/*Inspector {
 	background: #ccc;
 	color: #333;
 	width: 50%;
 	height: 100%;	
-}
+}*/
 
 /***************
  * DEBUGBAR

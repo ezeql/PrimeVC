@@ -91,7 +91,8 @@ class UIWindow extends prime.gui.display.Window
 	public var popupLayout			(default, null)					: LayoutContainer;
 	
 #if embed_perceptor
-	public var perceptorLayout 		(default, null )				: LayoutContainer;
+	public var appLayout			(default, null) 				: LayoutContainer;
+	public var perceptorLayout 		(default, null)					: LayoutContainer;
 #end
 	
 	public var behaviours			(default, null)					: BehaviourList;
@@ -220,20 +221,34 @@ class UIWindow extends prime.gui.display.Window
 #if embed_perceptor
 		// use a seperate top level layout instead of adding to contentLayout
 		// as no assumptions can be made about what layout algorithm contentLayout
-		// will get
-		perceptorLayout = new VirtualLayoutContainer();
+		// will get and how it will behave
+		perceptorLayout = new VirtualLayoutContainer("SplitAppPerceptorLayout");
 		perceptorLayout.algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
 
-
-		layout.as(LayoutContainer).algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+		appLayout = new VirtualLayoutContainer("SplitAppContentLayout");
+		appLayout.algorithm	= new prime.layout.algorithms.RelativeAlgorithm();
+		appLayout.percentWidth	= 0.7;
+		appLayout.percentHeight = 1.0;
+		perceptorLayout.percentWidth = 0.3;
+		perceptorLayout.percentHeight = 1.0;
+		topLayout.algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+		//layout.as(LayoutContainer).algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
 #end
 		
 		popupLayout.algorithm	= new prime.layout.algorithms.RelativeAlgorithm();
 		layout.percentWidth		= layout.percentHeight = popupLayout.percentWidth = popupLayout.percentHeight = 1.0;
 		layout.invalidatable 	= popupLayout.invalidatable = true;
 
+#if embed_perceptor
+		appLayout.children.add( layout );
+		appLayout.children.add( popupLayout );
+		
+		topLayout.children.add( appLayout );
+		topLayout.children.add( perceptorLayout );
+#else
 		topLayout.children.add( layout );
 		topLayout.children.add( popupLayout );
+#end
 	//	layoutContainer.algorithm = new RelativeAlgorithm();
 	}
 	
@@ -255,7 +270,10 @@ class UIWindow extends prime.gui.display.Window
 	private function createChildren ()		: Void 
 	{
 #if embed_perceptor
-		attach( new prime.perceptor.embedded.Inspector(this) );
+		var i = new prime.perceptor.embedded.Inspector(this);
+		i.attachLayoutTo( perceptorLayout );
+		i.attachToDisplayList( this );
+		i.go();
 #end
 	}
 	
