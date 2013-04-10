@@ -153,7 +153,7 @@ class VerticalBaseAlgorithm extends primevc.gui.layout.algorithms.LayoutAlgorith
 	
 	public function apply ()
 	{
-		if (horizontal != null)
+		if (horizontal != null && group.children.length > 0)
 			switch (horizontal) {
 				case Horizontal.left:	applyHorizontalLeft();
 				case Horizontal.center:	applyHorizontalCenter();
@@ -166,53 +166,38 @@ class VerticalBaseAlgorithm extends primevc.gui.layout.algorithms.LayoutAlgorith
 
 	private  function applyHorizontalLeft ()
 	{
-		if (group.children.length > 0)
-		{
-			var start = getLeftStartValue();
-			for (child in group.children) {
-				if (!child.includeInLayout)
-					continue;
-				
+		var start = getLeftStartValue();
+		for (child in group.children)
+			if (child.includeInLayout)
 				child.outerBounds.left = start;
-			}
-		}
 	}
 	
 	
 	private inline function applyHorizontalCenter ()
 	{
-		if (group.children.length > 0)
+		var start = getLeftStartValue();
+		if (group.childWidth.notSet())
 		{
-			var start = getLeftStartValue();
-			if (group.childWidth.notSet())
-			{
-				for (child in group.children) {
-					if (!child.includeInLayout)
-						continue;
-					
+			for (child in group.children)
+				if (child.includeInLayout)
 					child.outerBounds.left = start + ( (group.width - child.outerBounds.width) >> 1 ); // * .5 ).roundFloat();
-				}
-			}
-			else
-			{
-				var childX = start + ( (group.innerBounds.width - group.childWidth) >> 1 ); // * .5 ).roundFloat();
-				for (child in group.children)
-					if (child.includeInLayout)
-						child.outerBounds.left = childX;
-			}
+		}
+		else
+		{
+			var childX = start + ( (group.innerBounds.width - group.childWidth) >> 1 ); // * .5 ).roundFloat();
+			for (child in group.children)
+				if (child.includeInLayout)
+					child.outerBounds.left = childX;
 		}
 	}
 	
 	
 	private  function applyHorizontalRight ()
 	{
-		if (group.children.length > 0)
-		{
-			var start = getRightStartValue();
-			for (child in group.children)
-				if (child.includeInLayout)
-					child.outerBounds.right = start;
-		}
+		var start = getRightStartValue();
+		for (child in group.children)
+			if (child.includeInLayout)
+				child.outerBounds.right = start;
 	}
 
 	

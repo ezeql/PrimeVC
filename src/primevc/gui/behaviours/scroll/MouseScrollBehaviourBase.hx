@@ -81,7 +81,6 @@ class MouseScrollBehaviourBase extends primevc.gui.behaviours.BehaviourBase<prim
 	
 	override private function reset ()
 	{
-		trace(this+" - "+target);
 		target.displayEvents.addedToStage.unbind(this);
 		calcScrollBinding.dispose();
 		activateBinding.dispose();

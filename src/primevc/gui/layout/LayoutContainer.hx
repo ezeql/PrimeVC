@@ -239,7 +239,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 		if (!hasValidatedWidth)		validateHorizontal();
 		if (!hasValidatedHeight)	validateVertical();
 
-		if (changes.has( Flags.SIZE_PROPERTIES ))
+		if (changes.has(Flags.SIZE_PROPERTIES) && (scrollPos.x > 0 || scrollPos.y > 0))
 			validateScrollPosition( scrollPos );
 		
 		if (algorithm.notNull()) {
@@ -328,6 +328,8 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 				{
 					var child = fillingChildren.pop();
 					child.outerBounds.width = sizePerChild;
+					if (child.is(IAdvancedLayoutClient))
+						(untyped child).explicitWidth = child.width;
 					child.validateHorizontal();
 				}
 			}
@@ -370,7 +372,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 				
 				//measure children with explicitHeight and no percentage size
 				else if (checkIfChildGetsPercentageHeight(child, height))
-					child.outerBounds.height = (height * child.percentHeight).roundFloat();
+					child.applyPercentHeight(height);
 			}
 			
 			//measure children
@@ -395,6 +397,8 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 				{
 					var child = fillingChildren.pop();
 					child.outerBounds.height = sizePerChild;
+					if (child.is(IAdvancedLayoutClient))
+						(untyped child).explicitHeight = child.height;
 					child.validateVertical();
 				}
 			}
