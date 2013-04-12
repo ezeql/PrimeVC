@@ -122,7 +122,7 @@ class AnchorScaleEffectInstance extends EffectInstance < IDisplayObject, AnchorS
 			posBeforeTween = new Point( target.x, target.y );
 		
 		startValue = effect.startValue.isSet() ? effect.startValue : target.scaleX;
-		endValue =   effect.endValue.isSet() ? effect.endValue : target.scaleX * 2;
+		endValue   = effect.endValue.isSet() ? effect.endValue : target.scaleX * 2;
 		target.visible = true;
 	}
 	
