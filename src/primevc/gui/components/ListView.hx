@@ -283,14 +283,14 @@ class ListView<ListDataType> extends primevc.gui.core.UIDataContainer < primevc.
 	}
 	
 	
-	private inline function setRendererData (r:IUIDataElement<ListDataType>, v:ListDataType)
+	private #if !noinline inline #end function setRendererData (r:IUIDataElement<ListDataType>, v:ListDataType)
 	{
 	    if (r.is(IItemRenderer))	r.as(IItemRenderer).vo.value = cast v;
 	 	else						r.data = v;
 	}
 	
 	
-	private inline function getRendererData (r:IUIDataElement<ListDataType>) : ListDataType
+	public #if !noinline inline #end function getRendererData (r:IUIDataElement<ListDataType>) : ListDataType
 	{
 	    return r.is(IItemRenderer) ? cast r.as(IItemRenderer).vo.value : r.data;
 	}
