@@ -44,7 +44,6 @@ package prime.perceptor.embedded;
  */
 class TypedProxyTree<T, F> extends SimpleList< TypedProxyTree<T, F> >
 {
-	public var view : Dynamic;
 	public var source : T;
 	public var sourceId : String;
 	
@@ -150,32 +149,6 @@ class TypedProxyTree<T, F> extends SimpleList< TypedProxyTree<T, F> >
 #end
 	}
 	
-	// Recursively searchs subtrees for item, and returns index
-	// on the subtree that has it, or -1 if item not found 
-	public override function indexOf (item:TypedProxyTree<T, F>) : Int
-	{
-		/*var cur = first;
-		var pos = -1, foundPos = -1;
-		while (cur != null && foundPos == -1)
-		{
-			pos++;
-			if (cur.data == item)
-				foundPos = pos;
-			
-			cur = cur.next;
-		}
-		return foundPos;*/
-		var i:Int = super.indexOf(item);
-		/*if ( i == -1 )
-			for ( child in this )
-			{
-				i = child.indexOf(item);
-				if ( i != -1 )
-					break;
-			}*/
-		return i;
-	}
-	
 	private function addChildNode( child:T )
 	{
 #if debug
@@ -192,10 +165,6 @@ class TypedProxyTree<T, F> extends SimpleList< TypedProxyTree<T, F> >
 #if debug
 		Assert.isTrue( ok );
 		Assert.isTrue( has( node ) );
-		var h = has( node );
-		var i = indexOf( node );
-		var l = length;
-		//trace( "removing:" + child + " from " + source );
 #end
 		childNodeMap.unset( child );
 		remove( node );
@@ -226,87 +195,7 @@ class TypedProxyTree<T, F> extends SimpleList< TypedProxyTree<T, F> >
 			node.debugg( indent + 1 );
 	}
 	
-//#if debug
 	public override function toString () {
 		return "[" + length + "]:" + sourceId;
 	}
-//#end	
-	
-	////LIST MANIPULATION METHODS
-	//
-	//
-	///**
-	 //* Method will add the item on the given position. It will add the 
-	 //* item at the end of the childlist when the value is equal to -1.
-	 //* 
-	 //* @param	item
-	 //* @param	pos		default-value: -1
-	 //* @return	item
-	 //*/
-	//public function add		(item:T, pos:Int = -1)						: T;
-	///**
-	 //* Method will try to remove the given item from the childlist.
-	 //* 
-	 //* @param	item
-	 //* @return	item
-	 //*/
-	//public function remove	(item:T, oldPos:Int = -1)					: T;
-	///**
-	 //* Method will change the depth of the given item.
-	 //* 
-	 //* @param	item
-	 //* @param	newPos
-	 //* @param	curPos	Optional parameter that can be used to speed up the 
-	 //* 					moving process since the list doesn't have to search 
-	 //* 					for the original location of the item.
-	 //* @return	item
-	 //*/
-	//public function move	(item:T, newPos:Int, curPos:Int = -1)		: T;
-	//
-	//public function removeAll ()
-	//
-	//public var change		(default, null)									: ListChangeSignal<T>;
-	///**
-	 //* TODO - Ruben sep 5, 2011:
-	 //* Maybe combine change and beforeChange to one Signal2 that has an extra parameter
-	 //* to indicate if the change is before or after applying the change..
-	 //*/
-	//public var beforeChange	(default, null)									: ListChangeSignal<T>;
-	//public var length		(getLength, never)								: Int;
-	//
-	///**
-	 //* Method will check if the requested item is in this collection
-	 //* @param	item
-	 //* @return	true if the item is in the list, otherwise false
-	 //*/
-	//public function has		(item:T)									: Bool;
-	//
-	///**
-	 //* Method will return the index of the requested item or -1 of the item is 
-	 //* not in the list.
-	 //* @param	item
-	 //* @return	position of the requested item
-	 //*/
-	//public function indexOf	(item:T)									: Int;
-	//
-	//
-	//
-	 //ITERATION METHODS
-	//
-	//
-	//public function getItemAt (pos:Int)		: T;
-	//public function iterator ()				: Iterator<T>;
-	//public function forwardIterator ()		: IIterator<T>;
-	//public function reversedIterator ()		: IIterator<T>;
-	//
-	//
-//#if debug
-	//public var name : String;
-//#end
-//
-	//public function clone () : ClassType;
-	//
-	//public function duplicate () : ClassType;
-	//
-	//public function dispose() : Void;
 }

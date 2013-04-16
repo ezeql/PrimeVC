@@ -273,7 +273,6 @@ class UIWindow extends prime.gui.display.Window
 		var i = new prime.perceptor.embedded.Inspector(this);
 		i.attachLayoutTo( perceptorLayout );
 		i.attachToDisplayList( this );
-		i.go();
 #end
 	}
 	

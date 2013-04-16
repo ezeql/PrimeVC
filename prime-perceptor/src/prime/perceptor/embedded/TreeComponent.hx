@@ -80,6 +80,11 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 		super( isRoot ? "InspectorTreeComponentRoot" : "InspectorTreeComponent", data);
 	}
 	
+	private function dataOrphaned()
+	{
+		label.data.value = label.data.value + "(orphaned)";
+	}
+	
 	private function listChange( change : ListChange< TypedProxyTree<T, F> > )
 	{
 		switch( change )
@@ -88,10 +93,24 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 				var subtree : TreeComponent<T, F> = new TreeComponent<T, F>( item );
 				subtree.attachTo( subtrees );
 			case removed( item, oldPos ): 
+				var subtree : TreeComponent<T, F> = null;
+				for ( s in subtrees.children )
+				{
+					if ( s.is(TreeComponent) && s.as(TreeComponent).data == item )
+					{
+						subtree = s.as(TreeComponent);
+						break;
+					}
+				}
+				if ( subtree != null )
+					subtree.dataOrphaned();
+
 			case moved( item, newPos, oldPos ):
 			case reset:
 			default:
 		}
+		
+		label.data.value = data + "";
 	}
  
 	public override function createChildren()
@@ -110,7 +129,8 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 		subtrees.attachTo( this );
 		
 		toggleSubtrees.on( label.userEvents.mouse.click, this );
-		listChange.on( data.change, this );
+		if( data.change!=null )
+			listChange.on( data.change, this );
 	}
 	
 	public function toggleSubtrees()
