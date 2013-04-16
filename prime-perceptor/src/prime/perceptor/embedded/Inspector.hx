@@ -27,11 +27,15 @@
  *  Danny Wilson	<danny @ prime.vc>
  */
 package prime.perceptor.embedded;
+ import prime.avm2.display.DisplayContainer;
  import prime.bindable.Bindable;
  import prime.bindable.Bindable;
  import prime.bindable.Bindable;
  import prime.bindable.Bindable;
  import prime.bindable.collections.IReadOnlyList;
+ import prime.bindable.collections.IReadOnlyList;
+ import prime.bindable.collections.SimpleList;
+ import prime.bindable.collections.SimpleList;
  import prime.bindable.collections.SimpleList;
  import prime.bindable.collections.SimpleList;
  import prime.bindable.collections.SimpleList;
@@ -51,6 +55,8 @@ package prime.perceptor.embedded;
  import prime.bindable.collections.ListChange;
  import prime.gui.display.IDisplayContainer;
  import prime.gui.display.Window;
+ import prime.gui.display.DisplayObject;
+ import prime.gui.display.IDisplayContainer;
    using prime.utils.Bind;
    using prime.utils.TypeUtil;
 	
@@ -73,10 +79,13 @@ class Inspector extends UIContainer
 	private var tree : SelectableListView<IDisplayObject>;
 	private var data : ListView<String>;
 	
-	private var lastSelected : Bindable<IDisplayObject>;
-	
 	private var rootNode : InspectorNode<IDisplayObject>;	
 	private var rootData : ListFilterPair;
+	
+	private var moretest : TypedProxyTree<IDisplayContainer, IDisplayContainer>;
+	private var tree2 : SelectableListView < TypedProxyTree < IDisplayContainer, IDisplayContainer >> ;
+	
+	private var finalTree : TreeComponent< IDisplayContainer, IDisplayContainer >;
 	
 	public function new( w:UIWindow )
 	{
@@ -98,10 +107,18 @@ class Inspector extends UIContainer
 		trace(c2);
 		trace(c3);*/
 		dataList = new SimpleList<String>();
-		//fill.on( w.children.change, this );
+		fill.on( w.children.change, this );
 		fill(null);
 		
-		lastSelected = new Bindable<IDisplayObject>(null);
+		lastSelected = new Bindable < TypedProxyTree < IDisplayContainer, IDisplayContainer >> (null);
+		currentSelected  = new Bindable < TypedProxyTree < IDisplayContainer, IDisplayContainer >> (null);
+		
+		moretest = new TypedProxyTree < IDisplayContainer, IDisplayContainer > ( cast w.children.owner, g, IDisplayContainer, IDisplayContainer );
+	}
+	
+	private function g( i:IDisplayContainer ) : IReadOnlyList<IDisplayContainer>
+	{
+		return cast i.children;
 	}
 	
 	private function fill( change:ListChange<IDisplayObject> )
@@ -110,22 +127,6 @@ class Inspector extends UIContainer
 		var num : Int = 5;// + Std.random( 10 );
 		for ( i in 0...num )
 			dataList.add( Math.random()+"" );
-		
-	}
-	
-	private function treeSelected()
-	{
-		if ( lastSelected.value == tree.selected.value )
-		{
-			//same item selected again, close any child list
-			trace("Reselected " + lastSelected.value);
-		}
-		else
-		{
-			// can we make child list
-			trace("Selected " + tree.selected.value);
-		}
-		lastSelected.value = tree.selected.value;
 		
 	}
 	
@@ -163,32 +164,191 @@ class Inspector extends UIContainer
 			data.createItemRenderer = StringObjectItemRenderer;
 			data.attachTo( this );
 			
-			treeSelected.on( tree.itemSelected, this );
+			//callback( treeSelected, dataList ).on( tree.itemSelected, this );
+		}
+		else
+		{		
+			/*var t1:UIDataContainer<Int> = new UIDataContainer<Int>("t1",1);
+			var t2:UIDataContainer<Int> = new UIDataContainer<Int>("t2",2);
+			t3 = new UIDataContainer<Int>("t3",3);
+		
+			t1.stylingEnabled = t2.stylingEnabled = t3.stylingEnabled = false;
+			
+			t2.attachTo( t1 );
+			t3.attachTo( t1 );*/
+			//t1.addChild( t2 );
+			//t1.addChild( t3 );
+			//var tpt = new TypedProxyTree< IDisplayContainer, IDisplayContainer >( t1, g, IDisplayContainer, IDisplayContainer );
+			
+			tree2 = new SelectableListView( "InspectorTree" );
+			
+			var sl : SimpleList < TypedProxyTree < IDisplayContainer, IDisplayContainer >> = new SimpleList < TypedProxyTree < IDisplayContainer, IDisplayContainer >> ();
+			//sl.add(  tpt );
+			sl.add(  moretest );
+			
+			var tpt = new TypedProxyTree< IDisplayContainer, IDisplayContainer >( null, null, IDisplayContainer, IDisplayContainer );
+			tpt.add( moretest );
+			
+			finalTree = new TreeComponent< IDisplayContainer, IDisplayContainer >( moretest, true );
+			finalTree.attachTo( this );
+			
+			/*tree2.data = tpt;
+			tree2.createItemRenderer = TypedProxyTreeRenderer;
+			tree2.attachTo( this );*/
+			//t1.attachTo( this );
+						
+			//for ( subtree in moretest )
+			//	subtree.view.visible = false;
+			
+			//callback( treeSelected, tree2 ).on( tree2.itemSelected, this );
+			//rt.on( this.displayEvents.enterFrame, this );
+			//handleTreeSelection.on( this.displayEvents.enterFrame, this );
+		}
+	}	
+	
+	private var lastSelected : Bindable < TypedProxyTree < IDisplayContainer, IDisplayContainer >> ;
+	private var currentSelected : Bindable<TypedProxyTree < IDisplayContainer, IDisplayContainer >>;
+	
+	private function handleTreeSelection()
+	{
+		if ( currentSelected.value == null )
+			return;
+
+		//moretest.debugg(); return;
+		if ( lastSelected.value == currentSelected.value )
+		{
+			//lastSelected.value.view.visible = !lastSelected.value.view.visible;
+			//for ( subtree in lastSelected.value )
+			//	subtree.view.visible = !subtree.view.visible;
+			
+			trace("Reselected " + lastSelected.value.sourceId);
 		}
 		else
 		{
-			//rootNode = new InspectorNode<IDisplayObject>( this, null, this, targetClassChildListResolver, targetClassLabelString );
-			//rootNode.attachTo( this );
+			/*if ( lastSelected.value != null )
+				for ( subtree in lastSelected.value )
+					subtree.view.visible = false;
+			for ( subtree in currentSelected.value )
+					subtree.view.visible = true;*/
+			trace("Selected " + currentSelected.value.sourceId);
 		}
+moretest.debugg();
+		lastSelected.value = currentSelected.value;
+		currentSelected.value = null;
+	}	
+	
+	private function treeSelected( t:TypedProxyTree<IDisplayContainer, IDisplayContainer>  )
+	{
+		if ( currentSelected.value != null )
+			return;
+		currentSelected.value = t;		
+	}	
+	
+	var t3:UIDataContainer<Int>;
+	var c:Int;
+	public function rt()
+	{
+		
+		if ( c++ == 100 )
+		{
+			//t3.displayEvents.enterFrame.unbind( this );
+			//t3.dispose();
+			//t3.detach();
+			//tree2.visible = false;
+		}
+	}
+	
+	private function TypedProxyTreeRenderer( data : TypedProxyTree<IDisplayContainer,IDisplayContainer>, depth : Int ) : IUIDataElement<TypedProxyTree<IDisplayContainer,IDisplayContainer>>
+	{
+		var item : UIDataContainer<TypedProxyTree<IDisplayContainer,IDisplayContainer>> = new UIDataContainer( "InspectorTreeLabelContainer", data );
+		
+		//Assert.isTrue( data.is( IDisplayContainer ) );
+		var hasChildren : Bool = false;
+		var numChildren : Int = 0;
+		//if ( data.is( IDisplayContainer ) )
+			numChildren = data.length;
+		//
+		var cn : String = Type.getClassName(Type.getClass(data.source));
+		cn = cn.substr( cn.lastIndexOf( "." )+1 );
+		var s : String =  "["+numChildren+"] " + data.source +":"+ cn;
+		//
+		///*
+		 //* When using Label class, it is a datacomponent but the data type is of 
+		 //* Bindable<String>, so when you click on it, SelectableListView select handler tries to find
+		 //* a renderer for Bindable<String> when it is typed to data of IDisplayObject - coercion error.
+		 //* 
+		 //* Disable the label and select events pass through to the parent UIDataContainer, which is typed
+		 //* correctly and has correct data
+		 //* */
+
+		//var label : Label = new Label( "InspectorTreeLabel", new Bindable( s ) );
+		
+		var label : ListLabel < TypedProxyTree < IDisplayContainer, IDisplayContainer >> = new ListLabel < TypedProxyTree < IDisplayContainer, IDisplayContainer >> ( "InspectorTreeLabel", s, data );
+		
+		label.disable();
+		item.attach( label );
+		 for ( i in 0 ... 4 )
+		 {
+		//var label : Label = new Label( "InspectorTreeLabel", new Bindable( "the second" ) );
+		//label.disable();
+		//item.attach( label );
+		 }
+		// reference for the mouse click code to use
+		data.view = item;
+		
+		
+		//for ( node in data )
+		{
+			var subtreeview = new SelectableListView<TypedProxyTree < IDisplayContainer, IDisplayContainer >>( "InspectorTreeSub" );
+	//
+			subtreeview.data = data;
+			subtreeview.createItemRenderer = TypedProxyTreeRenderer;
+			
+			//subtreeview.attachTo( this );
+			item.attach( subtreeview );
+			
+			//
+			//defaults to hidden, unhidden if parent is ever selected
+			item.visible = false;
+			//
+			//callback( treeSelected, data ).on( subtreeview.itemSelected, this );
+			//callback( treeSelected, data ).on( subtreeview.itemSelected, this );
+		}
+		
+		// this needs delaying until the SelectableViewList its under can be reached
+		callback( enableLabelClick, label, data ).onceOn( label.displayEvents.addedToStage, this );
+		
+		return item;
+		//return null;
+	}
+	
+	public function enableLabelClick( label : ListLabel < TypedProxyTree < IDisplayContainer, IDisplayContainer >>, data : TypedProxyTree<IDisplayContainer,IDisplayContainer> )
+	{
+		label.enable();
+		var listParent : SelectableListView < TypedProxyTree < IDisplayContainer, IDisplayContainer >> = cast label.container.container;// .as( SelectableListView < TypedProxyTree < IDisplayContainer, IDisplayContainer >> );
+		callback( treeSelected, data ).on( listParent.itemSelected, this );
+		
 	}
 	
 	public function go()
 	{
-		rootData = new ListFilterPair( window.children, displayList, [IDisplayContainer] );
+//		rootData = new ListFilterPair( window.children, displayList, [IDisplayContainer] );
 		//listChange.on( window.children.change, this );
 		// root created here because of an ordering problem with display list changes
-		rootNode = new InspectorNode<IDisplayObject>( this, null, this, targetClassChildListResolver, targetClassLabelString );
-		rootNode.attachTo( this );
+		//rootNode = new InspectorNode<IDisplayObject>( this, null, this, targetClassChildListResolver, targetClassLabelString );
+		//rootNode.attachTo( this );
 		
 		
-		//test.on( displayEvents.enterFrame, this );
+		test.on( displayEvents.enterFrame, this );
 	}
 	
 	private var cnt:Int;
 	public function test()
 	{
-		if (cnt++ == 100)
-			cnt;
+		//trace("-----------------------------------------");
+		//.moretest.debugg();
+		//if (cnt++ == 100)
+		//	moretest.debugg();
 	}
 	
 	private function targetClassChildListResolver( data:IDisplayObject ) : IReadOnlyList<IDisplayObject>
