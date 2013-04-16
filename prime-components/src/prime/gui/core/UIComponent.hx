@@ -248,7 +248,9 @@ class UIComponent extends Sprite, implements IUIComponent
 		enabled.dispose();
 		
 #if flash9
-		style.dispose();
+		// will be null if styling is disabled
+		if( style != null )
+			style.dispose();
 		styleClasses.dispose();
 		styleClasses	= null;
 		style			= null;

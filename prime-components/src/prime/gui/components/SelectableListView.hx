@@ -196,7 +196,9 @@ class SelectableListView<ListDataType> extends ListView<ListDataType>
 
     public #if !noinline inline #end function deselectRenderers ()
     {
-        selected.set(null);
+		// selected is null when this method is called during disposal
+		if( selected != null )
+			selected.set(null);
         previousSelected = null;
     }
 

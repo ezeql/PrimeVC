@@ -69,7 +69,19 @@ class InvalidationManager extends QueueManager
 #end
 		while (first != null)
 		{
-#if debug 	if (i++ > 200) { trace("ERROR: INVALIDATION is stuck on "+first+" -> "+first.nextValidatable); first = null; break; } #end
+#if (debug && !embed_perceptor)	
+			if (i++ > 200) { trace("ERROR: INVALIDATION is stuck on "+first+" -> "+first.nextValidatable); first = null; break; } 
+#elseif embed_perceptor
+			// embedded perceptor easily surpasses the 200 limit
+			var n:String = first + "";
+			if ( n.indexOf( "InspectorTreeLabel" ) == -1 && n.indexOf( "InspectorTreeContainer" ) == -1 && n.indexOf( "InspectorTreeComponent" ) == -1 )
+				if (i++ > 200) 
+				{
+					trace("ERROR: INVALIDATION is stuck on " + first + " -> " + first.nextValidatable); 
+					first = null; 
+					break; 
+				} 
+#end
 
 			var obj	= first.as(IPropertyValidator);
 			obj.validate();
