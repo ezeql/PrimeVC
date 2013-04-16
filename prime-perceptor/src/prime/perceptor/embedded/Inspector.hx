@@ -32,8 +32,11 @@ package prime.perceptor.embedded;
  import prime.bindable.Bindable;
  import prime.bindable.Bindable;
  import prime.bindable.Bindable;
+ import prime.bindable.Bindable;
  import prime.bindable.collections.IReadOnlyList;
  import prime.bindable.collections.IReadOnlyList;
+ import prime.bindable.collections.SimpleList;
+ import prime.bindable.collections.SimpleList;
  import prime.bindable.collections.SimpleList;
  import prime.bindable.collections.SimpleList;
  import prime.bindable.collections.SimpleList;
@@ -57,6 +60,10 @@ package prime.perceptor.embedded;
  import prime.gui.display.Window;
  import prime.gui.display.DisplayObject;
  import prime.gui.display.IDisplayContainer;
+ import prime.layout.LayoutContainer;
+ import prime.gui.components.Form;
+ import prime.gui.core.UIComponent;
+ import prime.avm2.display.DisplayContainer;
    using prime.utils.Bind;
    using prime.utils.TypeUtil;
 	
@@ -67,9 +74,12 @@ package prime.perceptor.embedded;
  */
 class Inspector extends UIContainer
 {
-	private var tree : TreeComponent< IDisplayContainer, IDisplayContainer >;
+	private var treeView : TreeComponent< IDisplayContainer, IDisplayContainer >;
 	private var treeData : TypedProxyTree < IDisplayContainer, IDisplayContainer >;
-		
+
+	private var selectedView : ListView<String>;
+	private var selectedData : SimpleList<String>;
+
 	private var lastSelected : Bindable< TypedProxyTree< IDisplayContainer, IDisplayContainer> >;
 	private var currentSelected : Bindable< TypedProxyTree< IDisplayContainer, IDisplayContainer> >;
 	
@@ -88,7 +98,70 @@ class Inspector extends UIContainer
 	{
 		super.createChildren();
 			
-		tree = new TreeComponent< IDisplayContainer, IDisplayContainer >( treeData, true );
-		tree.attachTo( this );
+		treeView = new TreeComponent< IDisplayContainer, IDisplayContainer >( treeData, treeViewSelected, true );
+		treeView.attachTo( this );
+		
+		selectedData = new SimpleList<String>();
+		selectedView = new ListView<String>("InspectorData");
+		selectedView.createItemRenderer = selectedViewRenderer;
+		selectedView.data = selectedData;
+		selectedView.attachTo( this );
+	}
+	
+	private function treeViewSelected( treeView:TreeComponent<IDisplayContainer, IDisplayContainer> )
+	{
+		selectedData.removeAll();
+		
+		var treeData : TypedProxyTree < IDisplayContainer, IDisplayContainer > = treeView.data;
+		var data : IDisplayContainer = treeData.source;
+		
+		listDisplayContainer( data );
+	}
+	
+	private function selectedViewRenderer( item:String, depth:Int ) : IUIDataElement<String>
+	{
+		var container : UIDataContainer<String> = new UIDataContainer<String>( "InspectorDataContainer", item );
+		
+		new Label("InspectorDataLabel", new Bindable<String>(item) ).attachTo( container );
+		
+		return container;
+	}
+	
+	private function listDisplayContainer( d:IDisplayContainer )
+	{
+		/*if ( d.is(DisplayContainer) )
+		{
+			var dc : DisplayContainer = d.as(DisplayContainer);
+			
+			//todo add more properties
+			selectedData.add( dc.rect+"" );
+			selectedData.add( dc.scrollRect+"" );
+		}
+		else if ( d.is( Window ) )
+		{
+			var w : Window = d.as(Window);
+			
+			//todo add more properties
+			selectedData.add( w+"" );
+		}
+		else if ( d.is( UIComponent ) )
+		{
+			var u : UIComponent = d.as( UIComponent );
+			
+			var fields:Array<String> = Reflect.fields( u );
+			for ( field in fields )
+			{
+				selectedData.add( field + ":" + Reflect.field( u, field ) );
+			}
+		}
+		else*/
+		{
+			selectedData.add("DEFAULT HANDLING");
+			var fields:Array<String> = Type.getInstanceFields( Type.getClass( d ) );
+			for ( field in fields )
+			{
+				selectedData.add( field + ":" + Reflect.field( d, field ) );
+			}
+		}
 	}
 }

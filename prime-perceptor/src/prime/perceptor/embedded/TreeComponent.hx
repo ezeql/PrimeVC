@@ -69,15 +69,16 @@ package prime.perceptor.embedded;
  
 class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 {
-	private var label : Label;
-	
 	// Subtrees grouped in a container to simplify attaching/detaching
 	// all at once
 	private var subtrees : UIContainer;
+	private var selectHandler : TreeComponent < T, F >->Void;
+	private var label : Label;
 
-	public function new ( data:TypedProxyTree<T, F>, isRoot:Bool = false )
+	public function new ( data:TypedProxyTree<T, F>, selectHandler:TreeComponent<T, F>->Void, isRoot:Bool = false )
 	{
 		super( isRoot ? "InspectorTreeComponentRoot" : "InspectorTreeComponent", data);
+		this.selectHandler = selectHandler;
 	}
 	
 	private function dataOrphaned()
@@ -90,7 +91,7 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 		switch( change )
 		{
 			case added( item, newPos ):
-				var subtree : TreeComponent<T, F> = new TreeComponent<T, F>( item );
+				var subtree : TreeComponent<T, F> = new TreeComponent<T, F>( item, selectHandler );
 				subtree.attachTo( subtrees );
 			case removed( item, oldPos ): 
 				var subtree : TreeComponent<T, F> = null;
@@ -123,7 +124,7 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 		subtrees = new UIContainer( "InspectorTreeContainer" );
 		for ( subtreeData in data )
 		{
-			var subtree : TreeComponent<T, F> = new TreeComponent<T, F>( subtreeData );
+			var subtree : TreeComponent<T, F> = new TreeComponent<T, F>( subtreeData, selectHandler );
 			subtree.attachTo( subtrees );
 		}
 		subtrees.attachTo( this );
@@ -139,5 +140,6 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 			subtrees.detach();
 		else
 			subtrees.attachTo( this );
+		selectHandler(this);
 	}
 }
