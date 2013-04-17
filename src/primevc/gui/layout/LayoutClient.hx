@@ -845,13 +845,13 @@ class LayoutClient extends primevc.core.traits.Invalidatable
 	}
 	
 	
-	public #if !noinline inline #end function getHorPadding () : Int	{ return /*padding == null ? 0 : */padding.left	+ padding.right; }
+	public #if !noinline inline #end function getHorPadding () : Int{ return /*padding == null ? 0 : */padding.left	+ padding.right; }
 	public #if !noinline inline #end function getVerPadding() : Int	{ return /*padding == null ? 0 : */padding.top	+ padding.bottom; }
 	public #if !noinline inline #end function getHorMargin () : Int	{ return /*margin  == null ? 0 : */margin.left	+ margin.right; }
-	public #if !noinline inline #end function getVerMargin() : Int		{ return /*margin  == null ? 0 : */margin.top	+ margin.bottom; }
+	public #if !noinline inline #end function getVerMargin() : Int	{ return /*margin  == null ? 0 : */margin.top	+ margin.bottom; }
 	
 	public #if !noinline inline #end function hasMaxWidth () : Bool	{ return widthValidator  != null && widthValidator.max.isSet(); }
-	public #if !noinline inline #end function hasMaxHeight () : Bool	{ return heightValidator != null && heightValidator.max.isSet(); }
+	public #if !noinline inline #end function hasMaxHeight () : Bool{ return heightValidator != null && heightValidator.max.isSet(); }
 	
 	
 	

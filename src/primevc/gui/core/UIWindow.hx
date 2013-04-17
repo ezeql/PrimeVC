@@ -130,20 +130,16 @@ class UIWindow extends primevc.gui.display.Window
 		rendering		= new RenderManager(this);
 		invalidation	= new InvalidationManager(this);
 		toolTip			= new ToolTipManager(this);
-		
 		behaviours		= new BehaviourList();
-		
 #if flash9		
 		graphicData		= new GraphicProperties(rect);
 		styleClasses	= new SimpleList<String>();
 #end
-		
 		behaviours.add( new primevc.gui.behaviours.layout.WindowLayoutBehaviour(this) );
 		behaviours.add( new primevc.gui.behaviours.RenderGraphicsBehaviour(this) );
 		
 		createBehaviours();
 		createLayout();
-		
 #if flash9
 		bgShape			= new VectorShape();
 		graphics		= bgShape.graphics;
