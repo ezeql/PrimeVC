@@ -117,7 +117,7 @@ class UIComponent extends Sprite, implements IUIComponent
 #end
 		this.id			= new Bindable<String>(id);
 		this.enabled	= new Bindable<Bool>(true);
-		visible			= false;
+	//	visible			= false;
 		changes			= 0;
 		
 		state			= new UIElementStates();
@@ -291,10 +291,10 @@ class UIComponent extends Sprite, implements IUIComponent
 			var hasEffect = effects != null && effects.show != null;
 			var isPlaying = hasEffect && effects.show.isPlaying();
 			
-			if (!hasEffect && !visible)
-				visible = true;
+		//	if (!hasEffect && !visible)
+		//		visible = true;
 			
-			else if (hasEffect && !isPlaying)
+			if (hasEffect && !isPlaying)
 			{
 				if (!wasDetaching)
 					visible = false;
@@ -342,9 +342,9 @@ class UIComponent extends Sprite, implements IUIComponent
 	public #if !noinline inline #end function show ()						{ this.doShow(); }
 	public #if !noinline inline #end function hide ()						{ this.doHide(); }
 	public #if !noinline inline #end function move (x:Int, y:Int)			{ this.doMove(x, y); }
-	public #if !noinline inline #end function resize (w:Int, h:Int)		{ this.doResize(w, h); }
+	public #if !noinline inline #end function resize (w:Int, h:Int)			{ this.doResize(w, h); }
 	public #if !noinline inline #end function rotate (v:Float)				{ this.doRotate(v); }
-	public function scale (sx:Float, sy:Float)			{ this.doScale(sx, sy); }
+	public function scale (sx:Float, sy:Float)								{ this.doScale(sx, sy); }
 	
 	public #if !noinline inline #end function enable ()					{ /*Assert.that(!isDisposed(), this);*/ enabled.value = true; }
 	public #if !noinline inline #end function disable ()					{ /*Assert.that(!isDisposed(), this);*/ enabled.value = false; }
