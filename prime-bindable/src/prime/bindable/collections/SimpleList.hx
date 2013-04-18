@@ -127,7 +127,7 @@ class SimpleList<T> implements IEditableList<T>
 		return length == 0;
 	}
 	
-	private inline function getLength () : Int          { return _length; }
+	@:keep private inline function getLength () : Int          { return _length; }
 	public function iterator          () : Iterator <T> { return forwardIterator(); }
 	public function forwardIterator   () : IIterator<T> { return new FastDoubleCellForwardIterator <T> (first); }
 	public function reversedIterator  () : IIterator<T> { return new FastDoubleCellReversedIterator <T> (last); }
