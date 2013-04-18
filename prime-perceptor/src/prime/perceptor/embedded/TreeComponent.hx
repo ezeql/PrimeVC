@@ -84,6 +84,7 @@ class TreeComponent<T, F> extends UIDataContainer< TypedProxyTree<T, F> >
 	private function dataOrphaned()
 	{
 		label.data.value = label.data.value + "(orphaned)";
+		label.userEvents.mouse.click.unbind( this );
 	}
 	
 	private function listChange( change : ListChange< TypedProxyTree<T, F> > )
