@@ -47,7 +47,7 @@ package prime.gui.components;
  * Scrollbar component looks a lot like the slider, with a few exceptions:
  * 		- size of the dragBtn is based on the size of the viewport of the target
  * 		- changing the percentage of the slider should update the 
- * 			scroll-position of the target's viewport.
+ * 			scroll-position of the targets viewport.
  * 
  * @author Ruben Weijers
  * @creation-date Jan 04, 2011
@@ -55,7 +55,7 @@ package prime.gui.components;
 class ScrollBar extends SliderBase
 {
 	/**
-	 * Object on which the scrollbar's apply
+	 * Object on which the scrollbars apply
 	 */
 	public var target (default, setTarget)	: IScrollable;
 	
@@ -171,7 +171,7 @@ class ScrollBar extends SliderBase
 	 * Eventhandler which is called when the size of the target changes and the
 	 * direction is horizontal.
 	 * 
-	 * @param	layoutChanges	bit-flags with all the changes of the target's layout
+	 * @param	layoutChanges	bit-flags with all the changes of the targets layout
 	 */
 	private function updateBtnWidth (layoutChanges:Int)
 	{
@@ -193,7 +193,7 @@ class ScrollBar extends SliderBase
 	 * Eventhandler which is called when the size of the target changes and the
 	 * direction is vertical.
 	 * 
-	 * @param	layoutChanges	bit-flags with all the changes of the target's layout
+	 * @param	layoutChanges	bit-flags with all the changes of the targets layout
 	 */
 	private function updateBtnHeight (layoutChanges:Int)
 	{

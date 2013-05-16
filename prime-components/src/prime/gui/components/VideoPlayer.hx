@@ -160,7 +160,7 @@ class VideoControlBar extends UIContainer
 		
 		timeDisplay.data.value = "--:-- / --:--";
 		
-		//FIXME RUBEN: create a nice way with macro's to add children conditionally.. like 
+		//FIXME RUBEN: create a nice way with macros to add children conditionally.. like 
 		// children.addIf( child, function() width > 400; );
 		// when( this.width > 400 ).on(updateLayout).addChild(btn); 
 		addOrRemoveChildren.on( layout.changed, this );

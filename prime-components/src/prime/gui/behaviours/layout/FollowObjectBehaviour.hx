@@ -46,9 +46,9 @@ package prime.gui.behaviours.layout;
  * Behaviour allows the target to follow the position of another UIElement, 
  * even when it's in a different display-container.
  * 
- * This behaviour is usefull for popup's like the selectionmenu of the combobox.
+ * This behaviour is usefull for popups like the selectionmenu of the combobox.
  * The selectionmenu is placed on top of all other UIElements but should still
- * be above the combobox button (also when it changes it's position).
+ * be above the combobox button (also when it changes its position).
  * 
  * On default, the behaviour will place the target-element on the left-top 
  * corner of the followed object, but by using the relative layout-properties
@@ -142,8 +142,8 @@ class FollowObjectBehaviour extends BehaviourBase<IUIElement>
 	
 	
 	/**
-	 * Method is called when the target's layout is changed and will update
-	 * it's position if the relative properties or size is changed.
+	 * Method is called when the targets layout is changed and will update
+	 * its position if the relative properties or size is changed.
 	 */
 	private function checkTargetChanges (changes:Int)
 	{

@@ -113,7 +113,7 @@ class UIBitmap extends prime.gui.display.BitmapShape, implements IUIElement
         if (isDisposed())
             return;
         
-        if (parent != null)     // <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+        if (parent != null)     // <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component gets disposed on removedFromStage, we won't know that it isn't on it.
             detachDisplay();
         
         if (effects != null) {
@@ -318,7 +318,7 @@ class UIBitmap extends prime.gui.display.BitmapShape, implements IUIElement
     
     private inline function getSystem () : ISystem      { return window.as(ISystem); }
 #if flash9
-    public #if !noinline inline #end function isOnStage () : Bool          { return stage != null; }           // <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+    public #if !noinline inline #end function isOnStage () : Bool          { return stage != null; }           // <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component gets disposed on removedFromStage, we won't know that it isn't on it.
 #else
     public #if !noinline inline #end function isOnStage () : Bool          { return window != null; }
 #end

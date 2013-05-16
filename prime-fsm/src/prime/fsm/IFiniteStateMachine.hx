@@ -85,7 +85,7 @@ interface IFiniteStateMachine implements haxe.rtti.Infos, implements IDisposable
 //	function remove (state:IState) : Void;
 	
 	/**
-	 * Enabel the current state group. The group will be allowed to siwtch from states
+	 * Enabel the current state group. The group will be allowed to switch from states
 	 * again when it's enabled.
 	 */
 //	public function enable ()									: Void;

@@ -89,7 +89,7 @@ class StyleBlockBase extends Invalidatable, implements IStyleBlock
 		if (isSet)	filledProperties = filledProperties.set( propFlag );
 		else		filledProperties = filledProperties.unset( propFlag );
 		
-		//Now it's unknow if the property that is changed, is somewhere in
+		//Now it's unknown if the property that is changed, is somewhere in
 		//the list with super / extended styles, so the object must rebuild 
 		//these flags.
 		if (isSet)	allFilledProperties = allFilledProperties.set( propFlag );

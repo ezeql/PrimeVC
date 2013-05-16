@@ -313,7 +313,7 @@ class CSSParser
 	private var styles					: StyleBlock;
 	
 	/**
-	 * List with all styleSheets url's that should be loaded and parsed.
+	 * List with all styleSheets urls that should be loaded and parsed.
 	 */
 	private var styleSheetQueue			: SimpleList < StyleQueueItem >;
 	
@@ -1967,7 +1967,7 @@ class CSSParser
 		{
 			var g = createGraphicsBlock();
 			
-			//there is already an composed fill background property specified. Let's add the newFill to this composed fill.
+			//there is already an composed fill background property specified. Lets add the newFill to this composed fill.
 			if (g.background != null && g.background.is(ComposedFill))
 				if (newFill.is(ComposedFill))
 					g.background.as(ComposedFill).merge( newFill.as(ComposedFill) );
@@ -2026,7 +2026,7 @@ class CSSParser
 	 * 
 	 * Color values in a gradient can have the same format as a solid 
 	 * background-color. The position of the gradientstop is optional. Without
-	 * a position, the color will be placed on it's number devided by 255. If
+	 * a position, the color will be placed on its number devided by 255. If
 	 * you do specify a color, it can have a px or % value.
 	 * 
 	 * SpreadMethod defines how the gradient is spread. Allowed values are:
@@ -3639,7 +3639,7 @@ class CSSParser
 	 * Method to match the correct effect and create an effect-object from the
 	 * given parameters.
 	 * 
-	 * Every effect has it's own parameters, but can also have the following
+	 * Every effect has its own parameters, but can also have the following
 	 * general parameters:
 	 * 		- duration (ms)
 	 * 		- 'delay ( duration ms )'

@@ -37,7 +37,7 @@ package prime.gui.effects;
 
 
 /**
- * Animates an IPositionable object from start position to it's end position
+ * Animates an IPositionable object from start position to its end position
  * 
  * @author Ruben Weijers
  * @creation-date Jul 15, 2011

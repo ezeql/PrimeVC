@@ -310,7 +310,7 @@ class StyleBlock extends StyleBlockBase
 	
 	
 	/**
-	 * Method will search for the requested child + type in it's children or
+	 * Method will search for the requested child + type in its children or
 	 * the children of his extended / superStyle.
 	 */
 	/*public function getChild (name:String, childType:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock
@@ -338,7 +338,7 @@ class StyleBlock extends StyleBlockBase
 	
 #if CSSParser
 	/**
-	 * Method will search for the requested state + type in it's children or
+	 * Method will search for the requested state + type in its children or
 	 * the children of his extended / superStyle.
 	 */
 	public function getState ( stateName:Int, styleName:String, styleType:StyleBlockType, ?exclude:StyleBlock ) : StyleBlock
@@ -357,8 +357,8 @@ class StyleBlock extends StyleBlockBase
 	
 	
 	/**
-	 * Method searches for the requested statename in it's children. When the
-	 * state is not found there, it will ask it's parent to look for the 
+	 * Method searches for the requested statename in its children. When the
+	 * state is not found there, it will ask its parent to look for the 
 	 * requested state.
 	 */
 	public function findState ( stateName:Int, styleName:String, styleType:StyleBlockType, ?exclude:StyleBlock, depth:Int = 0 ) : StyleBlock
@@ -385,8 +385,8 @@ class StyleBlock extends StyleBlockBase
 	
 	
 	/**
-	 * Method searches for the requested child in it's children. When the
-	 * child is not found there, it will ask it's parent to look for the 
+	 * Method searches for the requested child in its children. When the
+	 * child is not found there, it will ask its parent to look for the 
 	 * requested child.
 	 */
 	public function findIdStyle ( name:String, ?exclude:StyleBlock ) : StyleBlock

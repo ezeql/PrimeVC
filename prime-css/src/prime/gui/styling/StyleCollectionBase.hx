@@ -42,7 +42,7 @@ package prime.gui.styling;
 
 
 /**
- * Base class for style-proxy's
+ * Base class for style-proxys
  * 
  * @author Ruben Weijers
  * @creation-date Oct 22, 2010
@@ -243,7 +243,7 @@ class StyleCollectionBase < StyleGroupType:StyleSubBlock >
 /**
  * Base class for style-group iterators. A style-group-iterator iterates over
  * the style-objects of a style sheet and returns the next style-group if it
- * is found in the style-object. Style-object's who don't have the searched
+ * is found in the style-object. Style-objects who don't have the searched
  * style-group, are skipped.
  * 
  * @author Ruben Weijers

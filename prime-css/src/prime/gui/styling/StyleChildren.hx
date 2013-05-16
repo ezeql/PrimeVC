@@ -128,7 +128,7 @@ class StyleChildren
 	
 	
 	/**
-	 * Method add's the given child to the correct list
+	 * Method adds the given child to the correct list
 	 */
 	public function set (childName:String, child:StyleBlock) : StyleBlock
 	{

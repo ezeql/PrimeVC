@@ -32,7 +32,7 @@ package prime.core.traits;
 /**
  * Duplicatable objects should create a new instance of their class with exact
  * the same properties as the current instance, except for properties that 
- * should be uniqiue (like id's).
+ * should be uniqiue (like ids).
  * 
  * The "clone" method of IClonable will also copy the unqiue properties of the
  * instance.

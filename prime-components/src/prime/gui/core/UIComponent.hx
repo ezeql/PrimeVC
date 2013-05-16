@@ -169,7 +169,7 @@ class UIComponent extends Sprite, implements IUIComponent
 		if (skin != null)
 			skin.createChildren();
 		
-		//create the children of this component after the skin has created it's children
+		//create the children of this component after the skin has created its children
 		createChildren();
 		behaviours.init();
 		
@@ -325,7 +325,7 @@ class UIComponent extends Sprite, implements IUIComponent
 		{
 			if (hasEffect) {
 				var eff = effects.hide;
-			//	layout.includeInLayout = false;		causes the layout's container to ignore the removal of the layout ==> wrong..
+			//	layout.includeInLayout = false;		causes the layouts container to ignore the removal of the layout ==> wrong..
 				applyDetach.onceOn( eff.ended, this );
 				effects.playHide();
 			}
@@ -375,7 +375,7 @@ class UIComponent extends Sprite, implements IUIComponent
 	
 	private inline function getSystem () : ISystem		{ return window.as(ISystem); }
 #if flash9
-	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component get's disposed on removedFromStage, we won't know that it isn't on it.
+	public #if !noinline inline #end function isOnStage () : Bool			{ return stage != null; }			// <-- dirty way to see if the component is still on stage.. container and window will be unset after removedFromStage is fired, so if the component gets disposed on removedFromStage, we won't know that it isn't on it.
 #else
 	public #if !noinline inline #end function isOnStage () : Bool			{ return window != null; }
 #end

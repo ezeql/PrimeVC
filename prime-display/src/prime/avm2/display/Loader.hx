@@ -437,7 +437,7 @@ class Loader implements ICommunicator
 	 * when this loader is getting disposed!
 	 * 
 	 * If the loaded content is an avm2-movie, the loader will also be returned
-	 * since some flex-swf's will otherwise throw errors.
+	 * since some flex-swfs will otherwise throw errors.
 	 */
 	private function getContent () : DisplayObject
 	{

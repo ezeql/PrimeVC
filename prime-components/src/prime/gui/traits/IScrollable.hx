@@ -51,16 +51,16 @@ interface IScrollable implements IDisplayable, implements IInteractive
 //#if flash9
 //  public var scrollRect       : prime.core.geom.Rectangle;
 //#end
-    /** set's the scrollRect.x position to the given x **/
+    /** sets the scrollRect.x position to the given x **/
     public function scrollToX        (x:Float) : Void;
-    /** set's the scrollRect.y position to the given y **/
+    /** sets the scrollRect.y position to the given y **/
     public function scrollToY        (y:Float) : Void;
     public function scrollTo         (x:Float, y:Float) : Void;
     /** updates the scrollRect.x position to scrollableLayout.scrollPos.x **/
     public function applyScrollX     () : Void;
     /** updates the scrollRect.x position to scrollableLayout.scrollPos.x **/
     public function applyScrollY     () : Void;
-    /** set's the scrollRect size to the given width and height **/
+    /** sets the scrollRect size to the given width and height **/
     public function setClippingSize  (w:Float, h:Float) : Void;
 
     public function createScrollRect (w:Float, h:Float): Void;

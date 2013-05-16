@@ -3,7 +3,7 @@ Ruben Weijers
 :toc:
 
 == Introduction
-The main goal of `Layoutalgorithms` is to tell a `LayoutContainer` where to position it's children. It does this by implementing a set of methods with the following functionality:
+The main goal of `Layoutalgorithms` is to tell a `LayoutContainer` where to position its children. It does this by implementing a set of methods with the following functionality:
 
 . measuring
 . positioning
@@ -35,21 +35,21 @@ msc {
 
 
 
-== Float's
+== Floats
 === Horizontal float
 
 .Left-to-right
 {sys:build/doc-include "diagrams/Algorithm_HorFloat_LtR.ditaa"}
 
 [horizontal]
-`a-d`:: LayoutClient's
+`a-d`:: LayoutClients
 `E`:: LayoutContainer - HorizontalFloat(left-to-right)
 
 .Right-to-left
 {sys:build/doc-include "diagrams/Algorithm_HorFloat_RtL.ditaa"}
 
 [horizontal]
-`a-d`:: LayoutClient's
+`a-d`:: LayoutClients
 `E`:: LayoutContainer - HorizontalFloat(right-to-left)
 
 === Vertical float
@@ -139,7 +139,7 @@ This algorithm is the most straight forward and simple tile-algorithm. It will p
 
 
 === Fixed-Tile
-Fixed-tile-algorithm uses a fixed number of columns (or rows if the start direction is vertical) to position it's children instead of trying to put as many children as possible in a row/column. The algorithm will position the children like a table, it uses the heighest cell in a row to define the row-height and widest cell in a column to define to column-width.
+Fixed-tile-algorithm uses a fixed number of columns (or rows if the start direction is vertical) to position its children instead of trying to put as many children as possible in a row/column. The algorithm will position the children like a table, it uses the heighest cell in a row to define the row-height and widest cell in a column to define to column-width.
 
 .Properties
 . support `left-to-right`, `right-to-left`, `top-to-bottom` and `bottom-to-top` directions

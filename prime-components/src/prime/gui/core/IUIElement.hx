@@ -96,19 +96,19 @@ interface IUIElement
 	 */
 	public function attachLayoutTo	(target:ILayoutContainer, pos:Int = -1)	: IUIElement;
 	/**
-	 * Method will detach the layout-client of this UIElement from it's 
+	 * Method will detach the layout-client of this UIElement from its 
 	 * layoutcontainer.
 	 * @return own-instance
 	 */
 	public function detachLayout	()										: IUIElement;
 	/**
 	 * Method will attach this UIElement to the given IUIContainer, including
-	 * it's layout.
+	 * its layout.
 	 * @return own-instance
 	 */
 	public function attachTo		(target:IUIContainer, pos:Int = -1)		: IUIElement;
 	/**
-	 * Method will detach this UIElement from it's parent, including it's layout. If there's
+	 * Method will detach this UIElement from its parent, including its layout. If there's
 	 * removed-from-stage effect, it will play first.
 	 * @return own-instance
 	 */

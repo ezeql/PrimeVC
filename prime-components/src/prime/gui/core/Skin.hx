@@ -80,7 +80,7 @@ class Skin <OwnerClass:IUIComponent> implements ISkin
 	/**
 	 * Abstract method.
 	 * Is called by the owner when an object wants to check if the owner has
-	 * focus. The skin can check if the target is one of it's children and then
+	 * focus. The skin can check if the target is one of its children and then
 	 * return true or false.
 	 */
 	public function isFocusOwner (target:UserEventTarget) : Bool

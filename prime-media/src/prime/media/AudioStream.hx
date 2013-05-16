@@ -71,7 +71,7 @@ class AudioStream extends BaseMediaStream
      */
     public  var repeated    (default, null)     : Int;
     /**
-     * the number of milliseconds a sound has been playing after it's been paused (since a SoundChannel can only stop)
+     * the number of milliseconds a sound has been playing after it has been paused (since a SoundChannel can only stop)
      */
     private var lastPos     : Float;
 #end

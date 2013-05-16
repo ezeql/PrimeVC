@@ -3,9 +3,9 @@ Ruben Weijers
 :toc:
 
 == Introduction
-The primary goal of Prime's layoutsystem is to minimize the time and effort you spend on positioning, measuring and updating user-interface-elements.
+The primary goal of Primes layoutsystem is to minimize the time and effort you spend on positioning, measuring and updating user-interface-elements.
 
-Secondary it tries to minimize the amount of calculations and screen-updates by carefully tracking it's own state and dirty properties.
+Secondary it tries to minimize the amount of calculations and screen-updates by carefully tracking its own state and dirty properties.
 
 Finally, it allows you to use your own implementation, without using the GUI of Prime. For example, you could create an html-canvas with weird-shapes that are positioned in a specific order.
 
@@ -119,7 +119,7 @@ digraph LayoutValidation {
 }
 -------
 
-`LayoutContainer` tries to find the most efficient way in validating the parent and it's children but the validation-process still is delicate and expensive:
+`LayoutContainer` tries to find the most efficient way in validating the parent and its children but the validation-process still is delicate and expensive:
 
 - it's recursive (starting at the highest invalidated layout-container to the lowest invalidated layout-client) 
 - of the dependencies between the parent and children.
@@ -190,7 +190,7 @@ This class is used for more complex UI-elements. It defines two types of size-va
 
 . *measured-size*
 +
-Size values are updated by the owner based on it's content (e.g. width/height of a text) or by a `layout-algorithm`.
+Size values are updated by the owner based on its content (e.g. width/height of a text) or by a `layout-algorithm`.
 
 . *explicit-size* 
 +
@@ -227,9 +227,9 @@ You shouldn't read the value of the _measured_- and _explicit_-size directly but
 ==== Layout algorithms support
 A `LayoutContainer` can have *one* layout-algorithm. The algorithm is responsible for telling the container which changes should invalidate the container and will measure and positionate the children of the container.
 
-Having only one algorithm per container is a big difference with how CSS deals with positioning UI-elements. CSS's implementation allows you for example to have a container where a first child floats right and a second floats left. In prime you can only tell all children to float left, or all children to float right.
+Having only one algorithm per container is a big difference with how CSS deals with positioning UI-elements. CSSs implementation allows you for example to have a container where a first child floats right and a second floats left. In prime you can only tell all children to float left, or all children to float right.
 
-.Advantages of prime's implementation:
+.Advantages of primes implementation:
 . *Predictability*
 +
 All children are treated the same way. Their position is therefor easy to calculate and predict.
@@ -242,14 +242,14 @@ Less flexibility means fewer exceptions and therefor more *speed* and a *lower c
 +
 Using only one algorithm allows you to positionate children in the strangest way. E.g. it's easy to create an algorithm that will positionate the children in a sinus-wave.
 
-.Disadvantages of prime's implementation:
+.Disadvantages of primes implementation:
 . *Less flexible*
 +
 Creating an exception for one child involves more boilerplate code and won't give you the same flexibility of css
 . ??
 
 ==== Support for children
-A `LayoutContainer` can have an infinite amount of children, a *child* can only have one parent. By adding a child to a container, it gives the parent some of it's responsibilities:
+A `LayoutContainer` can have an infinite amount of children, a *child* can only have one parent. By adding a child to a container, it gives the parent some of its responsibilities:
 
 - everytime a property changes, the *child* will ask the *parent* if this change will also invalidate the *parent*.
 	* *Yes*: change state to `parent_invalidated`. parent is responsible for `validating` the child again.
@@ -281,9 +281,9 @@ A `LayoutContainer` can have an infinite amount of children, a *child* can only 
 === VirtualLayoutContainer
 The previous chapter discussed why a `LayoutContainer` can only have one algorithm. Prime introduces a `VirtualLayoutContainer` to overcome the disadvantage of that.
 
-Until now, all the `LayoutClients` represent some kind of UI-element. A `VirtualLayoutContainer` doesn't represent a UI-element, but has the same properties as a `LayoutContainer`. That means it can define a different algorithm than it's parent-layoutcontainer, and therefor allows you to step out of the restriction of one algorithm without having the overhead of an extra (unneeded) UI-element!
+Until now, all the `LayoutClients` represent some kind of UI-element. A `VirtualLayoutContainer` doesn't represent a UI-element, but has the same properties as a `LayoutContainer`. That means it can define a different algorithm than its parent-layoutcontainer, and therefor allows you to step out of the restriction of one algorithm without having the overhead of an extra (unneeded) UI-element!
 
-The virtual-container will add it's own coordinates to that of each child. This will only happen when you use the methods `getHorPosition()` and getVerPosition()` to get the x&y-coordinates of `LayoutClient`.
+The virtual-container will add its own coordinates to that of each child. This will only happen when you use the methods `getHorPosition()` and getVerPosition()` to get the x&y-coordinates of `LayoutClient`.
 
 ==== Example
 ["graphviz", "VirtualLayoutActors.svg","dot", "svg"]
@@ -386,7 +386,7 @@ https://github.com/touch/PrimeVC/blob/master/examples/layout/LayoutExample3.hx[E
 
 https://github.com/touch/PrimeVC/blob/master/examples/layout/LayoutExample4.hx[Example 4] What you want in practice, using CSS to layout UIComponents:
 
-The `build/build` script handles building and running of the Prime CSS parser and requires http://www.gnu.org/software/bash/[Bash] to run. Windows users: bash is included with http://code.google.com/p/msysgit/[Git for Windows] - make sure it's added to the PATH.
+The `build/build` script handles building and running of the Prime CSS parser and requires http://www.gnu.org/software/bash/[Bash] to run. Windows users: bash is included with http://code.google.com/p/msysgit/[Git for Windows] - make sure its added to the PATH.
 [source,bash]
 ----
 > build/build -m examples.layout.LayoutExample4 \

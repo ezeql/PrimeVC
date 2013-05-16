@@ -321,7 +321,7 @@ class SimpleTileAlgorithm extends LayoutAlgorithmBase, implements ITileAlgorithm
 	
 	
 	/**
-	 * Method will apply it's layout algorithm on the given target.
+	 * Method will apply its layoutalgorithm on the given target.
 	 */
 	public function apply ()
 	{
