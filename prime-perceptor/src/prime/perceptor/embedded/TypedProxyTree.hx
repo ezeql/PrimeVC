@@ -28,12 +28,10 @@
  */
 
 package prime.perceptor.embedded;
- import prime.bindable.collections.IEditableList;
  import prime.bindable.collections.IReadOnlyList;
- import prime.bindable.collections.IReadOnlyList;
+ import prime.bindable.collections.ListChange;
  import prime.bindable.collections.SimpleList;
  import prime.types.SimpleDictionary;
- import prime.bindable.collections.ListChange;
    using prime.utils.Bind;
    using prime.utils.TypeUtil;
 
