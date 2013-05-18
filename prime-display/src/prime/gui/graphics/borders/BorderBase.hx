@@ -66,7 +66,7 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 	public function new ( fill:FillType, weight:Float = 1.0, innerBorder:Bool = false, caps:CapsStyle = null, joint:JointStyle = null, pixelHinting:Bool = false )
 	{
 		super();
-#if flash9
+#if (flash9 || nme)
 		Assert.isNotNull(fill);
 #end
 		this.fill			= fill;
@@ -87,7 +87,7 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 	
 	public function begin (target:IGraphicsOwner, bounds:IRectangle)
 	{
-#if flash9
+#if (flash9 || nme)
 		if (!innerBorder && bounds.notNull())
 		{
 			var borderW		= (weight * target.scaleX).roundFloat();
@@ -102,7 +102,7 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 	
 	public function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
-#if flash9
+#if (flash9 || nme)
 		target.graphics.lineStyle( 0, 0 , 0 );
 		if (!innerBorder && bounds.notNull())
 		{

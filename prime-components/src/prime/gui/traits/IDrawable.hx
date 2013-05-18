@@ -29,7 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.traits;
-#if flash9
+#if (flash9 || nme)
  import prime.gui.graphics.GraphicProperties;
 #end
 
@@ -43,7 +43,7 @@ interface IDrawable
 			  implements ILayoutable
 			, implements IGraphicsOwner #end
 {
-#if flash9
+#if (flash9 || nme)
 	/**
 	 * Object containing graphical data. One object will be enough in general
 	 * since it can be a ComposedShape that contains multiple shapes.

@@ -43,7 +43,7 @@ package prime.gui.graphics.fills;
   using prime.utils.Formulas;
   using prime.utils.TypeUtil;
 
-#if flash9
+#if (flash9 || nme)
 typedef FlashGradientType = flash.display.GradientType;
 #end
 
@@ -152,7 +152,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	{
 		Assert.that( gradientStops.length >= 2, "There should be at least be two fills in an gradient.");
 			
-#if flash9
+#if (flash9 || nme)
 		if (lastMatrix == null || bounds != lastBounds || !bounds.isEqualTo(lastBounds))
 			lastMatrix = createMatrix(bounds);
 		
@@ -175,14 +175,14 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 	
 	public #if !noinline inline #end function end (target:IGraphicsOwner, bounds:IRectangle)
 	{
-#if flash9
+#if (flash9 || nme)
 		target.graphics.endFill();
 #end
 		isFinished = false;
 	}
 	
 	
-#if flash9
+#if (flash9 || nme)
 	public #if !noinline inline #end function createMatrix (bounds:IRectangle) : Matrix2D
 	{
 		var m = new Matrix2D();
@@ -193,7 +193,7 @@ class GradientFill extends GraphicElement, implements IGraphicProperty
 #end
 	
 
-#if flash9
+#if (flash9 || nme)
 	public #if !noinline inline #end function getFlashType () : FlashGradientType
 	{
 		return (type == GradientType.linear) ? FlashGradientType.LINEAR : FlashGradientType.RADIAL;

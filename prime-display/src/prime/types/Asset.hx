@@ -41,7 +41,7 @@ package prime.types;
   using prime.utils.TypeUtil;
   using Type;
 
-#if flash9
+#if (flash9 || nme)
  import flash.display.IBitmapDrawable;
  import prime.net.URLLoader;
  import prime.gui.display.Loader;
@@ -54,9 +54,9 @@ package prime.types;
 #end
 
 
-private typedef FlashBitmap		= #if flash9	flash.display.Bitmap		#else Dynamic			#end;
+private typedef FlashBitmap		= #if (flash9 || nme)	flash.display.Bitmap		#else Dynamic			#end;
 private typedef Factory			= prime.types.Factory<Dynamic>;
-private typedef BytesData		= haxe.io.BytesData;
+private typedef BytesData		= #if (flash9 || nme)	flash.utils.ByteArray		#else haxe.io.BytesData #end;
 
 
 /**
@@ -75,7 +75,7 @@ class Asset		implements IDisposable
 	// FACTORY METHODS
 	//
 	
-#if flash9
+#if (flash9 || nme)
 	public static inline function fromFlashBitmap	(v:FlashBitmap)					: Asset	{ return fromBitmapData(v.bitmapData); }
 	public static inline function fromBitmapData	(v:BitmapData)					: Asset	{ return new BitmapAsset(v); }
 	public static inline function fromDisplayObject	(v:DisplayObject, ?f:Factory)	: Asset	{ return new DisplayAsset(v, f); }
@@ -148,7 +148,7 @@ class Asset		implements IDisposable
 		width	= height = Number.INT_NOT_SET;
 #if CSSParser				source	= data; #end
 #if (CSSParser || debug)	_oid	= prime.utils.ID.getNext(); #end
-#if flash9					Assert.isNotNull(type); #end
+#if (flash9 || nme)					Assert.isNotNull(type); #end
 	}
 	
 	
@@ -192,7 +192,7 @@ class Asset		implements IDisposable
 		if (transparant == null)	transparant = true;
 		if (fillColor == null)		fillColor	= 0x00ffffff;
 		
-#if flash9
+#if (flash9 || nme)
 		var display = toDrawable();
 		if (display == null)
 			return null;
@@ -238,7 +238,7 @@ class Asset		implements IDisposable
 	
 //	private function setData (v:SourceType)	: SourceType		{ Assert.abstractMethod(); return v; }
 	public  function toDisplayObject ()		: DisplayObject		{ Assert.abstractMethod(); return null; }
-#if flash9
+#if (flash9 || nme)
 	public  function toDrawable ()			: IBitmapDrawable	{ Assert.abstractMethod(); return null; }
 #end
 	public  function load ()				: Void				{ Assert.abstractMethod(); }
@@ -325,7 +325,7 @@ class BitmapAsset extends Asset
 	
 	
 	override public  function toDisplayObject () : DisplayObject	{ return new prime.gui.display.BitmapShape( bitmapData ); }
-#if flash9
+#if (flash9 || nme)
 	override public  function toDrawable ()		 : IBitmapDrawable	{ return bitmapData; }
 #end
 	override public  function load ()								{}
@@ -388,7 +388,7 @@ class DisplayAsset extends Asset
 			return data;
 	}
 
-#if flash9
+#if (flash9 || nme)
 	override public  function toDrawable ()		 : IBitmapDrawable	{ return data == null ? toDisplayObject() : data; }
 #end
 	override public  function load ()								{}
@@ -409,7 +409,7 @@ class DisplayAsset extends Asset
  */
 class BytesAssetBase extends Asset
 {
-#if flash9
+#if (flash9 || nme)
 	private var loader	: Loader;
 #end
 	
@@ -418,7 +418,7 @@ class BytesAssetBase extends Asset
 	override private function unsetData ()						{ disposeLoader(); super.unsetData(); }
 	inline	 public  function isLoaded ()						{ return loader != null && loader.isLoaded(); }
 	override public  function toDisplayObject ()				{ return isLoaded() ? loader.content : null; }
-#if flash9
+#if (flash9 || nme)
 	override public  function toDrawable () : IBitmapDrawable	{ return toDisplayObject(); }
 #end
 	override public  function close ()							{ if (loader != null) loader.close(); }
@@ -426,7 +426,7 @@ class BytesAssetBase extends Asset
 	
 	private function loadBytes (bytes:BytesData)
 	{
-#if flash9
+#if (flash9 || nme)
 		Assert.isNotNull(bytes);
 		if (loader == null)
 		{
@@ -451,7 +451,7 @@ class BytesAssetBase extends Asset
 	
 	private inline function disposeLoader ()
 	{
-#if flash9
+#if (flash9 || nme)
 		if (loader != null)
 		{
 			if (isLoading())
@@ -470,7 +470,7 @@ class BytesAssetBase extends Asset
 	private function handleUnloaded ()				{ setLoadable(); }
 	
 	
-#if flash9
+#if (flash9 || nme)
 	private function setLoadedData ()
 	{
 		if (!isLoaded())

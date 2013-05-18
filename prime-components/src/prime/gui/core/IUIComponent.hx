@@ -33,7 +33,7 @@ package prime.gui.core;
  import prime.bindable.Bindable;
  import prime.gui.display.IDisplayContainer;
  import prime.gui.traits.ISkinnable;
-#if flash9
+#if (flash9 || nme)
  import prime.gui.traits.IDrawable;
 #end
  
@@ -49,7 +49,7 @@ interface IUIComponent
 			,	implements IUIElement
 			,	implements IDisablable
 			,	implements ISkinnable
-#if flash9	,	implements IDrawable	#end
+#if (flash9 || nme), implements IDrawable #end
 {
 	public var enabled	(default, null)				: Bindable < Bool >;
 	

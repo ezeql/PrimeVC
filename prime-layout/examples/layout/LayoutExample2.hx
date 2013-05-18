@@ -63,7 +63,7 @@ class LayoutExample2 extends Window
 		super(stage);
 		
 		// StageLayout automatically adjusts its size to the flash-stage-size
-		layout	 = #if flash9 new prime.avm2.layout.StageLayout( flash.Lib.current.stage ) #else new LayoutContainer() #end;
+		layout	 = #if (flash9 || nme) new prime.avm2.layout.StageLayout( flash.Lib.current.stage ) #else new LayoutContainer() #end;
 		
 		// ----
 		// Some example layout-algorithms - uncomment to try em out.

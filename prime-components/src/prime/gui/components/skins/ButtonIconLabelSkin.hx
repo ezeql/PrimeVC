@@ -93,7 +93,7 @@ class ButtonIconLabelSkin extends Skin<Button>
 	/*		if 		(owner.icon == null)		iconGraphic.detach();
 			else if (!iconGraphic.isOnStage()) 	iconGraphic.attachTo(owner, 0);
 	*/	}
-#if flash9
+#if (flash9 || nme)
 		if (changes.has( Flags.ICON_FILL ))		iconGraphic.colorize( owner.iconFill );
 
 		if (changes.has( Flags.TEXTSTYLE )) {
@@ -105,7 +105,7 @@ class ButtonIconLabelSkin extends Skin<Button>
 	}
 	
 	
-#if flash9
+#if (flash9 || nme)
 	override public function isFocusOwner (target:UserEventTarget)
 	{
 		return labelField.isFocusOwner(target);

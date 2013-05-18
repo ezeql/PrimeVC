@@ -43,7 +43,7 @@ private typedef OldState = IState;
  * @creation-date	Jun 9, 2010
  * @author			Ruben Weijers
  */
-interface IFiniteStateMachine implements haxe.rtti.Infos, implements IDisposable, implements IDisablable
+interface IFiniteStateMachine implements IDisposable, implements IDisablable
 {
 	//
 	// PROPERTIES

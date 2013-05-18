@@ -59,7 +59,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 	private var delayTimer		: Timer;
 	
 	
-#if flash9
+#if (flash9 || nme)
 	private var cachedFilters	: Array < flash.filters.BitmapFilter >;
 #end
 	
@@ -188,7 +188,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 			//calculate tween duration
 			var valDiff:Float			= startPos > endPos ? startPos - endPos : endPos - startPos;
 			var calcDuration:Int		= ( effect.duration * valDiff ).roundFloat();
-#if (debug && flash9)
+#if (debug && (flash9 || nme))
 			if (slowMotion)			calcDuration *= 10;
 #end
 			prevTween = new feffects.Tween( startPos, endPos, calcDuration, effect.easing );
@@ -221,7 +221,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 	
 	private inline function hideFilters ()
 	{
-#if flash9
+#if (flash9 || nme)
 		if (effect.autoHideFilters && target != null && target.is(IDisplayObject))
 		{
 			var d = target.as(IDisplayObject);
@@ -236,7 +236,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 	
 	private inline function applyFilters ()
 	{
-#if flash9
+#if (flash9 || nme)
 		if (effect.autoHideFilters && target != null && target.is(IDisplayObject) && cachedFilters != null)
 		{
 			var d = target.as(IDisplayObject);
@@ -285,7 +285,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 	}
 	
 	
-#if (debug && flash9)
+#if (debug && (flash9 || nme))
 	@:keep static public function __init__ () {
 		flash.Lib.current.addEventListener(flash.events.KeyboardEvent.KEY_DOWN, 
 			function(e) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = true; trace("shiftDown"); } }

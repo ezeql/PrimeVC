@@ -53,10 +53,27 @@ class Button extends UIDataContainer <Bindable<String>>, implements IIconOwner, 
 	public var selected		(default, null)			: Bindable<Bool>;
 	public var icon			(default, setIcon)		: Asset;
 	public var iconFill		(default, setIconFill)	: IGraphicProperty;
-#if flash9
+#if (flash9 || nme)
 	public var textStyle	(default, setTextStyle)	: TextFormat;
+
+  //FIXME: Get rid of this shit via partials or something
+  #if flash9
 	public var wordWrap		: Bool;
-	public var embedFonts	: Bool;
+  #elseif nme
+	function set_wordWrap(w) return wordWrap = w
+   #if html5
+	public var wordWrap(default, set_wordWrap):Bool;
+   #elseif cpp
+	public var wordWrap(get_wordWrap, set_wordWrap):Bool;
+	function get_wordWrap() return wordWrap
+   #end
+  #end
+
+	public var embedFonts #if cpp (get_embedFonts, set_embedFonts) #end : Bool;
+  #if cpp
+	inline function get_embedFonts()  return embedFonts
+	inline function set_embedFonts(v) return embedFonts = v
+  #end
 #end
 	
 	
@@ -102,7 +119,7 @@ class Button extends UIDataContainer <Bindable<String>>, implements IIconOwner, 
 	}
 	
 	
-#if flash9
+#if (flash9 || nme)
 	private inline function setTextStyle (v:TextFormat)
 	{
 		textStyle = v;

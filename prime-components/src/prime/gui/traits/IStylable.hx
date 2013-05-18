@@ -30,7 +30,7 @@
  */
 package prime.gui.traits;
  import prime.core.traits.IIdentifiable;
-#if flash9
+#if (flash9 || nme)
  import prime.bindable.collections.SimpleList;
  import prime.bindable.Bindable;
  import prime.gui.styling.UIElementStyle;
@@ -45,7 +45,7 @@ interface IStylable
 		implements IIdentifiable
 //	,	implements IDisplayable
 {
-#if flash9
+#if (flash9 || nme)
 	public var style			(default, null)					: UIElementStyle;
 	
 	/**

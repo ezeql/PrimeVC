@@ -44,7 +44,7 @@ interface IDisplayObject
 			,	implements IPositionable
 			,	implements IScaleable
 			,	implements ISizeable
-#if flash9  ,	implements flash.display.IBitmapDrawable #end
+#if (flash9 || nme), implements flash.display.IBitmapDrawable #end
 {
 	
 	public function isObjectOn			(otherObj:IDisplayObject)					: Bool;
@@ -65,10 +65,13 @@ interface IDisplayObject
 	
 	public function changeDisplayDepth	(newDepth:Int)								: IDisplayObject;
 #end
-	
+
+	public function globalToLocal 	(point : Point) 					: Point;
+	public function localToGlobal 	(point : Point) 					: Point;
+	public function getBounds 	  	(other:DisplayObject)				: Rectangle;
+
 #if flash9
 	public var alpha				: Float;
-	public var visible				: Bool;
 	
 	public var mouseX				(default, never)		: Float;
 	public var mouseY				(default, never)		: Float;
@@ -78,9 +81,30 @@ interface IDisplayObject
 	public var scrollRect			: flash.geom.Rectangle;
 	public var parent 				(default, null) 		: flash.display.DisplayObjectContainer;
 	
-	public function globalToLocal 	(point : Point) 					: Point;
-	public function localToGlobal 	(point : Point) 					: Point;
-	public function getBounds 	  	(other:DisplayObject)				: Rectangle;
+#elseif nme
+	public var visible(get_visible, set_visible):Bool;
+	public var filters(get_filters, set_filters):Array<Dynamic>;
+	public var scrollRect(get_scrollRect, set_scrollRect):Rectangle;
+
+  #if html5
+	public var alpha:Float;
+
+	public var mouseX(get_mouseX, never):Float;
+	public var mouseY(get_mouseY, never):Float;
+
+	public var name:String;
+	public var parent(default, set_parent):flash.display.DisplayObjectContainer;
+
+  #elseif cpp
+	public var alpha(get_alpha, set_alpha):Float;
+
+	public var mouseX(get_mouseX, null):Float;
+	public var mouseY(get_mouseY, null):Float;
+
+	public var name(get_name, set_name):String;
+	public var parent(get_parent, null):flash.display.DisplayObjectContainer;
+
+  #end
 #else
 	public var parent 				: IDisplayContainer;
 	public var visible				(getVisibility, setVisibility)		: Bool;

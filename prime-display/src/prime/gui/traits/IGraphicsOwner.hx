@@ -40,5 +40,14 @@ interface IGraphicsOwner #if !CSSParser implements IDisplayable #end
 	
 	public var scaleX	: Float;
 	public var scaleY	: Float;
+
+#elseif nme
+  #if html5
+  	public var graphics(get_graphics, never):flash.display.Graphics;
+
+  #elseif cpp
+	public var graphics(get_graphics, null):flash.display.Graphics;
+
+  #end
 #end
 }

@@ -8,6 +8,7 @@
 	<source path="src" />
 	
 	<haxelib name="nme" />
+	<haxelib name="feffects" />
 
 	<!--
 	Using local prime source
@@ -18,6 +19,9 @@
 	<source path="../../prime-core/src" />
 	<source path="../../prime-data/src" />
 	<source path="../../prime-fsm/src" />
+	<source path="../../prime-css/src" />
+	<source path="../../prime-display/src" />
+	<source path="../../prime-components/src" />
 
 	<!--
 	Using haxelibs

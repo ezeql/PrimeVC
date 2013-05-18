@@ -78,7 +78,7 @@ class KeyboardSignal extends Signal1<KeyboardState>, implements IWireWatcher<Key
 		*/
 		var flags;
 		
-#if flash9
+#if (flash9 || nme)
 		Assert.that(e.charCode		< 16384); // 14 bits available in AVM2
 		Assert.that(e.keyCode		<  1024);
 		

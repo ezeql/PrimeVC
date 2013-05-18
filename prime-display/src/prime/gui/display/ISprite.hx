@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.gui.display;
-#if flash9
+#if (flash9 || nme)
  import prime.core.geom.Point;
  import prime.core.geom.Rectangle;
 	#if dragEnabled
@@ -50,9 +50,13 @@ interface ISprite
 	,	implements IGraphicsOwner
 	,	implements IDisplayable
 {
-#if flash9
+#if (flash9 || nme)
 		public var buttonMode						: Bool;
+	#if flash9 || (nme && cpp)
 		public var useHandCursor					: Bool;
+	#elseif (nme && html5)
+		public var useHandCursor(default, set_useHandCursor):Bool;
+	#end
 
 	#if dragEnabled
 		public var isDragging						: Bool;

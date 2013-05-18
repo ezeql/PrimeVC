@@ -8,13 +8,19 @@ import flash.Lib;
 import prime.bindable.Bindable;
 import prime.layout.LayoutClient;
 
-class Main extends Sprite {
+import prime.gui.display.Window;
+import prime.gui.core.UIWindow;
+import prime.gui.components.Button;
+
+class Main extends Sprite
+{
 	private var testBindabe:Bindable<Float>;
 	
 	public function new () {
 		
 		super ();
-		
+		var window = Window.startup( function(stage) return new MainWindow(stage) );
+
 		var bitmap = new Bitmap (Assets.getBitmapData ("assets/nme.png"));
 		addChild (bitmap);
 		
@@ -34,5 +40,23 @@ class Main extends Sprite {
 	#else
 	   Lib.create(function(){new Main();},320,480,60,0xccccff,(1*Lib.HARDWARE) | Lib.RESIZABLE);
 	#end
-	}	
+	}
+}
+
+class MainWindow extends UIWindow
+{
+	public function new(stage) {
+		Assert.isNotNull(stage);
+		super(stage, "MainWindow");
+	
+		var button = new Button( "buttonAdd", "+" );
+		button.visible = true;
+		button.graphicData.fill = new prime.gui.graphics.fills.SolidFill(0xffaaaaff);
+		button.graphicData.shape = new prime.gui.graphics.shapes.RegularRectangle();
+		button.layout.margin = new prime.core.geom.Box(20,5);
+		button.layout.resize( 30, 50 );
+
+		children.add( button );
+		//untyped console.log(button);
+	}
 }

@@ -28,7 +28,7 @@
  */
 package prime.media;
  import haxe.Timer;
-#if flash9
+#if (flash9 || nme)
  import prime.avm2.net.stream.NetStreamInfo;
  import prime.avm2.net.stream.NetStreamInfoCode;
  import prime.avm2.net.stream.NetStreamInfoLevel;
@@ -52,7 +52,7 @@ package prime.media;
  */
 class VideoStream extends BaseMediaStream
 {
-#if flash9	
+#if (flash9 || nme)
 	private var connection	: NetConnection;
 	public var source		(default, null)			: NetStream;
 	
@@ -87,7 +87,7 @@ class VideoStream extends BaseMediaStream
 		width	  = new Bindable<Int>(0);
 		height	  = new Bindable<Int>(0);
 		super(streamUrl);
-#if flash9
+#if (flash9 || nme)
 		connection	= new NetConnection();
 		source		= new NetStream(connection);
 		//dirty client to catch flash player exeptions..
@@ -121,7 +121,7 @@ class VideoStream extends BaseMediaStream
 		stop();
         SoundMixer.remove(this);
 		
-#if flash9
+#if (flash9 || nme)
 	//	source.client = null;		//gives error "Invalid parameter flash.net::NetStream/set client()"
 		(untyped state).current = MediaStates.empty;
 		source.dispose2();
@@ -270,7 +270,7 @@ class VideoStream extends BaseMediaStream
 	}
 	
 	
-#if flash9
+#if (flash9 || nme)
 	private function handleNetStatus (event:NetStreamInfo)
 	{
 		switch (event.code)

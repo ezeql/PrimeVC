@@ -56,15 +56,15 @@ class Corners	implements IClonable < Corners >
 #end
 	
 	
-	public function new ( ?topLeft:Float = 0, ?topRight:Float = Number.INT_NOT_SET, ?bottomRight:Float = Number.INT_NOT_SET, ?bottomLeft:Float = Number.INT_NOT_SET )
+	public function new ( topLeft:Float = 0, topRight:Float = Number.INT_NOT_SET, bottomRight:Float = Number.INT_NOT_SET, bottomLeft:Float = Number.INT_NOT_SET )
 	{
 #if CSSParser
 		this._oid			= ID.getNext();
 #end
-		this.topLeft		= topLeft;
-		this.topRight		= topRight.isSet()		? topRight		: this.topLeft;
-		this.bottomLeft		= bottomLeft.isSet()	? bottomLeft	: this.topLeft;
-		this.bottomRight	= bottomRight.isSet()	? bottomRight	: this.topRight;
+		this.topLeft     = topLeft;
+		this.topRight    = (topRight    != Number.INT_NOT_SET)? topRight    : this.topLeft;
+		this.bottomLeft  = (bottomLeft  != Number.INT_NOT_SET)? bottomLeft  : this.topLeft;
+		this.bottomRight = (bottomRight != Number.INT_NOT_SET)? bottomRight : this.topRight;
 	}
 	
 	

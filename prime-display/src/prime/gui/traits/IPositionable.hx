@@ -40,7 +40,6 @@ interface IPositionable #if !CSSParser implements IDisplayable #end
 	var x						: Float;
 	var y						: Float;
 	var rotation				: Float;
-	var visible					: Bool;
 	var transform				: flash.geom.Transform; //Matrix2D;
 	
 	#if flash10
@@ -49,6 +48,12 @@ interface IPositionable #if !CSSParser implements IDisplayable #end
 	var rotationZ				: Float;
 	var z						: Float;
 	#end
+
+#elseif nme
+	public var x(get_x, set_x):Float;
+	public var y(get_y, set_y):Float;
+	public var rotation(get_rotation, set_rotation):Float;
+
 #else
 	var x			(getX,		setX) : Float;
 	var y			(getY,		setY) : Float;

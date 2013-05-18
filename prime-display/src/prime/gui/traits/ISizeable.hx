@@ -38,6 +38,10 @@ interface ISizeable #if !CSSParser implements IDisplayable #end
 #if flash9
 	var height					: Float;
 	var width					: Float;
+#elseif nme
+	public var width(get_width, set_width):Float;
+	public var height(get_height, set_height):Float;
+
 #else
 	var width		(getWidth,		setWidth)			: Float;
 	var height		(getHeight,		setHeight)			: Float;
