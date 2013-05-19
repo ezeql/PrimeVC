@@ -52,7 +52,7 @@ interface ISprite
 {
 #if (flash9 || nme)
 		public var buttonMode						: Bool;
-	#if flash9 || (nme && cpp)
+	#if (flash9 || (nme && cpp))
 		public var useHandCursor					: Bool;
 	#elseif (nme && html5)
 		public var useHandCursor(default, set_useHandCursor):Bool;

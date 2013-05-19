@@ -28,7 +28,7 @@
  */
 package prime.avm2.events;
 #if !cpp
- import #if nme native #else flash #end .events.DataEvent;
+ import #if flash9 flash #else native #end .events.DataEvent;
 #end
  import flash.events.IEventDispatcher;
  import flash.events.Event;

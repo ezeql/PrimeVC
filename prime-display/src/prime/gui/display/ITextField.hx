@@ -27,18 +27,14 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.gui.display;
-#if (flash9 || nme)
  import flash.text.AntiAliasType;
 #if !cpp
- import #if nme native #else flash #end .text.GridFitType;
- import #if nme native #else flash #end .text.TextLineMetrics;
+ import #if flash9 flash #else native #end .text.GridFitType;
+ import #if flash9 flash #else native #end .text.TextLineMetrics;
 #end
  import flash.text.TextFieldAutoSize;
  import flash.text.TextFieldType;
  import flash.text.TextFormat;
-#elseif flash9
- import flash.text.StyleSheet;
-#end
  import prime.bindable.Bindable;
  import prime.gui.events.TextEvents;
  import prime.gui.traits.ITextStylable;
@@ -85,7 +81,7 @@ interface ITextField
 	public var textWidth			(default, null)	: Float;
 	public var type									: TextFieldType;
 //	public var defaultTextFormat					: TextFormat;
-	public var styleSheet							: StyleSheet;
+	public var styleSheet							: flash.text.StyleSheet;
 	public var selectedText			(default, null)	: String;
 	
 	public var autoSize								: TextFieldAutoSize;
