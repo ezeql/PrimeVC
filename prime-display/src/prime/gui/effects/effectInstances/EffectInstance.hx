@@ -226,7 +226,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 		{
 			var d = target.as(IDisplayObject);
 			if (d.filters != null) {
-				cachedFilters	= d.filters;
+				cachedFilters	= cast d.filters;
 				d.filters		= null;
 			}
 		}
@@ -240,7 +240,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 		if (effect.autoHideFilters && target != null && target.is(IDisplayObject) && cachedFilters != null)
 		{
 			var d = target.as(IDisplayObject);
-			d.filters		= cachedFilters;
+			d.filters		= cast cachedFilters;
 			cachedFilters	= null;
 		}
 #end

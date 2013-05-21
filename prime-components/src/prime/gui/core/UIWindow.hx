@@ -100,10 +100,6 @@ class UIWindow extends prime.gui.display.Window
 	public var graphicData			(default, null)					: GraphicProperties;
 	
 #if (flash9 || nme)
-	public var scaleX				: Float;
-	public var scaleY				: Float;
-	
-	
 	/**
 	 * Shape to draw the background graphics in. Stage doesn't have a Graphics
 	 * property.
@@ -137,7 +133,6 @@ class UIWindow extends prime.gui.display.Window
 	
 	public function new (target:prime.gui.display.Stage, id:String = null)
 	{
-		scaleX = scaleY = 1;
 		super(target);
 		
 #if debug if (id == null) id = this.getReadableId(); #end

@@ -28,6 +28,9 @@
  */
 package prime.gui.traits;
 
+#if (flash9 || nme)
+ import flash.geom.Transform;
+#end
 
 /**
  * @author Ruben Weijers
@@ -40,7 +43,8 @@ interface IPositionable #if !CSSParser implements IDisplayable #end
 	var x						: Float;
 	var y						: Float;
 	var rotation				: Float;
-	var transform				: flash.geom.Transform; //Matrix2D;
+	var transform				: Transform;
+	var visible					: Bool;
 	
 	#if flash10
 	var rotationX				: Float;
@@ -53,6 +57,12 @@ interface IPositionable #if !CSSParser implements IDisplayable #end
 	public var x(get_x, set_x):Float;
 	public var y(get_y, set_y):Float;
 	public var rotation(get_rotation, set_rotation):Float;
+  #if html5
+	public var transform(default, set_transform):Transform;
+  #else
+	public var transform(get_transform, set_transform):Transform;
+  #end
+	public var visible(get_visible, set_visible):Bool;
 
 #else
 	var x			(getX,		setX) : Float;

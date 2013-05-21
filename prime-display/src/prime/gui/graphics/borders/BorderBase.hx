@@ -32,8 +32,10 @@ package prime.gui.graphics.borders;
  import prime.gui.graphics.GraphicFlags;
  import prime.gui.graphics.IGraphicProperty;
  import prime.gui.traits.IGraphicsOwner;
+ import prime.gui.traits.IScaleable;
   using prime.utils.IfUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.TypeUtil;
 
 
 /**
@@ -90,8 +92,8 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 #if (flash9 || nme)
 		if (!innerBorder && bounds.notNull())
 		{
-			var borderW		= (weight * target.scaleX).roundFloat();
-			var borderH		= (weight * target.scaleY).roundFloat();
+			var borderW		= (weight * target.as(IScaleable).scaleX).roundFloat();
+			var borderH		= (weight * target.as(IScaleable).scaleY).roundFloat();
 			
 			bounds.move(	bounds.left - borderW,			bounds.top - borderH );
 			bounds.resize(	bounds.width + (borderW * 2),	bounds.height + (borderH * 2) );
@@ -106,8 +108,8 @@ class BorderBase <FillType:IGraphicProperty> extends GraphicElement, implements 
 		target.graphics.lineStyle( 0, 0 , 0 );
 		if (!innerBorder && bounds.notNull())
 		{
-			var borderW		= (weight * target.scaleX).roundFloat();
-			var borderH		= (weight * target.scaleY).roundFloat();
+			var borderW		= (weight * target.as(IScaleable).scaleX).roundFloat();
+			var borderH		= (weight * target.as(IScaleable).scaleY).roundFloat();
 			
 			bounds.move(	bounds.left + borderW,			bounds.top + borderH );
 			bounds.resize(	bounds.width - (borderW * 2),	bounds.height - (borderH * 2) );

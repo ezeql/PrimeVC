@@ -72,7 +72,6 @@ interface IDisplayObject
 
 #if flash9
 	public var alpha				: Float;
-	public var visible				: Bool;
 	
 	public var mouseX				(default, never)		: Float;
 	public var mouseY				(default, never)		: Float;
@@ -83,8 +82,7 @@ interface IDisplayObject
 	public var parent 				(default, null) 		: flash.display.DisplayObjectContainer;
 	
 #elseif nme
-	public var visible(get_visible, set_visible):Bool;
-	public var filters(get_filters, set_filters):Array<Dynamic>;
+	public var filters(get_filters, set_filters):Array<Dynamic>; //FIXME: flash.filters.BitmapFilter
 	public var scrollRect(get_scrollRect, set_scrollRect):Rectangle;
 
   #if html5
@@ -110,6 +108,5 @@ interface IDisplayObject
 	public var parent 				: IDisplayContainer;
 	public var visible				(getVisibility, setVisibility)		: Bool;
 	public var alpha				(getAlpha,		setAlpha)			: Float;
-	public function getBounds 		(other:IDisplayObject)				: Rectangle;
 #end
 }
