@@ -89,7 +89,7 @@ class LayoutExample1 extends Sprite
 	//	layout.algorithm = new prime.layout.algorithms.tile.SimpleTileAlgorithm(vertical);
 		layout.algorithm = new prime.layout.algorithms.tile.SimpleTileAlgorithm();
 	//	layout.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.circle.HorizontalCircleAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
-	//	layout.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.float.HorizontalFloatAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
+	//	layout.algorithm = new prime.layout.algorithms.DynamicLayoutAlgorithm( function () { return new prime.layout.algorithms.floating.HorizontalFloatAlgorithm(); }, function () { return new prime.layout.algorithms.circle.VerticalCircleAlgorithm(); } );
 		
 		// create children
 		for (i in 0...20)	children.push( new Box().attachTo(this) );

@@ -26,7 +26,7 @@
  * Authors:
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
-package prime.layout.algorithms.float;
+package prime.layout.algorithms.floating;
  import prime.core.geom.space.Vertical;
  import prime.core.geom.IRectangle;
  import prime.layout.algorithms.IVerticalAlgorithm;

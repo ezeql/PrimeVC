@@ -44,7 +44,7 @@ package prime.perceptor.embedded;
  import prime.gui.components.SelectableListView;
  import prime.gui.components.ListView;
  import prime.gui.core.UITextField;
- import prime.layout.algorithms.float.HorizontalFloatAlgorithm;
+ import prime.layout.algorithms.floating.HorizontalFloatAlgorithm;
  import prime.gui.core.IUIElement;
  import prime.gui.core.IUIComponent;
  import prime.gui.core.UIWindow;

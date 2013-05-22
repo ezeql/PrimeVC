@@ -231,7 +231,7 @@ class UIWindow extends prime.gui.display.Window
 		// as no assumptions can be made about what layout algorithm contentLayout
 		// will get and how it will behave
 		var perceptorLayout = new VirtualLayoutContainer("SplitAppPerceptorLayout"); this.perceptorLayout = perceptorLayout;
-		perceptorLayout.algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+		perceptorLayout.algorithm = new prime.layout.algorithms.floating.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
 
 		var appLayout = new VirtualLayoutContainer("SplitAppContentLayout"); this.appLayout = appLayout;
 		appLayout.algorithm	= new prime.layout.algorithms.RelativeAlgorithm();
@@ -239,8 +239,8 @@ class UIWindow extends prime.gui.display.Window
 		appLayout.percentHeight = 1.0;
 		perceptorLayout.percentWidth = 0.3;
 		perceptorLayout.percentHeight = 1.0;
-		topLayout.algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
-		//layout.as(LayoutContainer).algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+		topLayout.algorithm = new prime.layout.algorithms.floating.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
+		//layout.as(LayoutContainer).algorithm = new prime.layout.algorithms.floating.HorizontalFloatAlgorithm( prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center );
 #end
 		
 		popupLayout.algorithm     = new prime.layout.algorithms.RelativeAlgorithm();
