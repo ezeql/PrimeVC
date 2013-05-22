@@ -82,7 +82,7 @@ interface ILayoutClient
 	
 	/**
 	 * Layout-group to which this client belongs. By setting this property,
-	 * the client can let the parent know when it's size or position has
+	 * the client can let the parent know when its size or position has
 	 * changed wich could result in revalidating the parents layout.
 	 */
 	public var parent						(default, setParent)			: ILayoutContainer;
@@ -100,7 +100,7 @@ interface ILayoutClient
 
 	/**
 	 * Validate is called before the layout is validated. In validate, each 
-	 * layout-object has a change to correct it's bounding-properties
+	 * layout-object has a change to correct its bounding-properties
 	 * or measured size.
 	 * 
 	 * Validate is called when a layoutClient is invalidated and the movie
@@ -111,7 +111,7 @@ interface ILayoutClient
 	public function validateVertical ()			: Void;
 	/**
 	 * Method is called when a layout has run validate and is done with changing 
-	 * it's properties.
+	 * its properties.
 	 */
 	public function validated ()				: Void;
 	/**
@@ -123,7 +123,7 @@ interface ILayoutClient
 	/**
 	 * Method will return the x coordinate that a DisplayObject can use
 	 * to positionate itself. The method will check if the clients parent is a
-	 * VirtualLayoutContainer. If that's true, it will at the parent's position
+	 * VirtualLayoutContainer. If that's true, it will at the parents position
 	 * to the returned x coordinate.
 	 * 
 	 * This method will not affect the x property of the client itself.
@@ -134,7 +134,7 @@ interface ILayoutClient
 	/**
 	 * Method will return the y coordinate that a DisplayObject can use
 	 * to positionate itself. The method will check if the clients parent is a
-	 * VirtualLayoutContainer. If that's true, it will at the parent's position
+	 * VirtualLayoutContainer. If that's true, it will at the parents position
 	 * to the returned y coordinates.
 	 * 
 	 * This method will not affect the y property of the client itself.
@@ -173,7 +173,7 @@ interface ILayoutClient
 	 * the x, y, width or height.
 	 * 
 	 * Be aware that even though a displayobject is off the stage, the layout
-	 * can still be validated by it's layout-container when the containers 
+	 * can still be validated by its layout-container when the containers 
 	 * displayobject is still on the stage.
 	 */
 	public var changed				(default, null)						: Signal1<Int>;

@@ -84,7 +84,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	public var createItemRenderer	: ListDataType -> Int -> IUIDataElement<ListDataType>;
 
 	/**
-	 * Hashtable to quickly find the correct item-renderer for vo's without depending on the item-renderers display-depth
+	 * Hashtable to quickly find the correct item-renderer for vos without depending on the item-renderers display-depth
 	 */
 	private var renderMap			: SimpleDictionary<ListDataType, IUIDataElement<ListDataType>>;
 
@@ -294,7 +294,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 		r.changeDepth(toDepth);
 
 		if (r.effects.notNull())
-			r.effects.enable.onceOn( r.displayEvents.enterFrame, r );	// re-enable after it's layout is validated
+			r.effects.enable.onceOn( r.displayEvents.enterFrame, r );	// re-enable after its layout is validated
 		
 		r.show();
 	}
@@ -475,7 +475,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 				var hasNew 		= hasRendererAtDepth(newDepth);
 
 				if (hasCur && hasNew)
-					moveRenderer( item, newDepth, curDepth ); 					// the moved data-item already has an item-renderer. Move it to it's new location (since the new location is also visible).
+					moveRenderer( item, newDepth, curDepth ); 					// the moved data-item already has an item-renderer. Move it to its new location (since the new location is also visible).
 				else if (hasCur || hasNew)
 				{
 					if 		(hasNew) 	addRenderer(item, newDepth); 			// the moved data-item wasn't visible yet but should be now, so add an item-renderer to display the moved data.

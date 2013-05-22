@@ -47,7 +47,7 @@ interface IDataCursor<T> implements IDisposable
 	public function removeTarget ()		: Void;
 	
 	/**
-	 * Method will put the target on it's old position in the list
+	 * Method will put the target on its old position in the list
 	 */
 	public function restore ()			: Void;
 	

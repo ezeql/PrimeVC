@@ -35,7 +35,7 @@ package prime.gui.managers;
 
 
 /**
- * Manager obj to queue the rendering of all IRenderable's until a render event
+ * Manager obj to queue the rendering of all IRenderables until a render event
  * is fired.
  * 
  * @author Ruben Weijers
@@ -72,8 +72,8 @@ class RenderManager extends QueueManager
 			
 			// During validation the queue can change (adding/removing items).
 			// The 'first' property will be the correct value if the current 
-			// validating object was removed from the queue during it's own 
-			// validation (that means it's nextValidatable is already 'null').
+			// validating object was removed from the queue during its own 
+			// validation (that means its nextValidatable is already 'null').
 			if (obj.nextValidatable != null)
 				first = obj.nextValidatable;
 			

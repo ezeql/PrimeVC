@@ -58,7 +58,7 @@ class Manifest implements IDisposable
 	public var superClassMap		(default, null) : SimpleDictionary < String, String >;
 	
 	/**
-	 * Dictionary with lists for each class and it's sub classes
+	 * Dictionary with lists for each class and its subclasses
 	 */
 	public var subClassMap			(default, null)	: SimpleDictionary < String, FastArray < String > >;
 	

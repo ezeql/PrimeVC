@@ -36,7 +36,7 @@ package prime.gui.components;
 
 
 /**
- * DataButton is a button that can be used as an ItemRenderer. Every time it's
+ * DataButton is a button that can be used as an ItemRenderer. Every time its
  * vo property changes, it will try to update the data.value of the button by
  * calling the method "getLabelForVO".
  * 

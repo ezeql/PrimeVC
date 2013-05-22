@@ -159,7 +159,7 @@ class Sprite extends flash.display.Sprite, implements ISprite
 				window = container.window;
 			}
 			
-			//if the container prop is set to null, remove the sprite from it's previous container and set the window prop to null.
+			//if the container prop is set to null, remove the sprite from its previous container and set the window prop to null.
 			else if (oldV.notNull()) {
 			//	if (oldV.children.has(this))
 			//		oldV.children.remove(this);

@@ -63,7 +63,7 @@ interface IStyleBlock
 	
 	/**
 	 * Method which will update the flags in allFilledProperties when it's 
-	 * style or that of it's extended, super, inherited and parent style 
+	 * style or that of its extended, super, inherited and parent style 
 	 * changes.
 	 */
 	public function updateAllFilledPropertiesFlag ()				: Void;

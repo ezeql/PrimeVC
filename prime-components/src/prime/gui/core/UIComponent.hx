@@ -169,7 +169,7 @@ class UIComponent extends Sprite, implements IUIComponent
 		if (skin != null)
 			skin.createChildren();
 		
-		//create the children of this component after the skin has created it's children
+		//create the children of this component after the skin has created its children
 		createChildren();
 		behaviours.init();
 		
@@ -325,7 +325,7 @@ class UIComponent extends Sprite, implements IUIComponent
 		{
 			if (hasEffect) {
 				var eff = effects.hide;
-			//	layout.includeInLayout = false;		causes the layout's container to ignore the removal of the layout ==> wrong..
+			//	layout.includeInLayout = false;		causes the layouts container to ignore the removal of the layout ==> wrong..
 				applyDetach.onceOn( eff.ended, this );
 				effects.playHide();
 			}

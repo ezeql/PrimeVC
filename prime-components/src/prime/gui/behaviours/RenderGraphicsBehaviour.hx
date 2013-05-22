@@ -39,7 +39,7 @@ package prime.gui.behaviours;
 
 /**
  * Behaviour that will respond changes in the graphicData and layout of the
- * given target. When one of these who object's changes, it will request a new
+ * given target. When one of these who objects changes, it will request a new
  * rendering.
  * 
  * @author Ruben Weijers

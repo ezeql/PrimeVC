@@ -61,7 +61,7 @@ private typedef Flags = StyleFlags;
  * The UIElementStyle of an element has to be rebuild everytime the element is 
  * changing of parent.
  * 
- * When the target is removed from the stage, it's styles won't be removed
+ * When the target is removed from the stage, its styles won't be removed
  * directly. This will only happen when the UIElementStyle is disposed or
  * when the target is added to the stage again but with a different parent.
  * 
@@ -131,7 +131,7 @@ class UIElementStyle implements IUIElementStyle
 	public var states					(getStates, null)		: StatesCollection;
 	
 	/**
-	 * Reference to the style of whom the current-style got it's properteies
+	 * Reference to the style of whom the current-style got its properties
 	 */
 	public var parentStyle				(default, null)			: IUIElementStyle;
 	
@@ -249,7 +249,7 @@ class UIElementStyle implements IUIElementStyle
 	
 	/**
 	 * Method is called by children of the target to find their style. Finding
-	 * a child's style is done in 3 iterations per style-type.
+	 * a childs style is done in 3 iterations per style-type.
 	 * 
 	 * First it looks in the parents 'idStyle', then in the 'styleNameStyle' and
 	 * finally in the 'elementStyle'.
@@ -596,7 +596,7 @@ class UIElementStyle implements IUIElementStyle
 		var parentClass	= target.getClass();
 		var newStyles:FastArray<StyleBlock> = FastArrayUtil.create();
 
-		//search for the first element style that is defined for this object or one of it's super classes
+		//search for the first element style that is defined for this object or one of its super classes
 		while (parentClass != null) {
 			parentStyle.getChildStyles( this, parentClass.getClassName(), StyleBlockType.element, newStyles );
 			parentClass	= newStyles.length > 0 ? null : cast parentClass.getSuperClass();
@@ -698,7 +698,7 @@ class UIElementStyle implements IUIElementStyle
 		var givenData	= styleCell.data;
 		properties		= properties.unset( Flags.INHERETING_STYLES );
 		
-		//loop through all cell's with higher priority
+		//loop through all cells with higher priority
 		while (null != (styleCell = styleCell.prev) && properties > 0)
 		{
 			Assert.isNotNull( styleCell.data, "found cell without data in "+target );

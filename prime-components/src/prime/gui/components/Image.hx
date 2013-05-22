@@ -54,7 +54,7 @@ package prime.gui.components;
 class Image extends UIDataComponent<Asset>	//FIXME (Ruben @ Mar 16, '11): used to be a UIGraphic, but since we want vectors to be children, this is not possible.. Change back when refactoring
 {
 	/**
-	 * Bool indicating wether the image should maintain it's aspect-ratio
+	 * Bool indicating wether the image should maintain its aspect-ratio
 	 * @default true
 	 */
 	public var maintainAspectRatio	(default, setMaintainAspectRatio)	: Bool;

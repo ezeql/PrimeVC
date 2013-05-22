@@ -40,7 +40,7 @@ package prime.gui.utils;
  #if !noinline extern #end class DisplayUtil
 {
     /**
-     * Rotates an DisplayObject with it's origin in the center
+     * Rotates an DisplayObject with its origin in the center
      */
     public static #if !noinline inline #end function rotateAroundCenter (target:IDisplayObject, rotation:Float) : Void
     {
@@ -52,7 +52,7 @@ package prime.gui.utils;
 
 
     /**
-     * Scales an DisplayObject with it's origin in the center
+     * Scales an DisplayObject with its origin in the center
      */
     public static #if !noinline inline #end function scaleAroundCenter (target:IDisplayObject, scaleX:Float, scaleY:Float) : Void
     {

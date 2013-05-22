@@ -59,7 +59,7 @@ class MouseSignals extends Signals
 	public var up			(getUp,				null) : MouseSignal;
 	/** Fires when the mouse has moved */
 	public var move			(getMove,			null) : MouseSignal;
-	/** Fires when the a user presses and releases a button of the user's pointing device over the same InteractiveObject. */
+	/** Fires when the a user presses and releases a button of the users pointing device over the same InteractiveObject. */
 	public var click		(getClick,			null) : MouseSignal;
 	/** Fires when the a user double-clicks on an InteractiveObject. */
 	public var doubleClick	(getDoubleClick,	null) : MouseSignal;

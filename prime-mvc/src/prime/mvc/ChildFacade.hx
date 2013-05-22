@@ -38,7 +38,7 @@ package prime.mvc;
  * the channels that are given to the child-facade when it's getting connected.
  * 
  * Only after connecting with channels, the child will start-listening. If the
- * facade is disconnected, the child will stop-listening all it's mediators and
+ * facade is disconnected, the child will stop-listening all its mediators and
  * controllers.
  * 
  * @author Ruben Weijers

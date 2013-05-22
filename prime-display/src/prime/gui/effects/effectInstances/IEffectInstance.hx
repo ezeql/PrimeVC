@@ -80,7 +80,7 @@ interface IEffectInstance < TargetType, PropertiesType:IEffect >
 	public  function setValues( v:EffectProperties ) : Void;
 	/**
 	 * Method that is called before the effect is started to choose if the 
-	 * effect should use the target's original value or if it should use the
+	 * effect should use the targets original value or if it should use the
 	 * explicit value.
 	 * The explicitvalue will be choosen when it is set.
 	 */
@@ -146,7 +146,7 @@ interface IEffectInstance < TargetType, PropertiesType:IEffect >
 	public  function isPlaying () : Bool;
 	/**
 	 * Getter indicating wether the effect is waiting on the delay to finish
-	 * before it start's playing
+	 * before it starts playing
 	 */
 	public  function isWaiting () : Bool;
 }

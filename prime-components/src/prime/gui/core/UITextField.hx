@@ -385,7 +385,7 @@ class UITextField extends TextField, implements IUIElement
 		if (changes.has( UIElementFlags.TEXTSTYLE ))
 			applyTextFormat();
 		
-		else if (changes.has( UIElementFlags.TEXT ))	// only update size when the TextStyle hasn't changed, since changing the TextStyle will also cause the textfield to update it's size
+		else if (changes.has( UIElementFlags.TEXT ))	// only update size when the TextStyle hasn't changed, since changing the TextStyle will also cause the textfield to update its size
 			updateSize();
 		
 		changes = 0;
@@ -483,7 +483,7 @@ class UITextField extends TextField, implements IUIElement
 	{
 		Assert.that(multiline);
 		wordWrap = layout.as(AdvancedLayoutClient).explicitWidth.isSet();
-	//	autoSize = l.measuredWidth == l.width ? flash.text.TextFieldAutoSize.LEFT : flash.text.TextFieldAutoSize.NONE;	// <-- textfield will also adjust it's height == not desirable
+	//	autoSize = l.measuredWidth == l.width ? flash.text.TextFieldAutoSize.LEFT : flash.text.TextFieldAutoSize.NONE;	// <-- textfield will also adjust its height == not desirable
 			
 	}
 #end

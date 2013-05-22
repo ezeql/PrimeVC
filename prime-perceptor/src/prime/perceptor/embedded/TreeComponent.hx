@@ -28,35 +28,13 @@
  */
 
 package prime.perceptor.embedded;
+ import prime.bindable.collections.ListChange;
  import prime.bindable.Bindable;
- import prime.bindable.Bindable;
- import prime.bindable.Bindable;
- import prime.bindable.Bindable;
- import prime.bindable.Bindable;
- import prime.bindable.collections.SimpleList;
- import prime.bindable.collections.SimpleList;
- import prime.bindable.collections.SimpleList;
- import prime.bindable.collections.SimpleList;
- import prime.bindable.collections.SimpleList;
- import prime.bindable.collections.SimpleList;
  import prime.gui.components.Label;
  import prime.gui.core.UIContainer;
- import prime.gui.components.SelectableListView;
- import prime.gui.components.ListView;
- import prime.gui.core.UITextField;
- import prime.layout.algorithms.floating.HorizontalFloatAlgorithm;
- import prime.gui.core.IUIElement;
- import prime.gui.core.IUIComponent;
- import prime.gui.core.UIWindow;
- import prime.gui.display.IDisplayObject;
- import prime.gui.core.IUIDataElement;
  import prime.gui.core.UIDataContainer;
- import prime.bindable.collections.ListChange;
- import prime.gui.display.IDisplayContainer;
- import prime.gui.display.Window;
- import prime.bindable.collections.IReadOnlyList;
-   using prime.utils.Bind;
-   using prime.utils.TypeUtil;
+  using prime.utils.Bind;
+  using prime.utils.TypeUtil;
 	
 /**
  * GUI data component designed to work with and visualise a TypedProxyTree,

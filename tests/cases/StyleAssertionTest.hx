@@ -108,7 +108,7 @@ class TestStyles extends StyleChildren
 		
 		c.set("fillingButton", new StyleBlock(
 			new LayoutStyle(
-				new RelativeLayout( 5, 5, 5, 5 ), //t r b l	-> make button as big as it's parent with 5 px margin on all sides
+				new RelativeLayout( 5, 5, 5, 5 ), //t r b l	-> make button as big as its parent with 5 px margin on all sides
 			)
 		));
 	}

@@ -58,7 +58,7 @@ class FastDoubleCell<T> #if (flash9 || cpp) implements haxe.rtti.Generic #end
 	
 	
 	/**
-	 * Insert's the current cell before the given cell
+	 * Inserts the current cell before the given cell
 	 */
 	public function insertBefore ( cell:FastDoubleCell <T >)
 	{
@@ -77,7 +77,7 @@ class FastDoubleCell<T> #if (flash9 || cpp) implements haxe.rtti.Generic #end
 	
 	
 	/**
-	 * Insert's the current cell after the given cell
+	 * Inserts the current cell after the given cell
 	 */
 	public function insertAfter ( cell:FastDoubleCell <T> )
 	{

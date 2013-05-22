@@ -65,7 +65,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	/**
 	 * method to initialize an value-object. Create bindings to the properties of the vo in this method.
 	 * this is done in a seperate method (instead of just the constructor) so that the method can also be
-	 * callen when empty-VO's are created through deserialization (using Type.createEmptyInstance).
+	 * callen when empty-VOs are created through deserialization (using Type.createEmptyInstance).
 	 */
 	private function init ()
 	{
@@ -167,7 +167,7 @@ class ValueObjectBase implements IValueObject, implements IFlagOwner
 	}
 
 
-	//FIXME: Define different ValueObjectBase for the viewer (without ObjectChangeSet's)
+	//FIXME: Define different ValueObjectBase for the viewer (without ObjectChangeSets)
 	public static #if !noinline inline #end function addChangeListener (vo:IValueObject, owner:Dynamic, handler:ObjectChangeSet->Void)
 	{
 #if debug

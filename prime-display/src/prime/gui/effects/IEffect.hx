@@ -67,7 +67,7 @@ interface IEffect
 	public var duration			(default, setDuration)			: Int;
 	
 	/**
-	 * Flag indicating if the target's filters should be hidden when the effect
+	 * Flag indicating if the targets filters should be hidden when the effect
 	 * is running.
 	 * @default	false
 	 */
