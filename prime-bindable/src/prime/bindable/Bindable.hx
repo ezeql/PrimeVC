@@ -73,6 +73,7 @@ package prime.bindable;
  * @author			Ruben Weijers, Danny Wilson
  */
 class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
+	#if cpp, implements haxe.rtti.Generic #end
 {
 	public var value	(default, setValue)	: T;
 	
@@ -306,7 +307,7 @@ class BindableTools
 	/**
 	 * Propagate a value to Bindables in the given FastList.
 	 */
-	public static #if !noinline inline #end function dispatchValueToBound<T> (list:FastList<IBindable<T>>, newValue:T)
+	public static inline function dispatchValueToBound<T> (list:FastList<IBindable<T>>, newValue:T)
 	{
 		if (list != null)
 		{
