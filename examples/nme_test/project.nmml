@@ -13,6 +13,7 @@
 	<!--
 	Using local prime source
 	-->
+	<source path="../../libs/apparat" />
 	<source path="../../prime-bindable/src" />
 	<source path="../../prime-layout" />
 	<source path="../../prime-layout/src" />
