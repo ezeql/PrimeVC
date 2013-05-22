@@ -68,7 +68,7 @@ interface IStyleBlock
 	 */
 	public function updateAllFilledPropertiesFlag ()				: Void;
 	
-	s
+	
 	public function has (propFlag:Int)			: Bool;
 	public function doesntHave (propFlag:Int)	: Bool;
 	public function owns (propFlag:Int)			: Bool;
