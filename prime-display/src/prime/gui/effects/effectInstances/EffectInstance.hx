@@ -188,7 +188,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 			//calculate tween duration
 			var valDiff:Float			= startPos > endPos ? startPos - endPos : endPos - startPos;
 			var calcDuration:Int		= ( effect.duration * valDiff ).roundFloat();
-#if (debug && (flash9 || nme))
+#if (debug && flash9)
 			if (slowMotion)			calcDuration *= 10;
 #end
 			prevTween = new feffects.Tween( startPos, endPos, calcDuration, effect.easing );
@@ -285,7 +285,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 	}
 	
 	
-#if (debug && (flash9 || nme))
+#if (debug && flash9)
 	@:keep static public function __init__ () {
 		flash.Lib.current.addEventListener(flash.events.KeyboardEvent.KEY_DOWN, 
 			function(e) { if (e.keyCode == flash.ui.Keyboard.SHIFT) { slowMotion = true; trace("shiftDown"); } }
