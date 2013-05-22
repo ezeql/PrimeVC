@@ -19,8 +19,19 @@ class Main extends Sprite
 	public function new () {
 		
 		super ();
-		var window = Window.startup( function(stage) return new MainWindow(stage) );
-
+		//var window = Window.startup( function(stage) return new MainWindow(stage) );
+		var txt = new flash.text.TextField(); // prime.gui.display.TextField();
+		txt.x = txt.y = 100;
+		txt.text = "WAAAT";
+		//txt.userEvents.focus.bind(this, function(e) trace("focus" + e));
+		//txt.userEvents.blur.bind(this, function(e) trace("blur" + e));
+		//trace(txt);
+		txt.type = flash.text.TextFieldType.INPUT;
+		txt.addEventListener(flash.events.FocusEvent.FOCUS_IN,  function(e) trace("focus" + e));
+		txt.addEventListener(flash.events.FocusEvent.FOCUS_OUT, function(e) trace("blur " + e));
+		addChild(txt);
+		examples.layout.LayoutExample4.main();
+/*
 		var bitmap = new Bitmap (Assets.getBitmapData ("assets/nme.png"));
 		addChild (bitmap);
 		
@@ -31,6 +42,7 @@ class Main extends Sprite
 		testBindabe.value = 123;
 
 		var layout:LayoutClient = new LayoutClient(100,100);
+*/
 	}
 
 	public static function Go()

@@ -3,7 +3,7 @@
 	
 	<meta title="WWX JS App" package="prime.examples.nme_test" version="1.0.0" company="Prime" />
 	<app main="nme.test.Main" path="Export" file="NME_Test" />
-	<window width="1000" height="100" background="0xF0F0F0" fps="30" />
+	<window width="1000" height="1000" background="0xF0F0F0" fps="30" />
 
 	<source path="src" />
 	
@@ -14,6 +14,7 @@
 	Using local prime source
 	-->
 	<source path="../../prime-bindable/src" />
+	<source path="../../prime-layout" />
 	<source path="../../prime-layout/src" />
 	<source path="../../prime-signals/src" />
 	<source path="../../prime-core/src" />
@@ -22,6 +23,7 @@
 	<source path="../../prime-css/src" />
 	<source path="../../prime-display/src" />
 	<source path="../../prime-components/src" />
+	<source path="../../prime-layout/examples/styles/layoutExample4" />
 
 	<!--
 	Using haxelibs
