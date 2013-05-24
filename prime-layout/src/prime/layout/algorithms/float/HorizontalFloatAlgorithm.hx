@@ -35,6 +35,7 @@ package prime.layout.algorithms.float;
  import prime.types.Number;
  import prime.utils.NumberUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
   using prime.utils.TypeUtil;
  
 

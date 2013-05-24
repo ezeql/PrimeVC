@@ -27,16 +27,14 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.bindable.collections;
- import prime.bindable.collections.IEditableList;
- import prime.utils.DuplicateUtil;
- 
+
 
 /**
  * @creation-date	Jul 1, 2010
  * @author			Ruben Weijers
  */
-class BalancingList<T> extends SimpleList<T>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class BalancingList <T> extends SimpleList <T>
 {
 	public var nextList : BalancingList<T>;
 	public var listNum	: Int;
@@ -70,7 +68,7 @@ class BalancingList<T> extends SimpleList<T>
 		var inst	= new BalancingList<T>();
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( prime.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}

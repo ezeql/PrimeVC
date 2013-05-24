@@ -64,6 +64,8 @@ class Effect <TargetType, EffectClass:IEffect> extends prime.core.traits.Invalid
 		this.isReverted = isReverted;
 #if flash9
 		easing			= newEasing == null 	? feffects.easing.Linear.easeNone : newEasing;
+#elseif CSSParser
+		easing 			= newEasing;
 #end
 		autoHideFilters	= false;
 	}

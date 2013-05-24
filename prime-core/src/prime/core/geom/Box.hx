@@ -27,12 +27,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.core.geom;
-#if CSSParser
- import prime.tools.generator.ICodeFormattable;
- import prime.tools.generator.ICodeGenerator;
- import prime.tools.generator.ICSSFormattable;
- import prime.utils.ID;
-#end
  import prime.types.Number;
   using prime.utils.NumberUtil;
 
@@ -43,13 +37,13 @@ package prime.core.geom;
  */
 class Box
 				implements IBox
-#if CSSParser,	implements ICSSFormattable
-			,	implements ICodeFormattable		#end
+#if CSSParser,	implements prime.tools.generator.ICSSFormattable
+			,	implements prime.tools.generator.ICodeFormattable		#end
 {
-	public var left		(getLeft, setLeft)		: Int;
-	public var right	(getRight, setRight)	: Int;
-	public var top		(getTop, setTop)		: Int;
-	public var bottom	(getBottom, setBottom)	: Int;
+	@:isVar public var left		(getLeft, setLeft)		: Int;
+	@:isVar public var right	(getRight, setRight)	: Int;
+	@:isVar public var top		(getTop, setTop)		: Int;
+	@:isVar public var bottom	(getBottom, setBottom)	: Int;
 	
 #if CSSParser
 	public var _oid		(default, null)			: Int;
@@ -59,7 +53,7 @@ class Box
 	public function new ( top:Int = 0, right:Int = Number.INT_NOT_SET, bottom:Int = Number.INT_NOT_SET, left:Int = Number.INT_NOT_SET )
 	{
 #if CSSParser
-		this._oid	= ID.getNext();
+		this._oid	= prime.utils.ID.getNext();
 #end
 		this.top	= top;
 		this.right	= (right.notSet())  ? this.top 	 : right;
@@ -105,7 +99,7 @@ class Box
 	public function cleanUp () : Void			{}
 
 	#if prime_css
-	public function toCode (code:ICodeGenerator)
+	public function toCode (code:prime.tools.generator.ICodeGenerator)
 	{
 		if (!isEmpty())
 			code.construct( this, [ top, right, bottom, left ] );

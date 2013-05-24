@@ -73,21 +73,35 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 				trace("w: "+group.hasValidatedWidth+"; "+validatePreparedHor+"; "+group.width+"; "+group.state.current+" == "+(group.hasValidatedWidth && !validatePreparedHor && group.width.isSet()));
 				trace("h: "+group.hasValidatedHeight+"; "+validatePreparedVer+"; "+group.height+"; "+group.state.current+" == "+(group.hasValidatedHeight && !validatePreparedVer && group.height.isSet()));
 			}*/
-			
+			var children = group.children;
+			var width = 0, height = 0;
 			
 			if (group.hasValidatedWidth && !validatePreparedHor && group.width.isSet())
 			{
-				var children = group.children;
 				for (i in 0...children.length)
 				{
 					var child = children.getItemAt(i);
 					if (child.relative == null || !child.includeInLayout)
 						continue;
-					
-					if (child.relative.left.isSet() && child.relative.right.isSet())
-						child.outerBounds.width	= group.width - child.relative.right - child.relative.left;
-				}
 
+					var relative	= child.relative;
+					var childBounds	= child.outerBounds;
+					var childWidth	= 0;
+					
+					if (relative.left.isSet() && relative.right.isSet()) {
+						childBounds.width	= group.width - relative.right - relative.left;
+						childWidth 			= group.width; // - childProps.left - childProps.right;
+					}
+					else if (childBounds.width.isSet()) {
+						if 		(relative.left.isSet())		childWidth = relative.left + childBounds.width;
+						else if (relative.right.isSet())	childWidth = relative.right + childBounds.width;
+						else 								childWidth = childBounds.width;
+					}
+					if (childWidth > width)
+						width = childWidth;
+				}
+			//	untyped trace(group+": "+group.measuredWidth+" / " + group.explicitWidth  + " / "+ group.width +"; "+width);
+				setGroupWidth(width);
 				validatePreparedHor = true;
 			}
 			
@@ -95,21 +109,29 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 			
 			if (group.hasValidatedHeight && !validatePreparedVer && group.height.isSet())
 			{
-				var children = group.children;
 				for (i in 0...children.length)
 				{
 					var child = children.getItemAt(i);
 					if (child.relative == null || !child.includeInLayout)
 						continue;
-					
-					var old = child.outerBounds.height;
-					if (child.relative.top.isSet() && child.relative.bottom.isSet())
-						child.outerBounds.height = group.height - child.relative.bottom - child.relative.top;
-					
-				//	if (group.name == "spreadEditorLayout")
-				//		trace("\t\t\tendupdate"+child+"; "+group.height+"; "+old+" => "+child.outerBounds.height+"; "+child.outerBounds.invalidatable);
-				}
 
+					var relative	= child.relative;
+					var childBounds	= child.outerBounds;
+					var childHeight	= 0;
+					
+					if (relative.top.isSet() && relative.bottom.isSet()) {
+						childBounds.width	= group.height - relative.bottom - relative.top;
+						childHeight 		= group.height; // - childProps.top - childProps.bottom;
+					}
+					else if (childBounds.height.isSet()) {
+						if 		(relative.top.isSet())		childHeight = relative.top + childBounds.height;
+						else if (relative.bottom.isSet())	childHeight = relative.bottom + childBounds.height;
+						else 								childHeight = childBounds.height;
+					}
+					if (childHeight > height)
+						height = childHeight;
+				}
+				setGroupHeight(height);
 				validatePreparedVer = true;
 			}
 
@@ -119,9 +141,87 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 	}
 	
 	
-	public #if !noinline inline #end function validate ()				{ if (!validatePrepared) 	prepareValidate(); }
-	public #if !noinline inline #end function validateHorizontal ()	{  }
-	public #if !noinline inline #end function validateVertical ()		{  }
+	public #if !noinline inline #end function validate ()
+	{
+		if (!validatePrepared)
+			prepareValidate();
+
+	//	validateHorizontal();
+	//	validateVertical();
+	}
+
+
+	public #if !noinline inline #end function validateHorizontal ()
+	{
+	/*	var width = 0;
+		var children = group.children;
+
+		for (i in 0...children.length)
+		{
+			var child = children.getItemAt(i);
+			if (!child.includeInLayout)
+				continue;
+
+			if (child.relative == null) {
+			//	if (child.outerBounds.width > width)
+			//		width = child.outerBounds.width;
+				continue;
+			}
+			
+			var childProps	= child.relative;
+			var childBounds	= child.outerBounds;
+			var childWidth	= 0;
+
+			if (childProps.left.isSet() && childProps.right.isSet())
+				childWidth = group.width; // - childProps.left - childProps.right;
+			else if (childBounds.width.isSet()) {
+				if 		(childProps.left.isSet())	childWidth = childProps.left + childBounds.width;
+				else if (childProps.right.isSet())	childWidth = childProps.right + childBounds.width;
+				else 								childWidth = childBounds.width;
+			}
+
+			if (childWidth > width)
+				width = childWidth;
+		}
+		untyped trace(group+": "+group.measuredWidth+" / " + group.explicitWidth  + " / "+ group.width +"; "+width);
+		setGroupWidth(width);*/
+	}
+
+
+	public #if !noinline inline #end function validateVertical ()
+	{
+	/*	var height = 0;
+		var children = group.children;
+
+		for (i in 0...children.length)
+		{
+			var child = children.getItemAt(i);
+			if (!child.includeInLayout)
+				continue;
+			
+			if (child.relative == null) {
+			//	if (child.outerBounds.height > height)
+			//		height = child.outerBounds.height;
+				continue;
+			}
+
+			var childProps	= child.relative;
+			var childBounds	= child.outerBounds;
+			var childHeight	= 0;
+
+			if (childProps.top.isSet() && childProps.bottom.isSet())
+				childHeight = group.height; // - childProps.top - childProps.bottom;
+			else if (childBounds.height.isSet()) {
+				if 		(childProps.top.isSet())	childHeight = childProps.top + childBounds.height;
+				else if (childProps.bottom.isSet())	childHeight = childProps.bottom + childBounds.height;
+				else 								childHeight = childBounds.height;
+			}
+
+			if (childHeight > height)
+				height = childHeight;
+		}
+		setGroupHeight(height);*/
+	}
 	
 	
 	public #if !noinline inline #end function apply ()
@@ -135,9 +235,9 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 		//properties to find the corners of the outer children
 		//this is actually measuring, but can't be done before the position of the children is defined
 		var mostLeftVal:Int		= Number.INT_NOT_SET;
-		var mostRightVal:Int	= Number.INT_NOT_SET;
+	//	var mostRightVal:Int	= Number.INT_NOT_SET;
 		var mostTopVal:Int		= Number.INT_NOT_SET;
-		var mostBottomVal:Int	= Number.INT_NOT_SET;
+	//	var mostBottomVal:Int	= Number.INT_NOT_SET;
 		
 	/*	if (group.name == "spreadEditorLayout") {
 			trace("w: "+group.hasValidatedWidth+"; "+validatePreparedHor+"; "+group.width+"; "+group.state.current);
@@ -176,17 +276,17 @@ class RelativeAlgorithm extends LayoutAlgorithmBase, implements ILayoutAlgorithm
 				else if (childProps.vCenter.isSet())	childBounds.top		= ( ( groupBounds.height - childBounds.height ) >> 1 ) + childProps.vCenter; // ( ( groupBounds.height - childBounds.height ) * .5 ).roundFloat() + childProps.vCenter;
 				
 				childBounds.invalidatable = oldI;
-				
 			}
 			
 			if (mostLeftVal.notSet() || childBounds.left < mostLeftVal)		mostLeftVal		= childBounds.left;
 			if (mostTopVal.notSet() || childBounds.top < mostTopVal)		mostTopVal		= childBounds.top;
-			if (childBounds.right > mostRightVal)							mostRightVal	= childBounds.right;
-			if (childBounds.bottom > mostBottomVal)							mostBottomVal	= childBounds.bottom;
+	//		if (childBounds.right > mostRightVal)							mostRightVal	= childBounds.right;
+	//		if (childBounds.bottom > mostBottomVal)							mostBottomVal	= childBounds.bottom;
 		}
 		
-		if (mostRightVal.isSet() && mostLeftVal.isSet())	setGroupWidth( mostRightVal - mostLeftVal );
-		if (mostBottomVal.isSet() && mostTopVal.isSet())	setGroupHeight( mostBottomVal - mostTopVal );
+	//	untyped trace(group+": "+group.measuredWidth+" / " + group.explicitWidth +" / " + group.width +"; "+(mostRightVal - mostLeftVal));
+	//	if (mostRightVal.isSet() && mostLeftVal.isSet())	setGroupWidth( mostRightVal - mostLeftVal );
+	//	if (mostBottomVal.isSet() && mostTopVal.isSet())	setGroupHeight( mostBottomVal - mostTopVal );
 		
 		if (group.is(IScrollableLayout))
 		{

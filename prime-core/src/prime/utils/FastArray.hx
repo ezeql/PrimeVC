@@ -180,7 +180,7 @@ typedef FastArray<T> =
 	static public inline function removeAt<T> (list:FastArray<T>, pos:Int) : Bool {
 		
 		if		(pos == 0)						list.shift();
-		else if	(pos == (list.length - 1))		list.pop();
+		else if	(pos == (list.length.int() - 1))list.pop();
 		else if (pos > 0)						list.splice(pos, 1);
 		return pos >= 0;
 	}

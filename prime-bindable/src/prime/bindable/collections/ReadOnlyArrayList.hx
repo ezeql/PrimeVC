@@ -28,11 +28,7 @@
  */
 package prime.bindable.collections;
  import haxe.FastList;
- import prime.bindable.collections.iterators.FastArrayForwardIterator;
- import prime.bindable.collections.iterators.FastArrayReversedIterator;
- import prime.bindable.collections.iterators.IIterator;
  import prime.core.events.ListChangeSignal;
- import prime.utils.FastArray;
   using prime.utils.FastArray;
   using prime.utils.IfUtil;
   using prime.utils.Bind;
@@ -44,7 +40,7 @@ package prime.bindable.collections;
  * @author Ruben Weijers
  * @creation-date Nov 19, 2010
  */
-class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Generic
+@:generic class ReadOnlyArrayList<T> implements IReadOnlyList<T>
 {
 	public var beforeChange	(default, null)		: ListChangeSignal<T>;
 	public var change		(default, null)		: ListChangeSignal<T>;
@@ -88,10 +84,10 @@ class ReadOnlyArrayList<T> implements IReadOnlyList<T>, implements haxe.rtti.Gen
 	}
 	
 	
-	@:keep private inline function getLength ()								return list.length
-	@:keep public  inline function iterator () : Iterator<T>			return forwardIterator()
-	@:keep public  inline function forwardIterator () : IIterator<T>	return new FastArrayForwardIterator<T>(list)
-	@:keep public  inline function reversedIterator () : IIterator<T>	return new FastArrayReversedIterator<T>(list)
+	@:keep private inline function getLength ()			return list.length
+	@:keep public  inline function iterator () 	        return forwardIterator()
+	@:keep public  inline function forwardIterator () 	return new prime.bindable.collections.iterators.FastArrayForwardIterator<T>(list)
+	@:keep public  inline function reversedIterator () 	return new prime.bindable.collections.iterators.FastArrayReversedIterator<T>(list)
 
 	public #if !noinline inline #end function disableEvents ()								{ beforeChange.disable(); change.disable(); }
 	public #if !noinline inline #end function enableEvents ()								{ beforeChange.enable();  change.enable(); }

@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.bindable.collections;
- import prime.utils.FastArray;
   using prime.utils.FastArray;
  
 
@@ -35,7 +34,7 @@ package prime.bindable.collections;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
-class ArrayList<T> extends ReadOnlyArrayList<T>, implements IEditableList<T>, implements haxe.rtti.Generic
+@:generic class ArrayList <T> extends ReadOnlyArrayList <T>, implements IEditableList <T>
 {
 	public function new( wrapAroundList:FastArray<T> = null ) super(wrapAroundList)	//FIXME: NEEDED FOR HAXE 2.09 (http://code.google.com/p/haxe/issues/detail?id=671)
 

@@ -31,6 +31,7 @@ package prime.core.validators;
  import prime.types.Number;
  import prime.utils.NumberUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
 
 
 /**

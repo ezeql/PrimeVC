@@ -27,7 +27,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.core.traits;
- import haxe.FastList;
+ import prime.signals.Signal2;
   using prime.utils.BitUtil;
 
 
@@ -40,33 +40,25 @@ package prime.core.traits;
  */
 class Invalidatable implements IInvalidatable
 {
-	public var listeners		(default, null)	: FastList<IInvalidateListener>;
+	public var invalidated (default, null) : Signal2< Int, IInvalidatable >;
 	
 	
 	public function new ()
 	{
-		listeners = new FastList< IInvalidateListener >();
+		invalidated = new Signal2();
 	}
 	
 	
 	public function dispose ()
 	{
-		while (!listeners.isEmpty())
-			listeners.pop();
-		
-		listeners = null;
+		if (invalidated != null) invalidated.dispose();
+		invalidated = null;
 	}
 	
 	
 	public function invalidate (change:Int) : Void
 	{
-	//	Assert.isNotNull(listeners, this+" is already disposed.");
-		var current = listeners.head;
-		while (current != null)
-		{
-			current.elt.invalidateCall( change, this );
-			current = current.next;
-		}
+		invalidated.send(change, this);
 	}
 	
 	

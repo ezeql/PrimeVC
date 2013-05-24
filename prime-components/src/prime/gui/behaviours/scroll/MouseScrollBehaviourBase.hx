@@ -29,12 +29,9 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.behaviours.scroll;
- import prime.gui.behaviours.BehaviourBase;
- import prime.gui.traits.IScrollable;
 #if !CSSParser
  import prime.signals.Wire;
  import prime.gui.events.MouseEvents;
- import prime.layout.IScrollableLayout;
   using prime.utils.Bind;
   using prime.utils.TypeUtil;
 #end
@@ -46,10 +43,9 @@ package prime.gui.behaviours.scroll;
  * @author Ruben Weijers
  * @creation-date Jul 29, 2010
  */
-class MouseScrollBehaviourBase extends BehaviourBase<IScrollable>, implements IScrollBehaviour
+class MouseScrollBehaviourBase extends prime.gui.behaviours.BehaviourBase<prime.gui.traits.IScrollable>, implements IScrollBehaviour
 {
 #if !CSSParser
-	private var scrollLayout		: IScrollableLayout;
 	private var activateBinding		: Wire < Dynamic >;
 	private var deactivateBinding	: Wire < Dynamic >;
 	private var calcScrollBinding	: Wire < Dynamic >;
@@ -59,19 +55,26 @@ class MouseScrollBehaviourBase extends BehaviourBase<IScrollable>, implements IS
 	{
 		Assert.isNotNull( target.scrollableLayout, "target.layout of "+target+" must be a IScrollableLayout" );
 		target.enableClipping();
+		if (target.container == null)
+			addListeners.onceOn(target.displayEvents.addedToStage, this);
+		else
+			addListeners();
+	}
+
+
+	private function addListeners ()
+	{
 		var mouse = target.container.userEvents.mouse;
-		scrollLayout = target.scrollableLayout;
-		activateBinding		= activateScrolling		.on( mouse.rollOver, this );
-		deactivateBinding	= deactivateScrolling	.on( mouse.rollOut, this );
-		calcScrollBinding	= calculateScroll		.on( mouse.move, this );
-		deactivateBinding.disable();
-		calcScrollBinding.disable();
+		activateBinding		= mouse.rollOver.bind(this, activateScrolling);
+		deactivateBinding	= mouse.rollOut.observeDisabled(this, deactivateScrolling);
+		calcScrollBinding	= mouse.move.bindDisabled(this, calculateScroll);
 	}
 	
 	
 	override private function reset ()
 	{
-		scrollLayout = null;
+		trace(this+" - "+target);
+		target.displayEvents.addedToStage.unbind(this);
 		calcScrollBinding.dispose();
 		activateBinding.dispose();
 		deactivateBinding.dispose();

@@ -28,11 +28,7 @@
  */
 package prime.bindable.collections;
  import prime.bindable.collections.iterators.IIterator;
- import prime.bindable.collections.IEditableList;
- import prime.bindable.collections.SimpleList;
  import prime.signals.Signal1;
- import prime.utils.DuplicateUtil;
- import prime.utils.NumberUtil;
   using prime.utils.NumberUtil;
   using prime.utils.TypeUtil;
 
@@ -43,10 +39,10 @@ package prime.bindable.collections;
  * list.
  * 
  */
+#if flash9 @:generic #end
 class ChainedListCollection<T>
 				implements IEditableList<T>
-			,	implements IListCollection<T, ChainedList<T>> 
-#if flash9	,	implements haxe.rtti.Generic #end
+			,	implements IListCollection<T, ChainedList<T>>
 {
 	public var change		(default, null)				: Signal1<ListChange<T>>;
 	
@@ -98,7 +94,7 @@ class ChainedListCollection<T>
 		var inst	= new ChainedListCollection<T>(maxPerList);
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( prime.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}

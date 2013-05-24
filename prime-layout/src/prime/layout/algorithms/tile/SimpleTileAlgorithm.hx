@@ -37,6 +37,7 @@ package prime.layout.algorithms.tile;
   using prime.utils.BitUtil;
   using prime.utils.IfUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
   using prime.utils.TypeUtil;
 
 

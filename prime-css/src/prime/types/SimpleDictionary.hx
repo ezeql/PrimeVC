@@ -32,12 +32,11 @@ package prime.types;
  import prime.core.traits.IDisposable;
 #if CSSParser
  import prime.tools.generator.ICodeFormattable;
-#end
- import prime.utils.FastArray;
-#if (CSSParser || debug)
  import prime.tools.generator.ICodeGenerator;
- import prime.utils.ID;
  import prime.utils.TypeUtil;
+#end
+#if (CSSParser || debug)
+ import prime.utils.ID;
 #end
   using prime.utils.FastArray;
   using Std;
@@ -49,11 +48,11 @@ package prime.types;
  * @author Ruben Weijers
  * @creation-date Sep 30, 2010
  */
-class SimpleDictionary < KType, VType > 
+#if !CSSParser @:generic #end
+class SimpleDictionary <KType, VType>
 				implements IDisposable
 			,	implements IClonable<SimpleDictionary<KType, VType>>
-#if !CSSParser,	implements haxe.rtti.Generic
-#else		,	implements ICodeFormattable		#end
+#if CSSParser,	implements ICodeFormattable	#end
 {
 	private var _keys	: FastArray < KType >;
 	private var _values	: FastArray < VType >;

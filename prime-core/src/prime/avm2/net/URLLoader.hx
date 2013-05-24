@@ -112,7 +112,7 @@ class URLLoader implements ICommunicator
 	public  var isStarted		(default,			null)			: Bool;
 	private var isFinished											: Bool;
 	
-	public  var data			(getData,			setData)		: Dynamic;
+	@:isVar public  var data			(getData,			setData)		: Dynamic;
 	public  var bytes			(getBytes,			setBytes)		: BytesData;
 	public  var dataFormat		(getDataFormat,		setDataFormat)	: URLLoaderDataFormat;
 	private var loader			: FlashLoader;

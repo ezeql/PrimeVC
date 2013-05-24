@@ -30,7 +30,7 @@
  */
 package prime.gui.managers;
  import prime.gui.traits.IGraphicsValidator;
-  using prime.utils.Bind;
+ import prime.gui.managers.ISystem;
   using prime.utils.TypeUtil;
 
 
@@ -43,28 +43,17 @@ package prime.gui.managers;
  */
 class RenderManager extends QueueManager
 {
-	public function new (owner)
-	{
-		super(owner);
-		updateQueueBinding = validateQueue.on( owner.displayEvents.render, this );
-		updateQueueBinding.disable();
-	}
-	
-	
-	override private function enableBinding ()
-	{
-		if (!updateQueueBinding.isEnabled())
-			owner.invalidate();
-		
-		super.enableBinding();
-	}
-	
-	
 	override private function validateQueue ()
 	{
+		if (first == null) // Nothing to validate.
+			return;
+
 		isValidating = true;
-		disableBinding();
 		
+		if (owner.is(ISystem)) {
+			Assert.isNull(owner.as(ISystem).invalidation.first, "InvalidationManager should validateQueue first!");
+		}
+
 		while (first != null)
 		{
 			var obj	= first.as(IGraphicsValidator);

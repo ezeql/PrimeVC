@@ -28,14 +28,14 @@
  */
 package prime.core.validators;
  import prime.signals.Signal0;
- import prime.core.traits.IDisposable;
  
 
 /**
  * @creation-date	Jun 20, 2010
  * @author			Ruben Weijers
  */
-interface IValueValidator <ValidateType> implements IDisposable #if flash9, implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+interface IValueValidator <ValidateType> implements prime.core.traits.IDisposable.IDisposable
 {
 	public var change (default, null)			: Signal0;
 	public function validate (v:ValidateType)	: ValidateType;

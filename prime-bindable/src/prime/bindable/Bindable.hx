@@ -78,7 +78,7 @@ class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
 	
 	/** 
 	 * Dispatched just before "value" is set to a new value.
-	 * Signal argument: The new value.
+	 * Signal arguments: new-value, old-value
 	 */
 	public var change	(default, null)	: Signal2<T, OldValue<T>>;
 	

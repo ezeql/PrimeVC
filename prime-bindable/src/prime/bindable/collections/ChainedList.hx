@@ -27,7 +27,6 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.bindable.collections;
- import prime.utils.DuplicateUtil;
 
 
 /**
@@ -42,7 +41,8 @@ package prime.bindable.collections;
  * @creation-date	Jun 30, 2010
  * @author			Ruben Weijers
  */
-class ChainedList<T> extends SimpleList <T> #if (flash9 || cpp) ,implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class ChainedList <T> extends SimpleList <T>
 {
 	/**
 	 * Maximum number of items. If there are more items, they will be moved to
@@ -82,7 +82,7 @@ class ChainedList<T> extends SimpleList <T> #if (flash9 || cpp) ,implements haxe
 		var inst	= new ChainedList<T>();
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( prime.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}

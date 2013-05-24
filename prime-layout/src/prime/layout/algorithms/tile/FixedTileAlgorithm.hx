@@ -195,7 +195,7 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 		var children		= group.children;
 		var childLen:Int	= children.length;
 		var childNum:Int	= 0;
-							      
+
 		horizontalMap		= new ChainedListCollection<LayoutClient>(maxTilesInDirection);
 		verticalMap			= new BalancingListCollection<LayoutClient>(maxTilesInDirection);
 		
@@ -278,8 +278,8 @@ class FixedTileAlgorithm extends TileAlgorithmBase, implements ILayoutAlgorithm
 			columns.algorithm	= rows.algorithm;
 			rows.algorithm		= columnsAlg;
 			
-			var columnAlg:ILayoutAlgorithm	= startDirection == horizontal ? cast childHorAlgorithm : cast childVerAlgorithm;
-			var rowAlg:ILayoutAlgorithm		= startDirection == horizontal ? cast childVerAlgorithm : cast childHorAlgorithm;
+			var columnAlg:ILayoutAlgorithm	= cast( startDirection == horizontal ? childHorAlgorithm : childVerAlgorithm );
+			var rowAlg:ILayoutAlgorithm		= cast( startDirection == horizontal ? childVerAlgorithm : childHorAlgorithm );
 			
 			for (group in columns)	group.as(TileContainer).algorithm = rowAlg;
 			for (group in rows)		group.as(TileContainer).algorithm = columnAlg;

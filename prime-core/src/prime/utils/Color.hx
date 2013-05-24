@@ -33,7 +33,7 @@ typedef Color = prime.neko.utils.Color;
 #else
  import prime.types.RGBA;
   using prime.utils.Color;
-  using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
 //  using Math;
   using Std;
   using StringTools;

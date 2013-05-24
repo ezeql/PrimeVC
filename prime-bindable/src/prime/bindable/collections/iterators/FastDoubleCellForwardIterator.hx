@@ -36,8 +36,8 @@ package prime.bindable.collections.iterators;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
-class FastDoubleCellForwardIterator<T> implements IIterator<T>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class FastDoubleCellForwardIterator <T> implements IIterator <T>
 {
 	private var first (default, null)	: FastDoubleCell<T>;
 	public var current (default, null)	: FastDoubleCell<T>;
@@ -53,7 +53,7 @@ class FastDoubleCellForwardIterator<T> implements IIterator<T>
 	
 	
 	@:keep public #if !noinline inline #end function setCurrent (val:Dynamic)	{ current = val; }
-	@:keep public #if !noinline inline #end function rewind ()				{ current = first; }
+	@:keep public #if !noinline inline #end function rewind ()					{ current = first; }
 	@:keep public #if !noinline inline #end function hasNext () 				{ return current != null; }
 	@:keep public #if !noinline inline #end function value ()					{ return current.data; }
 	

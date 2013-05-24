@@ -29,10 +29,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.behaviours.layout;
- import prime.gui.behaviours.scroll.IScrollBehaviour;
- import prime.gui.behaviours.BehaviourBase;
- import prime.gui.traits.IScrollable;
- 
 
 /**
  * Clipped layout behaviour will clip a skin that contains a LayoutContainer to the
@@ -43,7 +39,7 @@ package prime.gui.behaviours.layout;
  * @creation-date	Jun 25, 2010
  * @author			Ruben Weijers
  */
-class ClippedLayoutBehaviour extends BehaviourBase<IScrollable>, implements IScrollBehaviour
+class ClippedLayoutBehaviour extends prime.gui.behaviours.BehaviourBase<prime.gui.traits.IScrollable>, implements prime.gui.behaviours.scroll.IScrollBehaviour
 {
 	override private function init ()		target.enableClipping()
 	override private function reset ()		target.disableClipping()

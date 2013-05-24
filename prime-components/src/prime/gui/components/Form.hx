@@ -96,8 +96,8 @@ class Form
             label.detach();
         };
 
-        added  .handler = attach;
-        removed.handler = detach;
+        added  .setVoidHandler(attach);
+        removed.setVoidHandler(detach);
         input.attachTo(form);
 
     //  if (labelWidth >= 0)

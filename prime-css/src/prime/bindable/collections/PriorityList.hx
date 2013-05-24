@@ -41,10 +41,10 @@ package prime.bindable.collections;
  * @author Ruben Weijers
  * @creation-date Oct 20, 2010
  */
+#if flash9 @:generic #end
 class PriorityList <T:IPrioritizable>
 						implements IDisposable
 					,	implements IClonable<PriorityList<T>>
-#if (flash9 || cpp)	,	implements haxe.rtti.Generic #end
 {
 	public var length		(default, null)		: Int;
 	/**

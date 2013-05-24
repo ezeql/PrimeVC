@@ -36,8 +36,8 @@ package prime.bindable.collections.iterators;
  * @creation-date	Jul 23, 2010
  * @author			Ruben Weijers
  */
-class FastDoubleCellReversedIterator<T> implements IIterator<T>
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class FastDoubleCellReversedIterator <T> implements IIterator <T>
 {
 	private var last (default, null)	: FastDoubleCell<T>;
 	public var current (default, null)	: FastDoubleCell<T>;

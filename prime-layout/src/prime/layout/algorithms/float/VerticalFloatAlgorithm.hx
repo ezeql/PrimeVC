@@ -29,13 +29,12 @@
 package prime.layout.algorithms.float;
  import prime.core.geom.space.Vertical;
  import prime.core.geom.IRectangle;
- import prime.layout.algorithms.IVerticalAlgorithm;
- import prime.layout.algorithms.VerticalBaseAlgorithm;
  import prime.layout.AdvancedLayoutClient;
  import prime.layout.IScrollableLayout;
  import prime.types.Number;
  import prime.utils.NumberUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
   using prime.utils.TypeUtil;
 
 
@@ -45,7 +44,7 @@ package prime.layout.algorithms.float;
  * @creation-date	Jun 24, 2010
  * @author			Ruben Weijers
  */
-class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVerticalAlgorithm
+class VerticalFloatAlgorithm extends prime.layout.algorithms.VerticalBaseAlgorithm, implements prime.layout.algorithms.IVerticalAlgorithm
 {
 	/**
 	 * Method will return the total height of all the children.
@@ -62,22 +61,15 @@ class VerticalFloatAlgorithm extends VerticalBaseAlgorithm, implements IVertical
 	
 	public function validateVertical ()
 	{
-		var height:Int	= 0;
-		var children	= group.children;
+		var height = 0;
 		if (group.childHeight.notSet())
-		{
-			for (i in 0...children.length)
-			{
-				var child = children.getItemAt(i);
-				if (!child.includeInLayout)
-					continue;
-				
-				height += child.outerBounds.height;
+			for (child in group.children) {
+				if (child.includeInLayout)
+					height += child.outerBounds.height;
 			}
-		}
 		else
 			height = group.childHeight * group.childrenLength;
-		
+
 		setGroupHeight(height);
 	}
 

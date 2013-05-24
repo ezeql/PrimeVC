@@ -29,9 +29,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.core;
-#if (flash9 && stats)
- import net.hires.debug.Stats;
-#end
  import prime.core.geom.Rectangle;
  import prime.bindable.Bindable;
 
@@ -52,6 +49,9 @@ package prime.gui.core;
 #if flash9
  import prime.bindable.collections.SimpleList;
  import prime.gui.display.VectorShape;
+#end
+#if debug
+ import prime.gui.events.KeyboardEvents;
 #end
 
 
@@ -164,9 +164,14 @@ class UIWindow extends prime.gui.display.Window
 		layout.invalidatable = false;
 		behaviours.init();
 		createChildren();
-
+#if debug 
+		var debugBar = new prime.gui.components.DebugBar();
+		function(ks:KeyboardState) { 
+			if (ks.keyCode() == prime.gui.input.KeyCodes.KeyCodes.ESCAPE) { debugBar.isAttached() ? debugBar.detach() : attach(debugBar); }
+		}.on(this.userEvents.key.up, this);
+#end
 #if (flash9 && stats)
-		children.add( new Stats() );
+		children.add( new net.hires.debug.Stats() );
 #end
 
 		layout.invalidatable = true;
@@ -214,7 +219,7 @@ class UIWindow extends prime.gui.display.Window
 		topLayout	=	#if flash9	new prime.avm2.layout.StageLayout( target );
 						#else		new LayoutContainer();	#end
 		
-		layout		= new VirtualLayoutContainer( #if debug "contentLayout" #end );
+		layout		= new VirtualLayoutContainer( #if debug "stagecontentLayout" #end );
 		popupLayout	= new VirtualLayoutContainer( #if debug "popupLayout" #end );
 		layout.invalidatable 	= popupLayout.invalidatable = false;
 		
@@ -261,9 +266,7 @@ class UIWindow extends prime.gui.display.Window
 	private function createBehaviours ()	: Void
 	{
 	//	behaviours.add( new AutoChangeLayoutChildlistBehaviour(this) );
-#if flash9
-		target.stageFocusRect = false;
-#end
+#if flash9 target.stageFocusRect = false; #end
 	}
 	
 	

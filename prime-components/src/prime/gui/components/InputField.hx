@@ -95,7 +95,7 @@ class InputField <VOType> extends DataButton <VOType>
 		handleFocus	.on( userEvents.focus, this );
 		handleBlur	.on( userEvents.blur, this );
 		
-		fieldBinding = updateVO.on( data.change, this );
+		fieldBinding = updateVO.on(data.change, this);
 		if (!hasFocus)
 			fieldBinding.disable();
 		
@@ -149,7 +149,7 @@ class InputField <VOType> extends DataButton <VOType>
 		{
 			updateVO = v == null ? doNothing : v;
 			if (fieldBinding != null)
-				fieldBinding.handler = updateVO;
+				fieldBinding.setVoidHandler(updateVO);
 		}
 		return v;
 	}

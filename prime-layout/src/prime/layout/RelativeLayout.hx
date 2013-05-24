@@ -135,25 +135,25 @@ class RelativeLayout
 	 * 		client.relative.left = 10;	//left side of client will be 10px from the left side of the parent
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var left					(getLeft, setLeft)				: Int;
+	@:isVar public var left					(getLeft, setLeft)				: Int;
 	/**
 	 * Property defines the relative right position in relation with the parent.
 	 * @see			prime.layout.RelativeLayout#left
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var right				(getRight, setRight)			: Int;
+	@:isVar public var right				(getRight, setRight)			: Int;
 	/**
 	 * Property defines the relative top position in relation with the parent.
 	 * @see			prime.layout.RelativeLayout#left
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var top					(getTop, setTop)				: Int;
+	@:isVar public var top					(getTop, setTop)				: Int;
 	/**
 	 * Property defines the relative bottom position in relation with the parent.
 	 * @see			prime.layout.RelativeLayout#left
 	 * @default		Number.INT_NOT_SET
 	 */
-	public var bottom				(getBottom, setBottom)			: Int;
+	@:isVar public var bottom				(getBottom, setBottom)			: Int;
 	
 	
 	public function new ( top:Int = Number.INT_NOT_SET, right:Int = Number.INT_NOT_SET, bottom:Int = Number.INT_NOT_SET, left:Int = Number.INT_NOT_SET, hCenter:Int = Number.INT_NOT_SET, vCenter:Int = Number.INT_NOT_SET )

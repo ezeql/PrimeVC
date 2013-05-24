@@ -55,6 +55,19 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	static private var free : Wire<Dynamic>;
 	static public  var freeCount : Int = 0;
 	
+	static function __init__()
+	{
+		var W = Wire;
+		var b = new Wire();
+			b.n	= W.free;
+		var W = Wire;
+		// Pre-allocate Wires
+		for (i in 0 ... MAX_WIRES) {
+			W.free = b;
+			++W.freeCount;
+		}
+	}
+
 	static public function make<T>( dispatcher:Signal<T>, owner:Dynamic, handlerFn:T, flags:Int #if debug, ?pos : haxe.PosInfos #end ) : Wire<T>
 	{
 		Assert.isNotNull(dispatcher);
@@ -68,7 +81,8 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 			W.free = (w = W.free).n; // I know it's unreadable.. but it's faster.
 			--W.freeCount;
 			w.n = null;
-			Assert.that(w.owner == null && w.handler == null && w.signal == null && w.n == null);
+			Assert.that(w.owner == null && w.handler == null && w.signal == null && w.n == null, w.owner + ", " + w.handler + ", " + w.signal + ", " + w.n);
+			w.flags	  = flags;
 		}
 		
 		w.owner   = owner;
@@ -95,13 +109,13 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	
 	
 	/** Is this Wire connected? Should it be called with 0 args? Should it be unbound after calling? **/
-	public var flags	(default,null)	: Int;
+	public var flags	(default, null) : Int;
 	/** Handler function **/
-	public var handler	(default,setHandler) : FunctionSignature;
+	public var handler	(default, null) : FunctionSignature;
 	/** Wire owner object **/
 	public var owner	(default, null) : Dynamic;
 	/** Object referencing the parent Link in the Chain **/
-	public var signal	(default, null)	: Signal<FunctionSignature>;
+	public var signal	(default, null) : Signal<FunctionSignature>;
 	
 #if debug
 	public static var instanceCount	= 0;
@@ -157,13 +171,19 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 		return flags.has(ENABLED);
 	}
 	
-	private inline function setHandler( h:FunctionSignature )
+	public #if !noinline inline #end function setArgsHandler( h:FunctionSignature )
 	{
 		// setHandler only accepts functions with FunctionSignature
 		// and this is not a VOID_HANDLER for Signal1..4
 		flags.unset( VOID_HANDLER );
 		
 		return handler = h;
+	}
+	
+	public #if !noinline inline #end function setVoidHandler( h:Void->Void )
+	{
+		flags.set(VOID_HANDLER);
+		return handler = cast h;
 	}
 	
 	/** Enable propagation for the handler this link belongs too. **/
