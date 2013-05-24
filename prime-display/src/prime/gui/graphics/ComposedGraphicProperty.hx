@@ -39,7 +39,7 @@ package prime.gui.graphics;
 
 /**
  * Base class for composed property classes.
- * It doesn't implement an iterator since the class is an iterator of it's own.
+ * It doesn't implement an iterator since the class is an iterator of its own.
  * 
  * @author Ruben Weijers
  * @creation-date Nov 04, 2010

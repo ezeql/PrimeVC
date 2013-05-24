@@ -59,7 +59,7 @@ class FastDoubleCell <T>
 	
 	
 	/**
-	 * Insert's the current cell before the given cell
+	 * Inserts the current cell before the given cell
 	 */
 	public function insertBefore ( cell:FastDoubleCell <T >)
 	{
@@ -78,7 +78,7 @@ class FastDoubleCell <T>
 	
 	
 	/**
-	 * Insert's the current cell after the given cell
+	 * Inserts the current cell after the given cell
 	 */
 	public function insertAfter ( cell:FastDoubleCell <T> )
 	{

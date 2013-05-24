@@ -31,7 +31,7 @@ package prime.core.validators;
 
 
 /**
- * Validator for URI's
+ * Validator for URIs
  * 
  * @author Ruben Weijers
  * @creation-date Feb 09, 2011

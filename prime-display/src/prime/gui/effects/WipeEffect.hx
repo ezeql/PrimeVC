@@ -36,7 +36,7 @@ package prime.gui.effects;
 
 
 /**
- * A wipe effect animates the wiping of a target's scrollrect. If the target 
+ * A wipe effect animates the wiping of a targets scrollrect. If the target 
  * doesn't have a scrollrect, one will be created.
  * 
  * @author Ruben Weijers

@@ -34,7 +34,7 @@ package prime.layout;
 /**
  * LayoutContainer without a display-object owning the layout-container. This
  * means that the position of the container should be added to the position of
- * all it's children.
+ * all its children.
  * 
  * @example
  * 		var box		= new VirtualLayoutContainer();

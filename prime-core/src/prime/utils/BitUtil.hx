@@ -86,7 +86,7 @@ package prime.utils;
 	
 	
 	/**
-	 * Method will change all 1's to 0's and 0's to 1's
+	 * Method will change all 1s to 0's and 0's to 1's
 	 */
 	public static inline function invert (bits:UInt) : UInt
 	{

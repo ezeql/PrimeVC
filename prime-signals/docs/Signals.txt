@@ -92,7 +92,7 @@ Apart from listening to, a signal can also be observed. This comes in handy when
 
 For example, a button that gets selected on a mouse-click won't care about the exact details of the click. The select method can be a general function and doesn't have to accept any parameters.
 [source,haxe]
-    mouse.click.observe( btn, btn.select ); // in btn's class: function select() { ... }
+    mouse.click.observe( btn, btn.select ); // in btns class: function select() { ... }
 
 Or if the handler wants to observe the signal once:
 [source,haxe]
@@ -143,7 +143,7 @@ This utility also provides convenience methods to wire 2 signals together:
 var signal          : Signal2<String,Int>;
 var resendingSignal : Signal2<String,Int>;
 
-// Bind a Signal to another Signal's send() method.
+// Bind a Signal to another Signals send() method.
 resendingSignal.on(signal);        // Owner defaults to the resendingSignal
 resendingSignal.on(signal, owner); // Specific owner
 

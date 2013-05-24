@@ -57,7 +57,7 @@ interface IUIElementStyle implements IInvalidateListener, implements IDisposable
 	
 	
 	/**
-	 * Reference to the style of whom the current-style got it's properteies
+	 * Reference to the style of whom the current-style got its properteies
 	 */
 	public var parentStyle				(default, null)	: IUIElementStyle;
 	

@@ -17,7 +17,7 @@ ______
 . provides loose coupled building-blocks
 . typed MVC-references
 . support for multiple facades
-. reduce boilerplate (through macro's)
+. reduce boilerplate (through macros)
 . fast
 
 === Comparison to other MVC frameworks
@@ -157,13 +157,13 @@ A *facade* is the main MVC-object that contains references to all tiers of the M
 
 
 === Model
-The *model* contains references to *proxies*. It's responsibilities are:
+The *model* contains references to *proxies*. Its responsibilities are:
 
 - create all *proxies* with the correct references to the *events* they need
 - dispose all *proxies* when the *model* is disposed
 
 ==== Proxy
-A *proxy* encapsulates *domain logic* and manages *value-objects* (usually one). It exposes an API to allow other *MVC-actors* to manipulate/read it's data. A *Proxy* does not know anything of the outside *MVC-application* and can only send *signals*.
+A *proxy* encapsulates *domain logic* and manages *value-objects* (usually one). It exposes an API to allow other *MVC-actors* to manipulate/read its data. A *Proxy* does not know anything of the outside *MVC-application* and can only send *signals*.
 
 - *Proxy* [underline]#can broadcasts# *signals*
 - *Proxy* [underline]#can't listen# to *signals*
@@ -173,7 +173,7 @@ A *proxy* encapsulates *domain logic* and manages *value-objects* (usually one).
 A *service* provides an API to communicate with an external dataprovider and translate the external-data (json, XML, etc.) from/to application-data (*value-objects*).
 
 ==== Value-Object
-A value-object (VO) is a small object that only contains data and should only contain logic to modify it's data. PrimeVC works with VOs that can also provide an API to begin/commit/cancel a write operation.
+A value-object (VO) is a small object that only contains data and should only contain logic to modify its data. PrimeVC works with VOs that can also provide an API to begin/commit/cancel a write operation.
 
 .Example
 [source,haxe,numbered]
@@ -200,7 +200,7 @@ class MyVO
 
 
 === View
-The *view* contains references to *mediators*. It's responsibilities are:
+The *view* contains references to *mediators*. Its responsibilities are:
 
 - create all *mediators* and provide them with a reference to the *facade* and their *gui*
 - dispose all *mediators* when the *view* is disposed
@@ -224,7 +224,7 @@ The *GUI* is the visualation of the application. It does not have any logic of t
 
 
 === Logic
-The *logic* contains references to *controllers*. It's responsibilities are:
+The *logic* contains references to *controllers*. Its responsibilities are:
 
 - create all *controllers* and provide them with a reference to the *facade*
 - dispose all *controllers* when the *logic* is disposed
@@ -287,7 +287,7 @@ class SelectionController extends MVCActor<Facade>
 ------
 
 === Events
-The *events* class is the communication-bridge between all MVC-tiers and groups all application link:Signals.html[signals] together. It's responsibilities are:
+The *events* class is the communication-bridge between all MVC-tiers and groups all application link:Signals.html[signals] together. Its responsibilities are:
 
 - create all *signals*
 - dispose all *signals*

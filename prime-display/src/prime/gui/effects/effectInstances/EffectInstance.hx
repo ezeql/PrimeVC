@@ -173,7 +173,7 @@ class EffectInstance<TargetType, PropertiesType:prime.gui.effects.IEffect>
 		if (calcStartPos > 0 && state != EffectStates.initialized)
 			startPos = calcStartPos;
 		
-		//if the effect is playing for the first time, give the target it's start position
+		//if the effect is playing for the first time, give the target its start position
 	//	if (state == EffectStates.initialized)
 	//		tweenUpdater( startPos );	<-- done within the effect instance implementation 'initStartValues'
 		

@@ -52,7 +52,7 @@ class ScrollHelper
 	public static function getLocalMouse (target:IScrollable, mouseObj:MouseState)
 	{
 		Assert.isNotNull( target );
-		Assert.isNotNull( target.container, "target's container can't be null for "+target);
+		Assert.isNotNull( target.container, "targets container can't be null for "+target);
 		Assert.isNotNull( mouseObj, "MouseObj for "+target+" can't be null" );
 		
 		var mousePos		 = target.container.globalToLocal(mouseObj.stage);

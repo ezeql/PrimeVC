@@ -224,7 +224,7 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 			x.n = this.n;
 			this.n = null;
 			
-			// If this wire is disabled during the call to it's handler we need 
+			// If this wire is disabled during the call to its handler we need 
 			// to update the reference to the next-sendable in the Signal.send-list.
 			// @see Signal.nextSendable
 			if (signal.nextSendable == this)

@@ -437,11 +437,11 @@ class TextField extends flash.text.TextField, implements ITextField
 	
 	/**
 	 * If the textfield receives an focus-event, it will broadcast this event
-	 * also to it's target
+	 * also to its target
 	 */
 	private function redispatchFocusEvent (event:FocusState)
 	{
-		//send an focus event if the field get's focus from something else then the label
+		//send an focus event if the field gets focus from something else then the label
 		if (event.target == this && event.related != cast focusTarget)
 			focusTarget.userEvents.focus.send( event );
 	}
@@ -449,11 +449,11 @@ class TextField extends flash.text.TextField, implements ITextField
 	
 	private function handleBlur (event:FocusState)
 	{
-		//if the field lost it's focus to the focusTarget, give the focus back to the txtfield
+		//if the field lost its focus to the focusTarget, give the focus back to the txtfield
 		if (event.target == this && event.related == cast focusTarget)
 			setFocus();
 		
-		//the field lost it's focus to someone else.. Send an blur event
+		//the field lost its focus to someone else.. Send an blur event
 		else
 			focusTarget.userEvents.blur.send( event );
 	}

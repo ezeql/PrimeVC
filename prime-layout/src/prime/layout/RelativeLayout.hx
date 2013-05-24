@@ -46,7 +46,7 @@ package prime.layout;
  * 
  * In a relative layout it's possible to set the prop 
  * 		horizontalCenter = 0
- * to make sure the layout is always centered in relation with it's layout
+ * to make sure the layout is always centered in relation with its layout
  * parent.
  * 
  * The parent can choose to apply or ignore the relative properties depending 

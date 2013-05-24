@@ -262,7 +262,7 @@ class LayoutContainer extends AdvancedLayoutClient, implements ILayoutContainer,
 	//		i++;
 		}
 		
-		// It's important that super.validated get's called after the children are validated.
+		// It's important that super.validated gets called after the children are validated.
 		// The process of validating children could otherwise invalidate the object again
 		// since the x&y of the children can change when they are validated.
 		return super.validated();

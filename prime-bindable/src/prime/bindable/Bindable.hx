@@ -179,7 +179,7 @@ class Bindable<T> implements IBindable<T>, implements IClonable<Bindable<T>>
 	
 	/**
 	 * Makes sure this.value is (and remains) equal
-	 * to otherBindable's value.
+	 * to otherBindables value.
 	 *	
 	 * In other words: 
 	 * - update this when otherBindable.value changes

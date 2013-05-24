@@ -50,7 +50,7 @@ interface IInteractive
 	/**
 	 * Method returns true if the given target (which has focus) makes the 
 	 * IInteractive object the focus owner.
-	 * This is usefull when a Label with a textfield loses it's focus to the
+	 * This is usefull when a Label with a textfield loses its focus to the
 	 * textfield, but is still the focus-owner.
 	 */
 	public function isFocusOwner (target:prime.gui.events.UserEventTarget) : Bool;

@@ -34,7 +34,7 @@ package prime.utils;
 
 
 /**
- * Utility for working with IRectangle's.
+ * Utility for working with IRectangles.
  * 
  * @author Ruben Weijers
  * @creation-date Jul 30, 2010

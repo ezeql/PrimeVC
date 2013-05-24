@@ -66,8 +66,8 @@ class Color
 	/**
 	 * Blends to RGBA colors together.
 	 */
-	public static #if !noinline inline #end function blend (v:RGBA, v2:RGBA) : RGBA		{ v.color |= v2.color; v.a |= v2.a; return v; }
-	public static #if !noinline inline #end function blendUInt (v:UInt, v2:UInt) : UInt	{ return v | v2; }
+	public static #if !noinline inline #end function blend (v:RGBA, v2:RGBA) : RGBA			{ v.color |= v2.color; v.a |= v2.a; return v; }
+	public static #if !noinline inline #end function blendUInt (v:UInt, v2:UInt) : UInt		{ return v | v2; }
 
 	/**
 	 * Makes sure that the given color is between BLACK and WHITE
@@ -120,11 +120,11 @@ class Color
 	/**
 	 * Replaces the RGB properties of a RGBA object.
 	 */
-	public static #if !noinline inline #end function setRgb (v:RGBA, c:UInt) : RGBA		{ v.color = c; return v; }
+	public static #if !noinline inline #end function setRgb (v:RGBA, c:UInt) : RGBA			{ v.color = c; return v; }
 	/**
 	 * Replaces the red value of a RGBA object.
 	 */
-	public static #if !noinline inline #end function setRed (v:RGBA, r:UInt) : RGBA		{ v.color = (v.color & INVERTED_RED_MASK) | (r << 16); return v; }
+	public static #if !noinline inline #end function setRed (v:RGBA, r:UInt) : RGBA			{ v.color = (v.color & INVERTED_RED_MASK) | (r << 16); return v; }
 	/**
 	 * Replaces the green value of a RGBA object.
 	 */
@@ -139,7 +139,7 @@ class Color
 	/**
 	 * Darkens the RGBA color by the gray-amount (0-255).
 	 */
-	public static #if !noinline inline #end function darken (v:RGBA, grayV:UInt) : RGBA	{ v.color = v.color - Color.gray(grayV).color; return v.validate(); }
+	public static #if !noinline inline #end function darken (v:RGBA, grayV:UInt) : RGBA		{ v.color = v.color - Color.gray(grayV).color; return v.validate(); }
 	/**
 	 * Lightens the RGBA color by the gray-amount (0-255).
 	 */
@@ -165,13 +165,13 @@ class Color
 	/**
 	 * Converts the given float (0-1) to a uint.
 	 */
-	public static #if !noinline inline #end function uint (v:Float) : UInt				{ return (v * 255).int().validate8Bit(); }
+	public static #if !noinline inline #end function uint (v:Float) : UInt			{ return (v * 255).int().validate8Bit(); }
 	
 	
 	/**
 	 * Converts a RGBA value to a hexadecimal string. 
 	 */
-	public static #if !noinline inline #end function string (v:RGBA) : String			{ return rgbaToString(v); }
+	public static #if !noinline inline #end function string (v:RGBA) : String		{ return rgbaToString(v); }
 	public static #if !noinline inline #end function rgbaToString (v:RGBA) : String	{ return "0x"+v.color.hex(6) + v.a.hex(2); }
 	public static #if !noinline inline #end function uintToString (v:UInt) : String	{ return "0x"+v.hex(6); }
 	/**

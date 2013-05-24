@@ -32,7 +32,7 @@ package prime.mvc;
 
 
 /**
- * Base class for controllers, mediators and proxy's. It defines that the objects
+ * Base class for controllers, mediators and proxies. It defines that the objects
  * can send events.
  * 
  * @author Ruben Weijers

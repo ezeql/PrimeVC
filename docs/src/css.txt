@@ -72,7 +72,7 @@ More info about these units can be fount at http://www.w3.org/TR/css3-values/[w3
 [options="header", cols="1m,2,3,1,1"]
 |=====
 |Unit 	| Full name 	| Relative to 					|Flash 	|HTML
-|ex 	| x-height 		| x-height of element's font 	r| 		g|
+|ex 	| x-height 		| x-height of elements font 	r| 		g|
 |em 	| 				| font-size of parent 			r| 		g|
 |px 	| Pixels 		| Absolute value 				g| 		g|
 |in 	| 				| 								r| 		g| 
@@ -84,7 +84,7 @@ More info about these units can be fount at http://www.w3.org/TR/css3-values/[w3
 |=====
 :t_fontsize: xref:_font[&#91;unit&#93;]
 
-Support for other units then `%` and `px` is not yet implemented for flash. The css-parser will use `px` for all unit's that flash doesn't know.
+Support for other units then `%` and `px` is not yet implemented for flash. The css-parser will use `px` for all units that flash doesn't know.
 
 === Distance
 [options="header", cols="1m,2,1,1"]
@@ -101,7 +101,7 @@ Support for other units then `%` and `px` is not yet implemented for flash. The 
 :t_distance: xref:_distance[&#91;unit&#93;]
 ~* Explanations shamelessly copied from http://www.w3.org/TR/css3-values/#absolute-lengths[w3c]~
 
-Support for other units then `%` and `px` is not yet implemented for flash. The css-parser will use `px` for all unit's that flash doesn't know.
+Support for other units then `%` and `px` is not yet implemented for flash. The css-parser will use `px` for all units that flash doesn't know.
 
 
 === Angles

@@ -58,7 +58,7 @@ interface IDisplayObject
 	public function attachDisplayTo		(target:IDisplayContainer, pos:Int = -1)	: IDisplayObject;
 	
 	/**
-	 * Method will detach this IDisplayObject from it's parent sprite.
+	 * Method will detach this IDisplayObject from its parent sprite.
 	 * @return own-instance
 	 */
 	public function detachDisplay		()											: IDisplayObject;

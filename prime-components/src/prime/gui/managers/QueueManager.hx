@@ -83,12 +83,12 @@ class QueueManager implements IDisposable, implements IValidatable
 	
 	
 	/**
-	 * Add's an obj to the end of the queue with objects
+	 * Adds an obj to the end of the queue with objects
 	 */
 	public function add ( obj:IValidatable )
 	{
 		//if the invalidated object is the first in the list, it's probably 
-		//invalidated during it's own validation. To make sure the object is valid
+		//invalidated during its own validation. To make sure the object is valid
 		//it will be removed from the queue and then added at the end of the 
 		//queue.
 		if (isValidating && obj == first && obj != last)

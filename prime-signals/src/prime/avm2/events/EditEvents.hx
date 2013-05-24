@@ -39,7 +39,7 @@ package prime.avm2.events;
 
 
 /**
- * AVM2 implementation of events that are triggered when the platform's hotkeys
+ * AVM2 implementation of events that are triggered when the platforms hotkeys
  * for copy, cut or paste are pressed.
  * 
  * @author Ruben Weijers

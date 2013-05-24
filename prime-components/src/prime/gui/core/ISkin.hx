@@ -67,13 +67,13 @@ interface ISkin
 	
 	/**
 	 * A skin can have children, despite the fact that it isn't a IDisplayable 
-	 * object. It will add it's children to the child-list of it's owner.
-	 * After this method, the owner will creates it's children.
+	 * object. It will add its children to the child-list of its owner.
+	 * After this method, the owner will creates its children.
 	 */
 	public function createChildren ()		: Void;
 	
 	/**
-	 * This method is called after the owner has created it's children. It can 
+	 * This method is called after the owner has created its children. It can 
 	 * be used e.g. to place them in a different container or change their 
 	 * depts or values.
 	 */
@@ -87,7 +87,7 @@ interface ISkin
 	
 	/**
 	 * Dispose all the children of this skin. This can happen when the owner 
-	 * is disposed or when the owner changes it's skin.
+	 * is disposed or when the owner changes its skin.
 	 */
 	public  function disposeChildren ()		: Void;
 	
@@ -108,7 +108,7 @@ interface ISkin
 	/**
 	 * Abstract method.
 	 * Is called by the owner when an object wants to check if the owner has
-	 * focus. The skin can check if the target is one of it's children and then
+	 * focus. The skin can check if the target is one of its children and then
 	 * return true or false.
 	 */
 	public function isFocusOwner (target:prime.gui.events.UserEventTarget) : Bool;

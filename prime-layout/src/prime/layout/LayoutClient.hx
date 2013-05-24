@@ -66,7 +66,7 @@ class LayoutClient extends prime.core.traits.Invalidatable
 	public var invalidatable		(default, setInvalidatable)			: Bool;
 	
 	/**
-	 * Bitflag with all the changes that are done to the layout until it get's
+	 * Bitflag with all the changes that are done to the layout until it gets
 	 * validated.
 	 */
 	public var changes 				(default, null)						: Int;

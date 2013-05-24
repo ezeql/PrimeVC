@@ -33,7 +33,7 @@ package prime.core.traits;
  * Interface for components who can be frozen.
  * 
  * A frozen component stops with what it was doing (f.e. playing video)
- * but doesn't update it's interface accordingly. After it's defrosted, the
+ * but doesn't update its interface accordingly. After it's defrosted, the
  * component continues with what it was doing before.
  * 
  * @since	dec 22, 2009
@@ -53,7 +53,7 @@ interface IFreezable
 	
 	/**
 	 * Method will defrost the component and restore the component
-	 * to it's previous state.
+	 * to its previous state.
 	 */
 	public function defrost()	: Void;
 }
