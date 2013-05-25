@@ -29,34 +29,21 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components;
- import prime.bindable.collections.IReadOnlyList;
- import prime.bindable.collections.ListChange;
  import prime.signals.Signal1;
- import prime.core.traits.IValueObject;
- import prime.core.geom.IRectangle;
-
  import prime.gui.components.IItemRenderer;
  import prime.gui.core.IUIDataElement;
- import prime.gui.core.UIDataContainer;
  import prime.gui.display.DisplayDataCursor;
- import prime.gui.display.IDisplayObject;
  import prime.gui.display.ISprite;
-
  import prime.gui.events.DropTargetEvents;
- import prime.gui.events.MouseEvents;
-
+ import prime.gui.events.MouseEvents;		//imports MouseState
  import prime.layout.LayoutFlags;
- import prime.fsm.states.ValidateStates;
-
- import prime.gui.traits.IDropTarget;
  import prime.gui.traits.IInteractive;
-
  import prime.types.SimpleDictionary;
-
   using prime.utils.Bind;
   using prime.utils.BitUtil;
   using prime.utils.IfUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
   using prime.utils.TypeUtil;
   using haxe.Timer;
 
@@ -67,7 +54,7 @@ package prime.gui.components;
  * @author Ruben Weijers
  * @creation-date Oct 26, 2010
  */
-class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataType > >, implements IDropTarget //, implements haxe.rtti.Generic
+class ListView<ListDataType> extends prime.gui.core.UIDataContainer<prime.bindable.collections.IReadOnlyList<ListDataType>>, implements prime.gui.traits.IDropTarget
 {
 	/**
 	 * Signal which will dispatch mouse-clicks of interactive item-rendered 
@@ -376,7 +363,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	    return depth < children.length && depth > -1
 	
 	
-	public function getDepthForBounds (bounds:IRectangle) : Int
+	public function getDepthForBounds (bounds : prime.core.geom.IRectangle) : Int
 		return layoutContainer.algorithm.getDepthForBounds(bounds)
 	
 	
@@ -440,7 +427,7 @@ class ListView<ListDataType> extends UIDataContainer < IReadOnlyList < ListDataT
 	// EVENT HANDLERS
 	//
 	
-	private function handleListChange ( change:ListChange<ListDataType> ) : Void
+	private function handleListChange ( change : prime.bindable.collections.ListChange<ListDataType> ) : Void
 	{
 		var l 		= layoutContainer;
 		var start 	= l.fixedChildStart;

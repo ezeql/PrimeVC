@@ -29,11 +29,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components.skins;
- import prime.gui.components.Button;
  import prime.gui.components.Image;
  import prime.gui.core.UITextField;
- import prime.gui.core.Skin;
- import prime.gui.events.UserEventTarget;
   using prime.utils.Bind;
   using prime.utils.BitUtil;
 
@@ -48,7 +45,7 @@ private typedef Flags = prime.gui.core.UIElementFlags;
  * @author Ruben Weijers
  * @creation-date Jan 19, 2011
  */
-class ButtonIconLabelSkin extends Skin<Button>
+class ButtonIconLabelSkin extends prime.gui.core.Skin<prime.gui.components.Button>
 {
 	private var iconGraphic		: Image;
 	private var labelField		: UITextField;
@@ -72,27 +69,19 @@ class ButtonIconLabelSkin extends Skin<Button>
 	
 	override public  function disposeChildren ()
 	{
-		if (iconGraphic != null) {
-			iconGraphic.dispose();
-			iconGraphic = null;
-		}
-		
-		if (labelField != null) {
-			labelField.dispose();
-			labelField	= null;
-		}
+		Assert.isNotNull(iconGraphic);
+		Assert.isNotNull(labelField);
+		iconGraphic.dispose();
+		iconGraphic = null;
+		labelField.dispose();
+		labelField	= null;
 	}
 	
 	
 	override public function validate (changes:Int)
 	{
-#if debug
 		Assert.isNotNull(iconGraphic, owner+"; "+iconGraphic+"; "+labelField+"; "+owner.isDisposed());
-#end	if (changes.has( Flags.ICON )) {
-			iconGraphic.data = owner.icon;
-	/*		if 		(owner.icon == null)		iconGraphic.detach();
-			else if (!iconGraphic.isOnStage()) 	iconGraphic.attachTo(owner, 0);
-	*/	}
+		if (changes.has( Flags.ICON ))			iconGraphic.data = owner.icon;
 #if (flash9 || nme)
 		if (changes.has( Flags.ICON_FILL ))		iconGraphic.colorize( owner.iconFill );
 
@@ -106,7 +95,7 @@ class ButtonIconLabelSkin extends Skin<Button>
 	
 	
 #if (flash9 || nme)
-	override public function isFocusOwner (target:UserEventTarget)
+	override public function isFocusOwner (target:prime.gui.events.UserEventTarget)
 	{
 		return labelField.isFocusOwner(target);
 	}

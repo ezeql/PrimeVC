@@ -36,6 +36,7 @@ package prime.gui.styling;
  import prime.types.Number;
   using prime.utils.BitUtil;
   using prime.utils.NumberUtil;
+  using prime.utils.NumberUtil.IntUtil;
   using prime.utils.TypeUtil;
 
 
@@ -51,7 +52,7 @@ private typedef PValidator	= PercentIntRangeValidator;
  */
 class LayoutCollection extends StyleCollectionBase < LayoutStyle >
 {
-	public function new (elementStyle:IUIElementStyle)			super( elementStyle, StyleFlags.LAYOUT )
+	public function new (elementStyle:UIElementStyle)			super( elementStyle, StyleFlags.LAYOUT )
 	override public function forwardIterator ()					return new LayoutCollectionForwardIterator( elementStyle, propertyTypeFlag)
 	override public function reversedIterator ()				return new LayoutCollectionReversedIterator( elementStyle, propertyTypeFlag)
 #if debug

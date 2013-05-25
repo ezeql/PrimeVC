@@ -31,7 +31,6 @@
 package prime.gui.managers;
  import prime.gui.traits.IPropertyValidator;
  import prime.gui.traits.IValidatable;
-  using prime.utils.Bind;
   using prime.utils.TypeUtil;
 
 
@@ -49,19 +48,12 @@ package prime.gui.managers;
  */
 class InvalidationManager extends QueueManager
 {
-	public function new (owner)
-	{
-		super(owner);
-		
-		updateQueueBinding = validateQueue.on( owner.displayEvents.enterFrame, this );
-		updateQueueBinding.disable();
-	}
-	
-	
 	override private function validateQueue ()
 	{
+		if (first == null) // Nothing to validate.
+			return;
+
 		isValidating = true;
-		disableBinding();
 #if debug
 		var i = 0;
 		if (traceQueues)
@@ -70,12 +62,12 @@ class InvalidationManager extends QueueManager
 		while (first != null)
 		{
 #if (debug && !embed_perceptor)	
-			if (i++ > 200) { trace("ERROR: INVALIDATION is stuck on "+first+" -> "+first.nextValidatable); first = null; break; } 
+			if (i++ > 20000) { trace("ERROR: INVALIDATION is stuck on "+first+" -> "+first.nextValidatable); first = null; break; } 
 #elseif embed_perceptor
 			// embedded perceptor easily surpasses the 200 limit
 			var n:String = first + "";
 			if ( n.indexOf( "Inspector" ) == -1 )
-				if (i++ > 200) 
+				if (i++ > 20000) 
 				{
 					trace("ERROR: INVALIDATION is stuck on " + first + " -> " + first.nextValidatable); 
 					first = null; 

@@ -29,16 +29,8 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components.skins;
- import prime.gui.behaviours.components.DirectToolTipBehaviour;
- import prime.gui.components.Button;
  import prime.gui.components.Image;
- import prime.gui.core.Skin;
   using prime.utils.BitUtil;
-
-
-
-private typedef Flags = prime.gui.core.UIElementFlags;
-
 
 
 /**
@@ -47,19 +39,21 @@ private typedef Flags = prime.gui.core.UIElementFlags;
  * @author Ruben Weijers
  * @creation-date Jan 19, 2011
  */
-class ButtonIconSkin extends Skin<Button>
+class ButtonIconSkin extends prime.gui.core.Skin<prime.gui.components.Button>
 {
 	public var iconGraphic (default, null) : Image;
 	
 	
 	override private function createBehaviours ()
 	{
-		behaviours.add( new DirectToolTipBehaviour( owner, owner.data ) );
+		behaviours.add( new prime.gui.behaviours.components.DirectToolTipBehaviour( owner, owner.data ) );
 	}
 	
 
 	override public function createChildren ()
 	{
+		if (owner.layoutContainer.algorithm == null)
+			owner.layoutContainer.algorithm = new prime.layout.algorithms.float.HorizontalFloatAlgorithm(prime.core.geom.space.Horizontal.center, prime.core.geom.space.Vertical.center);
 		owner.attach( iconGraphic = new Image(#if debug owner.id.value + "Icon" #else null #end, owner.icon) );
 		iconGraphic.maintainAspectRatio = true;
 	}
@@ -78,7 +72,7 @@ class ButtonIconSkin extends Skin<Button>
 
 	override public function validate (changes:Int)
 	{
-		if (changes.has( Flags.ICON ))			iconGraphic.data = owner.icon;
-		if (changes.has( Flags.ICON_FILL ))		iconGraphic.colorize( owner.iconFill );
+		if (changes.has( prime.gui.core.UIElementFlags.ICON ))			iconGraphic.data = owner.icon;
+		if (changes.has( prime.gui.core.UIElementFlags.ICON_FILL ))		iconGraphic.colorize( owner.iconFill );
 	}
 }

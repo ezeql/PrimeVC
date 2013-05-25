@@ -27,11 +27,7 @@
  *  Ruben Weijers	<ruben @ prime.vc>
  */
 package prime.bindable.collections;
- import prime.bindable.collections.iterators.IIterator;
- import prime.bindable.collections.iterators.FastDoubleCellForwardIterator;
- import prime.bindable.collections.iterators.FastDoubleCellReversedIterator;
  import prime.core.events.ListChangeSignal;
- import prime.utils.DuplicateUtil;
   using prime.utils.NumberUtil;
  
 
@@ -43,8 +39,8 @@ package prime.bindable.collections;
  * @creation-date	Jun 29, 2010
  * @author			Ruben Weijers
  */
+#if flash9 @:generic #end
 class SimpleList<T> implements IEditableList<T> 
-	#if (flash9 || cpp) ,implements haxe.rtti.Generic #end
 {
 	public var change		(default, null)		: ListChangeSignal<T>;
 	public var beforeChange	(default, null)		: ListChangeSignal<T>;
@@ -116,7 +112,7 @@ class SimpleList<T> implements IEditableList<T>
 		var inst	= new SimpleList<T>();
 		var length	= this.length;
 		for (i in 0...length)
-			inst.insertAt( DuplicateUtil.duplicateItem( getItemAt(i) ), i );
+			inst.insertAt( prime.utils.DuplicateUtil.duplicateItem( getItemAt(i) ), i );
 		
 		return inst;
 	}
@@ -127,10 +123,10 @@ class SimpleList<T> implements IEditableList<T>
 		return length == 0;
 	}
 	
-	@:keep private inline function getLength () : Int          { return _length; }
-	public function iterator          () : Iterator <T> { return forwardIterator(); }
-	public function forwardIterator   () : IIterator<T> { return new FastDoubleCellForwardIterator <T> (first); }
-	public function reversedIterator  () : IIterator<T> { return new FastDoubleCellReversedIterator <T> (last); }
+	private inline function getLength ()	return _length
+	public function iterator ()				return forwardIterator()
+	public function forwardIterator ()		return new prime.bindable.collections.iterators.FastDoubleCellForwardIterator  <T> (first)
+	public function reversedIterator ()		return new prime.bindable.collections.iterators.FastDoubleCellReversedIterator <T> (last)
 	
 	
 	/**

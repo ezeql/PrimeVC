@@ -132,7 +132,7 @@ else
 	echo -e "\n=== COMPILING SWF === ($(date))"
 	time echo build/build.hxml \
 		-swf "'$OUTPUT'" \
-		--dead-code-elimination \
+		--dce full \
 		${Debug:---no-traces} \
 		--cwd "'$PRJROOT'" \
 		$EXTRA \

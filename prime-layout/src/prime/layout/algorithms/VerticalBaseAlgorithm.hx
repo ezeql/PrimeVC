@@ -27,13 +27,8 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.layout.algorithms;
-#if CSSParser
- import prime.tools.generator.ICodeGenerator;
-#end
  import prime.core.geom.space.Horizontal;
  import prime.core.geom.space.Vertical;
- import prime.layout.algorithms.LayoutAlgorithmBase;
- import prime.layout.AdvancedLayoutClient;
  import prime.layout.LayoutFlags;
   using prime.utils.BitUtil;
   using prime.utils.NumberUtil;
@@ -47,7 +42,7 @@ package prime.layout.algorithms;
  * @author Ruben Weijers
  * @creation-date Sep 03, 2010
  */
-class VerticalBaseAlgorithm extends LayoutAlgorithmBase
+class VerticalBaseAlgorithm extends prime.layout.algorithms.LayoutAlgorithmBase
 {
 	public var direction			(default, setDirection)		: Vertical;
 	
@@ -118,7 +113,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	{
 		if (!validatePrepared)
 		{
-			var width:Int = group.childWidth;
+			var width = group.childWidth;
 		
 			if (group.childWidth.notSet())
 			{
@@ -226,7 +221,7 @@ class VerticalBaseAlgorithm extends LayoutAlgorithmBase
 	override public function toCSS (prefix:String = "") : String	{ Assert.abstractMethod(); return ""; }
 #end
 #if CSSParser
-	override public function toCode (code:ICodeGenerator)
+	override public function toCode (code:prime.tools.generator.ICodeGenerator)
 	{
 		code.construct( this, [ direction, horizontal ] );
 	}

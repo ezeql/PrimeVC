@@ -27,11 +27,6 @@
  *  Ruben Weijers	<ruben @ rubenw.nl>
  */
 package prime.fsm;
- import prime.core.traits.IDisablable;
- import prime.core.traits.IDisposable;
- import prime.signals.Signal2;
- import prime.utils.FastArray;
-
 
 private typedef NewState = IState;
 private typedef OldState = IState;
@@ -43,7 +38,7 @@ private typedef OldState = IState;
  * @creation-date	Jun 9, 2010
  * @author			Ruben Weijers
  */
-interface IFiniteStateMachine implements IDisposable, implements IDisablable
+interface IFiniteStateMachine implements prime.core.traits.IDisposable, implements prime.core.traits.IDisablable
 {
 	//
 	// PROPERTIES
@@ -52,7 +47,7 @@ interface IFiniteStateMachine implements IDisposable, implements IDisablable
 	/**
 	 * Collection of states that the current statemachine can have.
 	 */
-//	public var states		(default, null)				: FastArray < IState >;
+//	public var states		(default, null)				: prime.utils.FastArray<IState>;
 	/**
 	 * Current state of the group. State must be in the <code>states</code>
 	 * list.
@@ -66,7 +61,7 @@ interface IFiniteStateMachine implements IDisposable, implements IDisablable
 	 * Change dispatcher. First parameter is the new state, the second parameter
 	 * is the old state.
 	 */
-	public var change		(default, null)				: Signal2 < NewState, OldState >;
+	public var change		(default, null)				: prime.signals.Signal2<NewState, OldState>;
 	
 	
 	

@@ -29,10 +29,7 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.components.skins;
- import prime.gui.components.Button;
  import prime.gui.core.UITextField;
- import prime.gui.core.Skin;
- import prime.gui.events.UserEventTarget;
   using prime.utils.BitUtil;
 
 
@@ -43,7 +40,7 @@ package prime.gui.components.skins;
  * @author Ruben Weijers
  * @creation-date Jan 19, 2011
  */
-class ButtonLabelSkin extends Skin<Button>
+class ButtonLabelSkin extends prime.gui.core.Skin<prime.gui.components.Button>
 {
 	private var labelField : UITextField;
 
@@ -52,6 +49,7 @@ class ButtonLabelSkin extends Skin<Button>
 	{
 		owner.attach( labelField = UITextField.createLabelField(owner.id.value + "TextField", owner.data, owner, owner.layoutContainer) );
 		owner.layoutContainer.algorithm = null;
+		//Assert.isNull(owner.layoutContainer.algorithm, "Skin of " + owner.id.value);
 	}
 
 
@@ -75,7 +73,7 @@ class ButtonLabelSkin extends Skin<Button>
 	}
 	
 	
-	override public function isFocusOwner (target:UserEventTarget)
+	override public function isFocusOwner (target:prime.gui.events.UserEventTarget)
 	{
 		return labelField.isFocusOwner(target);
 	}

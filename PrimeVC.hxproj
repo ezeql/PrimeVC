@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<project>
+<project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie disabled="False" />
+    <movie outputType="Application" />
     <movie input="" />
     <movie path="test.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />
     <movie version="10" />
+    <movie minorVersion="0" />
+    <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
+    <movie preferredSDK="C:\haxe\revs\haxe_r5665" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
@@ -17,13 +20,14 @@
     <class path="tests" />
     <class path="libs\haxe" />
     <class path="styles\empty" />
+    <class path="libs\apparat" />
   </classpaths>
   <!-- Build options -->
   <build>
-    <option directives="" />
-    <option flashStrict="False" />
+    <option directives="dragEnabled&#xA;debug" />
+    <option flashStrict="True" />
     <option mainClass="cases.ComponentsTest" />
-    <option enabledebug="False" />
+    <option enabledebug="True" />
     <option additional="" />
   </build>
   <!-- haxelib libraries -->
@@ -43,7 +47,10 @@
     <!-- example: <hidden path="..." /> -->
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand>"C:\Program Files\Git\bin\bash" build/build-styles styles/empty</preBuildCommand>
+  <preBuildCommand>C:\Users\ezeql\dev\tools\killflash.exe
+
+
+"C:\Program Files (x86)\Git\bin\sh.exe" --login -i -c " build/build-styles styles/empty</preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="True" />
   <!-- Other project options -->
@@ -51,4 +58,6 @@
     <option showHiddenPaths="False" />
     <option testMovie="Default" />
   </options>
+  <!-- Plugin storage -->
+  <storage />
 </project>

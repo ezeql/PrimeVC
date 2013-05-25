@@ -45,6 +45,7 @@ class MouseMoveScrollBehaviour extends MouseScrollBehaviourBase
 {
 	override private function calculateScroll (mouseObj:MouseState)
 	{
+		var scrollLayout = target.scrollableLayout;
 		var scrollHor = scrollLayout.horScrollable();
 		var scrollVer = scrollLayout.verScrollable();
 		

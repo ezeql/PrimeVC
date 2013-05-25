@@ -35,9 +35,7 @@ package prime.bindable.collections;
  * @creation-date	Jul 1, 2010
  * @author			Ruben Weijers
  */
-interface IListCollection <DataType, ListType:IEditableList<DataType>> 
-				implements IEditableList<DataType>
-//#if flash9 ,	implements haxe.rtti.Generic #end
+interface IListCollection <T, ListType:IEditableList<T>> implements IEditableList <T>
 {
 	public var lists		(default, null)		: ArrayList<ListType>;
 	public function addList (list:ListType)		: ListType;

@@ -30,7 +30,6 @@
  */
 package prime.gui.behaviours.scroll;
 #if !CSSParser
- import prime.signals.Wire;
  import prime.core.geom.IntPoint;
  import prime.gui.events.MouseEvents;
   using prime.utils.Bind;
@@ -50,7 +49,7 @@ package prime.gui.behaviours.scroll;
 class CornerScrollBehaviour extends MouseScrollBehaviourBase
 {
 	private var scrollSpeed		: IntPoint;
-	private var scrollBinding	: Wire < Dynamic >;
+	private var scrollBinding	: prime.signals.Wire < Dynamic >;
 	
 	
 	override private function reset () {
@@ -63,8 +62,7 @@ class CornerScrollBehaviour extends MouseScrollBehaviourBase
 	override private function init ()
 	{
 		super.init();
-		scrollBinding = scroll.on( target.displayEvents.enterFrame, this );
-		scrollBinding.disable();
+		scrollBinding = target.displayEvents.enterFrame.bindDisabled(this,scroll);
 	}
 	
 	
@@ -77,8 +75,9 @@ class CornerScrollBehaviour extends MouseScrollBehaviourBase
 	
 	private function scroll ()
 	{
-		var scrollPos	= scrollLayout.scrollPos.add( scrollSpeed );
-		scrollPos		= scrollLayout.validateScrollPosition( scrollPos );
+		var scrollLayout = target.scrollableLayout;
+		var scrollPos	 = scrollLayout.scrollPos.add( scrollSpeed );
+		scrollPos		 = scrollLayout.validateScrollPosition( scrollPos );
 		
 		if (scrollPos.isEqualTo( scrollLayout.scrollPos )) {
 			scrollBinding.disable();
@@ -91,8 +90,9 @@ class CornerScrollBehaviour extends MouseScrollBehaviourBase
 	
 	override private function calculateScroll (mouseObj:MouseState)
 	{
-		var scrollHor = scrollLayout.horScrollable();
-		var scrollVer = scrollLayout.verScrollable();
+		var scrollLayout = target.scrollableLayout;
+		var scrollHor	 = scrollLayout.horScrollable();
+		var scrollVer	 = scrollLayout.verScrollable();
 		
 		if (!scrollHor && !scrollVer)
 			return;

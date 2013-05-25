@@ -28,7 +28,6 @@
  */
 package prime.bindable;
  import prime.bindable.Bindable;
- import prime.signals.Signal1;
   using prime.utils.BitUtil;
 
 
@@ -57,9 +56,7 @@ private typedef Flags = RevertableBindableFlags;
  * @creation-date	Jun 18, 2010
  * @author			Danny Wilson
  */
-class RevertableBindable<T> extends Bindable<T>,
-	#if prime_data implements prime.core.traits.IEditableValueObject, #end
-	implements haxe.rtti.Generic
+@:generic class RevertableBindable <T> extends Bindable<T>, implements prime.core.traits.IEditableValueObject
 {
 	/**
 	 * Keeps track of settings.

@@ -29,9 +29,6 @@
  *  Ruben Weijers	<ruben @ onlinetouch.nl>
  */
 package prime.gui.core;
-#if ((flash9 || nme) && stats)
- import net.hires.debug.Stats;
-#end
  import prime.core.geom.Rectangle;
  import prime.bindable.Bindable;
 
@@ -49,10 +46,11 @@ package prime.gui.core;
   using prime.utils.BitUtil;
   using prime.utils.TypeUtil;
 
-//#if (flash9 || nme)
  import prime.bindable.collections.SimpleList;
  import prime.gui.display.VectorShape;
-//#end
+#if debug
+ import prime.gui.events.KeyboardEvents;
+#end
 
 
 /**
@@ -171,9 +169,14 @@ class UIWindow extends prime.gui.display.Window
 		layout.invalidatable = false;
 		behaviours.init();
 		createChildren();
-
-#if ((flash9 || nme) && stats)
-		children.add( new Stats() );
+#if debug 
+		var debugBar = new prime.gui.components.DebugBar();
+		function(ks:KeyboardState) { 
+			if (ks.keyCode() == prime.gui.input.KeyCodes.KeyCodes.ESCAPE) { debugBar.isAttached() ? debugBar.detach() : attach(debugBar); }
+		}.on(this.userEvents.key.up, this);
+#end
+#if (flash9 && stats)
+		children.add( new net.hires.debug.Stats() );
 #end
 
 		layout.invalidatable = true;
@@ -222,9 +225,9 @@ class UIWindow extends prime.gui.display.Window
 						#else		new LayoutContainer();	#end
 		this.topLayout = topLayout;
 		
-		var layout		= new VirtualLayoutContainer( #if debug "contentLayout" #end ); this.layout = layout;
-		var popupLayout	= new VirtualLayoutContainer( #if debug "popupLayout" #end );   this.popupLayout = popupLayout;
-		layout.invalidatable = popupLayout.invalidatable = false;
+		var layout		= this.layout      = new VirtualLayoutContainer( #if debug "stagecontentLayout" #end );
+		var popupLayout	= this.popupLayout = new VirtualLayoutContainer( #if debug "popupLayout" #end );
+		layout.invalidatable 	= popupLayout.invalidatable = false;
 		
 #if embed_perceptor
 		// use a seperate top level layout instead of adding to contentLayout

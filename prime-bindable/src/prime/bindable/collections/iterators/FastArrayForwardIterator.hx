@@ -37,8 +37,8 @@ package prime.bindable.collections.iterators;
  * @creation-date	Jul 1, 2010
  * @author			Ruben Weijers
  */
-class FastArrayForwardIterator<T> implements IIterator<T>
-	#if flash9	,	implements haxe.rtti.Generic #end
+#if flash9 @:generic #end
+class FastArrayForwardIterator <T> implements IIterator <T>
 {
 	private var target	(default, null)	: FastArray<T>;
 	public var current	(default, null)	: Int;

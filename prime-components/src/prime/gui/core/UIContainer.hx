@@ -87,6 +87,7 @@ class UIContainer extends UIComponent, implements IUIContainer
 
     public function enableClipping ()
     {
+        Assert.isNull(scrollRect, id.value);
         createScrollRect( rect.width, rect.height);
         
         var s = layoutContainer.scrollPos;
@@ -98,6 +99,7 @@ class UIContainer extends UIComponent, implements IUIContainer
 
     public function disableClipping ()
     {
+        Assert.isNotNull(scrollRect, id.value);
         var l = layoutContainer;
         l.changed.unbind(this);
         l.scrollPos.xProp.change.unbind( this );
