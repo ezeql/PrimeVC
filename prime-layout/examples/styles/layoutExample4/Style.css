@@ -9,7 +9,6 @@ IDisplayObject {
 }
 LayoutExample4 {
 	algorithm: tile;
-/*	algorithm: circle;*/
 }
 LayoutExample4 IDisplayObject {
 	width: 30px;
@@ -17,19 +16,19 @@ LayoutExample4 IDisplayObject {
 	margin: 20px 5px;
 	background: #ffaaaa;
 }
-LayoutExample4 UIComponent:hover {
+LayoutExample4 UIComponent {
 	background: #eeaadd;
+}
+LayoutExample4 UIComponent:hover {
+	background: #ff0000aa;
 	width:  80px;
 	height: 80px;
 }
 LayoutExample4 UIGraphic {
 	background: #ddeeaa;
-	/*width: 80px;*/
-	/*height: 80px;*/
 }
 #search {
 	visibility: visible;
-	/*font: 12px "Verdana" #4D4D4D;*/
 	background: #ccc;
 	border-radius: 10px;
 	border: 1px solid #4D4D4D;
