@@ -15,7 +15,7 @@ Slides:
 * core:      Core interfaces and generic utilities.
 * signals:   Strictly typed, lightweight, memory and cpu optimized signal (event) library.
 * bindable:  Data-binding built on signals.
-* i18n:      YAML based compile-time internalization library built on Franco's [thx](http://github.com/fponticello/thx) localization helpers and Bindable.
+* i18n:      YAML based compile-time internalization library built on Franco's [thx](http://github.com/fponticelli/thx) localization helpers and Bindable.
 * mvc:       Strictly typed Model-View-Controller for stateful GUI applications.
 * fsm:       Finite State Machine, with state change events built on signals.
 * layout:    2D box-model layouting for anything.
