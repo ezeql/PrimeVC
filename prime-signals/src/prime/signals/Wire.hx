@@ -58,13 +58,13 @@ class Wire <FunctionSignature> extends WireList<FunctionSignature>, implements I
 	static function __init__()
 	{
 		var W = Wire;
-		var b = new Wire();
-			b.n	= W.free;
-		var W = Wire;
-		// Pre-allocate Wires
+		// Pre-allocate roughly 36 * MAX_WIRES bytes of Wires
+		// to potentionally have them placed closely togheter in memory.
 		for (i in 0 ... MAX_WIRES) {
+			var b  = new Wire();
+			b.n    = W.free;
 			W.free = b;
-			++W.freeCount;
+			W.freeCount++;
 		}
 	}
 
