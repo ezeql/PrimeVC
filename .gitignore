@@ -26,6 +26,7 @@ Autocomplete_.hx
 /styles/*/StyleSheet.hx
 /styles/*/images
 /build/environment.sh
+/build/parser.js
 /bin-debug/*.vo
 /generated-src
 

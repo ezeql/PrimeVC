@@ -69,16 +69,11 @@ DEBUG_INPUT_FILE="$ASSETS_FOLDER/$DEBUG_INPUT_FILE"
 RELEASE_OUTPUT_FILE="$ASSETS_FOLDER/$RELEASE_OUTPUT_FILE"
 DEBUG_OUTPUT_FILE="$ASSETS_FOLDER/$DEBUG_OUTPUT_FILE"
 
-echo -e "\n================ BUILDING ASSETS ================"
-echo -e "\tRelease input: $RELEASE_INPUT_FILE"
-echo -e "\tRelease output: $RELEASE_OUTPUT_FILE"
-echo -e "\tDebug input: $DEBUG_INPUT_FILE"
-echo -e "\tDebug output: $DEBUG_OUTPUT_FILE"
-echo -e "\tRelease libraries: $RELEASE_LIBS"
-echo -e "\tDebug libraries: $DEBUG_LIBS"
+#echo -e "\n================ BUILDING ASSETS ================"
 
 if [[ ! -f "$PRIMEVC_ROOT/build/environment.sh" ]]; then
-	echo -e "\tThere's no environment file: \"`cd $PRIMEVC_ROOT/build; pwd`/environment.sh\" configured. Copy 'environment.sh.template' to 'environment.sh' and edit it."
+	cd "$PRIMEVC_ROOT/build/";
+	echo -e "\tThere's no environment file: \"`pwd`/environment.sh\" configured. Copy 'environment.sh.template' to 'environment.sh' and edit it."
 	exit 1
 else
 	if [[ ! -f "$DEBUG_OUTPUT_FILE" ]]  ||  test "$DEBUG_INPUT_FILE" -nt "$DEBUG_OUTPUT_FILE"  ||  test "$RELEASE_INPUT_FILE" -nt "$RELEASE_OUTPUT_FILE"; then
@@ -88,6 +83,13 @@ else
 			exit 1
 		fi;
 		
+		echo -e "\tRelease input: $RELEASE_INPUT_FILE"
+		echo -e "\tRelease output: $RELEASE_OUTPUT_FILE"
+		echo -e "\tDebug input: $DEBUG_INPUT_FILE"
+		echo -e "\tDebug output: $DEBUG_OUTPUT_FILE"
+		echo -e "\tRelease libraries: $RELEASE_LIBS"
+		echo -e "\tDebug libraries: $DEBUG_LIBS"
+
 		echo -e "\t[mxmlc]  Compiling asset SWFs"
 		
 		if [[ -d "$GENERATED_FOLDER" ]]; then
@@ -105,7 +107,7 @@ else
 			-show-deprecation-warnings \
 			-warn-class-is-sealed \
 			-tools-locale=en \
-			-target-player="10.0.0" \
+			-target-player="10.3.0" \
 		 	-output "'$DEBUG_OUTPUT_FILE'" \
 		 	"'$DEBUG_INPUT_FILE'" \
 			| xargs -t "$MXMLC" \
@@ -119,7 +121,7 @@ else
 			-optimize \
 			-strict \
 			-tools-locale=en \
-			-target-player="10.0.0" \
+			-target-player="10.3.0" \
 			-output "'$RELEASE_OUTPUT_FILE'" \
 			"'$RELEASE_INPUT_FILE'" \
 			| xargs -t "$MXMLC" \
@@ -135,8 +137,8 @@ else
 		# Cleanup
 	#	rm -R "$PRIMEVC_ROOT/hxclasses"
 	else
-			echo -e "\t\tall libraries are up-to-date"
+			echo -e "\tall libraries are up-to-date"
 	fi;
 fi;
-echo -e "\t\tfinished creating assets"
+#echo -e "\t\tfinished creating assets"
 exit 0

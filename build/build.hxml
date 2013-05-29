@@ -1,5 +1,5 @@
 -lib feffects
-
+-D dragEnabled
 -D Full
 #-D stats
 #-D network-sandbox
@@ -11,15 +11,15 @@
 #-D DebugEvents
 --flash-strict
 
--swf-version 10
+-swf-version 10.3
 -swf-header 1000:750:24:FFFFFF
 #-swf bin-debug/app.swf
 
-#-main primevc.Main
+#-main prime.Main
 
 -cp libs/apparat
 -cp libs/haxe
--cp libs/hiresStats
+#-cp libs/hiresStats
 -cp libs/hxmpp
 #-cp libs/macmousewheel
 #-cp libs/monsterdebugger

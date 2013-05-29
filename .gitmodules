@@ -1,0 +1,3 @@
+[submodule "libs/thx"]
+	path = libs/thx
+	url = git://github.com/fponticelli/thx.git

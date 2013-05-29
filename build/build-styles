@@ -3,17 +3,19 @@
 
 BUILDSCRIPTDIR=${0//\\//}
 BUILDSCRIPTDIR="${BUILDSCRIPTDIR%/*}"
-PRIMEVC_ROOT="${BUILDSCRIPTDIR}/.."
+PRIMEVC_ROOT=`cd "${BUILDSCRIPTDIR}/.."; pwd;`
+STYLE_ROOT="${PRIMEVC_ROOT}/prime-css/src/"
+#STYLE_ROOT=$(haxelib path prime-css | sed -n 1p)
 #PRJROOT=${PRIMEVC_ROOT}
 
 MINPARAMS=1
 StyleFolder="$1"
-MainClass="primevc.tools.CSSParserMain"
-ParserClass="primevc.tools.CSSParser"
+MainClass="prime.tools.CSSParserMain"
+ParserClass="prime.tools.CSSParser"
 SourceFolder="${PRIMEVC_ROOT}/src"
 MainFile="${SourceFolder}/${MainClass//.//}.hx"			#replace all dots with slashes
 ParserClass="${SourceFolder}/${ParserClass//.//}.hx"	#replace all dots with slashes
-Parser="${PRIMEVC_ROOT}/build/parser.n"
+Parser="${PRIMEVC_ROOT}/build/parser.js"
 Force=false
 #Resource=""
 
@@ -28,17 +30,17 @@ while getopts "s:tfd" OptionName
 	esac
 done
 
+if [ -z $StyleFolder ]; then echo "Usage: build-styles <path/to/style/directory>"; exit 1; fi;
+
 #StyleFolder="$PRJROOT/$STYLE"
 StyleInputFile="$StyleFolder/Style.css"
 StyleOutputFile="$StyleFolder/StyleSheet.hx"
 #ManifestFile="${StyleFolder}/manifest.xml"
 
 #echo "MainFile: ${MainFile}"
-echo -e "\tMain: $MainClass"
-echo -e "\tStyleInput: $StyleInputFile"
-echo -e "\tStyleOutput: $StyleOutputFile"
+#echo -e "\tMain: $MainClass"
 #echo "Manifest: $ManifestFile" &&
-echo -e "\tDebugging? ${Debug:-false}"
+#echo -e "\tDebugging? ${Debug:-false}"
 
 CompilerUpdated=false
 
@@ -47,12 +49,14 @@ CompilerUpdated=false
 #create parser if the source files have changed
 if $Force || [[ ! -f "$Parser" ]]  ||  test "$MainFile" -nt "$Parser"  ||  test "$ParserClass" -nt "$Parser"; then  # ||  test ${StyleFile} -nt ${Parser} ; then
 	echo -e "\tCompiling parser"
-	haxe build/build-cssparser.hxml \
+	cd "$PRIMEVC_ROOT"
+	time haxe build/build-cssparser.hxml \
 		-main $MainClass \
-		-neko "$Parser" \
-		--no-inline $Debug \
-		${Debug:---no-traces} || exit 1;
+		-js "$Parser" \
+		$Debug \
+		${Debug:---no-traces --dead-code-elimination} || exit 1;
 	CompilerUpdated=true
+	cd -
 fi;
 
 if [[ ! -f "$Parser" ]] ; then
@@ -63,8 +67,10 @@ fi;
 #compile css
 if [[ -d "$StyleFolder" ]] && [[ -f "$StyleInputFile" ]] ; then # && [[ -f ${ManifestFile} ]] ; then
 	if "$CompilerUpdated" || [[ ! -f "$StyleOutputFile" ]] || test "$StyleInputFile" -nt "$StyleOutputFile" || test "$Parser" -nt "$StyleOutputFile"; then # || test ${ManifestFile} -nt ${StyleOutputFile} ; then
+		echo -e "\tStyleInput: $StyleInputFile"
+		echo -e "\tStyleOutput: $StyleOutputFile"
 		echo -e "\tRunning parser on ${StyleInputFile}"
-		neko "$Parser" "$StyleFolder" "$PRIMEVC_ROOT" || exit 1;
+		node "$Parser" "$StyleFolder" "$STYLE_ROOT" || exit 1;
 	else	
 		echo -e "\tStyle is already compiled and up to date.."
 	fi;

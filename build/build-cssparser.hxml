@@ -1,10 +1,27 @@
--lib feffects
+#--js-modern
+#-debug
+#-lib nodejs
+-D nodejs
+-cp libs/nodejs
+
+-D prime_css
+-D CSSParser
 #-lib listtools
-#-cp ../libs
--cp libs/haxe/neko
-#-cp libs/haxe
+-cp libs/haxe
 -cp libs/apparat
--cp src
+
+-cp prime-css/src
+-cp prime-core/src
+-cp prime-signals/src
+-cp prime-bindable/src
+-cp prime-data/src
+-cp prime-display/src
+-cp prime-layout/src
+-cp prime-fsm/src
+-cp prime-components/src
+
+#-lib prime-css
+#-D prime_data
 #-cp ../generated-src
 #-cp ../skins/flair
 #-cp ./

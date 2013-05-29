@@ -16,12 +16,8 @@
  *  along with HXMPP. If not, see <http://www.gnu.org/licenses/>.
 */
 package jabber.util;
+ import haxe.io.Bytes;
 
-import haxe.BaseCode;
-import haxe.io.Bytes;
-#if nodejs
-import js.Node;
-#end
 
 /**
  * Base64 url-safe encoding/decoding utility.
@@ -38,61 +34,38 @@ class Base64URLSafe
 	 */
 	public static var CHARS	= 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 	
-	#if (neko||cpp||js||flash||xmldoc)
-	#if !nodejs
+#if (!nodejs && !php)
+	static var bc = new haxe.BaseCode( Bytes.ofString( CHARS ) );
+#end
 	
-	static var bc = new BaseCode( Bytes.ofString( CHARS ) );
-	
-	#end // !nodejs
-	#end // neko||cpp||js||flash||xmldoc
-	
-	public static #if (nodejs) inline #end
-	function encode( t : String ) : String {
-		#if php
-		return untyped __call__( "base64_encode", t );
-		#elseif nodejs
-		return Node.newBuffer(t).toString( Node.BASE64 );
-		#else
-		return bc.encodeString( t );
-		#end
+
+	public static inline function encode( t : String ) : String {
+#if php        return untyped __call__( "base64_encode", t );
+#elseif nodejs return js.Node.newBuffer(t).toString( js.Node.BASE64 );
+#else          return bc.encodeString( t ); #end
 	}
 	
-	public static #if (nodejs) inline #end
-	function decode( t : String ) : String {
-		#if php
-		return untyped __call__( "base64_decode", t );
-		#elseif nodejs
-		return Node.newBuffer( t, Node.BASE64 ).toString( Node.ASCII );
-		#else
-		return bc.decodeString( t );
-		#end
+	public static function decode( t : String ) : String {
+#if php        return untyped __call__( "base64_decode", t );
+#elseif nodejs return js.Node.newBuffer( t, js.Node.BASE64 ).toString( js.Node.ASCII );
+#else          return bc.decodeString( t ); #end
 	}
 	
-	public static #if (nodejs) inline #end
-	function encodeBytes( b : Bytes ) : String {
-		#if php
-		return untyped __call__( "base64_encode", b.getData() );
-		#elseif nodejs
-		return b.getData().toString( Node.BASE64 );
-		#else
-		return bc.encodeBytes( b ).toString();
-		#end
+	public static function encodeBytes( b : Bytes ) : String {
+#if php        return untyped __call__( "base64_encode", b.getData() );
+#elseif nodejs return b.getData().toString( js.Node.BASE64 );
+#else          return bc.encodeBytes( b ).toString(); #end
 	}
 	
-	public static #if (nodejs) inline #end
-	function decodeBytes( t : String ) : Bytes {
-		#if php
-		return Bytes.ofString( untyped __call__( "base64_decode", t ) );
-		#elseif nodejs
-		return Bytes.ofData( Node.newBuffer( t, Node.BASE64 ) );
-		#else
-		return bc.decodeBytes( Bytes.ofString( t ) );
-		#end
+	public static function decodeBytes( t : String ) : Bytes {
+#if php        return Bytes.ofString( untyped __call__( "base64_decode", t ) );
+#elseif nodejs return Bytes.ofData( js.Node.newBuffer( t, js.Node.BASE64 ) );
+#else          return bc.decodeBytes( Bytes.ofString( t ) ); #end
 	}
 	
 	/**
-		Create a random string of given length.
-	*/
+	 * Create a random string of given length.
+	 */
 	public static function random( len : Int = 1, ?chars : String ) : String {
 		if( chars == null ) chars = CHARS;
 		var r = "";
