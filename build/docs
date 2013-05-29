@@ -42,7 +42,7 @@ function generateDocs {
             if [[ ! -f $file_out ]] || test "$file_in" -nt "$file_out"; then
                 export INPUT=`dirname $file_in`
                 echo INPUT is now $INPUT
-                asciidoc -b xhtml11 --theme=$THEME -a linkcss -a "scriptsdir=$themes_dir" -a "stylesdir=$themes_dir" -o $file_out $file_in > /dev/null &&
+                asciidoc -b html5 --theme=$THEME -a linkcss -a "scriptsdir=$themes_dir" -a "stylesdir=$themes_dir" -o $file_out $file_in > /dev/null &&
                 COUNTER=$((COUNTER+1))
             #    echo "f $file_in => $file_out"
             #else
