@@ -65,5 +65,3 @@ for docdir in prime-*/doc docs/src; do
     generateDocs $docdir $THEMEDIR
 done
 echo -e "\tCreated $COUNTER docs"
-
-#asciidoc -b html5 --theme=bare -o docs/output/Test.html docs/src/Test.txt
